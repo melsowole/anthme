@@ -44,11 +44,6 @@ export async function createUser(
   try {
     const users: DB<User> = await read.users();
 
-    // request validation
-    const reqKeysMissing = !req.body.username || !req.body.password;
-    if (reqKeysMissing)
-      throw new CustomError(400, "Required request body keys missing");
-
     const usernameTaken = users.find((u) => u.username == req.body.username);
     if (usernameTaken) throw new CustomError(409, "Username already taken");
 

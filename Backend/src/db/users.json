@@ -25,5 +25,23 @@
       123,
       456
     ]
+  },
+  {
+    "id": 1710867681974,
+    "username": "first",
+    "password": "plugga mer",
+    "posts": [],
+    "comments": []
+  },
+  {
+    "id": 1710874784513,
+    "username": "blud",
+    "password": "lil bro",
+    "posts": [
+      1710875587052,
+      1710876398044,
+      1710876581273
+    ],
+    "comments": []
   }
 ]

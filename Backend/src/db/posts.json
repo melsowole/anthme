@@ -35,5 +35,19 @@
     "title": "Adding a post",
     "content": "",
     "comments": []
+  },
+  {
+    "id": 1710875587052,
+    "category": "TypeScript",
+    "title": "Jag älskar typescript",
+    "content": "Jokes on you hatar det",
+    "comments": []
+  },
+  {
+    "id": 1710876398044,
+    "category": "TypeScript",
+    "title": "Sova",
+    "content": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "comments": []
   }
 ]
