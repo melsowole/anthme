@@ -6,6 +6,8 @@ export function getItemById<T extends User | Post | Comment>(
 ): T {
   const item = array.find((t) => t.id === id);
 
+  if(!item) throw new Error(`Item with id ${id} not found`)
+
   return item;
 }
 

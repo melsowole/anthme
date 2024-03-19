@@ -73,7 +73,7 @@ export async function createPost(
   try {
     const posts = await read.posts();
     const users = await read.users();
-
+    
     const user = getItemById(users, req.params.id);
 
     if (!user) throw new CustomError(404, "User not found");
