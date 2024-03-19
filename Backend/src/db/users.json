@@ -43,5 +43,35 @@
       1710876581273
     ],
     "comments": []
+  },
+  {
+    "id": "7fdd2943-3fd9-44c8-aa3d-618f117ed6dd",
+    "username": "Lynx",
+    "password": "1234",
+    "posts": [
+      "359e031a-cc21-4721-88c4-1faeed4cd11c"
+    ],
+    "comments": []
+  },
+  {
+    "id": "8faa1e54-bd3a-4a05-a6e1-79cbbc80917d",
+    "username": "Fado",
+    "password": "hejhej",
+    "posts": [
+      "4f23e1b0-9964-47e2-87fa-a752b813ae98"
+    ],
+    "comments": []
+  },
+  {
+    "id": "66f2236a-0b65-45bc-8be7-86009cf8188a",
+    "username": "Fantomen",
+    "password": "1111",
+    "userImage": "fantomenImg",
+    "posts": [
+      "ea39c9fd-37e1-4560-88d7-36ab30148308",
+      "9a08c6b1-4933-4243-926d-c2bfabd1648b",
+      "0f5af467-4f40-4057-8186-f47b292f4193"
+    ],
+    "comments": []
   }
 ]

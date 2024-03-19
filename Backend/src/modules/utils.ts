@@ -2,16 +2,16 @@ import { DB, User, Post, Comment } from "../db/DBTypes.js";
 
 export function getItemById<T extends User | Post | Comment>(
   array: T[],
-  id: number
+  id: string
 ): T {
-  const item = array.find((t) => t.id == id);
+  const item = array.find((t) => t.id === id);
 
   return item;
 }
 
 export function getItemsById<T extends User | Post | Comment>(
   array: T[],
-  ids: number[]
+  ids: (string | number)[]
 ): T[] {
   const items = array.filter((i) => ids.includes(i.id));
   return items;
