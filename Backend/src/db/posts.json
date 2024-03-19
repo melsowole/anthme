@@ -1,12 +1,5 @@
 [
   {
-    "id": 1710846200855,
-    "category": "music",
-    "title": "Hey now",
-    "content": "Hey nooow!",
-    "comments": []
-  },
-  {
     "id": 1710846226468,
     "category": "music",
     "title": "Music today is garbage",
@@ -18,7 +11,9 @@
     "category": "guitar",
     "title": "How do I barre chords",
     "content": "I have never been able to barre chords. I just can't figure it out. How do I learn it?",
-    "comments": []
+    "comments": [],
+    "user": "kalle",
+    "img": "hello.img"
   },
   {
     "id": 1710848609598,
@@ -31,6 +26,13 @@
     "id": 1710848905159,
     "category": "Music",
     "title": "What is the best album of the year?",
+    "content": "",
+    "comments": []
+  },
+  {
+    "id": 1710853579717,
+    "category": "Test",
+    "title": "Adding a post",
     "content": "",
     "comments": []
   }

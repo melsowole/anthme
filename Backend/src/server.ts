@@ -4,18 +4,15 @@
 import express from "express";
 import cors from "cors";
 import CustomError from "./modules/CustomError.js";
-import { usersRouter, postsRouter } from "./modules/routes.js";
-// import { usersRouter, postsRouter, commentsRouter } from "./modules/routes.js";
+import { apiRouter } from "./modules/apiRouter.js";
 
-export const app = express();
+const app = express();
 
 //Middleware
 app.use(express.json(), cors());
 
 //Routes
-app.use("/users", usersRouter);
-app.use("/posts", postsRouter);
-// app.use("/comments", commentsRouter);
+app.use("/", apiRouter);
 
 // Afterware, handles errors thrown in req handlers
 app.use((err: CustomError, req, res, next) => {
@@ -24,3 +21,5 @@ app.use((err: CustomError, req, res, next) => {
     .json({ statusCode: err.statusCode, message: err.message });
   return;
 });
+
+export { app };

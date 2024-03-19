@@ -2,9 +2,9 @@
 // next(CustomError) called in catch block to throw errors in afterware
 // exports {getAllUsers, getOneUser, createUser, deleteUser}
 
-import CustomError from "./CustomError.js";
-import { DB, User, Post, Comment } from "../db/DBTypes.js";
-import { read, write } from "./dataAccess.js";
+import CustomError from "../CustomError.js";
+import { DB, User, Post, Comment } from "../../db/DBTypes.js";
+import { read, write } from "../dataAccess.js";
 import { Request, Response, NextFunction } from "express";
 
 export async function getAllUsers(

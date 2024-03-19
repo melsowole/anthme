@@ -9,6 +9,14 @@ export function getItemById<T extends User | Post | Comment>(
   return item;
 }
 
+export function getItemsById<T extends User | Post | Comment>(
+  array: T[],
+  ids: number[]
+): T[] {
+  const items = array.filter((i) => ids.includes(i.id));
+  return items;
+}
+
 export function removeItemFromArray<T>(array: T[], item: T) {
   const index = array.indexOf(item);
 

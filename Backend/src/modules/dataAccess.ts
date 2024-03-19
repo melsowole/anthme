@@ -6,13 +6,13 @@ import { DB, DBPath, User, Post, Comment } from "../db/DBTypes.js";
 
 const getDBPath = (path: string) => `./src/db/${path}.json`;
 
-export const read = {
+const read = {
   users: async (): Promise<DB<User>> => await readFromDB("users"),
   posts: async (): Promise<DB<Post>> => await readFromDB("posts"),
   comments: async (): Promise<DB<Comment>> => await readFromDB("comments"),
 };
 
-export const write = {
+const write = {
   users: async (data: DB<User>): Promise<void> =>
     await writeToDB("users", data),
   posts: async (data: DB<Post>): Promise<void> =>
@@ -37,3 +37,5 @@ async function writeToDB(
 ): Promise<void> {
   fs.writeFile(getDBPath(path), JSON.stringify(data, null, 2));
 }
+
+export { read, write };

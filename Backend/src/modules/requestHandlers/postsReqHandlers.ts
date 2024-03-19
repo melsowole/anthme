@@ -1,12 +1,17 @@
-// declares all request handlers to the /posts endpoint
+// declares all request handlers mainly modifying posts.json
 // next(CustomError) called in catch block to throw errors in afterware
-// exports {getAllPosts, getOnePost, createPost, deletePost}
+// exports {getAllPosts, getOnePost, getAllPostsByUser, createPost, deletePost}
 
-import CustomError from "./CustomError.js";
-import { DB, User, Post, Comment } from "../db/DBTypes.js";
-import { read, write } from "./dataAccess.js";
+import CustomError from "../CustomError.js";
+import { DB, User, Post, Comment } from "../../db/DBTypes.js";
+import { read, write } from "../dataAccess.js";
 import { Request, Response, NextFunction } from "express";
-import { getItemById, removeItemFromArray, addItemToArray } from "./utils.js";
+import {
+  getItemById,
+  removeItemFromArray,
+  addItemToArray,
+  getItemsById,
+} from "../utils.js";
 
 export async function getAllPosts(
   req: Request,
@@ -32,6 +37,28 @@ export async function getOnePost(
     if (!post) throw new CustomError(404, "Post not found");
 
     res.json(post);
+  } catch (err) {
+    next(err);
+    return;
+  }
+}
+
+export async function getAllPostsbyUser(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const posts = await read.posts();
+    const users = await read.users();
+
+    const user = getItemById(users, +req.params.id);
+
+    if (!user) throw new CustomError(404, "User not found");
+
+    const postsByUser = getItemsById(posts, user.posts);
+
+    res.json(postsByUser);
   } catch (err) {
     next(err);
     return;
@@ -87,7 +114,7 @@ export async function deletePost(
     const posts = await read.posts();
     const users = await read.users();
 
-    const post = getItemById(posts, +req.query.id);
+    const post = getItemById(posts, +req.params.postId);
     const user = getItemById(users, +req.params.id);
 
     if (!post) throw new CustomError(404, "Post not found");
