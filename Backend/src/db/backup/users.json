@@ -1,0 +1,16 @@
+[
+  {
+    "id": 123,
+    "username": "paul",
+    "password": "123",
+    "posts": [123, 456],
+    "comments": [123, 456]
+  },
+  {
+    "id": 567,
+    "username": "paul",
+    "password": "123",
+    "posts": [789],
+    "comments": [789, 101]
+  }
+]

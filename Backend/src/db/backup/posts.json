@@ -1,0 +1,16 @@
+[
+  {
+    "id": 123,
+    "category": "music",
+    "title": "Music today is garbage",
+    "content": "What title says. Music is honestly just garbage these days. I miss the old days!!",
+    "comments": [123]
+  },
+  {
+    "id": 456,
+    "category": "guitar",
+    "title": "How do I barre chords",
+    "content": "I have never been able to barre chords. I just can't figure it out.",
+    "comments": [456]
+  }
+]
