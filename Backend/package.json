@@ -1,8 +1,7 @@
 {
-  "name": "typescriptbackendbolierplate",
+  "name": "anthme-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "tsc",
