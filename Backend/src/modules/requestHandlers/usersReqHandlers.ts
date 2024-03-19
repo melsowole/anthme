@@ -25,7 +25,7 @@ export async function getOneUser(
   try {
     const users: DB<User> = await read.users();
 
-    const user = users.find((u) => u.id == +req.params.id);
+    const user = users.find((u) => u.id === req.params.id);
 
     if (!user) throw new CustomError(404, "User not found");
 
@@ -54,9 +54,10 @@ export async function createUser(
 
     // add new user
     const newUser: User = {
-      id: Date.now(),
+      id: crypto.randomUUID(),
       username: req.body.username,
       password: req.body.password,
+      userImage: req.body.userImage,
       posts: [],
       comments: [],
     };
@@ -78,7 +79,7 @@ export async function deleteUser(
   try {
     const users: DB<User> = await read.users();
 
-    const user = users.find((u) => u.id == +req.params.id);
+    const user = users.find((u) => u.id === req.params.id);
 
     if (!user) throw new CustomError(404, "User not found");
 

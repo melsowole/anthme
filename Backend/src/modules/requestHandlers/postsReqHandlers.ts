@@ -31,7 +31,7 @@ export async function getOnePost(
   try {
     const posts: DB<Post> = await read.posts();
 
-    const post = posts.find((p) => p.id == +req.params.id);
+    const post = posts.find((p) => p.id === req.params.id);
 
     //validation
     if (!post) throw new CustomError(404, "Post not found");
@@ -52,7 +52,7 @@ export async function getAllPostsbyUser(
     const posts = await read.posts();
     const users = await read.users();
 
-    const user = getItemById(users, +req.params.id);
+    const user = getItemById(users, req.params.id);
 
     if (!user) throw new CustomError(404, "User not found");
 
@@ -76,19 +76,21 @@ export async function createPost(
 
     // validation
     const reqKeyMissing =
-      !req.body.category || !req.body.title || !("content" in req.body);
+      !req.body.category || !req.body.title || !("body" in req.body) || !("userImage" in req.body);
     if (reqKeyMissing) throw new CustomError(400, "Request body keys missing");
 
-    const user = getItemById(users, +req.params.id);
+    const user = getItemById(users, req.params.id);
 
     if (!user) throw new CustomError(404, "User not found");
 
     // create new post
     const newPost: Post = {
-      id: Date.now(),
+      id: crypto.randomUUID(),
       category: req.body.category,
       title: req.body.title,
-      content: req.body.content,
+      body: req.body.content,
+      userImage: req.body.userImage,
+
       comments: [],
     };
 
@@ -114,8 +116,8 @@ export async function deletePost(
     const posts = await read.posts();
     const users = await read.users();
 
-    const post = getItemById(posts, +req.params.postId);
-    const user = getItemById(users, +req.params.id);
+    const post = getItemById(posts, req.params.postId);
+    const user = getItemById(users, req.params.id);
 
     if (!post) throw new CustomError(404, "Post not found");
 

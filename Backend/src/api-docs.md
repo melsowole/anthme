@@ -28,7 +28,8 @@ Get one user by id.
 ```json
 {
   "username": "string",
-  "password": "string"
+  "password": "string",
+  "userImage": "string"
 }
 ```
 
@@ -46,7 +47,7 @@ Create post for user
 {
   "category": "string",
   "title": "string",
-  "content": "string"
+  "body": "string"
 }
 ```
 
