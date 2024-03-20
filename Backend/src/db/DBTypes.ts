@@ -8,7 +8,7 @@ export type User = {
   password: number;
   userImage: string;
   posts: string[];
-  comments: number[];
+  comments: string[];
 };
 
 export type Post = {
@@ -17,7 +17,7 @@ export type Post = {
   title: string;
   body: string;
   userImage: string;
-  comments: number[];
+  comments: string[];
 };
 
 export type Comment = {

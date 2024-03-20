@@ -1,65 +1,16 @@
 [
   {
-    "id": 1710842716400,
-    "username": "Rob",
-    "password": "123",
-    "posts": [
-      1710846226468,
-      1710846253872,
-      1710853579717
-    ],
-    "comments": [
-      789,
-      101
-    ]
-  },
-  {
-    "id": 1710842730330,
-    "username": "Philly",
-    "password": "123",
-    "posts": [
-      1710848609598,
-      1710848905159
-    ],
-    "comments": [
-      123,
-      456
-    ]
-  },
-  {
-    "id": 1710867681974,
-    "username": "first",
-    "password": "plugga mer",
-    "posts": [],
-    "comments": []
-  },
-  {
-    "id": 1710874784513,
-    "username": "blud",
-    "password": "lil bro",
-    "posts": [
-      1710875587052,
-      1710876398044,
-      1710876581273
-    ],
-    "comments": []
-  },
-  {
     "id": "7fdd2943-3fd9-44c8-aa3d-618f117ed6dd",
     "username": "Lynx",
     "password": "1234",
-    "posts": [
-      "359e031a-cc21-4721-88c4-1faeed4cd11c"
-    ],
+    "posts": ["359e031a-cc21-4721-88c4-1faeed4cd11c"],
     "comments": []
   },
   {
     "id": "8faa1e54-bd3a-4a05-a6e1-79cbbc80917d",
     "username": "Fado",
     "password": "hejhej",
-    "posts": [
-      "4f23e1b0-9964-47e2-87fa-a752b813ae98"
-    ],
+    "posts": ["4f23e1b0-9964-47e2-87fa-a752b813ae98"],
     "comments": []
   },
   {

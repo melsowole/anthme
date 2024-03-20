@@ -30,4 +30,10 @@ apiRouter.route("/posts/:id").get(posts.getOnePost);
 // Comments routes
 apiRouter.route("/comments").get(comments.getAllComments);
 
+apiRouter.route("/posts/:id/user/:userId/comment").post(comments.addComment);
+
+apiRouter
+  .route("/posts/:id/user/:userId/comment/delete/:commentId")
+  .delete(comments.deleteComment);
+
 export { apiRouter };
