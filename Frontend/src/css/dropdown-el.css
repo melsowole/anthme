@@ -1,0 +1,40 @@
+/* label styling */
+.dropdown label {
+  display: flex;
+  padding: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.dropdown label:hover {
+  background: var(--neutLighter);
+}
+
+.dropdown label .icon {
+  transition: 0.2s;
+}
+
+.dropdown label.open .icon {
+  transform: rotate(180deg);
+}
+
+/* ul styling */
+
+.dropdown .list-wrapper {
+  opacity: 0;
+  overflow: hidden;
+  transition: height 0.2s, opacity 0.2s;
+}
+
+.dropdown label.open ~ .list-wrapper {
+  opacity: 1;
+}
+
+.dropdown li {
+  padding: 0.5rem;
+}
+
+.dropdown li:hover {
+  background-color: var(--neutLighter);
+}

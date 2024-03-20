@@ -1,0 +1,49 @@
+:root {
+  --header-height: 60px;
+  --nav-width: 250px;
+  --aside-width: 300px;
+}
+
+.main-header {
+  height: 60px;
+  background-color: pink;
+  position: sticky;
+  top: 0;
+}
+
+.main-nav {
+  display: none;
+}
+
+.main-feed {
+  padding: 0 0.5rem;
+}
+
+@media (min-width: 960px) {
+  .main-feed {
+    width: calc(100% - var(--aside-width));
+  }
+
+  .main-aside {
+    width: var(--aside-width);
+    position: fixed;
+    top: var(--header-height);
+    right: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main-feed {
+    width: calc(100% - var(--aside-width) - var(--nav-width) - 100px);
+    max-width: 750px;
+    margin: auto;
+  }
+
+  .main-nav {
+    display: flex;
+    height: calc(100svh - var(--header-height));
+    width: var(--nav-width);
+    position: fixed;
+    top: var(--header-height);
+  }
+}
