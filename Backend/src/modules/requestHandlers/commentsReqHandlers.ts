@@ -90,8 +90,8 @@ export async function addComment(
 
     await write.comments(comments);
 
-    addItemToArray(post.comments, +newComment.id);
-    addItemToArray(user.comments, +newComment.id);
+    addItemToArray(post.comments, newComment.id);
+    addItemToArray(user.comments, newComment.id);
     await write.users(users);
     await write.posts(posts);
 
@@ -122,8 +122,8 @@ export async function deleteComment(
     if (!comment) throw new CustomError(404, "Comment not found");
 
     removeItemFromArray(comments, comment);
-    removeItemFromArray(post.comments, +comment.id);
-    removeItemFromArray(user.comments, +comment.id);
+    removeItemFromArray(post.comments, comment.id);
+    removeItemFromArray(user.comments, comment.id);
 
     await write.comments(comments);
     await write.posts(posts);
