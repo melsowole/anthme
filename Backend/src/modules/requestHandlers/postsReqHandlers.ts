@@ -73,12 +73,7 @@ export async function createPost(
   try {
     const posts = await read.posts();
     const users = await read.users();
-
-    // validation
-    const reqKeyMissing =
-      !req.body.category || !req.body.title || !("body" in req.body) || !("userImage" in req.body);
-    if (reqKeyMissing) throw new CustomError(400, "Request body keys missing");
-
+    
     const user = getItemById(users, req.params.id);
 
     if (!user) throw new CustomError(404, "User not found");
