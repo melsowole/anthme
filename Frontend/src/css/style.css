@@ -8,8 +8,9 @@
 
 .landingPageContainer{
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     padding: 6rem;
+    margin-left: 3rem;
    
 
 }
@@ -64,29 +65,95 @@
 }
 .formContainer {
     position: absolute;
-    top: 50%; 
+    top: 40%; 
     left: 50%; 
     transform: translate(-50%, -50%); 
     z-index: 1000;
     
 }
 
+.xmarkClose{
+    color:black;
+    position:relative;
+    right: 201px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+}
+
+.xmarkCloseLogin{
+    color:black;
+    position:relative;
+    right: 201px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    top: -38px;
+
+}
+
 .createAccountform, .logInForm{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 20px;
     width: 450px;
-    height: 350px;
+    height: 400px;
+    background-color: white;
     
    
+}
+
+.logInForm > h2{
+    margin-bottom: 1rem;
+}
+.createAccountform > input:first-of-type{
+    margin-top: 1rem;
+}
+
+
+.createAccountform > input, .logInForm > input{
+    height: 40px;
+    width: 300px;
+    margin-bottom: 1rem;
+}
+
+.accountDetails{
+    margin-top: 1.5rem;
+    font-size: 12px;
+}
+.accountDetails > a{
+    font-size: 12px;
+}
+
+#createAccountFormBtn, #logInBtn{
+    margin-top: 2rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    background-color: #D93A00;
+    color:white;
+    padding: 0.8rem;
+    font-weight: bolder;
+    width: 300px;
 }
 
 .hide {
     display:none;
 }
 
-.show {
+img{
+    width:70px;
+   
+}
+
+.selectUserImg{
     display:flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 300px;
+    
 }

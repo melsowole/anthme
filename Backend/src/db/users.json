@@ -3,14 +3,18 @@
     "id": "7fdd2943-3fd9-44c8-aa3d-618f117ed6dd",
     "username": "Lynx",
     "password": "1234",
-    "posts": ["359e031a-cc21-4721-88c4-1faeed4cd11c"],
+    "posts": [
+      "359e031a-cc21-4721-88c4-1faeed4cd11c"
+    ],
     "comments": []
   },
   {
     "id": "8faa1e54-bd3a-4a05-a6e1-79cbbc80917d",
     "username": "Fado",
     "password": "hejhej",
-    "posts": ["4f23e1b0-9964-47e2-87fa-a752b813ae98"],
+    "posts": [
+      "4f23e1b0-9964-47e2-87fa-a752b813ae98"
+    ],
     "comments": []
   },
   {
@@ -23,6 +27,22 @@
       "9a08c6b1-4933-4243-926d-c2bfabd1648b",
       "0f5af467-4f40-4057-8186-f47b292f4193"
     ],
+    "comments": []
+  },
+  {
+    "id": "38879b6c-260d-4fb3-a950-5058ab30a779",
+    "username": "Sveja",
+    "password": "1234",
+    "userImage": "imgimg",
+    "posts": [],
+    "comments": []
+  },
+  {
+    "id": "c102a50f-3939-4cbc-9db5-01f30e30ed90",
+    "username": "tralala",
+    "password": "1234",
+    "userImage": "img/img",
+    "posts": [],
     "comments": []
   }
 ]
