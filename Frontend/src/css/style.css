@@ -1,0 +1,92 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "DM Sans", sans-serif;
+  
+}
+
+.landingPageContainer{
+    display: flex;
+    justify-content: center;
+    padding: 6rem;
+   
+
+}
+
+.landingPageTitle{
+    display:flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    height: 400px;
+    width: 600px;
+   
+    
+}
+
+.landingPageTitle > h1{
+    font-size: 52px;
+    margin-bottom: 2rem;
+}
+
+.landingPageContainer > h2{
+    font-size: 32px;
+}
+
+.landingPageContent > * {
+    margin-bottom: 2rem;
+   
+    
+}
+#createAccountBtn{
+    background-color: #D93A00;
+    border:none;
+    cursor: pointer;
+    border-radius: 30px;
+    color: white;
+    width: 300px;
+    padding: 0.8rem;
+    font-size: 1rem;
+    font-weight: bolder;
+}
+
+#signInBtn{
+    border: 2px solid #D93A00;
+    cursor: pointer;
+    border-radius: 30px;
+    color: #D93A00;
+    width: 300px;
+    padding: 0.8rem;
+    font-weight: bolder;
+    font-size: 1rem;
+    background-color: white;
+}
+.formContainer {
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 1000;
+    
+}
+
+.createAccountform, .logInForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 20px;
+    width: 450px;
+    height: 350px;
+    
+   
+}
+
+.hide {
+    display:none;
+}
+
+.show {
+    display:flex;
+}

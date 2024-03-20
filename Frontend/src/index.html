@@ -4,11 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Final project- Social media</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/9605ade1b0.js" crossorigin="anonymous"></script>
     <script type="module" src="./main.ts"></script>
+
+    
 </head>
 <body>
+    <div class="landingPageContainer">
+        <div class="landingPageTitle">
+            <h1>To view Anthme you must be signed in</h1>
+
+            <div class="landingPageContent">
+                <h2>Join today.</h2>
+                <button id="createAccountBtn">Create account</button>
+                <h3>Already have an account?</h3>
+                <button id="signInBtn">Sign in</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="formContainer">
+        <form class="createAccountform hide">
+            <h2>Create account</h2>
+            <input type="text" name="username"  placeholder="Username *" required>
+            <input type="text" name="password"  placeholder="Password *" required>
+
+            <select name="userImage" id="userImage">
+                <option disabled selected>Choose user image:</option>
+                <option value="userImgBanana">Banana</option>
+                <option value="UserImgDounat">Donut</option>
+                <option value="userImgPizza">Pizza</option>
+            </select>
+            
+            <button id="createAccountFormBtn">Create account</button>
+        </form>
+
+        <form class="logInForm hide">
+            <h2>Log in</h2>
+            <input type="text" name="username"  placeholder="Username *" required>
+            <input type="text" name="password"  placeholder="Password *" required>
+            <button id="logInBtn">Log in</button>
+        </form>
+
+        
+    </div>
     
 </body>
 </html>
