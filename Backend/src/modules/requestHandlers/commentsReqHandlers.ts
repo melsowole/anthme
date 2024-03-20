@@ -70,10 +70,6 @@ export async function addComment(
     const users = await read.users();
     const comments = await read.comments();
 
-    // validation
-    const reqKeyMissing = !req.body.content;
-    if (reqKeyMissing) throw new CustomError(400, "Request body keys missing");
-
     const user = getItemById(users, req.params.userId);
     const post = getItemById(posts, req.params.id);
 
@@ -83,7 +79,10 @@ export async function addComment(
     // create new comment
     const newComment: Comment = {
       id: crypto.randomUUID(),
-      body: req.body.content,
+      body: req.body.body,
+      user: req.params.userId,
+      username: req.body.username,
+      userImage: req.body.userImage
     };
 
     comments.push(newComment);

@@ -1,0 +1,157 @@
+#mainContainer {
+    max-width: 1248px;
+    margin: 0 auto;
+    padding: 0 0.5rem;
+}
+
+.post-heading {
+    padding: 4px;
+    margin: 1rem 0;
+    border-bottom: 1px solid #EDEFF1;
+}
+
+.post-heading > h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 2;
+    color: #1c1c1c;
+}
+
+.category-input {
+    margin-bottom: 0.5rem;
+}
+
+.input {
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #EDEFF1;
+    padding: 8px 68px 8px 16px;
+}
+
+.input:focus {
+    outline: 1px solid black;
+}
+
+.category-input > input {
+    min-width: 300px;
+    box-shadow: 0 0 0 0 #FFFFFF;
+    width: 100%;
+}
+
+
+.post-content-form {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.post-content-form > input {
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+.post-content {
+    border: 1px solid #EDEFF1;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.post-content:focus-within {
+    border: 1px solid #1A1A1B;
+}
+
+.text-features {
+    background-color: #f6f7f8;
+}
+
+.post-content > .textarea {
+    min-height: 122px;
+    outline: none;
+    user-select: text;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    padding: 0.5rem 1rem;
+    resize: vertical;
+}
+
+[contentEditable=true]:empty:before {
+    content: attr(data-placeholder);
+    color: #969899;
+}
+
+.post-content-form-footer {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.submit-btn {
+    cursor: pointer;
+    background-color: #848484;
+    color: #bbbbbb;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 17px;
+    min-height: 2rem;
+    min-width: 2rem;
+    padding: 4px 1rem;
+    border: none;
+    border-radius: 9999px;
+}
+
+#sidebarContainer {
+    display: none;
+}
+
+.bottom-border {
+    border-bottom: 1px solid #EDEFF1;
+    padding: 10px 5px;
+}
+
+@media screen and (min-width: 640px) {
+    #mainContainer {
+        padding: 20px 24px;
+    }
+
+    .category-input > input {
+        width: inherit;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    #mainContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    #postContainer {
+        width: 640px;
+        max-width: 740px; /* kan inte få containern att nå max width :( */
+        flex: 1 1 100%;
+    }
+
+    #sidebarContainer {
+        display: block;
+        margin-left: 24px;
+        width: 312px;
+        flex: 0 0 312px;
+        padding-top: 28px;
+    }
+
+    .sidebar {
+        background-color: #FFFFFF;
+        border-radius: 4px;
+        margin-top: 1rem;
+        padding: 12px;
+    }
+
+    .sidebar > h2 {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .sidebar > ol {
+        font-size: 14px;
+        list-style-position: inside;
+    }
+}

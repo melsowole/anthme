@@ -31,6 +31,52 @@
     "category": "testigen",
     "title": "test",
     "userImage": "flowerImage",
+    "comments": [
+      "1236d53f-4466-4363-80ba-cae3f1b77a60",
+      "9265811c-bea6-41ad-90ab-b122595fcd0b",
+      "700c4443-a2fe-4ea4-bdf4-4bc36dffcb2a"
+    ]
+  },
+  {
+    "id": "cab9afea-f6da-4a3c-8615-75c0f94ab017",
+    "category": "Backend",
+    "title": "Backend delen är snart klar",
+    "body": "lets gooooooo",
+    "user": "66f2236a-0b65-45bc-8be7-86009cf8188a",
+    "username": "användare",
+    "userImage": "randomimg.jpg",
+    "comments": []
+  },
+  {
+    "id": "da91aa41-d23c-4d4c-a46d-e809f713fda5",
+    "category": "Backend",
+    "title": "En till post om backend",
+    "body": "bodybodybodybodybody",
+    "user": "66f2236a-0b65-45bc-8be7-86009cf8188a",
+    "username": "användare",
+    "userImage": "randomimg.jpg",
+    "comments": [
+      "1f296309-0cfb-4ba0-91cd-d903bc08c017"
+    ]
+  },
+  {
+    "id": "7132ce61-4fe2-4442-b3db-634195f12397",
+    "category": "Posting a post",
+    "title": "First post",
+    "body": "First post from Frontend!",
+    "user": "66f2236a-0b65-45bc-8be7-86009cf8188a",
+    "username": "Frontend",
+    "userImage": "randomimg.png",
+    "comments": []
+  },
+  {
+    "id": "bb68f55e-c2d7-4d21-a80d-5ab21a7316bb",
+    "category": "Gruppmöte",
+    "title": "Andra mötet",
+    "body": "Träffas kl 9 på morgonen",
+    "user": "66f2236a-0b65-45bc-8be7-86009cf8188a",
+    "username": "Frontend",
+    "userImage": "randomimg.png",
     "comments": []
   }
 ]
