@@ -6,18 +6,19 @@ import { Router } from "express";
 import * as users from "./requestHandlers/usersReqHandlers.js";
 import * as posts from "./requestHandlers/postsReqHandlers.js";
 import * as comments from "./requestHandlers/commentsReqHandlers.js";
+import { validate, userValidations, postValidations, commentValidations } from "./validator.js";
 
 const apiRouter = Router();
 
 // Users Endpoints
-apiRouter.route("/users").get(users.getAllUsers).post(users.createUser);
+apiRouter.route("/users").get(users.getAllUsers).post(validate(userValidations), users.createUser);
 
 apiRouter.route("/user/:id").get(users.getOneUser).delete(users.deleteUser);
 
 apiRouter
   .route("/user/:id/posts")
   .get(posts.getAllPostsbyUser)
-  .post(posts.createPost);
+  .post(validate(postValidations), posts.createPost);
 
 apiRouter.route("/user/:id/posts/delete/:postId").delete(posts.deletePost);
 
