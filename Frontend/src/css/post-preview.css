@@ -11,3 +11,8 @@
 .post.preview:hover {
   background-color: var(--neutLighter);
 }
+
+.post.preview footer {
+  display: flex;
+  gap: 0.5rem;
+}

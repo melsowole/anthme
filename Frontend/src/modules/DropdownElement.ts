@@ -1,4 +1,5 @@
-import * as template from "../templates/dropdown-el.js";
+import * as template from "../templates/dropdown.js";
+import { replace, stringToDOM } from "./template-utils.js";
 
 type Item = {
   name: string;
@@ -63,26 +64,4 @@ export default class Dropdown {
     console.log(getComputedStyle(ul).height);
     return getComputedStyle(ul).height;
   }
-}
-
-type ReplacePair = {
-  pattern: string;
-  replacement: string;
-};
-
-function replace(input: string, replacePairs: ReplacePair[]): string {
-  let output = input;
-  replacePairs.forEach((pair) => {
-    output = output.replace(
-      new RegExp(`__${pair.pattern}__`, "g"),
-      pair.replacement
-    );
-  });
-  return output;
-}
-
-function stringToDOM(htmlString: string): any {
-  const parser = new DOMParser();
-  const document = parser.parseFromString(htmlString, "text/html");
-  return document.body.firstChild;
 }
