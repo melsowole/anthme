@@ -79,25 +79,5 @@
     "username": "Frontend",
     "userImage": "randomimg.png",
     "comments": []
-  },
-  {
-    "id": "9d481095-201d-425e-8519-d3e9e52e1cc1",
-    "category": "fff",
-    "title": "fgfg",
-    "body": "<a>hhhyt<a/>",
-    "user": "66f2236a-0b65-45bc-8be7-86009cf8188a",
-    "username": "Frontend",
-    "userImage": "randomimg.png",
-    "comments": []
-  },
-  {
-    "id": "e3ca95cb-f53e-46ae-a236-f4989f8d2b57",
-    "category": "a",
-    "title": "a",
-    "body": "\"HEJ\"",
-    "user": "66f2236a-0b65-45bc-8be7-86009cf8188a",
-    "username": "Frontend",
-    "userImage": "randomimg.png",
-    "comments": []
   }
 ]

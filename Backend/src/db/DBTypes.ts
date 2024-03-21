@@ -4,6 +4,7 @@ export type DBPath = "users" | "comments" | "posts";
 
 export type User = {
   id: string;
+  created: number;
   username: string;
   password: number;
   userImage: string;
@@ -11,23 +12,32 @@ export type User = {
   comments: string[];
 };
 
+export type UserShort = {
+  id: string;
+  username: string;
+  userImage: string;
+};
+
 export type Post = {
   id: string;
+  created: number;
   category: string;
   title: string;
   body: string;
-  user: string;
-  username: string;
-  userImage: string;
   comments: string[];
+  user: UserShort;
 };
 
 export type Comment = {
   id: string;
+  created: number;
   body: string;
-  user: string;
-  username: string;
-  userImage: string;
+  user: UserShort;
+};
+
+export type Category = {
+  id: string;
+  name: string;
 };
 
 export type DB<T extends User | Post | Comment> = T[];
