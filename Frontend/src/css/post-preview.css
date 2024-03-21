@@ -1,0 +1,26 @@
+.post.preview header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.post.preview .timestamp::before {
+  content: "• ";
+}
+
+.post.preview:hover {
+  background-color: var(--neutLighter);
+}
+
+.post.preview footer {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.post.preview .body {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -29,3 +29,4 @@ postForm.addEventListener('submit', event => {
     (postForm.querySelector('.textarea') as HTMLDivElement).innerText = '';
     postForm.reset();
 })
+
