@@ -1,5 +1,5 @@
 import Navigo from "navigo";
-import { displayPostPage } from "./displayGUI.ts";
+import displayPostPage from "../pages/displayPostPage";
 
 const router = new Navigo('/');
 
