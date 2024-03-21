@@ -25,56 +25,19 @@
     "posts": [
       "ea39c9fd-37e1-4560-88d7-36ab30148308",
       "9a08c6b1-4933-4243-926d-c2bfabd1648b",
-      "0f5af467-4f40-4057-8186-f47b292f4193"
+      "0f5af467-4f40-4057-8186-f47b292f4193",
+      "cab9afea-f6da-4a3c-8615-75c0f94ab017",
+      "da91aa41-d23c-4d4c-a46d-e809f713fda5",
+      "7132ce61-4fe2-4442-b3db-634195f12397",
+      "9ba9c72d-9985-4d55-952b-12b8c812c1ba",
+      "70f2b2a6-c4f2-45dc-9b2a-44bcac9a3460",
+      "8e469da3-2b5e-4976-af9e-9b4fe3d46135",
+      "09e1ea78-b3f2-42e9-9940-2776a9677304",
+      "5e547820-3f56-4209-b0a9-3235f09a6de3",
+      "6199ae25-5526-4bfe-8499-2f8de8a7cb02",
+      "bb68f55e-c2d7-4d21-a80d-5ab21a7316bb",
+      "9d481095-201d-425e-8519-d3e9e52e1cc1",
+      "e3ca95cb-f53e-46ae-a236-f4989f8d2b57"
     ],
-    "comments": []
-  },
-  {
-    "id": "38879b6c-260d-4fb3-a950-5058ab30a779",
-    "username": "Sveja",
-    "password": "1234",
-    "userImage": "imgimg",
-    "posts": [],
-    "comments": []
-  },
-  {
-    "id": "c102a50f-3939-4cbc-9db5-01f30e30ed90",
-    "username": "tralala",
-    "password": "1234",
-    "userImage": "img/img",
-    "posts": [],
-    "comments": []
-  },
-  {
-    "id": "072bffbd-e680-4afa-b6ce-28d15a0a921b",
-    "username": "grit",
-    "password": "grit",
-    "userImage": "img/img",
-    "posts": [],
-    "comments": []
-  },
-  {
-    "id": "117a8681-9761-4324-9918-8388f8000d19",
-    "username": "gritacademy",
-    "password": "gritacademy",
-    "userImage": "userImgDounat",
-    "posts": [],
-    "comments": []
-  },
-  {
-    "id": "98234d01-f5c0-4f8c-b90e-d955eed78161",
-    "username": "hejhej",
-    "password": "hejhej",
-    "userImage": "userImgPizza",
-    "posts": [],
-    "comments": []
-  },
-  {
-    "id": "5ee79caa-9201-40ec-8f4c-6c925e8a63d6",
-    "username": "tjingeling",
-    "password": "tjingeling",
-    "userImage": "userImgBanana",
-    "posts": [],
-    "comments": []
   }
 ]

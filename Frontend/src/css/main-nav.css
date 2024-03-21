@@ -1,0 +1,24 @@
+.main-nav {
+  border-right: 1px solid var(--neut);
+  overflow-y: auto;
+  gap: 1rem;
+}
+
+.main-nav .feed a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text);
+  text-decoration: none;
+  background-color: var(--neutLight);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.main-nav footer {
+  justify-self: end;
+}
+
+.main-nav .dropdowns {
+  flex-grow: 1;
+}
