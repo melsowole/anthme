@@ -31,7 +31,7 @@ export async function getOnePost(
   try {
     const posts: DB<Post> = await read.posts();
 
-    const post = posts.find((p) => p.id === req.params.id);
+    const post = posts.find((p) => p.id === req.params.postId);
 
     //validation
     if (!post) throw new CustomError(404, "Post not found");
@@ -52,7 +52,7 @@ export async function getAllPostsbyUser(
     const posts = await read.posts();
     const users = await read.users();
 
-    const user = getItemById(users, req.params.id);
+    const user = getItemById(users, req.params.userId);
 
     if (!user) throw new CustomError(404, "User not found");
 
@@ -73,22 +73,20 @@ export async function createPost(
   try {
     const posts = await read.posts();
     const users = await read.users();
-    
-    const user = getItemById(users, req.params.id);
+
+    const user = getItemById(users, req.params.userId);
 
     if (!user) throw new CustomError(404, "User not found");
 
     // create new post
     const newPost: Post = {
       id: crypto.randomUUID(),
+      created: req.body.timestamp,
       category: req.body.category,
       title: req.body.title,
       body: req.body.body,
-      user: req.params.id,
-      username: req.body.username,
-      userImage: req.body.userImage,
-
       comments: [],
+      user: req.body.user,
     };
 
     posts.push(newPost);
@@ -114,7 +112,7 @@ export async function deletePost(
     const users = await read.users();
 
     const post = getItemById(posts, req.params.postId);
-    const user = getItemById(users, req.params.id);
+    const user = getItemById(users, req.params.userId);
 
     if (!post) throw new CustomError(404, "Post not found");
 

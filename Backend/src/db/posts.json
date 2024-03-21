@@ -78,5 +78,40 @@
     "username": "Frontend",
     "userImage": "randomimg.png",
     "comments": []
+  },
+  {
+    "id": "bd5c4ad9-47f4-468e-b629-fbfafaa32d62",
+    "created": 1711029000926,
+    "category": "Food",
+    "title": "I am trying to make a post",
+    "body": "This is my best attempt",
+    "comments": [],
+    "user": {
+      "id": "8faa1e54-bd3a-4a05-a6e1-79cbbc80917d"
+    }
+  },
+  {
+    "id": "c5f254ef-0f71-4218-a4fc-c5f8aa942d36",
+    "created": 1711029076522,
+    "category": "Food",
+    "title": "I am trying to make a post",
+    "body": "This is my best attempt",
+    "comments": [],
+    "user": {
+      "id": "8faa1e54-bd3a-4a05-a6e1-79cbbc80917d",
+      "username": "Fado"
+    }
+  },
+  {
+    "id": "4de52662-278d-4c85-b5ec-76d0d01d98d4",
+    "created": 1711030296496,
+    "category": "Food",
+    "title": "I am trying to make a post",
+    "body": "This is my best attempt",
+    "comments": [],
+    "user": {
+      "id": "7fdd2943-3fd9-44c8-aa3d-618f117ed6dd",
+      "username": "Lynx"
+    }
   }
 ]

@@ -47,7 +47,7 @@ export async function getAllCommentsByUser(
     const users = await read.users();
     const comments = await read.comments();
 
-    const user = getItemById(users, req.params.id);
+    const user = getItemById(users, req.params.userId);
 
     if (!user) throw new CustomError(404, "User not found");
 
@@ -71,7 +71,7 @@ export async function addComment(
     const comments = await read.comments();
 
     const user = getItemById(users, req.params.userId);
-    const post = getItemById(posts, req.params.id);
+    const post = getItemById(posts, req.params.postId);
 
     if (!user) throw new CustomError(404, "User not found");
     if (!post) throw new CustomError(404, "Post not found");
@@ -80,9 +80,8 @@ export async function addComment(
     const newComment: Comment = {
       id: crypto.randomUUID(),
       body: req.body.body,
-      user: req.params.userId,
-      username: req.body.username,
-      userImage: req.body.userImage
+      created: req.body.timestamp,
+      user: req.body.user,
     };
 
     comments.push(newComment);
@@ -111,7 +110,7 @@ export async function deleteComment(
     const users = await read.users();
     const comments = await read.comments();
 
-    const post = getItemById(posts, req.params.id);
+    const post = getItemById(posts, req.params.postId);
     const user = getItemById(users, req.params.userId);
     const comment = getItemById(comments, req.params.commentId);
 

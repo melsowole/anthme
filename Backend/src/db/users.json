@@ -3,8 +3,11 @@
     "id": "7fdd2943-3fd9-44c8-aa3d-618f117ed6dd",
     "username": "Lynx",
     "password": "1234",
+    "userImage": "pizza",
+    "created": 1711030155454,
     "posts": [
-      "359e031a-cc21-4721-88c4-1faeed4cd11c"
+      "359e031a-cc21-4721-88c4-1faeed4cd11c",
+      "4de52662-278d-4c85-b5ec-76d0d01d98d4"
     ],
     "comments": []
   },
@@ -12,8 +15,12 @@
     "id": "8faa1e54-bd3a-4a05-a6e1-79cbbc80917d",
     "username": "Fado",
     "password": "hejhej",
+    "userImage": "pizza",
+    "created": 1711030155454,
     "posts": [
-      "4f23e1b0-9964-47e2-87fa-a752b813ae98"
+      "4f23e1b0-9964-47e2-87fa-a752b813ae98",
+      "bd5c4ad9-47f4-468e-b629-fbfafaa32d62",
+      "c5f254ef-0f71-4218-a4fc-c5f8aa942d36"
     ],
     "comments": []
   },
@@ -22,6 +29,7 @@
     "username": "Fantomen",
     "password": "1111",
     "userImage": "fantomenImg",
+    "created": 1711030155454,
     "posts": [
       "ea39c9fd-37e1-4560-88d7-36ab30148308",
       "9a08c6b1-4933-4243-926d-c2bfabd1648b",
@@ -43,5 +51,23 @@
       "700c4443-a2fe-4ea4-bdf4-4bc36dffcb2a",
       "1f296309-0cfb-4ba0-91cd-d903bc08c017"
     ]
+  },
+  {
+    "id": "e57451f6-67ee-472c-907e-39f240f7cb7f",
+    "username": "Danny",
+    "password": "developer",
+    "userImage": "pizza",
+    "created": 1711027058331,
+    "posts": [],
+    "comments": []
+  },
+  {
+    "id": "e70a870b-e459-4659-9ee5-4f0e7104588b",
+    "username": "Crost",
+    "password": "developer",
+    "userImage": "pizza",
+    "created": 1711030155454,
+    "posts": [],
+    "comments": []
   }
 ]
