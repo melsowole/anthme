@@ -6,7 +6,12 @@ import CustomError from "../CustomError.js";
 import { DB, User, Post, Comment } from "../../db/DBTypes.js";
 import { read, write } from "../dataAccess.js";
 import { Request, Response, NextFunction } from "express";
-import { getItemById, removeItemFromArray, addItemToArray } from "../utils.js";
+import {
+  getItemById,
+  getItemsById,
+  removeItemFromArray,
+  addItemToArray,
+} from "../utils.js";
 
 export async function getAllComments(
   req: Request,
@@ -27,6 +32,103 @@ export async function getOneComment(
     const comments: DB<Comment> = await read.comments();
 
     const comment = res.json(comments);
+  } catch (err) {
+    next(err);
+    return;
+  }
+}
+
+export async function getAllCommentsByUser(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const users = await read.users();
+    const comments = await read.comments();
+
+    const user = getItemById(users, req.params.id);
+
+    if (!user) throw new CustomError(404, "User not found");
+
+    const commentsByUser = getItemsById(comments, user.comments);
+
+    res.json(commentsByUser);
+  } catch (err) {
+    next(err);
+    return;
+  }
+}
+
+export async function addComment(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const posts = await read.posts();
+    const users = await read.users();
+    const comments = await read.comments();
+
+    const user = getItemById(users, req.params.userId);
+    const post = getItemById(posts, req.params.id);
+
+    if (!user) throw new CustomError(404, "User not found");
+    if (!post) throw new CustomError(404, "Post not found");
+
+    // create new comment
+    const newComment: Comment = {
+      id: crypto.randomUUID(),
+      body: req.body.body,
+      user: req.params.userId,
+      username: req.body.username,
+      userImage: req.body.userImage
+    };
+
+    comments.push(newComment);
+
+    await write.comments(comments);
+
+    addItemToArray(post.comments, newComment.id);
+    addItemToArray(user.comments, newComment.id);
+    await write.users(users);
+    await write.posts(posts);
+
+    res.json({ message: "Added new comment" });
+  } catch (err) {
+    next(err);
+    return;
+  }
+}
+
+export async function deleteComment(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const posts = await read.posts();
+    const users = await read.users();
+    const comments = await read.comments();
+
+    const post = getItemById(posts, req.params.id);
+    const user = getItemById(users, req.params.userId);
+    const comment = getItemById(comments, req.params.commentId);
+
+    // validation
+    if (!post) throw new CustomError(404, "Post not found");
+    if (!user) throw new CustomError(404, "User not found");
+    if (!comment) throw new CustomError(404, "Comment not found");
+
+    removeItemFromArray(comments, comment);
+    removeItemFromArray(post.comments, comment.id);
+    removeItemFromArray(user.comments, comment.id);
+
+    await write.comments(comments);
+    await write.posts(posts);
+    await write.users(users);
+
+    res.json({ message: "Deleted comment" });
   } catch (err) {
     next(err);
     return;

@@ -8,7 +8,7 @@ export type User = {
   password: number;
   userImage: string;
   posts: string[];
-  comments: number[];
+  comments: string[];
 };
 
 export type Post = {
@@ -16,13 +16,18 @@ export type Post = {
   category: string;
   title: string;
   body: string;
+  user: string;
+  username: string;
   userImage: string;
-  comments: number[];
+  comments: string[];
 };
 
 export type Comment = {
   id: string;
   body: string;
+  user: string;
+  username: string;
+  userImage: string;
 };
 
 export type DB<T extends User | Post | Comment> = T[];

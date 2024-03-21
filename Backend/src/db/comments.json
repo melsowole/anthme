@@ -1,10 +1,29 @@
 [
   {
-    "id": 123,
+    "id": "123",
     "content": "There is good music being made today too. You're just not looking for it."
   },
   {
-    "id": 456,
+    "id": "456",
     "content": "You just gotta keep practising dude"
+  },
+  {
+    "id": "1236d53f-4466-4363-80ba-cae3f1b77a60",
+    "body": "first comment"
+  },
+  {
+    "id": "9265811c-bea6-41ad-90ab-b122595fcd0b",
+    "body": "second comment"
+  },
+  {
+    "id": "700c4443-a2fe-4ea4-bdf4-4bc36dffcb2a",
+    "body": "third comment"
+  },
+  {
+    "id": "1f296309-0cfb-4ba0-91cd-d903bc08c017",
+    "body": "bodybodybodybodybody",
+    "user": "66f2236a-0b65-45bc-8be7-86009cf8188a",
+    "username": "användare",
+    "userImage": "randomimg.jpg"
   }
 ]

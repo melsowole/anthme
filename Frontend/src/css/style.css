@@ -7,3 +7,14 @@
 @import "dropdown-el.css";
 @import "text-styles.css";
 @import "header.css";
+@import "post-page.css";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #dae0e6;
+}

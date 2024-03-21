@@ -32,6 +32,52 @@
     "title": "How do people make the low end in metal music so clear?",
     "body": "A few years ago i bought a 7 string guitar specifically just to have a downtuned guitar so i could play along with some of my favorite korn and slipknot songs. But more recently ive started trying to write my own stuff with it. The problem im running into is that when i record anything with it using heavier distortion and such, it sounds muddy on the recording, like you can hardly tell each note apart from each other. Ive been messing with settings and different presets on my amplifier and my pedals, and no matter what i do it doesnt seem to come out clearly. How do modern metal bands make their downtuned guitars sound so clear? I had the thought that maybe its because its not a super expensive guitar, maybe it just doesnt have the best pickups or something like that? But i cant really afford to drop a ton of money on another guitar, or a whole new set of pickups for this one. My guitar is a Douglas SR-370 and my amplifier is a fender mustang GT200. Not sure if that helps but i figured id include that. Thanks! :)",
     "userImage": "flowerImage",
+    "comments": [
+      "1236d53f-4466-4363-80ba-cae3f1b77a60",
+      "9265811c-bea6-41ad-90ab-b122595fcd0b",
+      "700c4443-a2fe-4ea4-bdf4-4bc36dffcb2a"
+    ]
+  },
+  {
+    "id": "cab9afea-f6da-4a3c-8615-75c0f94ab017",
+    "category": "Backend",
+    "title": "Backend delen är snart klar",
+    "body": "lets gooooooo",
+    "user": "66f2236a-0b65-45bc-8be7-86009cf8188a",
+    "username": "användare",
+    "userImage": "randomimg.jpg",
+    "comments": []
+  },
+  {
+    "id": "da91aa41-d23c-4d4c-a46d-e809f713fda5",
+    "category": "Backend",
+    "title": "En till post om backend",
+    "body": "bodybodybodybodybody",
+    "user": "66f2236a-0b65-45bc-8be7-86009cf8188a",
+    "username": "användare",
+    "userImage": "randomimg.jpg",
+    "comments": [
+      "1f296309-0cfb-4ba0-91cd-d903bc08c017"
+    ]
+  },
+  {
+    "id": "7132ce61-4fe2-4442-b3db-634195f12397",
+    "category": "Posting a post",
+    "title": "First post",
+    "body": "First post from Frontend!",
+    "user": "66f2236a-0b65-45bc-8be7-86009cf8188a",
+    "username": "Frontend",
+    "userImage": "randomimg.png",
+    "comments": []
+  },
+  {
+    "id": "bb68f55e-c2d7-4d21-a80d-5ab21a7316bb",
+    "category": "Gruppmöte",
+    "title": "Andra mötet",
+    "body": "Träffas kl 9 på morgonen",
+    "user": "66f2236a-0b65-45bc-8be7-86009cf8188a",
+    "username": "Frontend",
+    "userImage": "randomimg.png",
     "comments": []
   }
 ]

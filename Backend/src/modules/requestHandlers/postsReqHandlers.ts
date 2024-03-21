@@ -83,7 +83,9 @@ export async function createPost(
       id: crypto.randomUUID(),
       category: req.body.category,
       title: req.body.title,
-      body: req.body.content,
+      body: req.body.body,
+      user: req.params.id,
+      username: req.body.username,
       userImage: req.body.userImage,
 
       comments: [],
