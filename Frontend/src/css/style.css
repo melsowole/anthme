@@ -13,8 +13,184 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+/*     font-family: "DM Sans", sans-serif; */
 }
 
 body {
     background-color: #dae0e6;
+}
+
+
+/* Styling for landing page goes here */
+.landingPageContainer{
+    display: flex;
+    padding: 6rem;
+    margin-left: 3rem;
+}
+
+.landingPageTitle{
+    display:flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    height: 400px;
+    width: 600px;
+}
+
+.landingPageTitle > h1{
+    font-size: 52px;
+    margin-bottom: 2rem;
+}
+
+.landingPageContainer > h2{
+    font-size: 32px;
+}
+
+.landingPageContent > * {
+    margin-bottom: 2rem; 
+}
+
+#createAccountBtn{
+    background-color: #D93A00;
+    border:none;
+    cursor: pointer;
+    border-radius: 30px;
+    color: white;
+    width: 300px;
+    padding: 0.8rem;
+    font-size: 1rem;
+    font-weight: bolder;
+}
+
+#signInBtn{
+    border: 2px solid #D93A00;
+    cursor: pointer;
+    border-radius: 30px;
+    color: #D93A00;
+    width: 300px;
+    padding: 0.8rem;
+    font-weight: bolder;
+    font-size: 1rem;
+    background-color: white;
+}
+.formContainer {
+    position: absolute;
+    top: 40%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 1000;
+    
+}
+
+.xmarkClose{
+    color:black;
+    position:relative;
+    right: 201px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+}
+
+.xmarkCloseLogin{
+    color:black;
+    position:relative;
+    right: 201px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    top: -38px;
+
+}
+
+.createAccountform, .logInForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 20px;
+    width: 450px;
+    height: 400px;
+    background-color: white;
+}
+
+.logInForm > h2{
+    margin-bottom: 1rem;
+}
+
+.createAccountform > input:first-of-type{
+    margin-top: 1rem;
+}
+
+.createAccountform > input, .logInForm > input{
+    height: 40px;
+    width: 300px;
+    margin-bottom: 1rem;
+}
+
+.accountDetails{
+    margin-top: 1.5rem;
+    font-size: 12px;
+}
+
+.accountDetails > a{
+    font-size: 12px;
+}
+
+#createAccountFormBtn, #logInBtn{
+    margin-top: 2rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    background-color: #D93A00;
+    color:white;
+    padding: 0.8rem;
+    font-weight: bolder;
+    width: 300px;
+}
+
+.hide {
+    display:none;
+}
+
+img{
+    width:70px;
+}
+
+.selectUserImg{
+    display:flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 300px;
+    min-height: 75px; 
+}
+
+/* Styling for profilepage goes here */
+
+.userInfoItem{
+    display: flex;
+    align-items: center;
+}
+
+.userInfoItem > h2{
+    margin-left: 1rem;
+}
+
+.userInteractionsOverview{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.userInteractionsOverview > a{
+    text-decoration: none;
+    color: #0F1A1C;
+    padding: 0.7rem;
+    border-radius: 30px;
+    font-size: 14px;
+}
+
+.addGreyBGColor{
+    background-color: #D2DADD;
 }

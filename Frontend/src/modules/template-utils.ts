@@ -3,9 +3,6 @@ type ReplacePair = {
   replacement: string;
 };
 
-// replace("<a>__hello__ __name__</a>", [{pattern:"hello", replacement:"hi"}])
-
-
 const replace = (input: string, replacePairs: ReplacePair[]): string => {
   let output = input;
   replacePairs.forEach((pair) => {
