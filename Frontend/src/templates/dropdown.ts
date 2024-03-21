@@ -1,13 +1,13 @@
 const nav = `
 <nav class="dropdown">
-    <label class="label open" for="">
+    <label class="label open" for="__id__">
         <h3 class="list-heading">
             __heading__
         </h3>
         <span class="icon material-symbols-outlined">expand_more</span>
     </label>
     <div class="list-wrapper">
-        <ul id="__heading__">
+        <ul id="__id__">
         
         </ul>
     </div>

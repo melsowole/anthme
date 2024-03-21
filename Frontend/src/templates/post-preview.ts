@@ -10,7 +10,7 @@ const postPreview = `
         </header>
         <section>
             <h2 class="title">__title__</h2>
-            <p>
+            <p class="body">
             __body__
             </p>
         </section>

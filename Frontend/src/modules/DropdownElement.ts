@@ -14,11 +14,12 @@ type DropdownDOM = {
 };
 
 export default class Dropdown {
-  static create(label: string, items: Item[]): HTMLElement {
+  static create(label: string, id: string, items: Item[]): HTMLElement {
     let dropdownTemplate = template.nav;
 
     dropdownTemplate = replace(dropdownTemplate, [
       { pattern: "heading", replacement: label },
+      { pattern: "id", replacement: id },
     ]);
 
     const dropdown: HTMLElement = stringToDOM(dropdownTemplate);
@@ -52,16 +53,12 @@ export default class Dropdown {
     DOM.label.classList.toggle("open");
 
     if (DOM.label.classList.contains("open")) {
-      console.log("free height");
       DOM.ulWrapper.style.height = this.getUlHeight(DOM.ul);
     } else {
-      console.log("no height");
       DOM.ulWrapper.style.height = "0";
     }
   }
 
-  private static getUlHeight(ul: HTMLElement): string {
-    console.log(getComputedStyle(ul).height);
-    return getComputedStyle(ul).height;
-  }
+  private static getUlHeight = (ul: HTMLElement): string =>
+    getComputedStyle(ul).height;
 }

@@ -7,7 +7,7 @@
 .main-header {
   height: 60px;
   background-color: pink;
-  position: sticky;
+  position: fixed;
   top: 0;
 }
 
@@ -17,6 +17,7 @@
 
 .main-feed {
   padding: 0 0.5rem;
+  margin-top: var(--header-height);
 }
 
 @media (min-width: 960px) {
@@ -36,7 +37,8 @@
   .main-feed {
     width: calc(100% - var(--aside-width) - var(--nav-width) - 100px);
     max-width: 750px;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .main-nav {
