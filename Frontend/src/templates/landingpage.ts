@@ -1,4 +1,4 @@
-const div = `
+const landingPageString = `
 <div class="landingPageContainer">
     <div class="landingPageTitle">
             <h1>To view Anthme you must be signed in</h1>
@@ -45,4 +45,4 @@ const div = `
     </div>
  </div>   
 `
-export {div}
+export {landingPageString}
