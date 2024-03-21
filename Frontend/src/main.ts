@@ -1,14 +1,21 @@
 import { displayUserImage } from "./modules/display.js";
 import { addUser, User, getAllUsers} from './modules/fetchUsers.js';
 import { validateLogIn } from "./modules/function.js";
+import { displayLandingPage, cleanLandingPage } from "./modules/displayTemplates.js";
+import {displayProfile} from "./modules/displayTemplates.js";
+
+
+ displayLandingPage(); 
+
 
 const createAccountBtn = document.querySelector('#createAccountBtn') as HTMLButtonElement;
 const signInBtn = document.querySelector('#signInBtn') as HTMLButtonElement;
 const createAccountForm = document.querySelector('.createAccountform') as HTMLFormElement;
 const logInForm = document.querySelector('.logInForm ') as HTMLFormElement;
-const imageContainer = document.querySelector('.imgContainer') as HTMLDivElement;
 const selectElement = document.querySelector('#userImage') as HTMLSelectElement;
 const closeFormBtns = document.querySelectorAll('.xmarkClose');
+const userPageLink = document.querySelector('.userPageLink') as HTMLAnchorElement;
+
 
 createAccountBtn.addEventListener('click', ()=>{
     createAccountForm.classList.remove('hide');
@@ -21,23 +28,21 @@ signInBtn.addEventListener('click', ()=>{
 })
 
 selectElement.addEventListener("change", function() {
+    const imageContainer = document.querySelector('.imgContainer') as HTMLDivElement;
   
     let selectedValue = selectElement.value;
-    console.log("Selected value:", selectedValue);
-
+   
     if(selectedValue === 'userImgBanana'){
-        displayUserImage('userImgBanana.971fd618.png')
+        displayUserImage(imageContainer,'userImgBanana.971fd618.png')
     }
     else if(selectedValue === 'userImgDounat'){
-        displayUserImage('userImgDounat.bd9437ed.png')
+        displayUserImage(imageContainer, 'userImgDounat.bd9437ed.png')
     }
     else{
-        displayUserImage('userImgPizza.54bcfdca.png')
-    }
 
-    const selectedIndex = selectElement.selectedIndex;
-    const selectedText = selectElement.options[selectedIndex].text;
-    console.log("Selected text:", selectedText);
+        displayUserImage(imageContainer, 'userImgPizza.54bcfdca.png')
+    }
+    
 });
 
 closeFormBtns.forEach(closeFormBtn => {
@@ -57,11 +62,12 @@ createAccountForm.addEventListener('submit', async (event)=>{
 
     const passwordInput = document.querySelector('#passwordInput') as HTMLInputElement;
     const password = passwordInput.value;
+    const selectedValue = selectElement.value;
     
     const newUser: User = {
         username: username,
         password: password,
-        userImage: 'img/img'
+        userImage: selectedValue
     };
 
     try {
@@ -90,7 +96,10 @@ logInForm.addEventListener('submit', (event)=>{
     const isValidLogin = validateLogIn(users, username, password);
     if (isValidLogin) {
         console.log('Valid login');
-    } else {
+        cleanLandingPage();
+        displayProfile();
+    } 
+    else {
         console.log('Invalid login');
     }
 })
@@ -111,7 +120,8 @@ signUpLinks.forEach(signUpLink => {
             if (signUpLink.textContent === 'Sign up') {
                 createAccountForm.classList.remove('hide');
                 logInForm.classList.add('hide');
-            } else if (signUpLink.textContent === 'Log in') {
+            } 
+            else if (signUpLink.textContent === 'Log in') {
                 logInForm.classList.remove('hide');
                 createAccountForm.classList.add('hide');
             }
@@ -119,3 +129,8 @@ signUpLinks.forEach(signUpLink => {
     });
 });
 
+
+userPageLink.addEventListener('click', ()=>{
+    const link = document.querySelector('.link')
+    link.classList.add('addGreyBGColor');
+})

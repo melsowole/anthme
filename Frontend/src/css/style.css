@@ -6,13 +6,11 @@
   
 }
 
+/* Styling for landing page goes here */
 .landingPageContainer{
     display: flex;
-    /* justify-content: center; */
     padding: 6rem;
     margin-left: 3rem;
-   
-
 }
 
 .landingPageTitle{
@@ -22,8 +20,6 @@
     justify-content: center;
     height: 400px;
     width: 600px;
-   
-    
 }
 
 .landingPageTitle > h1{
@@ -36,10 +32,9 @@
 }
 
 .landingPageContent > * {
-    margin-bottom: 2rem;
-   
-    
+    margin-bottom: 2rem; 
 }
+
 #createAccountBtn{
     background-color: #D93A00;
     border:none;
@@ -103,17 +98,15 @@
     width: 450px;
     height: 400px;
     background-color: white;
-    
-   
 }
 
 .logInForm > h2{
     margin-bottom: 1rem;
 }
+
 .createAccountform > input:first-of-type{
     margin-top: 1rem;
 }
-
 
 .createAccountform > input, .logInForm > input{
     height: 40px;
@@ -125,6 +118,7 @@
     margin-top: 1.5rem;
     font-size: 12px;
 }
+
 .accountDetails > a{
     font-size: 12px;
 }
@@ -147,7 +141,6 @@
 
 img{
     width:70px;
-   
 }
 
 .selectUserImg{
@@ -155,5 +148,34 @@ img{
     align-items: center;
     justify-content: space-evenly;
     width: 300px;
-    
+    min-height: 75px; 
+}
+
+/* Styling for profilepage goes here */
+
+.userInfoItem{
+    display: flex;
+    align-items: center;
+}
+
+.userInfoItem > h2{
+    margin-left: 1rem;
+}
+
+.userInteractionsOverview{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.userInteractionsOverview > a{
+    text-decoration: none;
+    color: #0F1A1C;
+    padding: 0.7rem;
+    border-radius: 30px;
+    font-size: 14px;
+}
+
+.addGreyBGColor{
+    background-color: #D2DADD;
 }

@@ -44,5 +44,37 @@
     "userImage": "img/img",
     "posts": [],
     "comments": []
+  },
+  {
+    "id": "072bffbd-e680-4afa-b6ce-28d15a0a921b",
+    "username": "grit",
+    "password": "grit",
+    "userImage": "img/img",
+    "posts": [],
+    "comments": []
+  },
+  {
+    "id": "117a8681-9761-4324-9918-8388f8000d19",
+    "username": "gritacademy",
+    "password": "gritacademy",
+    "userImage": "userImgDounat",
+    "posts": [],
+    "comments": []
+  },
+  {
+    "id": "98234d01-f5c0-4f8c-b90e-d955eed78161",
+    "username": "hejhej",
+    "password": "hejhej",
+    "userImage": "userImgPizza",
+    "posts": [],
+    "comments": []
+  },
+  {
+    "id": "5ee79caa-9201-40ec-8f4c-6c925e8a63d6",
+    "username": "tjingeling",
+    "password": "tjingeling",
+    "userImage": "userImgBanana",
+    "posts": [],
+    "comments": []
   }
 ]
