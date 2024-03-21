@@ -1,6 +1,22 @@
 const baseUrl: string = 'http://localhost:3000/';
 const header = {"Content-type": "application/json; charset=UTF-8"};
 
+type User = {
+    username: string,
+    password: string,
+    userImage: string
+};
+
+async function getAllUsers():Promise<User[]>{
+    const url = baseUrl;
+
+    const res = await fetch(url);
+    const users = await res.json();
+    console.log(users);
+    return users;
+
+}
+
 async function submitPost(createdObject:Object, typeOfPost:string, userId?:string, postId?:string): Promise<void> {
     let url: string = baseUrl;
     if(typeOfPost === 'user') url += `users`;
@@ -20,4 +36,4 @@ async function submitPost(createdObject:Object, typeOfPost:string, userId?:strin
     
 }
 
-export {submitPost}
+export {submitPost, getAllUsers}

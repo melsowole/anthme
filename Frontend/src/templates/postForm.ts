@@ -1,4 +1,7 @@
-const createPostContainer: string = `<div id="postContainer">
+const createPostContainer: string = 
+`
+<main id="mainContainer">
+<div id="postContainer">
 <div class="post-heading">
     <h2>Create a post</h2>
 </div>
@@ -20,6 +23,8 @@ const createPostContainer: string = `<div id="postContainer">
         </div>
     </div>
 </form>
-</div>`;
+</div>
+</main>
+`;
 
 export default createPostContainer

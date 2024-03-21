@@ -1,0 +1,28 @@
+/* Styling for profilepage goes here */
+
+.userInfoItem{
+    display: flex;
+    align-items: center;
+}
+
+.userInfoItem > h2{
+    margin-left: 1rem;
+}
+
+.userInteractionsOverview{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.userInteractionsOverview > a{
+    text-decoration: none;
+    color: #0F1A1C;
+    padding: 0.7rem;
+    border-radius: 30px;
+    font-size: 14px;
+}
+
+.addGreyBGColor{
+    background-color: #D2DADD;
+}
