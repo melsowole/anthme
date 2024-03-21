@@ -1,0 +1,5 @@
+.main-header {
+  width: 100%;
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--neut);
+}

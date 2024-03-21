@@ -20,4 +20,4 @@ const stringToDOM = (htmlString: string): any => {
   return document.body.firstChild;
 };
 
-export { replace, stringToDOM };
+export { replace, stringToDOM, ReplacePair };
