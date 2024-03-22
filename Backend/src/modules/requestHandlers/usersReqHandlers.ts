@@ -6,6 +6,7 @@ import CustomError from "../CustomError.js";
 import { DB, User, Post, Comment } from "../../db/DBTypes.js";
 import { read, write } from "../dataAccess.js";
 import { Request, Response, NextFunction } from "express";
+import { setCookie } from "./cookiesReqHandlers.js";
 
 export async function getAllUsers(
   req: Request,
@@ -92,4 +93,26 @@ export async function deleteUser(
     next(err);
     return;
   }
+}
+
+export async function handleUserLogIn(req: Request, res: Response, next: NextFunction): Promise<void> {
+  const {username, password} = req.body;
+  
+  await findUser(username, password).then(user => {
+    if(user) {
+      setCookie(username, req, res, next);
+      res.json({message: `User credentials matched, ${username} logged in`, cookieMessage: 'cookies set'});
+    }
+    else {
+      res.status(404);
+      res.json({message: 'User not found'})
+    }
+  })
+}
+
+async function findUser(username: string, password: string): Promise<User> {
+  const users: DB<User> = await read.users();
+  
+  const foundUser = users.find(u => u.username === username && u.password === password)
+  return foundUser;
 }

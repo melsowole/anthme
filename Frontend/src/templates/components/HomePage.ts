@@ -1,6 +1,6 @@
-import Header from "./Header";
-import MainNav from "./MainNav";
-import MainFeed from "./MainFeed";
+import Header from "./Header.ts";
+import MainNav from "./MainNav.ts";
+import MainFeed from "./MainFeed.ts";
 
 function displayHomePage(posts: []) {
   document.body.append(

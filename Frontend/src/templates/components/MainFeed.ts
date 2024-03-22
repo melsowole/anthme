@@ -1,6 +1,6 @@
-import * as template from "../templates/main-feed.js";
-import { replace, stringToDOM } from "./template-utils.js";
-import PostPreview from "./PostPreview";
+import * as template from "../main-feed.js";
+import { replace, stringToDOM } from "../../modules/template-utils.js";
+import PostPreview from "./PostPreview.js";
 
 export default class MainFeed {
   static create(posts: []) {

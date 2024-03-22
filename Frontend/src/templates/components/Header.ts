@@ -1,5 +1,5 @@
-import * as template from "../templates/main-header.js";
-import { replace, stringToDOM } from "./template-utils.js";
+import * as template from "../main-header.js";
+import { replace, stringToDOM } from "../../modules/template-utils.js";
 
 export default class Header {
   static create() {

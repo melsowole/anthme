@@ -6,11 +6,18 @@ import cors from "cors";
 import CustomError from "./modules/CustomError.js";
 import { apiRouter } from "./modules/apiRouter.js";
 import { addTimestamp } from "./modules/middleware/addTimestamp.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
 //Middleware
-app.use(express.json(), cors());
+app.use(cookieParser());
+app.use(
+  express.json(),
+  cors({
+    origin: 'http://localhost:1234',
+    credentials: true
+  }));
 app.use(addTimestamp);
 
 //Routes
