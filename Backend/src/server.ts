@@ -18,6 +18,7 @@ app.use("/", apiRouter);
 
 // Afterware, handles errors thrown in req handlers
 app.use((err: CustomError, req: Request, res: Response, next: NextFunction) => {
+  console.log(err);
   res
     .status(err.statusCode)
     .json({ statusCode: err.statusCode, message: err.message });

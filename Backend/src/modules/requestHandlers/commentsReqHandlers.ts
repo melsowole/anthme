@@ -31,7 +31,10 @@ export async function getOneComment(
   try {
     const comments: DB<Comment> = await read.comments();
 
-    const comment = res.json(comments);
+    // getItemById throws error if Id not found
+    const comment = getItemById(comments, req.params.commentId);
+
+    res.json(comment);
   } catch (err) {
     next(err);
     return;

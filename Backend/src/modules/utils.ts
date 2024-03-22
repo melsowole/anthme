@@ -1,4 +1,5 @@
 import { DB, User, Post, Comment } from "../db/DBTypes.js";
+import CustomError from "./CustomError.js";
 
 export function getItemById<T extends User | Post | Comment>(
   array: T[],
@@ -6,7 +7,7 @@ export function getItemById<T extends User | Post | Comment>(
 ): T {
   const item = array.find((t) => t.id === id);
 
-  if(!item) throw new Error(`Item with id ${id} not found`)
+  if (!item) throw new CustomError(404, `Item with id ${id} not found`);
 
   return item;
 }

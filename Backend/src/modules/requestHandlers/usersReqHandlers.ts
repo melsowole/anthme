@@ -6,6 +6,7 @@ import CustomError from "../CustomError.js";
 import { DB, User, Post, Comment } from "../../db/DBTypes.js";
 import { read, write } from "../dataAccess.js";
 import { Request, Response, NextFunction } from "express";
+import { getItemById } from "../utils.js";
 
 export async function getAllUsers(
   req: Request,
@@ -25,9 +26,8 @@ export async function getOneUser(
   try {
     const users: DB<User> = await read.users();
 
-    const user = users.find((u) => u.id === req.params.userId);
-
-    if (!user) throw new CustomError(404, "User not found");
+    // getItemById throws error if Id not found
+    const user = getItemById(users, req.params.userId);
 
     res.json(user);
   } catch (err) {

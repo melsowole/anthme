@@ -2,6 +2,7 @@
 
 import { body, validationResult, ValidationChain } from "express-validator";
 import { Request, Response, NextFunction } from "express";
+import CustomError from "../CustomError.js";
 
 const userValidations = [
   body("username")
@@ -75,7 +76,10 @@ const validate = (validations: ValidationChain[]) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty())
-      return res.status(400).json({ message: "Validation failed" });
+      // go straight to afterware
+      return next(
+        new CustomError(400, "Validation failed. Missing required field.")
+      );
     next();
   };
 };

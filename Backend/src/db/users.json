@@ -7,7 +7,8 @@
     "created": 1711030155454,
     "posts": [
       "359e031a-cc21-4721-88c4-1faeed4cd11c",
-      "4de52662-278d-4c85-b5ec-76d0d01d98d4"
+      "4de52662-278d-4c85-b5ec-76d0d01d98d4",
+      "f0ff62d7-54ea-4c9f-9303-067006a7c144"
     ],
     "comments": []
   },
@@ -46,7 +47,15 @@
       "bb68f55e-c2d7-4d21-a80d-5ab21a7316bb",
       "9d481095-201d-425e-8519-d3e9e52e1cc1",
       "e3ca95cb-f53e-46ae-a236-f4989f8d2b57"
-    ],
-
+    ]
+  },
+  {
+    "id": "164d4791-151d-41f5-9dfa-a209b5f70ca0",
+    "username": "Stone",
+    "password": "123",
+    "userImage": "pizza",
+    "created": 1711102517288,
+    "posts": [],
+    "comments": []
   }
 ]
