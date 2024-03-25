@@ -16,7 +16,7 @@ export default class Noticeboard {
             
             orderedListEl.append(listItemEl);
         })
-
+        
         return noticeboardEl;
     }
 }

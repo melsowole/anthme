@@ -23,7 +23,6 @@ function displayPostPage(): void {
         for(const [key, values] of formData) {
             newPost[key] = values;
         }
-        console.log(newPost);
 
         try {
             submitPost(newPost, 'post', filterCookieValue('id', 'user'))
