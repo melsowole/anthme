@@ -35,7 +35,7 @@ apiRouter.route("/user/:userId/posts/delete/:postId").delete(posts.deletePost);
 // Posts routes
 apiRouter.route("/posts").get(posts.getAllPosts);
 
-apiRouter.route("/posts/:userId").get(posts.getOnePost);
+apiRouter.route("/posts/:postId").get(posts.getOnePost);
 
 // Comments routes
 apiRouter.route("/comments").get(comments.getAllComments);

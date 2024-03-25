@@ -4,16 +4,17 @@ import PostPreview from "./PostPreview.js";
 
 export default class MainFeed {
   static create(posts: []) {
-    
     const templateFeed = replace(template.feed, [
-      {pattern: 'sort', replacement: 'Best'},
-      {pattern: 'containerId', replacement: 'posts'}
-    ])
+      { pattern: "sort", replacement: "Best" },
+      { pattern: "containerId", replacement: "posts" },
+    ]);
 
-    const main = stringToDOM(templateFeed)
+    const main = stringToDOM(templateFeed);
 
     posts.forEach((post) =>
-      main.querySelector("#posts").append(PostPreview.create(post))
+      main
+        .querySelector("#posts")
+        .append(PostPreview.create(post), document.createElement("hr"))
     );
 
     return main;

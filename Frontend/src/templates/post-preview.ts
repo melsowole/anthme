@@ -6,7 +6,7 @@ const postPreview = `
                 <span class="icon material-symbols-outlined">potted_plant</span>
             </span>
             <small class="category">a/__category__</small>
-            <small class="timestamp">__age__ ago</small>
+            <small class="timestamp">__age__</small>
         </header>
         <section>
             <h2 class="title">__title__</h2>
