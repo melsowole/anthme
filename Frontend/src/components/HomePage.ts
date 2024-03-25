@@ -1,7 +1,7 @@
 import Header from "./Header.ts";
 import MainNav from "./MainNav.ts";
 import MainFeed from "./MainFeed.ts";
-import Noticeboard from "./Noticeboard.ts";
+import PostNoticeboard from "./PostNoticeboard.ts";
 
 function displayHomePage(posts: []): void {
   const noticeboardContent: string[] = [
@@ -12,7 +12,7 @@ function displayHomePage(posts: []): void {
     Header.create(),
     MainNav.create(),
     MainFeed.create(posts),
-    Noticeboard.createDOM('Users', noticeboardContent)
+    PostNoticeboard.createDOM('Users', noticeboardContent)
   );
 }
 
