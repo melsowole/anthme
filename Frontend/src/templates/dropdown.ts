@@ -1,7 +1,6 @@
 const nav = `
 <nav class="dropdown">
     <label class="label open" for="__id__">
-    <label class="label open" for="">
         <h3 class="list-heading">
             __heading__
         </h3>
