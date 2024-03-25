@@ -12,8 +12,8 @@ import {
   postValidations,
   commentValidations,
 } from "./middleware/validator.js";
-
 import { addUserInfo } from "./middleware/addUserInfo.js";
+import { readCookie, setCookie } from "./requestHandlers/cookiesReqHandlers.js";
 
 const apiRouter = Router();
 
@@ -47,5 +47,9 @@ apiRouter
 apiRouter
   .route("/posts/:postId/user/:userId/comment/delete/:commentId")
   .delete(comments.deleteComment);
+
+// Cookie and login routes
+apiRouter.route("/read-cookie").get(readCookie)
+apiRouter.route("/user/login").post(setCookie)
 
 export { apiRouter };

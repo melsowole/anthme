@@ -6,7 +6,7 @@ export type User = {
   id: string;
   created: number;
   username: string;
-  password: number;
+  password: string;
   userImage: string;
   posts: string[];
   comments: string[];

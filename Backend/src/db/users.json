@@ -7,7 +7,8 @@
     "created": 1711030155454,
     "posts": [
       "359e031a-cc21-4721-88c4-1faeed4cd11c",
-      "4de52662-278d-4c85-b5ec-76d0d01d98d4"
+      "4de52662-278d-4c85-b5ec-76d0d01d98d4",
+      "f3d2b0bd-e308-4332-ad0b-a93f96245e95"
     ],
     "comments": []
   },
@@ -20,10 +21,7 @@
     "posts": [
       "4f23e1b0-9964-47e2-87fa-a752b813ae98",
       "bd5c4ad9-47f4-468e-b629-fbfafaa32d62",
-      "c5f254ef-0f71-4218-a4fc-c5f8aa942d36",
-      "07128436-c366-4f46-9f5b-e476c10082d1",
-      "9b350956-c574-4cbe-a72d-ad7a43920773",
-      "63d197bb-23d1-458c-a45e-43b7548086ad"
+      "c5f254ef-0f71-4218-a4fc-c5f8aa942d36"
     ],
     "comments": []
   },
@@ -48,7 +46,22 @@
       "6199ae25-5526-4bfe-8499-2f8de8a7cb02",
       "bb68f55e-c2d7-4d21-a80d-5ab21a7316bb",
       "9d481095-201d-425e-8519-d3e9e52e1cc1",
-      "e3ca95cb-f53e-46ae-a236-f4989f8d2b57"
-    ]
+      "e3ca95cb-f53e-46ae-a236-f4989f8d2b57",
+      "ed40e781-220c-407a-b956-807d8562c59a",
+      "4278e602-a154-4af9-bae3-b842547c3906",
+      "dd56a085-f78c-431f-8b5d-3ad0dab35621",
+      "c9eb3f21-7a52-4a0c-bcca-63c2a5e720a4",
+      "6f8ea946-3e68-4576-8376-675c6318c4e3"
+    ],
+    "comments": []
+  },
+  {
+    "id": "8d18b516-ac9b-4a33-bbba-e0cf843589df",
+    "username": "chicken",
+    "password": "egg",
+    "userImage": "userImgDounat",
+    "created": 1711358988787,
+    "posts": [],
+    "comments": []
   }
 ]

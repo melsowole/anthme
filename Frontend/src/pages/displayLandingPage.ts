@@ -1,9 +1,9 @@
 import { addUser, User, getAllUsers} from '../modules/fetchUsers.js';
-import { validateLogIn } from "../modules/function.js";
 import {displayProfile} from "./displayProfile.js";
 import {landingPageString} from "../templates/landingpage.js"
 // import{main} from "../templates/profilepage.js"
 import { stringToDOM } from "../modules/template-utils.js";
+import { sendLogInRequest } from '../modules/api.js';
 
 
  function displayLandingPage():void {
@@ -93,21 +93,8 @@ import { stringToDOM } from "../modules/template-utils.js";
         const logInPassword = document.querySelector('#logInPassword') as HTMLInputElement;
         const password = logInPassword.value;
 
-        getAllUsers()
-        .then(users => {
-        const isValidLogin = validateLogIn(users, username, password);
-        if (isValidLogin) {
-            console.log('Valid login');
-            displayProfile();
-        } 
-        else {
-            console.log('Invalid login');
-        }
-    })
-    .catch(error => {
-        console.error('Error fetching users:', error);
-    });
-
+        sendLogInRequest(username, password)
+        
         logInForm.reset();
     })
 

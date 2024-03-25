@@ -1,10 +1,8 @@
-import { PostForm } from "../templates/components/PostForm.ts";
-import {Noticeboard} from "../templates/components/Noticeboard.ts"
+import { renderPostPage } from "../components/PostPage.ts";
 import { submitPost } from "../modules/api.ts";
+import { filterCookieValue } from "../modules/cookieUtils.ts";
 
 function displayPostPage(): void {
-    const postContainerEl = PostForm.createDOM();
-    
     const textContentArray:string[] = [
         'Remember the human',
         'Behave like you would in real life',
@@ -12,38 +10,31 @@ function displayPostPage(): void {
         'Search for duplicates before posting',
         `Read the community's rules`
     ];
-    
-    const noticeboardEl = Noticeboard.createDOM('Posting to anthme', textContentArray);
-    
-    document.body.append(postContainerEl)
-    postContainerEl.append(noticeboardEl)
+    renderPostPage('Posting to anthme', textContentArray)
 
     const postForm = document.querySelector('#postForm') as HTMLFormElement;
-postForm.addEventListener('submit', event => {
-    event.preventDefault();
-    let postContent:string = (postForm.querySelector('.textarea') as HTMLDivElement).innerText;
-    const formData: FormData = new FormData(postForm);
-    formData.append('body', postContent);
-    const newPost: Object = {
-        username: "Frontend",
-        userImage: "randomimg.png"
-    };
+    postForm.addEventListener('submit', event => {
+        event.preventDefault();
+        let postContent:string = (postForm.querySelector('.textarea') as HTMLDivElement).innerText;
+        const formData: FormData = new FormData(postForm);
+        formData.append('body', postContent);
+        const newPost: Object = {};
 
-    for(const [key, values] of formData) {
-        newPost[key] = values;
-    }
-    console.log(newPost);
+        for(const [key, values] of formData) {
+            newPost[key] = values;
+        }
+        console.log(newPost);
 
-    try {
-        submitPost(newPost, 'post', "66f2236a-0b65-45bc-8be7-86009cf8188a")
-    }
-    catch(error) {
-        console.log(error);
-    }
+        try {
+            submitPost(newPost, 'post', filterCookieValue('id', 'user'))
+        }
+        catch(error) {
+            console.log(error);
+        }
 
-    (postForm.querySelector('.textarea') as HTMLDivElement).innerText = '';
-    postForm.reset();
-})
+        (postForm.querySelector('.textarea') as HTMLDivElement).innerText = '';
+        postForm.reset();
+    })
 
 }
 

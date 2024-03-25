@@ -1,7 +1,7 @@
-import {noticeboardString, listItemString} from "../noticeboard.ts"
-import { replace, stringToDOM, ReplacePair } from "../../modules/template-utils.ts"
+import {noticeboardString, listItemString} from "../templates/noticeboard.ts"
+import { replace, stringToDOM, ReplacePair } from "../modules/template-utils.ts"
 
-class Noticeboard {
+export default class Noticeboard {
 
     static createDOM(headerContent:string, textContentArray:string[]):HTMLDivElement {
         const listArray:string[] = [...Array(textContentArray.length).fill(listItemString)]
@@ -20,5 +20,3 @@ class Noticeboard {
         return noticeboardEl;
     }
 }
-
-export {Noticeboard}
