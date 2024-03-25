@@ -6,6 +6,7 @@ import CustomError from "../CustomError.js";
 import { DB, User, Post, Comment } from "../../db/DBTypes.js";
 import { read, write } from "../dataAccess.js";
 import { Request, Response, NextFunction } from "express";
+import { setCookie } from "./cookiesReqHandlers.js";
 
 export async function getAllUsers(
   req: Request,

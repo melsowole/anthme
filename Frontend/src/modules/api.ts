@@ -36,4 +36,35 @@ async function submitPost(createdObject:Object, typeOfPost:string, userId?:strin
     
 }
 
-export {submitPost, getAllUsers}
+async function sendLogInRequest(username:string, password:string): Promise<void> {
+    const url = `${baseUrl}user/login`;
+
+    const user = {
+        username: username,
+        password: password
+    }
+
+    const options: RequestInit = {
+        method: "POST",
+        body: JSON.stringify(user),
+        headers: header,
+        mode: 'cors',
+        credentials: 'include'
+    }
+
+    const res = await fetch(url, options);
+    const info = await res.json();
+    window.location.replace('http://localhost:1234/')
+}
+
+async function readCookie(): Promise<boolean> {
+    const req = new Request(`${baseUrl}read-cookie`, {
+        mode: 'cors',
+        credentials: 'include'
+    })
+
+    const res = await fetch(req);
+    const cookieInfo = await res.json();
+    return cookieInfo.ok;
+}
+export {submitPost, getAllUsers, readCookie, sendLogInRequest}

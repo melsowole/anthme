@@ -79,5 +79,31 @@
     "username": "Frontend",
     "userImage": "randomimg.png",
     "comments": []
+  },
+  {
+    "id": "6f8ea946-3e68-4576-8376-675c6318c4e3",
+    "created": 1711144567351,
+    "category": "Login",
+    "title": "Första post från inloggad användare",
+    "body": "First first first first",
+    "comments": [],
+    "user": {
+      "id": "66f2236a-0b65-45bc-8be7-86009cf8188a",
+      "username": "Fantomen",
+      "userImage": "fantomenImg"
+    }
+  },
+  {
+    "id": "f3d2b0bd-e308-4332-ad0b-a93f96245e95",
+    "created": 1711144626703,
+    "category": "Login",
+    "title": "Andra post från inloggad användare",
+    "body": "andra dnarnadnarnafdnsa\n",
+    "comments": [],
+    "user": {
+      "id": "7fdd2943-3fd9-44c8-aa3d-618f117ed6dd",
+      "username": "Lynx",
+      "userImage": "pizza"
+    }
   }
 ]
