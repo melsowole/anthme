@@ -52,8 +52,6 @@ export async function getAllCommentsByUser(
 
     const user = getItemById(users, req.params.userId);
 
-    if (!user) throw new CustomError(404, "User not found");
-
     const commentsByUser = getItemsById(comments, user.comments);
 
     res.json(commentsByUser);
@@ -76,9 +74,6 @@ export async function addComment(
     const user = getItemById(users, req.params.userId);
     const post = getItemById(posts, req.params.postId);
 
-    if (!user) throw new CustomError(404, "User not found");
-    if (!post) throw new CustomError(404, "Post not found");
-
     // create new comment
     const newComment: Comment = {
       id: crypto.randomUUID(),
@@ -96,7 +91,7 @@ export async function addComment(
     await write.users(users);
     await write.posts(posts);
 
-    res.json({ message: "Added new comment" });
+    res.json(newComment);
   } catch (err) {
     next(err);
     return;
@@ -113,14 +108,10 @@ export async function deleteComment(
     const users = await read.users();
     const comments = await read.comments();
 
+    // throws error if not found
     const post = getItemById(posts, req.params.postId);
     const user = getItemById(users, req.params.userId);
     const comment = getItemById(comments, req.params.commentId);
-
-    // validation
-    if (!post) throw new CustomError(404, "Post not found");
-    if (!user) throw new CustomError(404, "User not found");
-    if (!comment) throw new CustomError(404, "Comment not found");
 
     removeItemFromArray(comments, comment);
     removeItemFromArray(post.comments, comment.id);

@@ -33,6 +33,8 @@ apiRouter
   .get(posts.getAllPostsbyUser)
   .post(addUserInfo, validate(postValidations), posts.createPost);
 
+apiRouter.route("/users/:userId/comments").get(comments.getAllCommentsByUser);
+
 apiRouter.route("/users/:userId/posts/:postId").delete(posts.deletePost);
 
 // Posts routes
@@ -46,7 +48,7 @@ apiRouter.route("/comments/:commentId").get(comments.getOneComment);
 
 apiRouter
   .route("/posts/:postId/users/:userId/comments")
-  .post(validate(commentValidations), comments.addComment);
+  .post(addUserInfo, validate(commentValidations), comments.addComment);
 
 apiRouter
   .route("/posts/:postId/users/:userId/comments/:commentId")

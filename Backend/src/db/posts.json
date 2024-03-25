@@ -4,14 +4,9 @@
     "category": "Web development",
     "title": "Can I nest an <a> within and <a>?",
     "body": "Can i nest link within a link? I am getting a bug when I so this",
-    "comments": []
-  },
-  {
-    "id": "359e031a-cc21-4721-88c4-1faeed4cd11c",
-    "category": "Food",
-    "title": "Where do I buy the best doughnuts?",
-    "body": "At Leve in Malmö",
-    "comments": []
+    "comments": [
+      "540e6ba8-ab72-47d4-aaa1-1fb6971a5052"
+    ]
   },
   {
     "id": "ea39c9fd-37e1-4560-88d7-36ab30148308",
@@ -68,7 +63,9 @@
     "user": "66f2236a-0b65-45bc-8be7-86009cf8188a",
     "username": "Frontend",
     "userImage": "randomimg.png",
-    "comments": []
+    "comments": [
+      "a29e6a79-57de-4775-91ec-d2a39f609431"
+    ]
   },
   {
     "id": "bb68f55e-c2d7-4d21-a80d-5ab21a7316bb",
@@ -90,6 +87,58 @@
     "user": {
       "id": "7fdd2943-3fd9-44c8-aa3d-618f117ed6dd",
       "username": "Lynx",
+      "userImage": "pizza"
+    }
+  },
+  {
+    "id": "52f62aae-48e4-4c6f-8634-9aebf613324d",
+    "created": 1711359147116,
+    "category": "Overwatch",
+    "title": "I cant wait for this collab to be over",
+    "body": "I'm so tired of that music playing every time I open the menu, I don't know why it has to restart when you go. Can't go to the battle pass or hero gallery without inevitably having to go back to the menu and hear it again",
+    "comments": [],
+    "user": {
+      "id": "8faa1e54-bd3a-4a05-a6e1-79cbbc80917d",
+      "username": "Fado",
+      "userImage": "pizza"
+    }
+  },
+  {
+    "id": "2c70efa8-24ea-4f27-82b3-4c042427a828",
+    "created": 1711359282431,
+    "category": "Overwatch",
+    "title": "I cant wait for this collab to be over",
+    "body": "I'm so tired of that music playing every time I open the menu, I don't know why it has to restart when you go. Can't go to the battle pass or hero gallery without inevitably having to go back to the menu and hear it again",
+    "comments": [],
+    "user": {
+      "id": "8faa1e54-bd3a-4a05-a6e1-79cbbc80917d",
+      "username": "Fado",
+      "userImage": "pizza"
+    }
+  },
+  {
+    "id": "d992bbdc-20e7-446d-a89c-410eba17eb95",
+    "created": 1711359675286,
+    "category": "Overwatch",
+    "title": "I cant wait for this collab to be over",
+    "body": "I'm so tired of that music playing every time I open the menu, I don't know why it has to restart when you go. Can't go to the battle pass or hero gallery without inevitably having to go back to the menu and hear it again",
+    "comments": [],
+    "user": {
+      "id": "8faa1e54-bd3a-4a05-a6e1-79cbbc80917d",
+      "username": "Fado",
+      "userImage": "pizza"
+    }
+  },
+  {
+    "id": "9b0e42da-ab76-4581-aee4-35ffcc2ebc26",
+    "created": 1711359798544,
+    "category": "Overwatch",
+    "title": "I cant wait for this collab to be over",
+    "body": "I'm so tired of that music playing every time I open the menu, I don't know why it has to restart when you go. Can't go to the battle pass or hero gallery without inevitably having to go back to the menu and hear it again",
+    "comments": [],
+    "user": {
+      "id": "8faa1e54-bd3a-4a05-a6e1-79cbbc80917d",
+      "username": "Fado",
       "userImage": "pizza"
     }
   }
