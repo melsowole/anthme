@@ -17,9 +17,10 @@ const profileMenu = `
 <div class="profile-menu">
     <div class="user">
         <div class="img-icon"></div>
-        <a href="/profile/__username__">View Profile</a>
+        <a class="to-profile unstyle" href="/profile/__username__">View Profile</a>
         <small class="username">u/__username__</small>
     </div>
+    <hr>
     <ul>
         <li>Dark mode toggle</li>
         <li>Log Out</li>
@@ -29,4 +30,4 @@ const profileMenu = `
 </div>
 `;
 
-export { header };
+export { header, profileMenu };

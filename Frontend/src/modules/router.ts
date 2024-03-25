@@ -14,7 +14,11 @@ function setupRouter(): Promise<void> {
     readCookie()
       .then((response) => {
         if (!response) {
-          router.on("*", displayLandingPage);
+          router.on("*", () => {
+            fetch("http://localhost:3000/posts/")
+              .then((res) => res.json())
+              .then(displayHomePage);
+          });
         } else {
           router.on("/", () => {
             fetch("http://localhost:3000/posts/")
