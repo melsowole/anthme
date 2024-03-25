@@ -50,6 +50,6 @@ apiRouter
 
 // Cookie and login routes
 apiRouter.route("/read-cookie").get(readCookie)
-apiRouter.route("/user/login-handler").post(users.handleUserLogIn)
+apiRouter.route("/user/login").post(setCookie)
 
 export { apiRouter };

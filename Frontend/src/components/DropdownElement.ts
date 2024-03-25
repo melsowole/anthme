@@ -1,5 +1,5 @@
-import * as template from "../dropdown.js";
-import { replace, stringToDOM } from "../../modules/template-utils.js";
+import * as template from "../templates/dropdown.js";
+import { replace, stringToDOM } from "../modules/template-utils.js";
 
 type Item = {
   name: string;

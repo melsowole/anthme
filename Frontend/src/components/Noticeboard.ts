@@ -1,5 +1,5 @@
-import {noticeboardString, listItemString} from "../noticeboard.ts"
-import { replace, stringToDOM, ReplacePair } from "../../modules/template-utils.ts"
+import {noticeboardString, listItemString} from "../templates/noticeboard.ts"
+import { replace, stringToDOM, ReplacePair } from "../modules/template-utils.ts"
 
 export default class Noticeboard {
 

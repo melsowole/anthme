@@ -1,5 +1,6 @@
-import { renderPostPage } from "../templates/components/PostPage.ts";
+import { renderPostPage } from "../components/PostPage.ts";
 import { submitPost } from "../modules/api.ts";
+import { filterCookieValue } from "../modules/cookieUtils.ts";
 
 function displayPostPage(): void {
     const textContentArray:string[] = [
@@ -17,17 +18,15 @@ function displayPostPage(): void {
         let postContent:string = (postForm.querySelector('.textarea') as HTMLDivElement).innerText;
         const formData: FormData = new FormData(postForm);
         formData.append('body', postContent);
-        const newPost: Object = {
-            username: "Frontend",
-            userImage: "randomimg.png"
-        };
+        const newPost: Object = {};
 
         for(const [key, values] of formData) {
             newPost[key] = values;
         }
+        console.log(newPost);
 
         try {
-            submitPost(newPost, 'post', "66f2236a-0b65-45bc-8be7-86009cf8188a")
+            submitPost(newPost, 'post', filterCookieValue('id', 'user'))
         }
         catch(error) {
             console.log(error);

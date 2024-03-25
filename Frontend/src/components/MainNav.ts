@@ -1,5 +1,5 @@
-import * as template from "../main-nav.js";
-import { stringToDOM, replace } from "../../modules/template-utils.js";
+import * as template from "../templates/main-nav.js";
+import { stringToDOM, replace } from "../modules/template-utils.js";
 import Dropdown from "./DropdownElement.js";
 
 type FeedItem = {

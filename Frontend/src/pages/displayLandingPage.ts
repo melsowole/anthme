@@ -1,5 +1,4 @@
 import { addUser, User, getAllUsers} from '../modules/fetchUsers.js';
-import { validateLogIn } from "../modules/function.js";
 import {displayProfile} from "./displayProfile.js";
 import {landingPageString} from "../templates/landingpage.js"
 // import{main} from "../templates/profilepage.js"
@@ -95,22 +94,7 @@ import { sendLogInRequest } from '../modules/api.js';
         const password = logInPassword.value;
 
         sendLogInRequest(username, password)
-
-        // getAllUsers()
-        // .then(users => {
-        //     const isValidLogin = validateLogIn(users, username, password);
-        //     if (isValidLogin) {
-        //         console.log('Valid login');
-        //         displayProfile();
-        //     } 
-        //     else {
-        //         console.log('Invalid login');
-        //     }
-        //     })
-        //     .catch(error => {
-        //         console.error('Error fetching users:', error);
-        //     });
-
+        
         logInForm.reset();
     })
 

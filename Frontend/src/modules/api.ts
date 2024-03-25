@@ -37,7 +37,7 @@ async function submitPost(createdObject:Object, typeOfPost:string, userId?:strin
 }
 
 async function sendLogInRequest(username:string, password:string): Promise<void> {
-    const url = `${baseUrl}user/login-handler`
+    const url = `${baseUrl}user/login`;
 
     const user = {
         username: username,
@@ -54,18 +54,17 @@ async function sendLogInRequest(username:string, password:string): Promise<void>
 
     const res = await fetch(url, options);
     const info = await res.json();
-    console.log(info);
+    window.location.replace('http://localhost:1234/')
 }
 
-async function readCookie(): Promise<void> {
+async function readCookie(): Promise<boolean> {
     const req = new Request(`${baseUrl}read-cookie`, {
         mode: 'cors',
         credentials: 'include'
     })
 
-    const res = await fetch(req)
-    const cookieInfo = await res.json()
-    console.log(cookieInfo);
+    const res = await fetch(req);
+    const cookieInfo = await res.json();
+    return cookieInfo.ok;
 }
-
 export {submitPost, getAllUsers, readCookie, sendLogInRequest}
