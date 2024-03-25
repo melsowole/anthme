@@ -84,7 +84,8 @@ a.unstyle {
 }
 
 .pill:hover {
-  background-color: var(--neut);
+  /* !importwnt to make it possible to override bg color of pill but keep hover */
+  background-color: var(--neut) !important;
 }
 
 .pill .icon {
