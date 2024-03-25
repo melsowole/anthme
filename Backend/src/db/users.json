@@ -63,5 +63,14 @@
     "created": 1711358988787,
     "posts": [],
     "comments": []
+  },
+  {
+    "id": "fa3790bf-9e78-41fe-83a2-73d12d8e5128",
+    "username": "melchan",
+    "password": "pass",
+    "userImage": "userImgBanana",
+    "created": 1711365974156,
+    "posts": [],
+    "comments": []
   }
 ]
