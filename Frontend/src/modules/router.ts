@@ -1,10 +1,11 @@
 import Navigo from "navigo";
-import displayPostPage from "../pages/displayPostPage.ts";
-import { displayLandingPage } from "../pages/displayLandingPage.ts";
-import { displayHomePage } from "../components/HomePage.ts";
-import { displayUsersPage } from "../components/UsersPage.ts";
-import { readCookie} from "./api.ts";
-
+import displayPostPage from "../pages/displayPostPage.js";
+import { displayLandingPage } from "../pages/displayLandingPage.js";
+import { displayHomePage } from "../components/HomePage.js";
+import { displayUsersPage } from "../components/UsersPage.js";
+import { readCookie} from "./api.js";
+import { displayProfile } from "../pages/displayProfile.js";
+import { displayViewPostPage } from "../pages/displayViewPostPage.js";
 const router = new Navigo('/');
 
 // Funktionen returnerar ett promise för att vänta tills readCookie() är klar
@@ -27,6 +28,8 @@ function setupRouter(): Promise<void> {
                     .then(res => res.json())
                     .then(displayUsersPage)
                 })
+                router.on('/userProfile', displayProfile)
+                router.on('/viewPostpage', displayViewPostPage)
             }
             resolve();
         }).catch(reject);

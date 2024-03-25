@@ -10,7 +10,11 @@
       "4de52662-278d-4c85-b5ec-76d0d01d98d4",
       "f3d2b0bd-e308-4332-ad0b-a93f96245e95"
     ],
-    "comments": []
+    "comments": [
+      "56e230e6-5229-46b5-ae43-a64f93a6b8c6",
+      "c376fa67-e71a-4966-8cf9-a4f61587b94f",
+      "aaa5af06-7d8b-452b-929d-87f91ada6e68"
+    ]
   },
   {
     "id": "8faa1e54-bd3a-4a05-a6e1-79cbbc80917d",
@@ -59,9 +63,11 @@
     "id": "8d18b516-ac9b-4a33-bbba-e0cf843589df",
     "username": "chicken",
     "password": "egg",
-    "userImage": "userImgDounat",
+    "userImage": "dounat",
     "created": 1711358988787,
-    "posts": [],
+    "posts": [
+      "274965e7-2da6-4747-a31a-176b2ff24fd3"
+    ],
     "comments": []
   }
 ]

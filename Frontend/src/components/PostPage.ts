@@ -1,6 +1,6 @@
-import Header from "./Header.ts";
-import PostForm from "./PostForm.ts";
-import Noticeboard from "./Noticeboard.ts";
+import Header from "./Header.js";
+import PostForm from "./PostForm.js";
+import Noticeboard from "./Noticeboard.js";
 
 function renderPostPage(noticeboardTitle:string, noticeboardText:string[]):void {
     const postContainerEl = PostForm.createDOM();

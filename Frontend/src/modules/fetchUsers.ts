@@ -5,9 +5,11 @@ const header = {
 };
 
 export type User = {
+    id?: string,
     username: string,
     password: string,
-    userImage: string
+    userImage: string,
+    posts?: string[]
 };
 
 export async function getAllUsers():Promise<User[]>{

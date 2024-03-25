@@ -1,6 +1,6 @@
-import { renderPostPage } from "../components/PostPage.ts";
-import { submitPost } from "../modules/api.ts";
-import { filterCookieValue } from "../modules/cookieUtils.ts";
+import { renderPostPage } from "../components/PostPage.js";
+import { submitPost } from "../modules/api.js";
+import { filterCookieValue } from "../modules/cookieUtils.js";
 
 function displayPostPage(): void {
     const textContentArray:string[] = [

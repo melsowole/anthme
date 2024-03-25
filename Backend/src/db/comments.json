@@ -17,5 +17,26 @@
     "user": "66f2236a-0b65-45bc-8be7-86009cf8188a",
     "username": "användare",
     "userImage": "randomimg.jpg"
+  },
+  {
+    "id": "56e230e6-5229-46b5-ae43-a64f93a6b8c6",
+    "body": "Testelitest",
+    "created": 1711395970640,
+    "username": "Unknown",
+    "userImage": "pizza"
+  },
+  {
+    "id": "c376fa67-e71a-4966-8cf9-a4f61587b94f",
+    "body": "Fado testar",
+    "created": 1711396018287,
+    "username": "Fado",
+    "userImage": "pizza"
+  },
+  {
+    "id": "aaa5af06-7d8b-452b-929d-87f91ada6e68",
+    "body": "Fado testar igen",
+    "created": 1711396102989,
+    "username": "Fado",
+    "userImage": "pizza"
   }
 ]

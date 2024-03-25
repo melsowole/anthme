@@ -105,5 +105,22 @@
       "username": "Lynx",
       "userImage": "pizza"
     }
+  },
+  {
+    "id": "274965e7-2da6-4747-a31a-176b2ff24fd3",
+    "created": 1711369353003,
+    "category": "Hej",
+    "title": "Hej",
+    "body": "Test",
+    "comments": [
+      "56e230e6-5229-46b5-ae43-a64f93a6b8c6",
+      "c376fa67-e71a-4966-8cf9-a4f61587b94f",
+      "aaa5af06-7d8b-452b-929d-87f91ada6e68"
+    ],
+    "user": {
+      "id": "8d18b516-ac9b-4a33-bbba-e0cf843589df",
+      "username": "chicken",
+      "userImage": "dounat"
+    }
   }
 ]

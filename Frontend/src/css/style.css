@@ -10,6 +10,7 @@
 @import "post-page.css";
 @import "landing-page.css";
 @import "profile-page.css";
+@import "view-postpage.css";
 
 * {
     margin: 0;

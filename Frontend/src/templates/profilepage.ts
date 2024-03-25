@@ -1,9 +1,6 @@
 const main = `
-<div class="profileContainer">
-    <div class="userInfoItem">
-        <img src="userImgBanana.971fd618.png" alt="">
-        <h2> FLYSWATTER93 </h2>
-    </div>    
+<main class="main-feed">
+    <div class="userInfoItem"></div>    
 
     <div class="userInteractionsOverview">
         <a class=" link userPageLink" href="#">
@@ -19,7 +16,7 @@ const main = `
         </a>
     </div>
 
-</div>
+</main>
 
 
 `
