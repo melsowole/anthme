@@ -1,6 +1,6 @@
 // exports all types associated with database
 
-export type DBPath = "users" | "comments" | "posts";
+export type DBPath = "users" | "comments" | "posts" | "categories";
 
 export type User = {
   id: string;
@@ -35,9 +35,6 @@ export type Comment = {
   user: UserShort;
 };
 
-export type Category = {
-  id: string;
-  name: string;
-};
+export type Category = string;
 
-export type DB<T extends User | Post | Comment> = T[];
+export type DB<T extends User | Post | Comment | Category> = T[];

@@ -2,7 +2,7 @@
 // exports {read, write} with methods: users, posts and comments
 
 import fs from "fs/promises";
-import { DB, DBPath, User, Post, Comment } from "../db/DBTypes.js";
+import { DB, DBPath, User, Post, Comment, Category } from "../db/DBTypes.js";
 
 const getDBPath = (path: string) => `./src/db/${path}.json`;
 
@@ -10,6 +10,7 @@ const read = {
   users: async (): Promise<DB<User>> => await readFromDB("users"),
   posts: async (): Promise<DB<Post>> => await readFromDB("posts"),
   comments: async (): Promise<DB<Comment>> => await readFromDB("comments"),
+  categories: async (): Promise<DB<Category>> => await readFromDB("categories"),
 };
 
 const write = {
@@ -19,9 +20,11 @@ const write = {
     await writeToDB("posts", data),
   comments: async (data: DB<Comment>): Promise<void> =>
     await writeToDB("comments", data),
+  categories: async (data: DB<Category>): Promise<void> =>
+    await writeToDB("categories", data),
 };
 
-async function readFromDB<T extends User | Post | Comment>(
+async function readFromDB<T extends User | Post | Comment | Category>(
   path: DBPath
 ): Promise<DB<T>> {
   const db = await fs.readFile(getDBPath(path), "utf-8");
@@ -33,7 +36,7 @@ async function readFromDB<T extends User | Post | Comment>(
 
 async function writeToDB(
   path: DBPath,
-  data: DB<User | Post | Comment>
+  data: DB<User | Post | Comment | Category>
 ): Promise<void> {
   fs.writeFile(getDBPath(path), JSON.stringify(data, null, 2));
 }
