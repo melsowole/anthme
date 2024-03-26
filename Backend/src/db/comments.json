@@ -38,6 +38,7 @@
       "userImage": "pizza"
     }
   },
+  {
     "id": "56e230e6-5229-46b5-ae43-a64f93a6b8c6",
     "body": "Testelitest",
     "created": 1711395970640,
@@ -45,17 +46,63 @@
     "userImage": "pizza"
   },
   {
-    "id": "c376fa67-e71a-4966-8cf9-a4f61587b94f",
-    "body": "Fado testar",
-    "created": 1711396018287,
-    "username": "Fado",
-    "userImage": "pizza"
+    "id": "9ea5a9fc-fd90-4d1a-87ef-768d5585c493",
+    "body": "trytry",
+    "created": "2024-03-26T13:04:13.138Z",
+    "user": {
+      "id": "ae98fe9d-fdfa-4755-9f03-30e1a8e49eef",
+      "username": "chicken",
+      "userImage": "donut"
+    }
   },
   {
-    "id": "aaa5af06-7d8b-452b-929d-87f91ada6e68",
-    "body": "Fado testar igen",
-    "created": 1711396102989,
-    "username": "Fado",
-    "userImage": "pizza"
+    "id": "d64da6f9-f742-4dbc-b842-a4a8ebe65fd4",
+    "body": "trytry",
+    "created": "2024-03-26T13:07:34.485Z",
+    "user": {
+      "id": "ae98fe9d-fdfa-4755-9f03-30e1a8e49eef",
+      "username": "chicken",
+      "userImage": "donut"
+    }
+  },
+  {
+    "id": "b6fc0217-1536-4480-816a-f45435e45274",
+    "body": "trytry",
+    "created": "2024-03-26T13:12:58.001Z",
+    "user": {
+      "id": "38e33fa3-cdb8-495b-9e8f-cf28fc9d3201",
+      "username": "hejhej",
+      "userImage": "pizza"
+    }
+  },
+  {
+    "id": "668fb027-4c35-4eb9-92ac-ba9bfa6154de",
+    "body": "hejhej",
+    "created": "2024-03-26T14:27:06.107Z",
+    "user": {
+      "id": "38e33fa3-cdb8-495b-9e8f-cf28fc9d3201",
+      "username": "hejhej",
+      "userImage": "pizza"
+    }
+  },
+  {
+    "id": "34d35c79-97fc-4dc4-a860-d34d59e1d6f9",
+    "body": "Tjingeling",
+    "created": "2024-03-26T14:35:42.370Z",
+    "user": {
+      "id": "38e33fa3-cdb8-495b-9e8f-cf28fc9d3201",
+      "username": "hejhej",
+      "userImage": "pizza"
+    }
+  },
+  {
+    "id": "52a66942-2088-409c-99ac-520cd134eeac",
+    "body": "Tjena",
+    "created": "2024-03-26T14:39:37.812Z",
+    "user": {
+      "id": "38e33fa3-cdb8-495b-9e8f-cf28fc9d3201",
+      "username": "hejhej",
+      "userImage": "pizza"
+    }
   }
 ]

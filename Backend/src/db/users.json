@@ -6,6 +6,29 @@
     "userImage": "donut",
     "created": "2024-03-26T10:32:49.482Z",
     "posts": [],
-    "comments": []
+    "comments": [
+      "d85eaa6c-83ff-4d8c-9de7-484aee6c43e8",
+      "64807245-9431-4aac-bcf2-e06541263f9a",
+      "a0940abf-1f01-478d-be21-6daab040c085",
+      "4553bdc2-bfe7-4496-94b1-7d259be33d93",
+      "9c445aee-79ca-41e6-a38e-f4eaef8d7614",
+      "a098daf0-571e-4649-804d-d14ca2286667",
+      "9ea5a9fc-fd90-4d1a-87ef-768d5585c493",
+      "d64da6f9-f742-4dbc-b842-a4a8ebe65fd4"
+    ]
+  },
+  {
+    "id": "38e33fa3-cdb8-495b-9e8f-cf28fc9d3201",
+    "username": "hejhej",
+    "password": "134",
+    "userImage": "pizza",
+    "created": "2024-03-26T13:11:23.944Z",
+    "posts": [],
+    "comments": [
+      "b6fc0217-1536-4480-816a-f45435e45274",
+      "668fb027-4c35-4eb9-92ac-ba9bfa6154de",
+      "34d35c79-97fc-4dc4-a860-d34d59e1d6f9",
+      "52a66942-2088-409c-99ac-520cd134eeac"
+    ]
   }
 ]
