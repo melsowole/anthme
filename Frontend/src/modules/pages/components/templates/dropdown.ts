@@ -8,7 +8,6 @@ const nav = `
     </label>
     <div class="list-wrapper">
         <ul id="__id__">
-        <ul id="__heading__">
         
         </ul>
     </div>
