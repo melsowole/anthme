@@ -6,6 +6,7 @@ import { Router } from "express";
 import * as users from "./requestHandlers/usersReqHandlers.js";
 import * as posts from "./requestHandlers/postsReqHandlers.js";
 import * as comments from "./requestHandlers/commentsReqHandlers.js";
+import * as categories from "./requestHandlers/categoriesReqHandlers.js";
 import {
   validate,
   userValidations,
@@ -54,8 +55,12 @@ apiRouter
   .route("/posts/:postId/users/:userId/comments/:commentId")
   .delete(comments.deleteComment);
 
+// Categories
+
+apiRouter.route("/categories").get(categories.getAll);
+
 // Cookie and login routes
-apiRouter.route("/read-cookie").get(readCookie)
-apiRouter.route("/user/login").post(setCookie)
+apiRouter.route("/read-cookie").get(readCookie);
+apiRouter.route("/user/login").post(setCookie);
 
 export { apiRouter };
