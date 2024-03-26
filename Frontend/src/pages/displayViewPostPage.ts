@@ -34,14 +34,7 @@ function displayViewPostPage():void{
 
         titleDiv.append(titleEl)
         userInfoItem.append(categoryEl)
-        /* if(post.user.userImage === 'pizza'){
-            displayUserImage(commentDiv, pizzaUrlObj.href)
-        }
-        else if(post.user.userImage === 'dounat'){
-            displayUserImage(commentDiv, dounatUrlObj.href)
-        }
-        else displayUserImage(commentDiv, bananaUrlObj.href)
-        commentDiv.append(h2El); */
+        
 
         // Hämta alla kommentarer
         getComments()
@@ -66,10 +59,7 @@ function displayViewPostPage():void{
                     usernameEl.innerText= comment.username;
                     const contentEl = document.createElement('p');
                     contentEl.innerText = comment.body;
-                    /* const timeStampEl = document.createElement('h2') as HTMLHeadingElement;
-                    const timestamp = comment.created;
-                    const date = new Date(timestamp);
-                    timeStampEl.innerText = date.toLocaleString(); */
+                    
                     
                     if(comment.userImage === 'pizza'){
                         displayUserImage(imgDiv, pizzaUrlObj.href)
@@ -94,37 +84,6 @@ function displayViewPostPage():void{
         console.error('Error fetching post:', error);
     });
 
-    /* getComments()
-    .then(comments=>{
-        console.log(comments)
-    })
-
-    getPost('274965e7-2da6-4747-a31a-176b2ff24fd3')
-    .then(post =>{
-        console.log(post.comments)
-        const titleDiv = document.querySelector('.titleDiv');
-        const userInfoItem = document.querySelector('.userInfoItem') as HTMLDivElement;
-        const commentDiv = document.querySelector('.commentInfo') as HTMLDivElement;
-        const categoryEl = document.createElement('p')
-        categoryEl.innerText = `u/${post.category}`;
-        const titleEl = document.createElement('h2');
-        titleEl.innerText = post.title;
-
-        const h2El = document.createElement('h2');
-        h2El.innerText = post.user.username;
-
-        titleDiv.append(titleEl)
-        userInfoItem.append(categoryEl)
-        if(post.user.userImage === 'pizza'){
-            displayUserImage(commentDiv, pizzaUrlObj.href)
-        }
-        else if(post.user.userImage === 'dounat'){
-            displayUserImage(commentDiv, dounatUrlObj.href)
-        }
-        else displayUserImage(commentDiv, bananaUrlObj.href)
-        commentDiv.append(h2El);
-        
-    }) */
     getAllUsers()
     .then(users => {
     const userInfoContainer = viewPostpage.querySelector('.userInfoItem') as HTMLDivElement;
@@ -140,9 +99,7 @@ function displayViewPostPage():void{
         const h2El = viewPostpage.querySelector('h2') as HTMLHeadingElement;
         imgEl.classList.add('userImg');
         h2El.id ='usernameTitle';
-        if(user.posts[0] === '359e031a-cc21-4721-88c4-1faeed4cd11c'){
-            console.log('hej')
-        }
+       
         
     } else {
         console.log(`Ingen användare hittades med ID: ${userId}`);
