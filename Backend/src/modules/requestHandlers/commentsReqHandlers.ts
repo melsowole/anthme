@@ -1,6 +1,6 @@
 // declares all request handlers to the /comments endpoint
 // next(CustomError) called in catch block to throw errors in afterware
-// exports {getAllComments, getOneComment, createPost, deletePost}
+// exports {getAllComments, getCommentById, createPost, deletePost}
 
 import CustomError from "../CustomError.js";
 import { DB, User, Post, Comment } from "../../db/DBTypes.js";
@@ -23,7 +23,7 @@ export async function getAllComments(
   res.json(comments);
 }
 
-export async function getOneComment(
+export async function getCommentById(
   req: Request,
   res: Response,
   next: NextFunction

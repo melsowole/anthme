@@ -1,5 +1,5 @@
-// routes all endpoints: /users, /posts, /comments
-// exports {usersRouter, postsRouter, usersRouter}
+// routes all endpoints
+// exports {apiRouter}
 
 import { Router } from "express";
 
@@ -25,8 +25,10 @@ apiRouter
 
 apiRouter
   .route("/users/:userId")
-  .get(users.getOneUser)
+  .get(users.getUserById)
   .delete(users.deleteUser);
+
+apiRouter.route("/users/username/:username").get(users.getUserByUsername);
 
 apiRouter
   .route("/users/:userId/posts")
@@ -40,11 +42,11 @@ apiRouter.route("/users/:userId/posts/:postId").delete(posts.deletePost);
 // Posts routes
 apiRouter.route("/posts").get(posts.getAllPosts);
 
-apiRouter.route("/posts/:postId").get(posts.getOnePost);
+apiRouter.route("/posts/:postId").get(posts.getPostById);
 
 // Comments routes
 apiRouter.route("/comments").get(comments.getAllComments);
-apiRouter.route("/comments/:commentId").get(comments.getOneComment);
+apiRouter.route("/comments/:commentId").get(comments.getCommentById);
 
 apiRouter
   .route("/posts/:postId/users/:userId/comments")
@@ -55,7 +57,7 @@ apiRouter
   .delete(comments.deleteComment);
 
 // Cookie and login routes
-apiRouter.route("/read-cookie").get(readCookie)
-apiRouter.route("/user/login").post(setCookie)
+apiRouter.route("/read-cookie").get(readCookie);
+apiRouter.route("/user/login").post(setCookie);
 
 export { apiRouter };

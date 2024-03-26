@@ -23,7 +23,7 @@ export async function getAllPosts(
   res.json(posts);
 }
 
-export async function getOnePost(
+export async function getPostById(
   req: Request,
   res: Response,
   next: NextFunction
@@ -34,7 +34,7 @@ export async function getOnePost(
     // getItemById throws error if Id not found
     const post = getItemById(posts, req.params.postId);
 
-     res.json(post);
+    res.json(post);
   } catch (err) {
     next(err);
     return;
