@@ -12,7 +12,7 @@
   text-decoration: none;
   background-color: var(--neutLight);
   padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+  border-radius: 5px;
 }
 
 .main-nav footer {
