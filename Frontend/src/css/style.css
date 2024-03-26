@@ -10,11 +10,5 @@
 @import "post-page.css";
 @import "landing-page.css";
 @import "profile-page.css";
+@import "user-list.css";
 @import "view-postpage.css";
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-/*     font-family: "DM Sans", sans-serif; */
-}
