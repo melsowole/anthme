@@ -6,9 +6,7 @@ import {getAllUsers} from "../api.js"
 import {displayUserProfile} from "./displayProfilePage.js"
 import {getPost} from "../api.js"
 import { getComments } from "../api.js";
-const bananaUrlObj = new URL("../img/userImgBanana.png", import.meta.url);
-const pizzaUrlObj = new URL("../img/userImgPizza.png", import.meta.url);
-const dounatUrlObj = new URL("../img/userImgDounat.png", import.meta.url);
+import * as userImg from "../utilities/userImgUtils.js"
 
 
 function displayViewPostPage():void{
@@ -21,7 +19,7 @@ function displayViewPostPage():void{
         header,
         mainNav
     )
-    getPost('274965e7-2da6-4747-a31a-176b2ff24fd3')
+    getPost('37887b4d-bc3b-43fe-83ca-aeceb63bee13')
     .then(post => {
         const postCommentsIds = post.comments;
         const titleDiv = document.querySelector('.titleDiv') as HTMLDivElement;
@@ -62,12 +60,12 @@ function displayViewPostPage():void{
                     
                     
                     if(comment.userImage === 'pizza'){
-                        displayUserImage(imgDiv, pizzaUrlObj.href)
+                        displayUserImage(imgDiv, userImg.pizza)
                     }
-                    else if(comment.userImage === 'dounat'){
-                        displayUserImage(imgDiv, dounatUrlObj.href)
+                    else if(comment.userImage === 'donut'){
+                        displayUserImage(imgDiv, userImg.donut)
                     }
-                    else displayUserImage(imgDiv, bananaUrlObj.href)
+                    else displayUserImage(imgDiv, userImg.banana)
                   
                     commentBody.append(usernameEl, contentEl)
                     imgDiv.append(timeStampEl, usernameEl)
@@ -88,7 +86,7 @@ function displayViewPostPage():void{
     .then(users => {
     const userInfoContainer = viewPostpage.querySelector('.userInfoItem') as HTMLDivElement;
     
-    const userId = "8d18b516-ac9b-4a33-bbba-e0cf843589df"; 
+    const userId = "ae98fe9d-fdfa-4755-9f03-30e1a8e49eef"; 
 
     const user = users.find(user => user.id === userId);
     if (user) {

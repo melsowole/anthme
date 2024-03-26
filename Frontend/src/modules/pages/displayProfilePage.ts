@@ -3,10 +3,7 @@ import { stringToDOM } from "../utilities/templateUtils.js";
 import { User, getAllUsers } from '../fetchUsers.js';
 import Header from "./components/Header.js"
 import MainNav from "./components/MainNav.js";
-
-const bananaUrlObj = new URL("../img/userImgBanana.png", import.meta.url);
-const pizzaUrlObj = new URL("../img/userImgPizza.png", import.meta.url);
-const dounatUrlObj = new URL("../img/userImgDounat.png", import.meta.url);
+import * as userImg from "../utilities/userImgUtils.js"
 
 function displayProfile() {
     const profilepage: HTMLElement = stringToDOM(main);
@@ -24,7 +21,7 @@ function displayProfile() {
 
     getAllUsers()
     .then(users => {
-        const userId = "7fdd2943-3fd9-44c8-aa3d-618f117ed6dd"; 
+        const userId = "ae98fe9d-fdfa-4755-9f03-30e1a8e49eef"; 
 
         const user = users.find(user => user.id === userId);
         if (user) {
@@ -47,22 +44,14 @@ function displayProfile() {
             userPageLink.classList.add('addGreyBGColor');
         });
     });
-    
 }
-
 
 function displayUserProfile(user: User, container: HTMLDivElement): void {
     const userNameEl = document.createElement('h2');
     userNameEl.innerText = user.username;
     container.append(userNameEl);
 
-    const userImageConfig = {
-        pizza: pizzaUrlObj.href,
-        banana: bananaUrlObj.href,
-        dounat: dounatUrlObj.href
-    };
-
-    const userImageUrl = userImageConfig[user.userImage] || dounatUrlObj.href;
+    const userImageUrl = userImg[user.userImage] || userImg.donut;
     console.log(userImageUrl)
     const userImage = new Image();
     userImage.src = userImageUrl;

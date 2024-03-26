@@ -1,13 +1,11 @@
 [
   {
-    "id": "9d6ececb-6f24-4fbc-8de9-1fffd239ce9e",
+    "id": "ae98fe9d-fdfa-4755-9f03-30e1a8e49eef",
     "username": "chicken",
     "password": "egg",
-    "userImage": "pizza",
-    "created": "2024-03-26T09:13:15.507Z",
-    "posts": [
-      "37887b4d-bc3b-43fe-83ca-aeceb63bee13"
-    ],
+    "userImage": "donut",
+    "created": "2024-03-26T10:32:49.482Z",
+    "posts": [],
     "comments": []
   }
 ]

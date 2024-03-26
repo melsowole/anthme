@@ -27,7 +27,7 @@ const landingPageString = `
                 <select name="userImage" id="userImage">
                     <option disabled selected>Choose user image:</option>
                     <option value="banana">Banana</option>
-                    <option value="dounat">Donut</option>
+                    <option value="donut">Donut</option>
                     <option value="pizza">Pizza</option>
                 </select>
             </div>
