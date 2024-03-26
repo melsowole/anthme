@@ -7,5 +7,32 @@
     "created": "2024-03-26T10:32:49.482Z",
     "posts": [],
     "comments": []
+  },
+  {
+    "id": "3ccb5681-aa08-4bb9-a0c6-0209439f429f",
+    "username": "melchan",
+    "password": "pass",
+    "userImage": "banana",
+    "created": "2024-03-26T13:25:22.614Z",
+    "posts": [],
+    "comments": []
+  },
+  {
+    "id": "48b98377-3727-4fb6-aef8-4dd892cbd78d",
+    "username": "spaceman",
+    "password": "pass",
+    "userImage": "Choose user image:",
+    "created": "2024-03-26T13:25:35.084Z",
+    "posts": [],
+    "comments": []
+  },
+  {
+    "id": "e4e9d504-748e-4407-ba6a-04ed93d5caba",
+    "username": "gottegris",
+    "password": "pass",
+    "userImage": "Choose user image:",
+    "created": "2024-03-26T13:25:54.716Z",
+    "posts": [],
+    "comments": []
   }
 ]
