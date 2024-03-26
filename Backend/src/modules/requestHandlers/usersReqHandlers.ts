@@ -18,7 +18,7 @@ export async function getAllUsers(
   res.json(users);
 }
 
-export async function getOneUser(
+export async function getUserById(
   req: Request,
   res: Response,
   next: NextFunction
@@ -28,6 +28,26 @@ export async function getOneUser(
 
     // getItemById throws error if Id not found
     const user = getItemById(users, req.params.userId);
+
+    res.json(user);
+  } catch (err) {
+    next(err);
+    return;
+  }
+}
+
+export async function getUserByUsername(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const users: DB<User> = await read.users();
+
+    // getItemById throws error if Id not found
+    const user = users.find((u) => (u.username = req.params.username));
+
+    if (!user) throw new CustomError(404, "User not found");
 
     res.json(user);
   } catch (err) {
