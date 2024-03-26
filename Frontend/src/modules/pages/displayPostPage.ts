@@ -22,6 +22,8 @@ function displayViewPostPage():void{
     // Get URL:s post id
     const urlParts:string[] = window.location.pathname.split('/');
     const urlPathEndpoint:string = urlParts[urlParts.length - 1];
+    console.log(urlParts)
+    console.log(urlPathEndpoint)
 
     getPost(urlPathEndpoint)
     .then(post => {  
@@ -152,4 +154,4 @@ function displayUserImage(container: HTMLDivElement, imgPath:string): void {
    container.appendChild(imgEl);
 }
 
-export {displayViewPostPage}
+export {displayViewPostPage, displayUserImage}

@@ -3,17 +3,16 @@ const main = `
     <div class="userInfoItem"></div>    
 
     <div class="userInteractionsOverview">
-        <a class=" link userPageLink" href="#">
-            <span> Overview </span>
-        </a>
-
-        <a class="link userPageLink" href="#">
+        <a class="postLink userPageLink" href="#">
             <span> Posts </span>
         </a>
 
-        <a class="link userPageLink" href="#">
+        <a class="commentsLink userPageLink" href="#">
             <span> Comments </span>
         </a>
+    </div>
+
+    <div id= "comments" class="commentContainer">
     </div>
 
 </main>
