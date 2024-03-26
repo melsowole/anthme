@@ -1,14 +1,8 @@
-import { addUser, User, getAllUsers} from '../modules/fetchUsers.js';
-import {displayProfile} from "./displayProfile.js";
-import {landingPageString} from "../templates/landingpage.js"
-// import{main} from "../templates/profilepage.js"
-import { stringToDOM } from "../modules/template-utils.js";
-import { sendLogInRequest } from '../modules/api.js';
-
-const bananaUrlObj = new URL("../img/userImgBanana.png", import.meta.url);
-const pizzaUrlObj = new URL("../img/userImgPizza.png", import.meta.url);
-const dounatUrlObj = new URL("../img/userImgDounat.png", import.meta.url);
-
+import { addUser, User, getAllUsers} from '../fetchUsers.js';
+import {landingPageString} from "./components/templates/landing-page.js"
+import { stringToDOM } from "../utilities/templateUtils.js";
+import { sendLogInRequest } from '../api.js';
+import * as userImg from "../utilities/userImgUtils.js"
 
 // Variabler för formulär och andra element
 let createAccountForm: HTMLFormElement;
@@ -64,11 +58,11 @@ function handleSelectImgElement(): void {
     const imageContainer = document.querySelector('.imgContainer') as HTMLDivElement;
     let selectedValue = selectElement.value;
     if (selectedValue === 'banana') {
-        displayUserImage(imageContainer, bananaUrlObj.href)
-    } else if (selectedValue === 'dounat') {
-        displayUserImage(imageContainer, dounatUrlObj.href)
+        displayUserImage(imageContainer, userImg.banana)
+    } else if (selectedValue === 'donut') {
+        displayUserImage(imageContainer, userImg.donut)
     } else {
-        displayUserImage(imageContainer, pizzaUrlObj.href)
+        displayUserImage(imageContainer, userImg.pizza)
     }
 }
 

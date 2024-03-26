@@ -25,7 +25,7 @@ async function setCookie(req: Request, res: Response, next: NextFunction): Promi
         const settings: CookieOptions = {
             path: '/',
             httpOnly: false,
-            maxAge: 1000*60*60,
+            maxAge: 1000*60*60*24*7,
             sameSite: 'none'
         };
 

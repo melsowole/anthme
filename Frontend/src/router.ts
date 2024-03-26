@@ -1,11 +1,11 @@
 import Navigo from "navigo";
-import displayPostPage from "../pages/displayPostPage.ts";
-import { displayLandingPage } from "../pages/displayLandingPage.ts";
-import { displayHomePage } from "../components/HomePage.ts";
-import { displayUsersPage } from "../components/UsersPage.ts";
-import { readCookie } from "./api.ts";
-import { displayProfile } from "../pages/displayProfile.js";
-import { displayViewPostPage } from "../pages/displayViewPostPage.js";
+import displayPostPage from "./modules/pages/displayCreatePostPage.ts";
+import { displayLandingPage } from "./modules/pages/displayLandingPage.ts";
+import { displayHomePage } from "./modules/pages/components/HomePage.ts";
+import { displayUsersPage } from "./modules/pages/components/UsersPage.ts";
+import { readCookie } from "./modules/api.ts";
+import { displayProfile } from "./modules/pages/displayProfilePage.ts";
+import { displayViewPostPage } from "./modules/pages/displayPostPage.ts";
 
 const router = new Navigo("/");
 
@@ -23,7 +23,7 @@ function setupRouter(): Promise<void> {
                     .then(res => res.json())
                     .then(displayHomePage)
                 })
-                router.on('/post', displayPostPage)
+                router.on('/create-post', displayPostPage)
                 router.on('/users', () => {
                     fetch('http://localhost:3000/users/')
                     .then(res => res.json())

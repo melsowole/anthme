@@ -1,6 +1,6 @@
-import * as template from "../templates/main-feed.js";
-import { userListContainer } from "../templates/user-list.ts";
-import { replace, stringToDOM } from "../modules/template-utils.js";
+import * as template from "./templates/main-feed.js";
+import { userListContainer } from "./templates/user-list.ts";
+import {replace, stringToDOM} from "../../utilities/templateUtils.ts";
 import UserList from "./UserList.ts";
 
 export default class MainFeedUsers {

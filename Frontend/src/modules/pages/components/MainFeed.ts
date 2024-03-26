@@ -1,5 +1,5 @@
-import * as template from "../templates/main-feed.js";
-import { replace, stringToDOM } from "../modules/template-utils.js";
+import * as template from "./templates/main-feed.js";
+import {replace, stringToDOM} from "../../utilities/templateUtils.ts";
 import PostPreview from "./PostPreview.js";
 
 export default class MainFeed {

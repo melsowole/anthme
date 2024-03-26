@@ -1,6 +1,6 @@
-import * as template from "../templates/main-header.js";
-import { replace, stringToDOM } from "../modules/template-utils.js";
-import { getCookie } from "../modules/cookieUtils.js";
+import * as template from "./templates/main-header.js";
+import {replace, stringToDOM} from "../../utilities/templateUtils.ts";
+import { getCookie } from "../../utilities/cookieUtils.ts";
 
 export default class Header {
   static create() {
