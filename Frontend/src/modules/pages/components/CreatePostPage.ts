@@ -1,6 +1,6 @@
 import Header from "./Header.ts";
 import PostForm from "./PostForm.ts";
-import PostNoticeboard from "./PostNoticeboard.ts";
+import PostNoticeboard from "./Noticeboard.ts";
 
 function renderCreatePostPage(
   noticeboardTitle: string,
@@ -13,8 +13,6 @@ function renderCreatePostPage(
   );
 
   document.body.append(Header.create(), postContainerEl, NoticeboardEl);
-
-  document.body.append();
 }
 
 export { renderCreatePostPage };
