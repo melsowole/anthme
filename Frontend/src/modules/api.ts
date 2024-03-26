@@ -1,46 +1,15 @@
-const baseUrl: string = "http://localhost:3000/";
-const header = { "Content-type": "application/json; charset=UTF-8" };
+import { User, Post, Comments } from "./utilities/pathTypes";
 
-type User = {
-  id?: string;
-  username: string;
-  password: string;
-  userImage: string;
-  posts?: string[];
-};
+const baseUrl: string = 'http://localhost:3000/';
+const header = {"Content-type": "application/json; charset=UTF-8"};
 
- type Post = {
-    id: string,
-    category: string,
-    title: string,
-    body: string,
-    comments: string[],
-    user:{
-        id: string,
-        username: string,
-        userImage: string
-    }
-} 
+async function getAllUsers():Promise<User[]>{
+    const url = baseUrl + 'users/';
 
-type Comments ={
-    id: string,
-    body: string,
-    created: string,
-    user:{
-        id?: string,
-        created?: string,
-        username: string,
-        userImage: string
-    }
-}
-
-async function getAllUsers(): Promise<User[]> {
-  const url = baseUrl + "users/";
-
-  const res = await fetch(url);
-  const users = await res.json();
-  console.log(users);
-  return users;
+    const res = await fetch(url);
+    const users = await res.json();
+    console.log(users);
+    return users;
 }
 
 async function getPost(id: string): Promise<Post> {

@@ -1,5 +1,5 @@
 const postPreview = `
-<article class="post preview boxed">
+<article id="__postId__" class="post preview boxed">
     <a class="unstyle" href="__link__">
         <header>
             <span class="img-icon">

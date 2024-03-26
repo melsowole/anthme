@@ -16,7 +16,7 @@ export default class UserList {
         let userList = template.userList;
         
         userList = replace(userList, [
-            // {pattern: 'userimage', replacement: user.userImage}, //vänta tills bilderna har fixat
+            {pattern: 'userimage', replacement: user.userImage}, //vänta tills bilderna har fixat
             {pattern: 'userId', replacement: user.id},
             {pattern: 'username', replacement: user.username},
             {pattern: 'href-username', replacement: user.username},
