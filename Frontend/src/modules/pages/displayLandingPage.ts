@@ -1,7 +1,7 @@
 import { addUser, User, getAllUsers} from '../fetchUsers.js';
 import {landingPageString} from "./components/templates/landing-page.js"
-import { stringToDOM } from "../utilities/templateUtils.js";
-import { sendLogInRequest } from '../api.js';
+import { replace, stringToDOM } from "../utilities/templateUtils.js";
+import * as api  from '../api.js';
 import * as userImg from "../utilities/userImgUtils.js"
 
 // Variabler för formulär och andra element
@@ -11,6 +11,12 @@ let selectElement: HTMLSelectElement;
 
 function displayLandingPage(): void {
     let landingpageTemplate = landingPageString;
+    landingpageTemplate = replace(landingpageTemplate, [
+        {pattern: 'banana', replacement: userImg.banana},
+        {pattern: 'donut', replacement: userImg.donut},
+        {pattern: 'pizza', replacement: userImg.pizza}
+    ])
+    
     const landingPage: HTMLElement = stringToDOM(landingpageTemplate);
     document.body.append(landingPage);
     
@@ -90,8 +96,13 @@ async function handleCreateAccount(event: Event): Promise<void> {
     };
 
     try {
-        const addedUser = await addUser(newUser);
-        console.log("User added successfully:", addedUser);
+        const addedUser = await api.submitPost(newUser, 'user')
+        
+        if(!('statusCode' in addedUser && addedUser.statusCode == 409)) {
+            await api.sendLogInRequest(username, password);
+            window.location.replace("/");
+        }
+        
     } catch (error) {
         console.error("Error adding user:", error);
     }
@@ -99,7 +110,7 @@ async function handleCreateAccount(event: Event): Promise<void> {
     createAccountForm.reset();
 }
 
-function handleLogInForm(event: Event): void {
+async function handleLogInForm(event: Event): Promise<void> {
     event.preventDefault();
     const logInUsername = document.querySelector('#logInUsername') as HTMLInputElement;
     const username = logInUsername.value
@@ -107,7 +118,13 @@ function handleLogInForm(event: Event): void {
     const logInPassword = document.querySelector('#logInPassword') as HTMLInputElement;
     const password = logInPassword.value;
 
-    sendLogInRequest(username, password)
+    try {
+        await api.sendLogInRequest(username, password);
+        window.location.replace("/");
+    }
+    catch(error) {
+        console.log('Error logging in:', error);
+    }
 
     logInForm.reset();
 }

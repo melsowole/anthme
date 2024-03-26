@@ -5,6 +5,7 @@ const userList =
 <li id="__userId__" class="user-list post preview boxed">
     <a class="unstyle" href="/profile/__href-username__">
         <header class="user-list-header">
+            <img src="__userimage__"/>
             <h2>__username__</h2>
             <span>came to earth</span>
             <span class="user-date-created">__userDateCreated__</span>
