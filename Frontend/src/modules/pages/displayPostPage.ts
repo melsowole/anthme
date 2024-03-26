@@ -4,8 +4,9 @@ import Header from "./components/Header.js"
 import MainNav from "./components/MainNav.js";
 import {getAllUsers} from "../api.js"
 import {displayUserProfile} from "./displayProfilePage.js"
-import {getPost} from "../api.js"
+import {getPost, submitPost} from "../api.js"
 import { getComments } from "../api.js";
+import dayjs from "dayjs";
 import * as userImg from "../utilities/userImgUtils.js"
 
 
@@ -18,9 +19,11 @@ function displayViewPostPage():void{
         viewPostpage,
         header,
         mainNav
-    )
+    );
+
     getPost('37887b4d-bc3b-43fe-83ca-aeceb63bee13')
     .then(post => {
+        console.log(post)
         const postCommentsIds = post.comments;
         const titleDiv = document.querySelector('.titleDiv') as HTMLDivElement;
         const userInfoItem = document.querySelector('.userInfoItem') as HTMLDivElement;
@@ -39,38 +42,43 @@ function displayViewPostPage():void{
             .then(comments => {
                 // Filtrera kommentarerna för att endast inkludera de som har ID:n som finns i inläggets kommentarslista
                 const specificComments = comments.filter(comment => postCommentsIds.includes(comment.id));
-
-                console.log(specificComments);
+                
+                console.log(specificComments.length);
                 for(const comment of specificComments){
+                    const ammountOfComments = document.querySelector('.amountOfComments') as HTMLSpanElement;
+                    ammountOfComments.innerText = specificComments.length.toString();
                     
                     console.log(comment);
                     const commentItem= document.createElement('div');
                     commentItem.classList.add('commentItem')
                     const timeStampEl = document.createElement('small');
                     timeStampEl.classList.add('timeStampEl')
-                    timeStampEl.innerText= "16h ago"
+                    timeStampEl.innerText = dayjs(comment.user.created).format('DD MMMM YYYY');
+
                     const imgDiv = document.createElement('div') as HTMLDivElement
                     imgDiv.classList.add('imgDiv');
                     const commentBody = document.createElement('div');
                     commentBody.classList.add('commentBody')
                     const usernameEl = document.createElement('h2') as HTMLHeadingElement;
-                    usernameEl.innerText= comment.username;
+                    usernameEl.innerText= comment.user.username;
                     const contentEl = document.createElement('p');
                     contentEl.innerText = comment.body;
-                    
-                    
-                    if(comment.userImage === 'pizza'){
-                        displayUserImage(imgDiv, userImg.pizza)
+
+                    if (comment.user.userImage === 'pizza') {
+                        displayUserImage(imgDiv, userImg.pizza);
+                    } else if (comment.user.userImage === 'donut') {
+                        displayUserImage(imgDiv, userImg.donut);
+                    } else {
+                        displayUserImage(imgDiv, userImg.banana);
                     }
-                    else if(comment.userImage === 'donut'){
-                        displayUserImage(imgDiv, userImg.donut)
-                    }
-                    else displayUserImage(imgDiv, userImg.banana)
-                  
-                    commentBody.append(usernameEl, contentEl)
-                    imgDiv.append(timeStampEl, usernameEl)
-                    commentItem.append(imgDiv, commentBody)
-                    commentDiv.append(commentItem)
+
+                    commentBody.append(usernameEl, contentEl);
+                    imgDiv.append(timeStampEl, usernameEl);
+
+                    
+                    commentItem.append(imgDiv, commentBody);
+                    commentDiv.append(commentItem);
+
 
                 }
             })
@@ -82,6 +90,36 @@ function displayViewPostPage():void{
         console.error('Error fetching post:', error);
     });
 
+    const addCommentBtn = document.querySelector('.addCommentBtn') as HTMLButtonElement;
+    const textareaContainer = document.querySelector('.textareaContainer') as HTMLTextAreaElement;
+    addCommentBtn.addEventListener('click', ()=>{
+        
+        textareaContainer.classList.remove('hide');
+    });
+
+    const commentForm = document.querySelector('.commentForm') as HTMLFormElement;
+    const cancelBtn = document.querySelector('.cancelButton') as HTMLButtonElement;
+    cancelBtn.addEventListener('click', (event)=>{
+        event.preventDefault(); 
+        textareaContainer.classList.add('hide');
+        commentForm.reset();
+      
+    });
+
+    commentForm.addEventListener('submit', (event)=>{
+        event.preventDefault()
+        const commentInput = document.querySelector('.commentInput') as HTMLTextAreaElement;
+        const commentValue = commentInput.value;
+        console.log(commentValue)
+        const newComment ={
+            body: commentValue
+        }
+        if (event.submitter && event.submitter.id === 'addCommentBtn') {
+            submitPost(newComment, 'comment', '38e33fa3-cdb8-495b-9e8f-cf28fc9d3201', '37887b4d-bc3b-43fe-83ca-aeceb63bee13');
+        }
+    
+        commentForm.reset();
+    });
     getAllUsers()
     .then(users => {
     const userInfoContainer = viewPostpage.querySelector('.userInfoItem') as HTMLDivElement;

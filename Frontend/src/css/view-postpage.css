@@ -93,6 +93,13 @@
     justify-content: center;
 }
 
+.commentSpan > a{
+    text-decoration: none;
+    color: black;
+    display: flex;
+    gap: 0.5rem;
+}
+
 .commentSpan > button{
     background-color: none;
     border:none;
@@ -107,7 +114,6 @@
 }
 
 .amountOfComments{
-    
     font-size: 0.75rem;
   
 }
@@ -149,6 +155,10 @@
 
 .commentItem{
     margin-bottom: 2rem;
+    border-bottom: 1px solid var(--neut);
+    width: 500px;
+    position: relative;
+   
 }
 .imgDiv{
     display: flex;
@@ -157,6 +167,7 @@
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 0.5rem;
+    position: relative;
 }
 
 .imgDiv > h2, .timeStampEl{
@@ -170,9 +181,73 @@
     margin-left: 0.5rem;
 }
 .commentBody{
+    position: relative;
     margin-left: 3rem;
 }
 .commentBody > p{
     font-size: .875rem;
     line-height: 1.25rem;
+    margin-bottom: 0.4rem;
 }
+
+.commentInput{
+    margin-top: 1rem;
+    border-radius: 20px;
+    resize: none;
+    border: 1px solid #576F76;
+    padding-left: 10px;
+    
+}
+
+.commentInput:focus {
+    border-color: black;
+    outline: none;
+}
+
+.textareaContainer {
+    position: relative;
+}
+
+.submitButton {
+    position: absolute;
+    top: 70px;
+    right:210px;
+    width: 74px; 
+    height: 32px;
+    border: none;
+    background-color: #014a84;
+    color: #fff;
+    font-weight: bolder;
+    font-size: .75rem;
+    border-radius: 20px; 
+    cursor: pointer;
+}
+.submitButton:hover{
+    background-color: #003763;
+}
+
+.buttonComments{
+    border: none;
+    cursor: pointer;
+}
+
+.buttonComments:hover{
+    background-color: transparent;
+}
+.cancelButton{
+    width: 60px; 
+    height: 32px;
+    position: absolute;
+    top: 70px;
+    right:292px;
+    border-radius: 20px; 
+    border: none;
+    background-color: #dde8fe;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.cancelButton:hover{
+    background-color: #bfd5fe;
+}
+

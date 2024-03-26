@@ -27,8 +27,12 @@ type Comments ={
     id: string,
     body: string,
     created: string,
-    username: string
-    userImage: string
+    user:{
+        id?: string,
+        created?: string,
+        username: string,
+        userImage: string
+    }
 }
 
 
