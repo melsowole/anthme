@@ -23,14 +23,19 @@ apiRouter
   .get(users.getAllUsers)
   .post(validate(userValidations), users.createUser);
 
-apiRouter.route("/user/:userId").get(users.getOneUser).delete(users.deleteUser);
+apiRouter
+  .route("/users/:userId")
+  .get(users.getOneUser)
+  .delete(users.deleteUser);
 
 apiRouter
-  .route("/user/:userId/posts")
+  .route("/users/:userId/posts")
   .get(posts.getAllPostsbyUser)
   .post(addUserInfo, validate(postValidations), posts.createPost);
 
-apiRouter.route("/user/:userId/posts/delete/:postId").delete(posts.deletePost);
+apiRouter.route("/users/:userId/comments").get(comments.getAllCommentsByUser);
+
+apiRouter.route("/users/:userId/posts/:postId").delete(posts.deletePost);
 
 // Posts routes
 apiRouter.route("/posts").get(posts.getAllPosts);
@@ -39,13 +44,14 @@ apiRouter.route("/posts/:postId").get(posts.getOnePost);
 
 // Comments routes
 apiRouter.route("/comments").get(comments.getAllComments);
+apiRouter.route("/comments/:commentId").get(comments.getOneComment);
 
 apiRouter
-  .route("/posts/:postId/user/:userId/comment")
-  .post(validate(commentValidations), comments.addComment);
+  .route("/posts/:postId/users/:userId/comments")
+  .post(addUserInfo, validate(commentValidations), comments.addComment);
 
 apiRouter
-  .route("/posts/:postId/user/:userId/comment/delete/:commentId")
+  .route("/posts/:postId/users/:userId/comments/:commentId")
   .delete(comments.deleteComment);
 
 // Cookie and login routes

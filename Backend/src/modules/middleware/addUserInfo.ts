@@ -9,16 +9,20 @@ async function addUserInfo(
   res: Response,
   next: NextFunction
 ): Promise<void> {
-  const users = await read.users();
+  try {
+    const users = await read.users();
 
-  const user = getItemById(users, req.params.userId);
+    const user = getItemById(users, req.params.userId);
 
-  req.body.user = {
-    id: user.id,
-    username: user.username,
-    userImage: user.userImage,
-  };
-
+    req.body.user = {
+      id: user.id,
+      username: user.username,
+      userImage: user.userImage,
+    };
+  } catch (err) {
+    //skip straight to afterware
+    return next(err);
+  }
   next();
 }
 

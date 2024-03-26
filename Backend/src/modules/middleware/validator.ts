@@ -2,6 +2,7 @@
 
 import { body, validationResult, ValidationChain } from "express-validator";
 import { Request, Response, NextFunction } from "express";
+import CustomError from "../CustomError.js";
 
 const userValidations = [
   body("username")
@@ -53,18 +54,8 @@ const commentValidations = [
     .isString()
     .notEmpty()
     .custom((value) => value.trim() !== ""),
-  body("username")
-    .exists()
-    .isString()
-    .notEmpty()
-    .custom((value) => value.trim() !== ""),
-  body("userImage")
-    .exists()
-    .isString()
-    .notEmpty()
-    .custom((value) => value.trim() !== ""),
   body().custom((body) => {
-    const keys = ["body", "username", "userImage", "timestamp"];
+    const keys = ["body", "user", "timestamp"];
     return Object.keys(body).every((key) => keys.includes(key));
   }),
 ];
@@ -74,8 +65,16 @@ const validate = (validations: ValidationChain[]) => {
     await Promise.all(validations.map((validation) => validation.run(req)));
     const errors = validationResult(req);
 
+    console.log(req.body);
+
     if (!errors.isEmpty())
-      return res.status(400).json({ message: "Validation failed" });
+      // go straight to afterware
+      return next(
+        new CustomError(
+          400,
+          "Validation failed. Request contains additional fields, or is missing required fields."
+        )
+      );
     next();
   };
 };

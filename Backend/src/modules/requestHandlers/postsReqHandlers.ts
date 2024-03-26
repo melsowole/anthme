@@ -29,12 +29,10 @@ export async function getOnePost(
   next: NextFunction
 ): Promise<void> {
   try {
-    const posts: DB<Post> = await read.posts();
+    const posts = await read.posts();
 
-    const post = posts.find((p) => p.id === req.params.postId);
-
-    //validation
-    if (!post) throw new CustomError(404, "Post not found");
+    // getItemById throws error if Id not found
+    const post = getItemById(posts, req.params.postId);
 
      res.json(post);
   } catch (err) {
@@ -76,8 +74,6 @@ export async function createPost(
 
     const user = getItemById(users, req.params.userId);
 
-    if (!user) throw new CustomError(404, "User not found");
-
     // create new post
     const newPost: Post = {
       id: crypto.randomUUID(),
@@ -95,7 +91,7 @@ export async function createPost(
     addItemToArray(user.posts, newPost.id);
     await write.users(users);
 
-    res.json({ message: "Added new post" });
+    res.json(newPost);
   } catch (err) {
     next(err);
     return;

@@ -19,6 +19,25 @@
     "userImage": "randomimg.jpg"
   },
   {
+    "id": "540e6ba8-ab72-47d4-aaa1-1fb6971a5052",
+    "body": "Have you?",
+    "created": 1711123351295,
+    "user": {
+      "id": "164d4791-151d-41f5-9dfa-a209b5f70ca0",
+      "username": "Stone",
+      "userImage": "pizza"
+    }
+  },
+  {
+    "id": "a29e6a79-57de-4775-91ec-d2a39f609431",
+    "body": "Have you?",
+    "created": 1711361630609,
+    "user": {
+      "id": "8faa1e54-bd3a-4a05-a6e1-79cbbc80917d",
+      "username": "Fado",
+      "userImage": "pizza"
+    }
+  },
     "id": "56e230e6-5229-46b5-ae43-a64f93a6b8c6",
     "body": "Testelitest",
     "created": 1711395970640,
