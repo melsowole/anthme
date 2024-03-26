@@ -52,6 +52,7 @@ export default class MainNav {
 
     this.dropdowns.forEach((dropdown) => {
       dropdownContainer.append(
+        document.createElement("hr"),
         Dropdown.create(dropdown.label, dropdown.id, dropdown.items)
       );
     });

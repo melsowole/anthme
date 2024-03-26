@@ -1,12 +1,13 @@
 import Navigo from "navigo";
-import displayPostPage from "../pages/displayPostPage.js";
-import { displayLandingPage } from "../pages/displayLandingPage.js";
-import { displayHomePage } from "../components/HomePage.js";
-import { displayUsersPage } from "../components/UsersPage.js";
-import { readCookie} from "./api.js";
+import displayPostPage from "../pages/displayPostPage.ts";
+import { displayLandingPage } from "../pages/displayLandingPage.ts";
+import { displayHomePage } from "../components/HomePage.ts";
+import { displayUsersPage } from "../components/UsersPage.ts";
+import { readCookie } from "./api.ts";
 import { displayProfile } from "../pages/displayProfile.js";
 import { displayViewPostPage } from "../pages/displayViewPostPage.js";
-const router = new Navigo('/');
+
+const router = new Navigo("/");
 
 // Funktionen returnerar ett promise för att vänta tills readCookie() är klar
 // innan router.resolve() körs
@@ -36,7 +37,7 @@ function setupRouter(): Promise<void> {
     })
 }
 
-export {router, setupRouter}
+export { router, setupRouter };
 
 // const router = new Navigo('/');
 
@@ -55,8 +56,5 @@ export {router, setupRouter}
 //     }
 //     router.resolve()
 // })
-
-
-
 
 // export {router}

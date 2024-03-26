@@ -1,33 +1,7 @@
 [
   {
-    "id": "4f23e1b0-9964-47e2-87fa-a752b813ae98",
-    "category": "Web development",
-    "title": "Can I nest an <a> within and <a>?",
-    "body": "Can i nest link within a link? I am getting a bug when I so this",
-    "comments": []
-  },
-  {
-    "id": "359e031a-cc21-4721-88c4-1faeed4cd11c",
-    "category": "Food",
-    "title": "Where do I buy the best doughnuts?",
-    "body": "At Leve in Malmö",
-    "comments": []
-  },
-  {
-    "id": "ea39c9fd-37e1-4560-88d7-36ab30148308",
-    "category": "Food",
-    "title": "Allergi mat på 50 årsfest",
-    "body": "Både jag och mina barn har besvärliga allergier. När jag har fest så tänker jag baka saker som alla kan äta inklusive mig och barnen. Jag pratade med en vän och han föreslog att jag skulle baka något liter till mig och barnen och en stor kak buffé till gästerna som inte är allergi vänlig. Jag tycker att det låter märkligt att den som fyller år inte ska kunna äta av allt som finns på hans fest. Dessutom blir det klurigt mes logistiken. Vi är så pass allergiska att det inte går att göra 'undantag' för en dag.Jag är grymt bra på att baka glutenfritt Dessutom.",
-    "comments": []
-  },
-  {
-    "id": "9a08c6b1-4933-4243-926d-c2bfabd1648b",
-    "category": "Overwatch",
-    "title": "Who is your main and why?",
-    "comments": []
-  },
-  {
     "id": "0f5af467-4f40-4057-8186-f47b292f4193",
+    "created": "2024-03-25T09:20:06.424Z",
     "category": "Guitar",
     "title": "How do people make the low end in metal music so clear?",
     "body": "A few years ago i bought a 7 string guitar specifically just to have a downtuned guitar so i could play along with some of my favorite korn and slipknot songs. But more recently ive started trying to write my own stuff with it. The problem im running into is that when i record anything with it using heavier distortion and such, it sounds muddy on the recording, like you can hardly tell each note apart from each other. Ive been messing with settings and different presets on my amplifier and my pedals, and no matter what i do it doesnt seem to come out clearly. How do modern metal bands make their downtuned guitars sound so clear? I had the thought that maybe its because its not a super expensive guitar, maybe it just doesnt have the best pickups or something like that? But i cant really afford to drop a ton of money on another guitar, or a whole new set of pickups for this one. My guitar is a Douglas SR-370 and my amplifier is a fender mustang GT200. Not sure if that helps but i figured id include that. Thanks! :)",
@@ -39,29 +13,19 @@
     ]
   },
   {
-    "id": "cab9afea-f6da-4a3c-8615-75c0f94ab017",
-    "category": "Backend",
-    "title": "Backend delen är snart klar",
-    "body": "lets gooooooo",
-    "user": "66f2236a-0b65-45bc-8be7-86009cf8188a",
-    "username": "användare",
-    "userImage": "randomimg.jpg",
-    "comments": []
-  },
-  {
     "id": "da91aa41-d23c-4d4c-a46d-e809f713fda5",
+    "created": "2024-03-25T09:20:06.424Z",
     "category": "Backend",
     "title": "En till post om backend",
     "body": "bodybodybodybodybody",
     "user": "66f2236a-0b65-45bc-8be7-86009cf8188a",
     "username": "användare",
     "userImage": "randomimg.jpg",
-    "comments": [
-      "1f296309-0cfb-4ba0-91cd-d903bc08c017"
-    ]
+    "comments": ["1f296309-0cfb-4ba0-91cd-d903bc08c017"]
   },
   {
     "id": "7132ce61-4fe2-4442-b3db-634195f12397",
+    "created": "2024-03-25T09:20:06.424Z",
     "category": "Posting a post",
     "title": "First post",
     "body": "First post from Frontend!",
@@ -72,6 +36,7 @@
   },
   {
     "id": "bb68f55e-c2d7-4d21-a80d-5ab21a7316bb",
+    "created": "2024-03-25T09:20:06.424Z",
     "category": "Gruppmöte",
     "title": "Andra mötet",
     "body": "Träffas kl 9 på morgonen",
@@ -81,28 +46,41 @@
     "comments": []
   },
   {
-    "id": "6f8ea946-3e68-4576-8376-675c6318c4e3",
-    "created": 1711144567351,
-    "category": "Login",
-    "title": "Första post från inloggad användare",
-    "body": "First first first first",
+    "id": "07128436-c366-4f46-9f5b-e476c10082d1",
+    "created": "2024-03-25T09:20:06.424Z",
+    "category": "Overwatch",
+    "title": "I cant wait for this collab to be over",
+    "body": "I'm so tired of that music playing every time I open the menu, I don't know why it has to restart when you go. Can't go to the battle pass or hero gallery without inevitably having to go back to the menu and hear it again",
     "comments": [],
     "user": {
-      "id": "66f2236a-0b65-45bc-8be7-86009cf8188a",
-      "username": "Fantomen",
-      "userImage": "fantomenImg"
+      "id": "8faa1e54-bd3a-4a05-a6e1-79cbbc80917d",
+      "username": "Fado",
+      "userImage": "pizza"
     }
   },
   {
-    "id": "f3d2b0bd-e308-4332-ad0b-a93f96245e95",
-    "created": 1711144626703,
-    "category": "Login",
-    "title": "Andra post från inloggad användare",
-    "body": "andra dnarnadnarnafdnsa\n",
+    "id": "9b350956-c574-4cbe-a72d-ad7a43920773",
+    "created": "2024-03-25T09:20:06.424Z",
+    "category": "Overwatch",
+    "title": "I cant wait for this collab to be over",
+    "body": "I'm so tired of that music playing every time I open the menu, I don't know why it has to restart when you go. Can't go to the battle pass or hero gallery without inevitably having to go back to the menu and hear it again",
     "comments": [],
     "user": {
-      "id": "7fdd2943-3fd9-44c8-aa3d-618f117ed6dd",
-      "username": "Lynx",
+      "id": "8faa1e54-bd3a-4a05-a6e1-79cbbc80917d",
+      "username": "Fado",
+      "userImage": "pizza"
+    }
+  },
+  {
+    "id": "63d197bb-23d1-458c-a45e-43b7548086ad",
+    "created": "2024-03-25T09:20:06.424Z",
+    "category": "Overwatch",
+    "title": "I cant wait for this collab to be over",
+    "body": "I'm so tired of that music playing every time I open the menu, I don't know why it has to restart when you go. Can't go to the battle pass or hero gallery without inevitably having to go back to the menu and hear it again",
+    "comments": [],
+    "user": {
+      "id": "8faa1e54-bd3a-4a05-a6e1-79cbbc80917d",
+      "username": "Fado",
       "userImage": "pizza"
     }
   },
