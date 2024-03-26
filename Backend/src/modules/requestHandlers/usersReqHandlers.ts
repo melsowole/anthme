@@ -1,6 +1,6 @@
 // declares all request handlers to the /users endpoint
 // next(CustomError) called in catch block to throw errors in afterware
-// exports {getAllUsers, getOneUser, createUser, deleteUser}
+// exports {getAllUsers, getUserById, getUserByUsername, createUser, deleteUser}
 
 import CustomError from "../CustomError.js";
 import { DB, User, Post, Comment } from "../../db/DBTypes.js";
@@ -15,7 +15,7 @@ export async function getAllUsers(
 ): Promise<void> {
   const users: DB<User> = await read.users();
 
-  res.json(users);
+  res.json(sanitizeResponse(users));
 }
 
 export async function getUserById(
@@ -29,7 +29,7 @@ export async function getUserById(
     // getItemById throws error if Id not found
     const user = getItemById(users, req.params.userId);
 
-    res.json(user);
+    res.json(sanitizeResponse(user));
   } catch (err) {
     next(err);
     return;
@@ -49,7 +49,7 @@ export async function getUserByUsername(
 
     if (!user) throw new CustomError(404, "User not found");
 
-    res.json(user);
+    res.json(sanitizeResponse(user));
   } catch (err) {
     next(err);
     return;
@@ -80,7 +80,7 @@ export async function createUser(
 
     users.push(newUser);
     await write.users(users);
-    res.json(newUser);
+    res.json(sanitizeResponse(newUser));
   } catch (error) {
     next(error);
     return;
@@ -112,4 +112,20 @@ export async function deleteUser(
     next(err);
     return;
   }
+}
+
+function sanitizeResponse(item: User | User[]): User | User[] {
+  if (Array.isArray(item)) {
+    item.forEach((i) => removePasswordProperty(i));
+  } else {
+    item = removePasswordProperty(item);
+  }
+
+  return item;
+}
+
+function removePasswordProperty(item: User): User {
+  delete item.password;
+
+  return item;
 }
