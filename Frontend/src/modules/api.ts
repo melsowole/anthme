@@ -27,6 +27,14 @@ async function getPost(id: string): Promise<Post> {
   return post;
 }
 
+async function getPostByUser(userId:string): Promise<Post>{
+  const url = `${baseUrl}users/${userId}/posts`
+
+  const res = await fetch(url);
+  const post = await res.json();
+  return post;
+}
+
 async function getComments(): Promise<Comments[]> {
   const url = baseUrl + "comments";
   const res = await fetch(url);
@@ -34,11 +42,21 @@ async function getComments(): Promise<Comments[]> {
   return comments;
 }
 
+async function getCommentsByUser(userId:string): Promise<Comments[]>{
+  const url = `${baseUrl}users/${userId}/comments`
+
+  const res = await fetch(url);
+  const comment = await res.json();
+
+  return comment;
+}
+
 async function submitPost<T extends User | Post | Comments>(
   createdObject: Object,
   typeOfPost: string,
   userId?: string,
-  postId?: string
+  postId?: string,
+ 
 ): Promise<T> {
   let url: string = baseUrl;
   if (typeOfPost === "user") url += `users`;
@@ -113,5 +131,7 @@ export {
   getPost,
   getComments,
   deleteAccount,
-  getUserByUsername
+  getUserByUsername,
+  getPostByUser,
+  getCommentsByUser
 };

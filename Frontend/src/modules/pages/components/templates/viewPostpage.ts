@@ -32,7 +32,7 @@ const main = `
 
     <form class="commentForm">
         <div class="textareaContainer hide">
-            <textarea name="body" class="commentInput" cols="50" rows="4"></textarea>
+            <textarea name="body" class="commentInput" cols="50" rows="4" required></textarea>
             <button class="cancelButton">Cancel</button>
             <button id="addCommentBtn" class="submitButton">Comment</button>
         </div>
