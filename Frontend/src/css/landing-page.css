@@ -1,8 +1,8 @@
 /* Styling for landing page goes here */
 .landingPageContainer{
-    display: flex;
-    padding: 6rem;
-    margin-left: 3rem;
+    width: 300px;
+    margin:auto;
+   padding: 2rem;
 }
 
 .landingPageTitle{
@@ -10,17 +10,15 @@
     align-items: flex-start;
     flex-direction: column;
     justify-content: center;
-    height: 400px;
-    width: 600px;
 }
 
 .landingPageTitle > h1{
-    font-size: 52px;
+    font-size: 32px;
     margin-bottom: 2rem;
 }
 
-.landingPageContainer > h2{
-    font-size: 32px;
+.landingPageContent > h2, h3{
+    font-size: 18px;
 }
 
 .landingPageContent > * {
@@ -33,7 +31,7 @@
     cursor: pointer;
     border-radius: 30px;
     color: white;
-    width: 300px;
+    width: 250px;
     padding: 0.8rem;
     font-size: 1rem;
     font-weight: bolder;
@@ -44,7 +42,7 @@
     cursor: pointer;
     border-radius: 30px;
     color: #D93A00;
-    width: 300px;
+    width: 250px;
     padding: 0.8rem;
     font-weight: bolder;
     font-size: 1rem;
@@ -52,17 +50,17 @@
 }
 .formContainer {
     position: absolute;
-    top: 40%; 
+    top: 28%; 
     left: 50%; 
     transform: translate(-50%, -50%); 
-    z-index: 1000;
+   
     
 }
 
 .xmarkClose{
     color:black;
     position:relative;
-    right: 201px;
+    right: 150px;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -72,7 +70,7 @@
 .xmarkCloseLogin{
     color:black;
     position:relative;
-    right: 201px;
+    right: 150px;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -87,7 +85,7 @@
     justify-content: center;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 20px;
-    width: 450px;
+    width: 350px;
     height: 400px;
     background-color: white;
 }
@@ -141,4 +139,61 @@ img{
     justify-content: space-evenly;
     width: 300px;
     min-height: 75px; 
+}
+
+@media screen and (min-width: 640px){
+
+    .formContainer {
+        top: 37%; 
+     
+    }
+
+}
+
+@media screen and (min-width: 960px) {
+    .landingPageContainer{
+        padding: 6rem;
+        margin-left: 3rem;
+        width: 5px;
+        height: 5px;
+    }
+
+    .landingPageTitle{
+        width: 600px;
+        height: 400px;
+        
+    }
+
+    .landingPageTitle > h1{
+        font-size: 52px;
+        margin-bottom: 2rem;
+    }
+
+    .landingPageContent > h2, h3{
+        font-size: 32px;
+    }
+
+    #signInBtn, #createAccountBtn{
+        width: 300px;
+        
+    }
+
+    .createAccountform, .logInForm{
+        width: 450px;
+        height: 400px;
+       
+    }
+
+    .formContainer {
+        top: 40%; 
+        left: 50%; 
+     
+    }
+
+    .xmarkClose, .xmarkCloseLogin{
+        right: 201px;
+    }
+
+    
+   
 }

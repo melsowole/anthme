@@ -1,0 +1,178 @@
+
+
+.userImg{
+    width: 40px;
+}
+
+#usernameTitle{
+    font-size: .75rem; 
+    margin-left: 0.5rem;
+    color: #576F76;
+    font-weight: 400;
+    
+}
+
+#usernameTitle::after {
+    content: "•";
+    margin-left: 0.5rem;
+}
+
+.userInfoItem{
+    padding-top: 2rem;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    margin-bottom: 0.5rem;
+   
+}
+
+.userInfoItem > p {
+    font-size: .75rem; 
+    margin-left: 0.5rem;
+    color:#2A3C42;
+    font-weight: 600;
+}
+
+.userImg {
+    order: 1; 
+}
+.interactionContainer{
+    display:flex;
+    margin-top: 1rem;
+    gap: 0.8rem;
+}
+.outerSpan{
+    background-color: #eaedef;
+    border-radius: 30px;
+    width: 70px;
+    height: 32px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.outerSpan > button{
+    background-color: none;
+    border:none;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.fi-ts-up, .fi-ts-down{
+    font-size: 1rem;
+    font-weight: 800;
+    color: black;
+   
+}
+
+.fi-ts-up:hover{
+    color:#D93A00;
+}
+
+.fi-ts-down:hover{
+    color: #6A5CFF;
+}
+
+.amountOfLikes{
+    font-size: 0.75rem;
+    
+}
+
+.fa-message{
+    color: #434f53;
+}
+
+.commentSpan{
+    background-color: #eaedef;
+    border-radius: 30px;
+    width: 65px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.commentSpan > button{
+    background-color: none;
+    border:none;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.commentSpan > button:hover{
+    background-color:transparent;
+}
+
+.amountOfComments{
+    
+    font-size: 0.75rem;
+  
+}
+
+.addCommentBtn{
+    width: 155px;
+    height: 40px;
+    border-radius: 30px;
+    border: 1px solid #576F76;
+    background-color: transparent;
+    font-size: 0.9rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 0.4rem;
+   cursor: pointer;
+
+}
+
+.addCommentBtn:hover{
+    border: 1px solid black;
+}
+
+.fi-rr-plus{
+    font-size: 1.2rem;
+    
+}
+.fa-regular.fa-message {
+    font-weight: 300; /* Justera fontvikten för ikonen */
+}
+
+.commentBtn{
+    margin-top: 3rem;
+}
+
+.commentContainer{
+    margin-top: 2rem;
+}
+
+.commentItem{
+    margin-bottom: 2rem;
+}
+.imgDiv{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.imgDiv > h2, .timeStampEl{
+    color: #2a3c42;
+    font-size: .75rem;
+    font-weight: 600;
+}
+
+.imgDiv > h2::after {
+    content: "•";
+    margin-left: 0.5rem;
+}
+.commentBody{
+    margin-left: 3rem;
+}
+.commentBody > p{
+    font-size: .875rem;
+    line-height: 1.25rem;
+}

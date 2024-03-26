@@ -2,19 +2,62 @@ const baseUrl: string = 'http://localhost:3000/';
 const header = {"Content-type": "application/json; charset=UTF-8"};
 
 type User = {
+    id?: string,
     username: string,
     password: string,
-    userImage: string
+    userImage: string,
+    posts?: string[]
 };
 
+ type Post = {
+    id: string,
+    category: string,
+    title: string,
+    body: string,
+    comments: string[],
+    user:{
+        id: string,
+        username: string,
+        userImage: string
+    }
+
+} 
+
+type Comments ={
+    id: string,
+    body: string,
+    created: string,
+    username: string
+    userImage: string
+}
+
+
+
 async function getAllUsers():Promise<User[]>{
-    const url = baseUrl;
+    const url = baseUrl + 'users/';
 
     const res = await fetch(url);
     const users = await res.json();
     console.log(users);
     return users;
 
+}
+
+ async function getPost(id: string):Promise<Post>{
+
+    const url = baseUrl + `posts/${id}`;
+    console.log(url)
+
+    const res = await fetch(url);
+    const post = await res.json();
+    return post;
+} 
+
+async function getComments(): Promise<Comments[]> {
+    const url = baseUrl + 'comments';
+    const res = await fetch(url);
+    const comments = await res.json();
+    return comments;
 }
 
 async function submitPost(createdObject:Object, typeOfPost:string, userId?:string, postId?:string): Promise<void> {
@@ -67,4 +110,4 @@ async function readCookie(): Promise<boolean> {
     const cookieInfo = await res.json();
     return cookieInfo.ok;
 }
-export {submitPost, getAllUsers, readCookie, sendLogInRequest}
+export {submitPost, getAllUsers, readCookie, sendLogInRequest, getPost, getComments}

@@ -1,4 +1,4 @@
-import {router, setupRouter} from "./modules/router.ts"
+import {router, setupRouter} from "./modules/router.js"
 
 setupRouter()
 .then(() => {
