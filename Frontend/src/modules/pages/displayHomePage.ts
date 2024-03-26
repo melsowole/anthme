@@ -2,7 +2,7 @@ import Header from "./components/Header.ts";
 import MainNav from "./components/MainNav.ts";
 import MainFeed from "./components/MainFeed.ts";
 
-function displayFeedPage(posts: []) {
+function displayHomePage(posts: []) {
   document.body.append(
     Header.create(),
     MainNav.create(),
@@ -10,4 +10,4 @@ function displayFeedPage(posts: []) {
   );
 }
 
-export { displayFeedPage };
+export { displayHomePage };
