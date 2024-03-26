@@ -1,11 +1,11 @@
-import { main } from "../templates/viewPostpage";
-import { stringToDOM } from "../modules/template-utils.js";
-import Header from "../components/Header.js"
-import MainNav from "../components/MainNav.js";
-import {getAllUsers} from "../modules/api.js"
-import {displayUserProfile} from "./displayProfile.js"
-import {getPost} from "../modules/api.js"
-import { getComments } from "../modules/api.js";
+import { main } from "./components/templates/viewPostpage.js";
+import { stringToDOM } from "../utilities/templateUtils.js";
+import Header from "./components/Header.js"
+import MainNav from "./components/MainNav.js";
+import {getAllUsers} from "../api.js"
+import {displayUserProfile} from "./displayProfilePage.js"
+import {getPost} from "../api.js"
+import { getComments } from "../api.js";
 const bananaUrlObj = new URL("../img/userImgBanana.png", import.meta.url);
 const pizzaUrlObj = new URL("../img/userImgPizza.png", import.meta.url);
 const dounatUrlObj = new URL("../img/userImgDounat.png", import.meta.url);
@@ -24,7 +24,7 @@ function displayViewPostPage():void{
     getPost('274965e7-2da6-4747-a31a-176b2ff24fd3')
     .then(post => {
         const postCommentsIds = post.comments;
-        const titleDiv = document.querySelector('.titleDiv');
+        const titleDiv = document.querySelector('.titleDiv') as HTMLDivElement;
         const userInfoItem = document.querySelector('.userInfoItem') as HTMLDivElement;
         const commentDiv = document.querySelector('.commentInfo') as HTMLDivElement;
         const categoryEl = document.createElement('p')

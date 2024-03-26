@@ -40,7 +40,7 @@ apiRouter.route("/users/:userId/posts/:postId").delete(posts.deletePost);
 // Posts routes
 apiRouter.route("/posts").get(posts.getAllPosts);
 
-apiRouter.route("/posts/:postId").get(posts.getOnePost);
+apiRouter.route("/posts/:postId   ").get(posts.getOnePost);
 
 // Comments routes
 apiRouter.route("/comments").get(comments.getAllComments);

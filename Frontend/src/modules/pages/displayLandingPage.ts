@@ -1,9 +1,7 @@
-import { addUser, User, getAllUsers} from '../modules/fetchUsers.js';
-import {displayProfile} from "./displayProfile.js";
-import {landingPageString} from "../templates/landingpage.js"
-// import{main} from "../templates/profilepage.js"
-import { stringToDOM } from "../modules/template-utils.js";
-import { sendLogInRequest } from '../modules/api.js';
+import { addUser, User, getAllUsers} from '../fetchUsers.js';
+import {landingPageString} from "./components/templates/landing-page.js"
+import { stringToDOM } from "../utilities/templateUtils.js";
+import { sendLogInRequest } from '../api.js';
 
 const bananaUrlObj = new URL("../img/userImgBanana.png", import.meta.url);
 const pizzaUrlObj = new URL("../img/userImgPizza.png", import.meta.url);

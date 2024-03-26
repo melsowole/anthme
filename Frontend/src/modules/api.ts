@@ -63,8 +63,8 @@ async function getComments(): Promise<Comments[]> {
 async function submitPost(createdObject:Object, typeOfPost:string, userId?:string, postId?:string): Promise<void> {
     let url: string = baseUrl;
     if(typeOfPost === 'user') url += `users`;
-    else if(typeOfPost === 'post') url += `user/${userId}/posts`;
-    else if(typeOfPost === 'comment') url += `posts/${postId}/user/${userId}/comment`;
+    else if(typeOfPost === 'post') url += `users/${userId}/posts`;
+    else if(typeOfPost === 'comment') url += `posts/${postId}/users/${userId}/comments`;
     console.log(url);
 
     const options = {

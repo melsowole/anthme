@@ -1,5 +1,5 @@
-import * as template from "../templates/user-list.ts";
-import {replace, stringToDOM} from "../modules/template-utils.ts";
+import * as template from "./templates/user-list.ts";
+import {replace, stringToDOM} from "../../utilities/templateUtils.ts";
 import dayjs from "dayjs";
 
 type User = {

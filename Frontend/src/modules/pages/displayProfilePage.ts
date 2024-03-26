@@ -1,12 +1,8 @@
-import { main } from "../templates/profilepage.js";
-import { stringToDOM } from "../modules/template-utils.js";
-import { User, getAllUsers } from '../modules/fetchUsers.js';
-import Header from "../components/Header.js"
-import MainNav from "../components/MainNav.js";
-import {filterCookieValue} from "../modules/cookieUtils.js"
-
-//Till cookies
-//console.log(filterCookieValue('id', 'user'))
+import { main } from "./components/templates/profile-page.js";
+import { stringToDOM } from "../utilities/templateUtils.js";
+import { User, getAllUsers } from '../fetchUsers.js';
+import Header from "./components/Header.js"
+import MainNav from "./components/MainNav.js";
 
 const bananaUrlObj = new URL("../img/userImgBanana.png", import.meta.url);
 const pizzaUrlObj = new URL("../img/userImgPizza.png", import.meta.url);

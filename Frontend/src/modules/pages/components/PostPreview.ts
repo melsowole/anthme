@@ -1,5 +1,5 @@
-import * as template from "../templates/post-preview.js";
-import { replace, stringToDOM } from "../modules/template-utils.js";
+import * as template from "./templates/post-preview.ts"
+import {replace, stringToDOM} from "../../utilities/templateUtils.ts";
 
 type Post = {
   id: string;

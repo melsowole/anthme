@@ -1,8 +1,8 @@
-import { renderPostPage } from "../components/PostPage.js";
-import { submitPost } from "../modules/api.js";
-import { filterCookieValue } from "../modules/cookieUtils.js";
+import { renderPostPage } from "./components/PostPage.js";
+import { submitPost } from "../api.js";
+import { filterCookieValue } from "../utilities/cookieUtils.js";
 
-function displayPostPage(): void {
+export default function displayPostPage(): void {
     const textContentArray:string[] = [
         'Remember the human',
         'Behave like you would in real life',
@@ -36,5 +36,3 @@ function displayPostPage(): void {
     })
 
 }
-
-export default displayPostPage
