@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "parcel ./src/index.html",
+    "dev": "parcel ./src/index.html --cache-dir .parcel-cache",
     "build": "parcel build ./src/index.html --dist-dir docs --public-url ./",
     "clean": "del-cli ./.parcel-cache ./docs ./dist"
   },
@@ -15,6 +15,7 @@
     "parcel": "^2.11.0"
   },
   "dependencies": {
+    "dayjs": "^1.11.10",
     "navigo": "^8.11.1"
   }
 }

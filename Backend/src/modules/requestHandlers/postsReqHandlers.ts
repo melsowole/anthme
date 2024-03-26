@@ -34,7 +34,7 @@ export async function getOnePost(
     // getItemById throws error if Id not found
     const post = getItemById(posts, req.params.postId);
 
-    res.json(post);
+     res.json(post);
   } catch (err) {
     next(err);
     return;

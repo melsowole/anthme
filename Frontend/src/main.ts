@@ -1,3 +1,9 @@
-import { router } from "./modules/router.ts";
+import {router, setupRouter} from "./modules/router.js"
 
-router.resolve();
+setupRouter()
+.then(() => {
+    router.resolve();
+})
+.catch(error => {
+    console.log(error);
+})

@@ -1,151 +1,144 @@
 import { addUser, User, getAllUsers} from '../modules/fetchUsers.js';
-import { validateLogIn } from "../modules/function.js";
 import {displayProfile} from "./displayProfile.js";
 import {landingPageString} from "../templates/landingpage.js"
 // import{main} from "../templates/profilepage.js"
 import { stringToDOM } from "../modules/template-utils.js";
+import { sendLogInRequest } from '../modules/api.js';
+
+const bananaUrlObj = new URL("../img/userImgBanana.png", import.meta.url);
+const pizzaUrlObj = new URL("../img/userImgPizza.png", import.meta.url);
+const dounatUrlObj = new URL("../img/userImgDounat.png", import.meta.url);
 
 
- function displayLandingPage():void {
+// Variabler för formulär och andra element
+let createAccountForm: HTMLFormElement;
+let logInForm: HTMLFormElement;
+let selectElement: HTMLSelectElement;
+
+function displayLandingPage(): void {
     let landingpageTemplate = landingPageString;
-    const landingPage : HTMLElement = stringToDOM(landingpageTemplate);
+    const landingPage: HTMLElement = stringToDOM(landingpageTemplate);
     document.body.append(landingPage);
-
+    
     const createAccountBtn = landingPage.querySelector('#createAccountBtn') as HTMLButtonElement;
     const signInBtn = landingPage.querySelector('#signInBtn') as HTMLButtonElement;
-    const createAccountForm = landingPage.querySelector('.createAccountform') as HTMLFormElement;
-    const logInForm = landingPage.querySelector('.logInForm ') as HTMLFormElement;
-    const selectElement = landingPage.querySelector('#userImage') as HTMLSelectElement;
-    const closeFormBtns = landingPage.querySelectorAll('.xmarkClose');
-    const userPageLink = landingPage.querySelector('.userPageLink') as HTMLAnchorElement;
+    createAccountForm = landingPage.querySelector('.createAccountform') as HTMLFormElement;
+    logInForm = landingPage.querySelector('.logInForm') as HTMLFormElement;
+    selectElement = landingPage.querySelector('#userImage') as HTMLSelectElement;
+    const closeFormBtns = landingPage.querySelectorAll('.xmarkClose') as NodeListOf<HTMLElement>;
+    const signUpLinks = landingPage.querySelectorAll('.link') as NodeListOf<HTMLAnchorElement>;
 
-
-    createAccountBtn.addEventListener('click', ()=>{
-        createAccountForm.classList.remove('hide');
-        logInForm.classList.add('hide');
-    })
-
-    signInBtn.addEventListener('click', ()=>{
-        logInForm.classList.remove('hide');
-        createAccountForm.classList.add('hide')
-    })
-
-    selectElement.addEventListener("change", function() {
-        const imageContainer = document.querySelector('.imgContainer') as HTMLDivElement;
-    
-        let selectedValue = selectElement.value;
-    
-        if(selectedValue === 'userImgBanana'){
-            displayUserImage(imageContainer,'userImgBanana.971fd618.png')
-        }
-        else if(selectedValue === 'userImgDounat'){
-            displayUserImage(imageContainer, 'userImgDounat.bd9437ed.png')
-        }
-        else{
-
-            displayUserImage(imageContainer, 'userImgPizza.54bcfdca.png')
-        }
-        
-    });
-
+    createAccountBtn.addEventListener('click', handleCreateAccountBtn);
+    signInBtn.addEventListener('click', handleSignInBtnClick);
+    document.addEventListener('click', handleDocumentClick);
+    selectElement.addEventListener("change", handleSelectImgElement);
     closeFormBtns.forEach(closeFormBtn => {
-        closeFormBtn.addEventListener('click', () => {
-            
-            const formToHide = closeFormBtn.closest('form');
-            if (formToHide) {
-                formToHide.classList.add('hide');
-            }
-        });
+        closeFormBtn.addEventListener('click', handleCloseFormBtn);
     });
-
-    createAccountForm.addEventListener('submit', async (event)=>{
-        event.preventDefault();
-        const userNameInput = document.querySelector('#userNameInput') as HTMLInputElement;
-        const username = userNameInput.value;
-
-        const passwordInput = document.querySelector('#passwordInput') as HTMLInputElement;
-        const password = passwordInput.value;
-        const selectedValue = selectElement.value;
-        
-        const newUser: User = {
-            username: username,
-            password: password,
-            userImage: selectedValue
-        };
-
-        try {
-            const addedUser = await addUser(newUser);
-            console.log("User added successfully:", addedUser);
-            
-        } catch (error) {
-            console.error("Error adding user:", error);
-            
-        }
-
-        createAccountForm.reset();
-    });
-
-    logInForm.addEventListener('submit', (event)=>{
-        event.preventDefault();
-        const logInUsername = document.querySelector('#logInUsername') as HTMLInputElement;
-        const username = logInUsername.value
-        
-        const logInPassword = document.querySelector('#logInPassword') as HTMLInputElement;
-        const password = logInPassword.value;
-
-        getAllUsers()
-        .then(users => {
-        const isValidLogin = validateLogIn(users, username, password);
-        if (isValidLogin) {
-            console.log('Valid login');
-            displayProfile();
-        } 
-        else {
-            console.log('Invalid login');
-        }
-    })
-    .catch(error => {
-        console.error('Error fetching users:', error);
-    });
-
-        logInForm.reset();
-    })
-
-    const signUpLinks = document.querySelectorAll('.link');
-
+    createAccountForm.addEventListener('submit', handleCreateAccount);
+    logInForm.addEventListener('submit', handleLogInForm);
     signUpLinks.forEach(signUpLink => {
-        signUpLink.addEventListener('click', (event) => {
-            event.preventDefault(); 
-
-            if (createAccountForm && logInForm) {
-                if (signUpLink.textContent === 'Sign up') {
-                    createAccountForm.classList.remove('hide');
-                    logInForm.classList.add('hide');
-                } 
-                else if (signUpLink.textContent === 'Log in') {
-                    logInForm.classList.remove('hide');
-                    createAccountForm.classList.add('hide');
-                }
-            }
-        });
+        signUpLink.addEventListener('click', handleSignUpLink);
     });
-
-
-    // userPageLink.addEventListener('click', ()=>{
-    //     const link = document.querySelector('.link') as HTMLAnchorElement
-    //     link.classList.add('addGreyBGColor');
-    // })
 }
 
+function handleCreateAccountBtn(): void {
+    createAccountForm.classList.remove('hide');
+    logInForm.classList.add('hide');
+}
 
- function displayUserImage(container: HTMLDivElement, imgPath:string): void {
+function handleSignInBtnClick(): void {
+    logInForm.classList.remove('hide');
+    createAccountForm.classList.add('hide');
+}
+
+function handleDocumentClick(event: MouseEvent): void {
+    const container = document.querySelector('.landingPageContainer') as HTMLDivElement;
+    if (container && !container.contains(event.target as Node)) {
+        createAccountForm.classList.add('hide');
+        logInForm.classList.add('hide');
+    }
+}
+
+function handleSelectImgElement(): void {
+    const imageContainer = document.querySelector('.imgContainer') as HTMLDivElement;
+    let selectedValue = selectElement.value;
+    if (selectedValue === 'banana') {
+        displayUserImage(imageContainer, bananaUrlObj.href)
+    } else if (selectedValue === 'dounat') {
+        displayUserImage(imageContainer, dounatUrlObj.href)
+    } else {
+        displayUserImage(imageContainer, pizzaUrlObj.href)
+    }
+}
+
+function handleCloseFormBtn(event: MouseEvent): void {
+    const formToHide = (event.currentTarget as HTMLElement).closest('form');
+    if (formToHide) {
+        formToHide.classList.add('hide');
+    }
+}
+
+async function handleCreateAccount(event: Event): Promise<void> {
+    event.preventDefault();
+    const userNameInput = document.querySelector('#userNameInput') as HTMLInputElement;
+    const username = userNameInput.value;
+
+    const passwordInput = document.querySelector('#passwordInput') as HTMLInputElement;
+    const password = passwordInput.value;
+
+    const selectedValue = selectElement.value;
+
+    const newUser: User = {
+        username: username,
+        password: password,
+        userImage: selectedValue
+    };
+
+    try {
+        const addedUser = await addUser(newUser);
+        console.log("User added successfully:", addedUser);
+    } catch (error) {
+        console.error("Error adding user:", error);
+    }
+
+    createAccountForm.reset();
+}
+
+function handleLogInForm(event: Event): void {
+    event.preventDefault();
+    const logInUsername = document.querySelector('#logInUsername') as HTMLInputElement;
+    const username = logInUsername.value
+
+    const logInPassword = document.querySelector('#logInPassword') as HTMLInputElement;
+    const password = logInPassword.value;
+
+    sendLogInRequest(username, password)
+
+    logInForm.reset();
+}
+
+function handleSignUpLink(event: Event): void {
+    event.preventDefault();
+    if (createAccountForm && logInForm) {
+        if ((event.currentTarget as HTMLAnchorElement).textContent === 'Sign up') {
+            createAccountForm.classList.remove('hide');
+            logInForm.classList.add('hide');
+        } else if ((event.currentTarget as HTMLAnchorElement).textContent === 'Log in') {
+            logInForm.classList.remove('hide');
+            createAccountForm.classList.add('hide');
+        }
+    }
+}
+
+function displayUserImage(container: HTMLDivElement, imgPath:string): void {
 
     container.innerHTML = '';
 
-    const imgEl: HTMLImageElement = document.createElement('img');
+    const imgEl = document.createElement('img');
     imgEl.src = imgPath; 
 
    container.appendChild(imgEl);
 }
 
-export {displayLandingPage}
+export {displayLandingPage, displayUserImage}

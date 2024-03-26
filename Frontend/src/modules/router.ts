@@ -1,21 +1,40 @@
 import Navigo from "navigo";
 import displayPostPage from "../pages/displayPostPage.ts";
 import { displayLandingPage } from "../pages/displayLandingPage.ts";
-import { displayFeedPage } from "../pages/displayFeedPage.ts";
+import { displayHomePage } from "../components/HomePage.ts";
+import { displayUsersPage } from "../components/UsersPage.ts";
+import { readCookie } from "./api.ts";
+import { displayProfile } from "../pages/displayProfile.js";
+import { displayViewPostPage } from "../pages/displayViewPostPage.js";
 
 const router = new Navigo("/");
 
-const url = "http://localhost:3000/posts";
+// Funktionen returnerar ett promise för att vänta tills readCookie() är klar
+// innan router.resolve() körs från main.ts
+function setupRouter(): Promise<void> {
+    return new Promise((resolve, reject) => {
+        readCookie().then(response => {
+            if(!response) {
+                router.on('*', displayLandingPage)
+            }
+            else {
+                router.on('/', () => {
+                    fetch('http://localhost:3000/posts/')
+                    .then(res => res.json())
+                    .then(displayHomePage)
+                })
+                router.on('/post', displayPostPage)
+                router.on('/users', () => {
+                    fetch('http://localhost:3000/users/')
+                    .then(res => res.json())
+                    .then(displayUsersPage)
+                })
+                router.on('/userProfile', displayProfile)
+                router.on('/viewPostpage', displayViewPostPage)
+            }
+            resolve();
+        }).catch(reject);
+    })
+}
 
-// Register routes
-router.on("/post", displayPostPage);
-router.on("/", () => {
-  fetch(url)
-    .then((r) => r.json())
-    .then((posts) => {
-      console.log(posts);
-      displayFeedPage(posts);
-    });
-});
-
-export { router };
+export { router, setupRouter };
