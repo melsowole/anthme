@@ -11,7 +11,7 @@ type User = {
     category: string,
     title: string,
     body: string,
-    comments?: string[],
+    comments: string[],
     user?: {
         id: string,
         username: string,
@@ -19,12 +19,13 @@ type User = {
     }
 } 
 
-type Comments = {
+type Comments ={
     id: string,
     body: string,
     created: string,
     user:{
-        id: string,
+        id?: string,
+        created?: string,
         username: string,
         userImage: string
     }

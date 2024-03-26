@@ -1,28 +1,28 @@
 [
   {
-    "id": "37887b4d-bc3b-43fe-83ca-aeceb63bee13",
-    "created": "2024-03-26T09:16:47.629Z",
-    "category": "First",
-    "title": "First",
-    "body": "First post",
-    "comments": [
-      "d85eaa6c-83ff-4d8c-9de7-484aee6c43e8",
-      "64807245-9431-4aac-bcf2-e06541263f9a",
-      "a0940abf-1f01-478d-be21-6daab040c085",
-      "4553bdc2-bfe7-4496-94b1-7d259be33d93",
-      "9c445aee-79ca-41e6-a38e-f4eaef8d7614",
-      "a098daf0-571e-4649-804d-d14ca2286667",
-      "9ea5a9fc-fd90-4d1a-87ef-768d5585c493",
-      "d64da6f9-f742-4dbc-b842-a4a8ebe65fd4",
-      "b6fc0217-1536-4480-816a-f45435e45274",
-      "668fb027-4c35-4eb9-92ac-ba9bfa6154de",
-      "34d35c79-97fc-4dc4-a860-d34d59e1d6f9",
-      "52a66942-2088-409c-99ac-520cd134eeac"
-    ],
+    "id": "edb57baa-4180-45ed-8ac8-bba1ba1e718a",
+    "created": "2024-03-26T18:21:19.729Z",
+    "category": "Chicken",
+    "title": "Egg",
+    "body": "Egg.",
+    "comments": [],
     "user": {
-      "id": "9d6ececb-6f24-4fbc-8de9-1fffd239ce9e",
+      "id": "a4dc10e9-7e86-4afd-8c04-a8b3eb944577",
       "username": "chicken",
-      "userImage": "pizza"
+      "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1711476329608"
+    }
+  },
+  {
+    "id": "b27c720c-1afb-44c0-819e-9dca26c595c2",
+    "created": "2024-03-26T19:34:17.851Z",
+    "category": "abc",
+    "title": "abc",
+    "body": "abc",
+    "comments": [],
+    "user": {
+      "id": "a4dc10e9-7e86-4afd-8c04-a8b3eb944577",
+      "username": "chicken",
+      "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1711476329608"
     }
   }
 ]

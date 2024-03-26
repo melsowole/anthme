@@ -8,13 +8,19 @@ async function getAllUsers():Promise<User[]>{
 
     const res = await fetch(url);
     const users = await res.json();
-    console.log(users);
     return users;
+}
+
+async function getUserByUsername(username: string): Promise<User> {
+    const url = `${baseUrl}users/username/${username}`;
+
+    const res = await fetch(url);
+    const user = await res.json();
+    return user;
 }
 
 async function getPost(id: string): Promise<Post> {
   const url = baseUrl + `posts/${id}`;
-  console.log(url);
 
   const res = await fetch(url);
   const post = await res.json();
@@ -28,18 +34,17 @@ async function getComments(): Promise<Comments[]> {
   return comments;
 }
 
-async function submitPost(
+async function submitPost<T extends User | Post | Comments>(
   createdObject: Object,
   typeOfPost: string,
   userId?: string,
   postId?: string
-): Promise<void> {
+): Promise<T> {
   let url: string = baseUrl;
   if (typeOfPost === "user") url += `users`;
   else if (typeOfPost === "post") url += `users/${userId}/posts`;
   else if (typeOfPost === "comment")
     url += `posts/${postId}/users/${userId}/comments`;
-  console.log(url);
 
   const options = {
     method: "POST",
@@ -49,7 +54,7 @@ async function submitPost(
 
   const res = await fetch(url, options);
   const info = await res.json();
-  console.log(info);
+  return info;
 }
 
 async function sendLogInRequest(
@@ -73,8 +78,6 @@ async function sendLogInRequest(
 
   const res = await fetch(url, options);
   const info = await res.json();
-  // REDIRECT BÖR INTE VARA I API -- MELINDA
-  window.location.replace("http://localhost:1234/"); // BÖR DET INTE VARA "/" -- MELINDA
 }
 
 async function readCookie(): Promise<boolean> {
@@ -110,4 +113,5 @@ export {
   getPost,
   getComments,
   deleteAccount,
+  getUserByUsername
 };

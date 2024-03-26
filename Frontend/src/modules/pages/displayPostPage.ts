@@ -21,11 +21,10 @@ function displayViewPostPage():void{
     
     // Get URL:s post id
     const urlParts:string[] = window.location.pathname.split('/');
-    const urlPostId:string = urlParts[urlParts.length - 1];
+    const urlPathEndpoint:string = urlParts[urlParts.length - 1];
 
-    getPost(urlPostId)
-    .then(post => {
-        
+    getPost(urlPathEndpoint)
+    .then(post => {  
         const postCommentsIds = post.comments;
         const titleDiv = document.querySelector('.titleDiv') as HTMLDivElement;
         const userInfoItem = document.querySelector('.userInfoItem') as HTMLDivElement;
@@ -44,12 +43,10 @@ function displayViewPostPage():void{
                 // Filtrera kommentarerna för att endast inkludera de som har ID:n som finns i inläggets kommentarslista
                 const specificComments = comments.filter(comment => postCommentsIds.includes(comment.id));
                 
-                console.log(specificComments.length);
                 for(const comment of specificComments){
                     const ammountOfComments = document.querySelector('.amountOfComments') as HTMLSpanElement;
                     ammountOfComments.innerText = specificComments.length.toString();
                     
-                    console.log(comment);
                     const commentItem= document.createElement('div');
                     commentItem.classList.add('commentItem')
                     const timeStampEl = document.createElement('small');
