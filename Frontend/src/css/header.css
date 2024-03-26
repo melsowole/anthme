@@ -71,3 +71,13 @@
     opacity: 1;
   }
 }
+
+.profile-menu button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.profile-menu #delete-account {
+  color: red;
+}
