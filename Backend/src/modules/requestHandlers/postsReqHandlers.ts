@@ -36,7 +36,7 @@ export async function getOnePost(
     //validation
     if (!post) throw new CustomError(404, "Post not found");
 
-    res.json(post);
+     res.json(post);
   } catch (err) {
     next(err);
     return;

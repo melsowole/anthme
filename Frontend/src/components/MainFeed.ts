@@ -6,7 +6,7 @@ export default class MainFeed {
   static create(posts: []) {
     const templateFeed = replace(template.feed, [
       { pattern: "sort", replacement: "Best" },
-      { pattern: "containerId", replacement: "posts" },
+      { pattern: "containerId", replacement: "posts" } 
     ]);
 
     const main = stringToDOM(templateFeed);

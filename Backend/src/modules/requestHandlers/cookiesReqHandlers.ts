@@ -16,7 +16,7 @@ async function setCookie(req: Request, res: Response, next: NextFunction): Promi
     try {
         const users: DB<User> = await read.users();
         const {username, password} = req.body;
-        const foundUser = users.find(u => u.username === username && u.password === password)
+        const foundUser = users.find(u => u.username === username.trim() && u.password === password.trim())
 
         if(!foundUser) throw new CustomError(401, 'Login Failed')
 

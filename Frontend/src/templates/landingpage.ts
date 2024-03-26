@@ -1,5 +1,6 @@
 const landingPageString = `
 <div class="landingPageContainer">
+    
     <div class="landingPageTitle">
             <h1>To view Anthme you must be signed in</h1>
 
@@ -13,8 +14,8 @@ const landingPageString = `
         
     </div>
     
-    <div class="formContainer">
-        <form class="createAccountform hide popup">
+    <div class="formContainer popUpFormContainer">
+        <form class="createAccountform hide popup popUpForm">
             <i class="fas fa-times fa-lg xmarkClose "></i>
             <h2>Create account</h2>
             <input type="text" id="userNameInput" name="username"  placeholder="Username *" required>
@@ -25,16 +26,16 @@ const landingPageString = `
 
                 <select name="userImage" id="userImage">
                     <option disabled selected>Choose user image:</option>
-                    <option value="userImgBanana">Banana</option>
-                    <option value="userImgDounat">Donut</option>
-                    <option value="userImgPizza">Pizza</option>
+                    <option value="banana">Banana</option>
+                    <option value="dounat">Donut</option>
+                    <option value="pizza">Pizza</option>
                 </select>
             </div>
             <span class="accountDetails">Already an Antheme? <a class="link" href="#">Log in</a></span>
             <button id="createAccountFormBtn">Create account</button>
         </form>
 
-        <form class="logInForm hide popup">
+        <form class="logInForm hide popup popUpForm">
             <i class="fas fa-times fa-lg xmarkClose xmarkCloseLogin"></i>
             <h2>Log in</h2>
             <input type="text" id="logInUsername" name="username"  placeholder="Username *" required>

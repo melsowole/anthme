@@ -3,6 +3,9 @@
 .userInfoItem{
     display: flex;
     align-items: center;
+    padding-top: 2rem; 
+    flex-direction: row-reverse;
+    justify-content: flex-end; 
 }
 
 .userInfoItem > h2{
@@ -11,7 +14,8 @@
 
 .userInteractionsOverview{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
+    width: 256px; 
     margin-top: 2rem;
 }
 
@@ -23,6 +27,14 @@
     font-size: 14px;
 }
 
+
+.userInteractionsOverview > a:hover{
+    text-decoration: underline;
+   
+}
+
 .addGreyBGColor{
     background-color: #D2DADD;
+    text-decoration: underline;
+    
 }
