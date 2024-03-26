@@ -17,9 +17,9 @@ async function setCookie(req: Request, res: Response, next: NextFunction): Promi
         const users: DB<User> = await read.users();
         const {username, password} = req.body;
         const foundUser = users.find(u => u.username === username.trim() && u.password === password.trim())
-
+        
         if(!foundUser) throw new CustomError(401, 'Login Failed')
-
+        
         res.set('Access-Control-Allow-Origin', req.headers.origin);
         res.set('Access-Control-Allow-Credentials', 'true');
         const settings: CookieOptions = {

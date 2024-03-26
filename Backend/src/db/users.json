@@ -1,10 +1,10 @@
 [
   {
-    "id": "ae98fe9d-fdfa-4755-9f03-30e1a8e49eef",
+    "id": "f1437f3e-3f7b-4e2a-b898-eca49f4a0459",
     "username": "chicken",
     "password": "egg",
-    "userImage": "donut",
-    "created": "2024-03-26T10:32:49.482Z",
+    "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1711467728487",
+    "created": "2024-03-26T15:42:21.249Z",
     "posts": [],
     "comments": []
   }

@@ -2,10 +2,8 @@ import { main } from "./components/templates/viewPostpage.js";
 import { stringToDOM } from "../utilities/templateUtils.js";
 import Header from "./components/Header.js"
 import MainNav from "./components/MainNav.js";
-import {getAllUsers} from "../api.js"
+import {getAllUsers, getPost, getComments} from "../api.js"
 import {displayUserProfile} from "./displayProfilePage.js"
-import {getPost} from "../api.js"
-import { getComments } from "../api.js";
 import * as userImg from "../utilities/userImgUtils.js"
 
 
@@ -19,8 +17,14 @@ function displayViewPostPage():void{
         header,
         mainNav
     )
-    getPost('37887b4d-bc3b-43fe-83ca-aeceb63bee13')
+    
+    // Get URL:s post id
+    const urlParts:string[] = window.location.pathname.split('/');
+    const urlPostId:string = urlParts[urlParts.length - 1];
+
+    getPost(urlPostId)
     .then(post => {
+        
         const postCommentsIds = post.comments;
         const titleDiv = document.querySelector('.titleDiv') as HTMLDivElement;
         const userInfoItem = document.querySelector('.userInfoItem') as HTMLDivElement;
@@ -32,7 +36,6 @@ function displayViewPostPage():void{
 
         titleDiv.append(titleEl)
         userInfoItem.append(categoryEl)
-        
 
         // Hämta alla kommentarer
         getComments()
@@ -54,15 +57,15 @@ function displayViewPostPage():void{
                     const commentBody = document.createElement('div');
                     commentBody.classList.add('commentBody')
                     const usernameEl = document.createElement('h2') as HTMLHeadingElement;
-                    usernameEl.innerText= comment.username;
+                    usernameEl.innerText= comment.user.username;
                     const contentEl = document.createElement('p');
                     contentEl.innerText = comment.body;
                     
                     
-                    if(comment.userImage === 'pizza'){
+                    if(comment.user.userImage === 'pizza'){
                         displayUserImage(imgDiv, userImg.pizza)
                     }
-                    else if(comment.userImage === 'donut'){
+                    else if(comment.user.userImage === 'donut'){
                         displayUserImage(imgDiv, userImg.donut)
                     }
                     else displayUserImage(imgDiv, userImg.banana)
@@ -83,29 +86,29 @@ function displayViewPostPage():void{
     });
 
     getAllUsers()
-    .then(users => {
-    const userInfoContainer = viewPostpage.querySelector('.userInfoItem') as HTMLDivElement;
-    
-    const userId = "ae98fe9d-fdfa-4755-9f03-30e1a8e49eef"; 
+        .then(users => {
+            const userInfoContainer = viewPostpage.querySelector('.userInfoItem') as HTMLDivElement;
+            
+            const userId = "ae98fe9d-fdfa-4755-9f03-30e1a8e49eef"; 
 
-    const user = users.find(user => user.id === userId);
-    if (user) {
-        console.log(user.posts);
-        displayUserProfile(user, userInfoContainer);
-        
-        const imgEl = viewPostpage.querySelector('img') as HTMLImageElement;
-        const h2El = viewPostpage.querySelector('h2') as HTMLHeadingElement;
-        imgEl.classList.add('userImg');
-        h2El.id ='usernameTitle';
-       
-        
-    } else {
-        console.log(`Ingen användare hittades med ID: ${userId}`);
-    }
-})
-.catch(error => {
-    console.error('Error fetching users:', error);
-});
+            const user = users.find(user => user.id === userId);
+            if (user) {
+                console.log(user.posts);
+                displayUserProfile(user, userInfoContainer);
+                
+                const imgEl = viewPostpage.querySelector('img') as HTMLImageElement;
+                const h2El = viewPostpage.querySelector('h2') as HTMLHeadingElement;
+                imgEl.classList.add('userImg');
+                h2El.id ='usernameTitle';
+            
+                
+            } else {
+                console.log(`Ingen användare hittades med ID: ${userId}`);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching users:', error);
+        });
 }
 
 function displayUserImage(container: HTMLDivElement, imgPath:string): void {

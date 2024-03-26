@@ -1,37 +1,7 @@
+import { User, Post, Comments } from "./utilities/pathTypes";
+
 const baseUrl: string = 'http://localhost:3000/';
 const header = {"Content-type": "application/json; charset=UTF-8"};
-
-type User = {
-    id?: string,
-    username: string,
-    password: string,
-    userImage: string,
-    posts?: string[]
-};
-
- type Post = {
-    id: string,
-    category: string,
-    title: string,
-    body: string,
-    comments: string[],
-    user:{
-        id: string,
-        username: string,
-        userImage: string
-    }
-
-} 
-
-type Comments ={
-    id: string,
-    body: string,
-    created: string,
-    username: string
-    userImage: string
-}
-
-
 
 async function getAllUsers():Promise<User[]>{
     const url = baseUrl + 'users/';
@@ -40,7 +10,6 @@ async function getAllUsers():Promise<User[]>{
     const users = await res.json();
     console.log(users);
     return users;
-
 }
 
  async function getPost(id: string):Promise<Post>{
@@ -60,7 +29,7 @@ async function getComments(): Promise<Comments[]> {
     return comments;
 }
 
-async function submitPost(createdObject:Object, typeOfPost:string, userId?:string, postId?:string): Promise<void> {
+async function submitPost<T extends User | Post | Comments>(createdObject:T, typeOfPost:string, userId?:string, postId?:string): Promise<T> {
     let url: string = baseUrl;
     if(typeOfPost === 'user') url += `users`;
     else if(typeOfPost === 'post') url += `users/${userId}/posts`;
@@ -76,7 +45,7 @@ async function submitPost(createdObject:Object, typeOfPost:string, userId?:strin
     const res = await fetch(url, options);
     const info = await res.json();
     console.log(info);
-    
+    return info;
 }
 
 async function sendLogInRequest(username:string, password:string): Promise<void> {
@@ -110,4 +79,5 @@ async function readCookie(): Promise<boolean> {
     const cookieInfo = await res.json();
     return cookieInfo.ok;
 }
+
 export {submitPost, getAllUsers, readCookie, sendLogInRequest, getPost, getComments}

@@ -29,8 +29,8 @@ function setupRouter(): Promise<void> {
                     .then(res => res.json())
                     .then(displayUsersPage)
                 })
-                router.on('/userProfile', displayProfile)
-                router.on('/viewPostpage', displayViewPostPage)
+                router.on('/profile/:username', displayProfile)
+                router.on('/posts/:postId', displayViewPostPage)
             }
             resolve();
         }).catch(reject);
