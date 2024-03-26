@@ -8,9 +8,7 @@ const feed = `
       
       <hr />
 
-      <div id="__containerId__">
-        <!-- ALL POST PREVIEWS -->
-      </div>
+      <div id="__containerId__"></div>
 </main>
 `;
 
