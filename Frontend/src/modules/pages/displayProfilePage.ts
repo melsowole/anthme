@@ -25,17 +25,73 @@ function displayProfile() {
 
     const urlParts: string[] = window.location.pathname.split('/');
     const urlPathEndpoint: string = urlParts[urlParts.length - 1];
-    console.log(urlPathEndpoint)
-    console.log(urlParts)
+
+    const postLink = document.querySelector('.postLink') as HTMLAnchorElement;
+    const commentsLink = document.querySelector('.commentsLink') as HTMLAnchorElement;
+    const commentDiv = document.querySelector('.commentContainer') as HTMLDivElement;
 
     api.getUserByUsername(urlPathEndpoint)
         .then(user => {
+            console.log(user)
             if (user) {
                 displayUserProfile(user, userInfoContainer);
             }
             else {
                 console.log(`Ingen användare hittades`);
             }
+
+            postLink.addEventListener('click', ()=>{
+                console.log('postLink')
+                getPostByUser(user.id)
+                .then(posts =>{
+                    console.log(posts)
+                })
+                commentDiv.innerHTML = "";
+                
+            })
+            commentsLink.addEventListener('click', ()=>{
+                console.log('commentsLink')
+                getCommentsByUser(user.id)
+                .then(comments=>{
+                    console.log(comments)
+                    
+                    commentDiv.innerHTML = "";
+        
+                    comments.forEach(comment => {
+                        
+                        const commentItem = document.createElement('div');
+                        commentItem.classList.add('commentItem');
+                        const timeStampEl = document.createElement('small');
+                        timeStampEl.classList.add('timeStampEl');
+                        timeStampEl.innerText = dayjs(comment.created).format('DD MMMM YYYY');
+                        const imgDiv = document.createElement('div')
+                        imgDiv.classList.add('imgDiv');
+                        const commentBody = document.createElement('div');
+                        commentBody.classList.add('commentBody')
+                        const usernameEl = document.createElement('h2');
+                        usernameEl.innerText= comment.user.username;
+                        const contentEl = document.createElement('p');
+                        contentEl.innerText = comment.body;
+        
+                        if (comment.user.userImage === 'pizza') {
+                            displayUserImage(imgDiv, userImg.pizza);
+                        } else if (comment.user.userImage === 'donut') {
+                            displayUserImage(imgDiv, userImg.donut);
+                        } else {
+                            displayUserImage(imgDiv, userImg.banana);
+                        }
+        
+                        commentBody.append(usernameEl, contentEl);
+                        imgDiv.append(timeStampEl, usernameEl);
+        
+                        
+                        commentItem.append(imgDiv, commentBody);
+                        commentDiv.append(commentItem); 
+                        
+                    });
+                    
+                })
+            })
         })
         .catch(error => {
             console.error('Error fetching users:', error);
@@ -50,67 +106,7 @@ function displayProfile() {
             userPageLink.classList.add('addGreyBGColor');
         });
     });
-
-    const postLink = document.querySelector('.postLink') as HTMLAnchorElement;
-    const commentsLink = document.querySelector('.commentsLink') as HTMLAnchorElement;
-    const commentDiv = document.querySelector('.commentContainer') as HTMLDivElement;
-    postLink.addEventListener('click', ()=>{
-        console.log('postLink')
-        getPostByUser("ae98fe9d-fdfa-4755-9f03-30e1a8e49eef")
-        .then(posts =>{
-            console.log(posts)
-        })
-        commentDiv.innerHTML = "";
-        
-    })
-    commentsLink.addEventListener('click', ()=>{
-        console.log('commentsLink')
-        getCommentsByUser('ae98fe9d-fdfa-4755-9f03-30e1a8e49eef')
-        .then(comments=>{
-            console.log(comments)
-            
-            commentDiv.innerHTML = "";
-
-            comments.forEach(comment => {
-                
-                const commentItem = document.createElement('div');
-                commentItem.classList.add('commentItem');
-                const timeStampEl = document.createElement('small');
-                timeStampEl.classList.add('timeStampEl');
-                timeStampEl.innerText = dayjs(comment.created).format('DD MMMM YYYY');
-                const imgDiv = document.createElement('div')
-                imgDiv.classList.add('imgDiv');
-                const commentBody = document.createElement('div');
-                commentBody.classList.add('commentBody')
-                const usernameEl = document.createElement('h2');
-                usernameEl.innerText= comment.user.username;
-                const contentEl = document.createElement('p');
-                contentEl.innerText = comment.body;
-
-                if (comment.user.userImage === 'pizza') {
-                    displayUserImage(imgDiv, userImg.pizza);
-                } else if (comment.user.userImage === 'donut') {
-                    displayUserImage(imgDiv, userImg.donut);
-                } else {
-                    displayUserImage(imgDiv, userImg.banana);
-                }
-
-                commentBody.append(usernameEl, contentEl);
-                imgDiv.append(timeStampEl, usernameEl);
-
-                
-                commentItem.append(imgDiv, commentBody);
-                commentDiv.append(commentItem); 
-                
-                // Continue creating and appending elements for each comment
-            });
-
-                
-
-
-            
-        })
-    })
+   
 }
 
 function displayUserProfile(user: User, container: HTMLDivElement): void {
