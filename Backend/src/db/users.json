@@ -1,25 +1,28 @@
 [
   {
-    "id": "a4dc10e9-7e86-4afd-8c04-a8b3eb944577",
-    "username": "chicken",
-    "password": "egg",
-    "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1711476329608",
-    "created": "2024-03-26T18:06:19.253Z",
+    "id": "6bc7985f-3ab4-4aeb-a41b-1c4cac410ae7",
+    "username": "hejsan",
+    "password": "hej",
+    "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711565536744",
+    "created": "2024-03-27T18:52:24.495Z",
     "posts": [
-      "edb57baa-4180-45ed-8ac8-bba1ba1e718a",
-      "b27c720c-1afb-44c0-819e-9dca26c595c2"
+      "6a6e0aeb-9dd8-4b7f-bc73-225743983e3d"
     ],
     "comments": [
-      "dac8325e-0726-4ef4-b229-e58e6f5df25f"
+      "5b97783c-6e5b-4391-8f12-5498929b365b"
     ]
   },
   {
-    "id": "8bc69779-4191-44b6-a3b3-9dce4f3a4428",
-    "username": "anotherone",
-    "password": "djkhaled",
-    "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711476774927",
-    "created": "2024-03-26T18:13:03.113Z",
-    "posts": [],
-    "comments": []
+    "id": "e517952d-5c7f-43bf-b43a-504afd8ee239",
+    "username": "tomato",
+    "password": "red",
+    "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711565563660",
+    "created": "2024-03-27T18:52:52.077Z",
+    "posts": [
+      "5739dc72-fd85-4cf0-9185-f8d0ff276593"
+    ],
+    "comments": [
+      "201b4af3-a4ce-47e5-aec2-feb8322f7560"
+    ]
   }
 ]

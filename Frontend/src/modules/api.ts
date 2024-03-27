@@ -31,9 +31,10 @@ async function getAllUsers():Promise<User[]>{
 
 async function getUserByUsername(username: string): Promise<User> {
     const url = `${baseUrl}users/username/${username}`;
-
+  console.log(url)
     const res = await fetch(url);
     const user = await res.json();
+    console.log(user)
     return user;
 }
 
@@ -53,7 +54,7 @@ async function getPost(id: string): Promise<Post> {
   return post;
 }
 
-async function getPostByUser(userId:string): Promise<Post>{
+async function getPostByUser(userId:string): Promise<Post[]>{
   const url = `${baseUrl}users/${userId}/posts`
 
   const res = await fetch(url);

@@ -11,6 +11,7 @@ type User = {
     category: string,
     title: string,
     body: string,
+    created?: string,
     comments: string[],
     user: {
         id: string,
