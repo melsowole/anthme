@@ -1,16 +1,86 @@
 [
-  "Food",
-  "Music",
-  "Frontend",
-  "Art",
-  "Overwatch",
-  "Animal",
-  "Travel",
-  "makemesmile",
-  "Depressed",
-  "Mmildlyinfuriating",
-  "Aww",
-  "Sweden",
-  "facepalm",
-  "explainlikeimfive"
+  {
+    "name": "Food",
+    "color": "black",
+    "icon": "icon",
+    "category": "Food"
+  },
+  {
+    "name": "Music",
+    "color": "black",
+    "icon": "icon",
+    "category": "Music"
+  },
+  {
+    "name": "Frontend",
+    "color": "black",
+    "icon": "icon",
+    "category": "Programming"
+  },
+  {
+    "name": "Art",
+    "color": "black",
+    "icon": "icon",
+    "category": "Art"
+  },
+  {
+    "name": "Overwatch",
+    "color": "black",
+    "icon": "icon",
+    "category": "Gaming"
+  },
+  {
+    "name": "Animal",
+    "color": "black",
+    "icon": "icon",
+    "category": "Animal"
+  },
+  {
+    "name": "Travel",
+    "color": "black",
+    "icon": "icon",
+    "category": "Traveling"
+  },
+  {
+    "name": "makemesmile",
+    "color": "black",
+    "icon": "icon",
+    "category": "Feel good"
+  },
+  {
+    "name": "Depressed",
+    "color": "black",
+    "icon": "icon",
+    "category": "Sad"
+  },
+  {
+    "name": "mildlyinfuriating",
+    "color": "black",
+    "icon": "icon",
+    "category": "Frustration"
+  },
+  {
+    "name": "Aww",
+    "color": "black",
+    "icon": "icon",
+    "category": "Cuteness"
+  },
+  {
+    "name": "Sweden",
+    "color": "black",
+    "icon": "icon",
+    "category": "Countries"
+  },
+  {
+    "name": "facepalm",
+    "color": "black",
+    "icon": "icon",
+    "category": "Stupidity"
+  },
+  {
+    "name": "explainlikeimfive",
+    "color": "black",
+    "icon": "icon",
+    "category": "Explanation"
+  }
 ]
