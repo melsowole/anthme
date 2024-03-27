@@ -8,7 +8,7 @@ const mainContainer: string =
             </div>
             <form id="postForm">
                 <div class="category-container">
-                    <select>
+                    <select name="category">
                         <option value="" disabled selected>Choose a community</option>
                     </select>
                 </div>

@@ -15,6 +15,7 @@ export default async function displayPostPage(): Promise<void> {
     CreatePostPage.create(categories, 'Posting to anthme', textContentArray);
 
     const postForm = document.querySelector('#postForm') as HTMLFormElement;
+    const formData: FormData = new FormData(postForm);
 
     postForm.addEventListener('submit', event => {
         event.preventDefault();
@@ -24,12 +25,12 @@ export default async function displayPostPage(): Promise<void> {
         const newPost: Post = {} as Post;
 
         for(const [key, values] of formData) {
-            newPost[key] = values;
+            newPost[key] = values;  
         }
 
         try {
             api.submitPost(newPost, 'post', filterCookieValue('id', 'user'))
-            .then(createdPost => window.location.assign(`/posts/${createdPost.id}`))
+                .then(createdPost => window.location.assign(`/posts/${createdPost.id}`))
         }
         catch(error) {
             console.log(error);
