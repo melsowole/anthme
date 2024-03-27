@@ -1,10 +1,14 @@
 
-
+.userInfoContainer{
+    display: flex;
+   padding-top: 1rem;
+   padding-bottom: 1.5rem;
+}
 .userImg{
     width: 40px;
 }
 
-#usernameTitle{
+#categoryTitle{
     font-size: .75rem; 
     margin-left: 0.5rem;
     color: #576F76;
@@ -12,32 +16,28 @@
     
 }
 
-#usernameTitle::after {
+#categoryTitle::after {
     content: "•";
     margin-left: 0.5rem;
 }
 
 .userInfoItem{
-    padding-top: 2rem;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-    margin-bottom: 0.5rem;
-   
+    padding-top: 0;
 }
 
-.userInfoItem > p {
+ .username {
     font-size: .75rem; 
     margin-left: 0.5rem;
     color:#2A3C42;
     font-weight: 600;
-}
+} 
 
 .userImg {
     order: 1; 
 }
 .interactionContainer{
     display:flex;
-    margin-top: 1rem;
+    margin-top: 2rem;
     gap: 0.8rem;
 }
 .outerSpan{
