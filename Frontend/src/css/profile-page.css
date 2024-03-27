@@ -14,8 +14,8 @@
 
 .userInteractionsOverview{
     display: flex;
-    justify-content: space-between; 
-    width: 256px; 
+    justify-content: space-evenly; 
+    width: 200px; 
     margin-top: 2rem;
 }
 

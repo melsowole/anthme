@@ -1,10 +1,22 @@
 [
   {
-    "id": "ae98fe9d-fdfa-4755-9f03-30e1a8e49eef",
+    "id": "a4dc10e9-7e86-4afd-8c04-a8b3eb944577",
     "username": "chicken",
     "password": "egg",
-    "userImage": "donut",
-    "created": "2024-03-26T10:32:49.482Z",
+    "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1711476329608",
+    "created": "2024-03-26T18:06:19.253Z",
+    "posts": [
+      "edb57baa-4180-45ed-8ac8-bba1ba1e718a",
+      "b27c720c-1afb-44c0-819e-9dca26c595c2"
+    ],
+    "comments": []
+  },
+  {
+    "id": "8bc69779-4191-44b6-a3b3-9dce4f3a4428",
+    "username": "anotherone",
+    "password": "djkhaled",
+    "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711476774927",
+    "created": "2024-03-26T18:13:03.113Z",
     "posts": [],
     "comments": []
   },

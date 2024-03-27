@@ -1,6 +1,8 @@
 import { renderCreatePostPage } from "./components/CreatePostPage.js";
 import { submitPost } from "../api.js";
+import * as api from "../api.js";
 import { filterCookieValue } from "../utilities/cookieUtils.js";
+import { User, Post, Comments } from "../utilities/pathTypes.js";
 
 export default function displayCreatePostPage(): void {
   const textContentArray: string[] = [
@@ -20,14 +22,20 @@ export default function displayCreatePostPage(): void {
     ).innerText;
     const formData: FormData = new FormData(postForm);
     formData.append("body", postContent);
-    const newPost: Object = {};
+    const newPost: Post = {} as Post;
 
     for (const [key, values] of formData) {
       newPost[key] = values;
     }
 
     try {
-      submitPost(newPost, "post", filterCookieValue("id", "user"));
+      api
+        .submitPost(newPost, "post", filterCookieValue("id", "user"))
+        .then((createdPost) =>
+          window.location.assign(
+            `http://localhost:1234/posts/${createdPost.id}`
+          )
+        );
     } catch (error) {
       console.log(error);
     }

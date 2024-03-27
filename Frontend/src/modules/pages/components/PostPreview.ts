@@ -15,7 +15,8 @@ export default class postPreview {
     let previewTemplate = template.postPreview;
 
     previewTemplate = replace(previewTemplate, [
-      { pattern: "link", replacement: "/post-link" },
+      { pattern: "postId", replacement: post.id },
+      { pattern: "link", replacement: `/posts/${post.id}` },
       { pattern: "category", replacement: post.category }, //Update this
       { pattern: "age", replacement: "16h" }, //Update this
       { pattern: "title", replacement: post.title },

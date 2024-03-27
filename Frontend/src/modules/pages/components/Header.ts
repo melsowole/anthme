@@ -1,6 +1,10 @@
 import * as template from "./templates/main-header.js";
-import {replace, stringToDOM} from "../../utilities/templateUtils.ts";
-import { getCookie } from "../../utilities/cookieUtils.ts";
+import { replace, stringToDOM } from "../../utilities/templateUtils.ts";
+import {
+  filterCookieValue,
+  deleteCookie,
+} from "../../utilities/cookieUtils.ts";
+import * as api from "../../api.ts";
 
 export default class Header {
   static create() {
@@ -29,10 +33,44 @@ function toggleUserProfileMenu(): void {
 function userProfileMenu(): HTMLElement {
   let menuTemplate = template.profileMenu;
 
-  // TODO: GET COOKIE USERNAME AND REPLACE
   menuTemplate = replace(menuTemplate, [
-    { pattern: "username", replacement: "" },
+    { pattern: "username", replacement: filterCookieValue("username", "user") },
   ]);
 
-  return stringToDOM(menuTemplate);
+  const menuDOM = stringToDOM(menuTemplate);
+
+  menuDOM
+    .querySelector("button#log-out")
+    .addEventListener("click", promptLogOut);
+  menuDOM
+    .querySelector("button#delete-account")
+    .addEventListener("click", promptDeleteAccount);
+
+  return menuDOM;
+}
+
+function promptLogOut() {
+  const prompt = "Are you sure you want to sign out?";
+  if (window.confirm(prompt)) {
+    logOut();
+  }
+}
+
+function promptDeleteAccount() {
+  const prompt =
+    "Are you sure you want to delete you account?\nThis action cannot be undone.";
+  if (window.confirm(prompt)) {
+    deleteAccount();
+  }
+}
+
+function logOut() {
+  deleteCookie("user");
+  window.location.href = "/";
+}
+
+async function deleteAccount() {
+  console.log(filterCookieValue("id", "user"));
+  await api.deleteAccount(filterCookieValue("id", "user"));
+  logOut();
 }

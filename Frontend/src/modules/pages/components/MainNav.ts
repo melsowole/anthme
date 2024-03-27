@@ -13,7 +13,7 @@ export default class MainNav {
     {
       name: "Home",
       icon: "home",
-      link: "/",
+      link: "", //tog bort / eftersom den href:a två // styckna
     },
   ];
 

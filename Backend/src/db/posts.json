@@ -1,15 +1,28 @@
 [
   {
-    "id": "37887b4d-bc3b-43fe-83ca-aeceb63bee13",
-    "created": "2024-03-26T09:16:47.629Z",
-    "category": "First",
-    "title": "First",
-    "body": "First post",
+    "id": "edb57baa-4180-45ed-8ac8-bba1ba1e718a",
+    "created": "2024-03-26T18:21:19.729Z",
+    "category": "Chicken",
+    "title": "Egg",
+    "body": "Egg.",
     "comments": [],
     "user": {
-      "id": "9d6ececb-6f24-4fbc-8de9-1fffd239ce9e",
+      "id": "a4dc10e9-7e86-4afd-8c04-a8b3eb944577",
       "username": "chicken",
-      "userImage": "pizza"
+      "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1711476329608"
+    }
+  },
+  {
+    "id": "b27c720c-1afb-44c0-819e-9dca26c595c2",
+    "created": "2024-03-26T19:34:17.851Z",
+    "category": "abc",
+    "title": "abc",
+    "body": "abc",
+    "comments": [],
+    "user": {
+      "id": "a4dc10e9-7e86-4afd-8c04-a8b3eb944577",
+      "username": "chicken",
+      "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1711476329608"
     }
   }
 ]

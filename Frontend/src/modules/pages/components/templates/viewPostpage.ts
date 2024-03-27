@@ -17,10 +17,12 @@ const main = `
         </span>
 
         <span class="commentSpan">
-            <button class="buttonComments">
-                <i class="fa-regular fa-message fa-lg" ></i>
-            </button>
-            <span class="amountOfComments">71</span>
+            <a href="#comments">
+                <button class="buttonComments">
+                    <i class="fa-regular fa-message fa-lg" ></i>
+                </button>
+                <span class="amountOfComments"></span>
+            </a>
         </span>    
     </div>
 
@@ -28,7 +30,15 @@ const main = `
         <button class="addCommentBtn"><i class="fi fi-rr-plus"></i> Add a Comment</button>
     </div>
 
-    <div class="commentContainer">
+    <form class="commentForm">
+        <div class="textareaContainer hide">
+            <textarea name="body" class="commentInput" cols="50" rows="4" required></textarea>
+            <button class="cancelButton">Cancel</button>
+            <button id="addCommentBtn" class="submitButton">Comment</button>
+        </div>
+    </form>
+   
+    <div id= "comments" class="commentContainer">
 
         <div class="commentInfo"></div>
         
