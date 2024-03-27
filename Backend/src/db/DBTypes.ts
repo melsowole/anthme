@@ -35,6 +35,11 @@ export type Comment = {
   user: UserShort;
 };
 
-export type Category = string;
+export type Category = {
+  name: string;
+  color: string;
+  icon: string;
+  category: string;
+}
 
 export type DB<T extends User | Post | Comment | Category> = T[];

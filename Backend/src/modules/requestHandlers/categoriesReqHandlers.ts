@@ -17,3 +17,16 @@ export async function getAll(
 
   res.json(categories);
 }
+
+export async function getOneCategory(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  const categories: DB<Category> = await read.categories();
+  
+  const category = categories.find(c => c.name == req.params.categoryName)
+  
+  if(category) res.json(category);
+  else throw new CustomError(404, 'Category not found')
+}
