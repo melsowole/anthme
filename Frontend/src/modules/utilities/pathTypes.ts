@@ -12,14 +12,14 @@ type User = {
     title: string,
     body: string,
     comments: string[],
-    user?: {
+    user: {
         id: string,
         username: string,
         userImage: string
     }
 } 
 
-type Comments ={
+type Comments = {
     id: string,
     body: string,
     created: string,
@@ -31,4 +31,22 @@ type Comments ={
     }
 }
 
-export {User, Post, Comments}
+type Category = {
+    name: string,
+    color: string,
+    icon: string,
+    category: string
+}
+
+type MainCategory = {
+    label: string;
+    id: string;
+    items: SubCategory[];
+  }
+  
+  type SubCategory = {
+    name: string;
+    url: string;
+  }
+
+export {User, Post, Comments, Category, MainCategory}

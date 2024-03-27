@@ -1,14 +1,6 @@
 import * as template from "./templates/post-preview.ts"
 import {replace, stringToDOM} from "../../utilities/templateUtils.ts";
-
-type Post = {
-  id: string;
-  category: string;
-  title: string;
-  body: string;
-  userImg: string;
-  comments: string[];
-};
+import { Post } from "../../utilities/pathTypes.ts";
 
 export default class postPreview {
   static create(post: Post): HTMLElement {

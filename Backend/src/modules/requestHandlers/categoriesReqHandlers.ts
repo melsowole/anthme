@@ -30,3 +30,16 @@ export async function getOneCategory(
   if(category) res.json(category);
   else throw new CustomError(404, 'Category not found')
 }
+
+export async function filterCategory(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  const categories: DB<Category> = await read.categories();
+  
+  const filteredCategories = categories.filter(c => c.category == req.params.categoryName)
+  
+  if(filteredCategories) res.json(filteredCategories);
+  else throw new CustomError(404, 'Category not found')
+}
