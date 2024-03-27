@@ -1,5 +1,5 @@
-import {noticeboardString, listItemString} from "./templates/post-noticeboard.ts"
-import {replace, stringToDOM, ReplacePair} from "../../utilities/templateUtils.ts";
+import {noticeboardString, listItemString} from "./templates/post-noticeboard.js"
+import {replace, stringToDOM, ReplacePair} from "../../utilities/templateUtils.js";
 
 export default class PostNoticeboard {
 

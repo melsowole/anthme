@@ -5,8 +5,9 @@ import MainNav from "./components/MainNav.js";
 import {getAllUsers, getPost, getComments, submitPost} from "../api.js"
 import {displayUserProfile} from "./displayProfilePage.js"
 import dayjs from "dayjs";
+import { filterCookieValue } from "../utilities/cookieUtils.js";
 import * as userImg from "../utilities/userImgUtils.js"
-import { generateDropdowns } from "../utilities/dropdownUtils.ts";
+import { generateDropdowns } from "../utilities/dropdownUtils.js";
 
 
 async function displayViewPostPage(): Promise<void>{
@@ -25,14 +26,16 @@ async function displayViewPostPage(): Promise<void>{
     // Get URL:s post id
     const urlParts:string[] = window.location.pathname.split('/');
     const urlPathEndpoint:string = urlParts[urlParts.length - 1];
+        console.log(filterCookieValue('id', 'user'))
    
     getPost(urlPathEndpoint)
     .then(post => {  
-        console.log(post.user.id)
-        const postCommentsIds = post.comments;
+       
         const titleDiv = document.querySelector('.titleDiv') as HTMLDivElement;
         const userInfoItem = document.querySelector('.userInfoItem') as HTMLDivElement;
         const commentDiv = document.querySelector('.commentInfo') as HTMLDivElement;
+
+        const postCommentsIds = post.comments;
         const categoryEl = document.createElement('p')
         categoryEl.innerText = `u/${post.category}`;
         const titleEl = document.createElement('h2');
@@ -57,11 +60,11 @@ async function displayViewPostPage(): Promise<void>{
                     timeStampEl.classList.add('timeStampEl')
                     timeStampEl.innerText = dayjs(comment.user.created).format('DD MMMM YYYY');
 
-                    const imgDiv = document.createElement('div') as HTMLDivElement
+                    const imgDiv = document.createElement('div');
                     imgDiv.classList.add('imgDiv');
                     const commentBody = document.createElement('div');
                     commentBody.classList.add('commentBody')
-                    const usernameEl = document.createElement('h2') as HTMLHeadingElement;
+                    const usernameEl = document.createElement('h2')
                     usernameEl.innerText= comment.user.username;
                     const contentEl = document.createElement('p');
                     contentEl.innerText = comment.body;
@@ -92,27 +95,30 @@ async function displayViewPostPage(): Promise<void>{
                 event.preventDefault()
                 const commentInput = document.querySelector('.commentInput') as HTMLTextAreaElement;
                 const commentValue = commentInput.value;
-                console.log(commentValue)
+              
                 const newComment ={
                     body: commentValue
                 }
+
                 if (event.submitter && event.submitter.id === 'addCommentBtn') {
-                    submitPost(newComment, 'comment', post.user.id, post.id );
+                    const loggedInUserId = filterCookieValue('id', 'user')
+                    submitPost(newComment, 'comment', loggedInUserId, post.id );
+                  
                 }
             
                 commentForm.reset();
             });
 
-            getAllUsers()
+        getAllUsers()
         .then(users => {
             const userInfoContainer = viewPostpage.querySelector('.userInfoItem') as HTMLDivElement;
             
             const userId = post.user.id; 
-            console.log(userId)
+            
 
             const user = users.find(user => user.id === userId);
             if (user) {
-                console.log(user.posts);
+                
                 displayUserProfile(user, userInfoContainer);
                 
                 const imgEl = viewPostpage.querySelector('img') as HTMLImageElement;
@@ -138,6 +144,8 @@ async function displayViewPostPage(): Promise<void>{
     addCommentBtn.addEventListener('click', ()=>{
         
         textareaContainer.classList.remove('hide');
+       
+        
     });
 
     const commentForm = document.querySelector('.commentForm') as HTMLFormElement;

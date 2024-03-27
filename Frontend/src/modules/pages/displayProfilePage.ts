@@ -8,11 +8,12 @@ import { User } from "../utilities/pathTypes.js";
 import dayjs from "dayjs";
 import {getPostByUser, getCommentsByUser} from "../api.js"
 import {displayUserImage} from "./displayPostPage"
-import { generateDropdowns } from "../utilities/dropdownUtils.ts";
+import {Post, Comments} from "../utilities/pathTypes.js"
+import { generateDropdowns } from "../utilities/dropdownUtils.js";
 
-async function displayProfile(): Promise<void> {
+
+async function displayProfile():Promise<void> {
     const mainNavDropdowns = await generateDropdowns();
-
     const profilepage: HTMLElement = stringToDOM(main);
     const header = Header.create();
     const mainNav = MainNav.create(mainNavDropdowns);
@@ -31,11 +32,21 @@ async function displayProfile(): Promise<void> {
 
     const postLink = document.querySelector('.postLink') as HTMLAnchorElement;
     const commentsLink = document.querySelector('.commentsLink') as HTMLAnchorElement;
-    const commentDiv = document.querySelector('.commentContainer') as HTMLDivElement;
-
-    api.getUserByUsername(urlPathEndpoint)
-        .then(user => {
+    const container = document.querySelector('.commentContainer') as HTMLDivElement;
+    container.innerHTML = "";
+    
+    console.log(urlPathEndpoint)
+    await api.getUserByUsername(urlPathEndpoint)
+        .then(async (user) => {
             console.log(user)
+            postLink.classList.add('addGreyBGColor')
+
+           await getPostByUser(user.id)
+                .then(posts =>{
+                    container.innerHTML = "";
+                    displayContent(container, posts, userImg);    
+            }) 
+            
             if (user) {
                 displayUserProfile(user, userInfoContainer);
             }
@@ -45,53 +56,22 @@ async function displayProfile(): Promise<void> {
 
             postLink.addEventListener('click', ()=>{
                 console.log('postLink')
+                container.innerHTML = "";
                 getPostByUser(user.id)
-                .then(posts =>{
-                    console.log(posts)
-                })
-                commentDiv.innerHTML = "";
-                
+                    .then(posts =>{
+                        container.innerHTML = "";
+                        displayContent(container, posts, userImg);   
+                        console.log(user.id)
+                })   
             })
             commentsLink.addEventListener('click', ()=>{
                 console.log('commentsLink')
+                container.innerHTML = "";
                 getCommentsByUser(user.id)
                 .then(comments=>{
+                    container.innerHTML = "";
                     console.log(comments)
-                    
-                    commentDiv.innerHTML = "";
-        
-                    comments.forEach(comment => {
-                        
-                        const commentItem = document.createElement('div');
-                        commentItem.classList.add('commentItem');
-                        const timeStampEl = document.createElement('small');
-                        timeStampEl.classList.add('timeStampEl');
-                        timeStampEl.innerText = dayjs(comment.created).format('DD MMMM YYYY');
-                        const imgDiv = document.createElement('div')
-                        imgDiv.classList.add('imgDiv');
-                        const commentBody = document.createElement('div');
-                        commentBody.classList.add('commentBody')
-                        const usernameEl = document.createElement('h2');
-                        usernameEl.innerText= comment.user.username;
-                        const contentEl = document.createElement('p');
-                        contentEl.innerText = comment.body;
-        
-                        if (comment.user.userImage === 'pizza') {
-                            displayUserImage(imgDiv, userImg.pizza);
-                        } else if (comment.user.userImage === 'donut') {
-                            displayUserImage(imgDiv, userImg.donut);
-                        } else {
-                            displayUserImage(imgDiv, userImg.banana);
-                        }
-        
-                        commentBody.append(usernameEl, contentEl);
-                        imgDiv.append(timeStampEl, usernameEl);
-        
-                        
-                        commentItem.append(imgDiv, commentBody);
-                        commentDiv.append(commentItem); 
-                        
-                    });
+                    displayContent(container, comments, userImg)
                     
                 })
             })
@@ -113,6 +93,7 @@ async function displayProfile(): Promise<void> {
 }
 
 function displayUserProfile(user: User, container: HTMLDivElement): void {
+    container.innerHTML = "";
     const userNameEl = document.createElement('h2');
     userNameEl.innerText = user.username;
     container.append(userNameEl);
@@ -122,6 +103,45 @@ function displayUserProfile(user: User, container: HTMLDivElement): void {
     const userImage = new Image();
     userImage.src = userImageUrl;
     container.appendChild(userImage);
+}
+
+function displayContent(container: HTMLElement, items: (Post | Comments)[], userImg: Record<string, string>) {
+    container.innerHTML = "";
+
+    items.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.classList.add('commentItem');
+
+        const timeStampEl = document.createElement('small');
+        timeStampEl.classList.add('timeStampEl');
+        timeStampEl.innerText = dayjs(item.created).format('DD MMMM YYYY');
+
+        const imgDiv = document.createElement('div');
+        imgDiv.classList.add('imgDiv');
+
+        const itemBody = document.createElement('div');
+        itemBody.classList.add('commentBody');
+
+        const usernameEl = document.createElement('h2');
+        usernameEl.innerText = item.user.username;
+
+        const contentEl = document.createElement('p');
+        contentEl.innerText = item.body;
+
+        if (item.user.userImage === 'pizza') {
+            displayUserImage(imgDiv, userImg.pizza);
+        } else if (item.user.userImage === 'donut') {
+            displayUserImage(imgDiv, userImg.donut);
+        } else {
+            displayUserImage(imgDiv, userImg.banana);
+        }
+
+        itemBody.appendChild(contentEl);
+        imgDiv.append(timeStampEl, usernameEl);
+        itemElement.append(imgDiv, itemBody);
+
+        container.append(itemElement);
+    });
 }
 
 
