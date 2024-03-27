@@ -1,15 +1,9 @@
-import * as template from "./templates/user-list.ts";
-import {replace, stringToDOM} from "../../utilities/templateUtils.ts";
+import * as template from "./templates/user-list.js";
+import {replace, stringToDOM} from "../../utilities/templateUtils.js";
 import dayjs from "dayjs";
+import { User } from "../../utilities/pathTypes";
 
-type User = {
-    id: string;
-    username: string;
-    userImage: string;
-    created: number;
-    posts: string[];
-    comments: string[];
-}
+
 
 export default class UserList {
     static create(user: User): HTMLLIElement {
