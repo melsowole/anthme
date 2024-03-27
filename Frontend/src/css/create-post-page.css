@@ -36,7 +36,7 @@
     color: #1c1c1c;
 }
 
-.category-input {
+.category-container {
     margin-bottom: 0.5rem;
 }
 
@@ -51,12 +51,17 @@
     outline: 1px solid black;
 }
 
-.category-input > input {
+.category-container > select {
     min-width: 300px;
     box-shadow: 0 0 0 0 #FFFFFF;
     width: 100%;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    height: 40px;
+    cursor: pointer;
+    padding-left: 0.5rem;
 }
-
 
 .post-content-form {
     background-color: #FFFFFF;
@@ -131,7 +136,7 @@
         padding: 20px 24px;
     }
 
-    .category-input > input {
+    .category-container > select {
         width: inherit;
     }
 }

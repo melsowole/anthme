@@ -6,12 +6,15 @@ import {getAllUsers, getPost, getComments, submitPost} from "../api.js"
 import {displayUserProfile} from "./displayProfilePage.js"
 import dayjs from "dayjs";
 import * as userImg from "../utilities/userImgUtils.js"
+import { generateDropdowns } from "../utilities/dropdownUtils.ts";
 
 
-function displayViewPostPage():void{
+async function displayViewPostPage(): Promise<void>{
+    const mainNavDropdowns = await generateDropdowns();
+
     const viewPostpage: HTMLElement = stringToDOM(main);
     const header = Header.create();
-    const mainNav = MainNav.create();
+    const mainNav = MainNav.create(mainNavDropdowns);
 
     document.body.append(
         viewPostpage,

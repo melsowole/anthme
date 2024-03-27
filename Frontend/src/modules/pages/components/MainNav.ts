@@ -1,6 +1,7 @@
 import * as template from "./templates/main-nav.js";
 import {replace, stringToDOM} from "../../utilities/templateUtils.ts";
 import Dropdown from "./DropdownElement.js";
+import { MainCategory } from "../../utilities/pathTypes.ts";
 
 type FeedItem = {
   link: string;
@@ -17,28 +18,7 @@ export default class MainNav {
     },
   ];
 
-  private static dropdowns = [
-    {
-      label: "Communities",
-      id: "dropdown-community",
-      items: [
-        {
-          name: "Food",
-          url: "/food",
-        },
-        {
-          name: "Music",
-          url: "/music",
-        },
-        {
-          name: "Guitar",
-          url: "/guitar",
-        },
-      ],
-    },
-  ];
-
-  static create(): HTMLElement {
+  static create(dropdowns: MainCategory[]): HTMLElement {
     const navTemplate = template.nav;
 
     const nav = stringToDOM(navTemplate);
@@ -50,7 +30,7 @@ export default class MainNav {
       feedsContainer.append(this.createFeedLiItem(feed))
     );
 
-    this.dropdowns.forEach((dropdown) => {
+    dropdowns.forEach((dropdown) => {
       dropdownContainer.append(
         document.createElement("hr"),
         Dropdown.create(dropdown.label, dropdown.id, dropdown.items)

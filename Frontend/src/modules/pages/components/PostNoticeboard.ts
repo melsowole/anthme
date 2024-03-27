@@ -3,7 +3,7 @@ import {replace, stringToDOM, ReplacePair} from "../../utilities/templateUtils.t
 
 export default class PostNoticeboard {
 
-    static createDOM(headerContent:string, textContentArray:string[]):HTMLDivElement {
+    static create(headerContent:string, textContentArray:string[]):HTMLDivElement {
         const listArray:string[] = [...Array(textContentArray.length).fill(listItemString)]
         const headerString = replace(noticeboardString, [{pattern: 'header', replacement: headerContent}])
         const noticeboardEl = stringToDOM(headerString) as HTMLDivElement

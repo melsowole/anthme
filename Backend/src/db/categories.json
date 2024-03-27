@@ -18,6 +18,12 @@
     "category": "Programming"
   },
   {
+    "name": "Backend",
+    "color": "black",
+    "icon": "icon",
+    "category": "Programming"
+  },
+  {
     "name": "Art",
     "color": "black",
     "icon": "icon",
@@ -45,7 +51,13 @@
     "name": "makemesmile",
     "color": "black",
     "icon": "icon",
-    "category": "Feel good"
+    "category": "joyful"
+  },
+  {
+    "name": "heartwarming",
+    "color": "black",
+    "icon": "icon",
+    "category": "joyful"
   },
   {
     "name": "Depressed",
@@ -55,6 +67,12 @@
   },
   {
     "name": "mildlyinfuriating",
+    "color": "black",
+    "icon": "icon",
+    "category": "Frustration"
+  },
+  {
+    "name": "karen",
     "color": "black",
     "icon": "icon",
     "category": "Frustration"
