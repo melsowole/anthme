@@ -1,4 +1,4 @@
-const createPostContainer: string = 
+const mainContainer: string = 
 `
 <main id="mainContainer">
     <div class="background-container">
@@ -7,8 +7,10 @@ const createPostContainer: string =
                 <h2>Create a post</h2>
             </div>
             <form id="postForm">
-                <div class="category-input">
-                    <input type="text" id="" class="input" name="category" placeholder="Category">
+                <div class="category-container">
+                    <select>
+                        <option value="" disabled selected>Choose a community</option>
+                    </select>
                 </div>
                 <div class="post-content-form">
                     <input type="text" id="" class="input" name="title" placeholder="Title" required>
@@ -29,4 +31,6 @@ const createPostContainer: string =
 </main>
 `;
 
-export default createPostContainer
+// <input type="text" id="" class="input" name="category" placeholder="Category">
+
+export {mainContainer}

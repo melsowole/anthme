@@ -12,7 +12,6 @@ export async function getAll(
   res: Response,
   next: NextFunction
 ): Promise<void> {
-  console.log("hello");
   const categories: DB<Category> = await read.categories();
 
   res.json(categories);

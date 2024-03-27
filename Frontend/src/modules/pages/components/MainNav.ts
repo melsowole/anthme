@@ -1,6 +1,7 @@
 import * as template from "./templates/main-nav.js";
 import {replace, stringToDOM} from "../../utilities/templateUtils.ts";
 import Dropdown from "./DropdownElement.js";
+import { MainCategory } from "../../utilities/pathTypes.ts";
 
 type FeedItem = {
   link: string;
@@ -17,9 +18,7 @@ export default class MainNav {
     },
   ];
 
-  
-
-  static create(dropdowns): HTMLElement {
+  static create(dropdowns: MainCategory[]): HTMLElement {
     const navTemplate = template.nav;
 
     const nav = stringToDOM(navTemplate);

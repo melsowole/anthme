@@ -8,11 +8,14 @@ import { User } from "../utilities/pathTypes.js";
 import dayjs from "dayjs";
 import {getPostByUser, getCommentsByUser} from "../api.js"
 import {displayUserImage} from "./displayPostPage"
+import { generateDropdowns } from "../utilities/dropdownUtils.ts";
 
-function displayProfile() {
+async function displayProfile(): Promise<void> {
+    const mainNavDropdowns = await generateDropdowns();
+
     const profilepage: HTMLElement = stringToDOM(main);
     const header = Header.create();
-    const mainNav = MainNav.create();
+    const mainNav = MainNav.create(mainNavDropdowns);
   
     document.body.append(
         profilepage,
