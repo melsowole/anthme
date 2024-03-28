@@ -105,86 +105,75 @@ async function displayViewPostPage(): Promise<void> {
     });
 }
 
-function displayUserProfile(
-  container: HTMLElement,
-  item: Post,
-  userImg: Record<string, string>
-): void {
-  const userInfoContainer = document.querySelector(
-    ".userInfoContainer"
-  ) as HTMLDivElement;
-  const contentDiv = document.querySelector(".contentDiv") as HTMLDivElement;
-  const userInfoItem = document.querySelector(
-    ".userInfoItem"
-  ) as HTMLDivElement;
-  const userImgContainer = document.querySelector(
-    ".userImgContainer"
-  ) as HTMLImageElement;
+function displayUserProfile(container: HTMLElement, item: (Post), userImg: Record<string, string>):void {
+    
+    const userInfoContainer = document.querySelector('.userInfoContainer') as HTMLDivElement;
+    const contentDiv = document.querySelector('.contentDiv') as HTMLDivElement;
+    const userInfoItem = document.querySelector('.userInfoItem') as HTMLDivElement;
+    const userImgContainer = document.querySelector('.userImgContainer') as HTMLImageElement;
 
-  if (item.user.userImage === "pizza") {
-    displayUserImage(userImgContainer, userImg.pizza);
-  } else if (item.user.userImage === "donut") {
-    displayUserImage(userImgContainer, userImg.donut);
-  } else {
-    displayUserImage(userImgContainer, userImg.banana);
-  }
+    if (item.user.userImage === 'pizza') {
+        displayUserImage(userImgContainer, userImg.pizza);
+    } else if (item.user.userImage === 'donut') {
+        displayUserImage(userImgContainer, userImg.donut);
+    } else {
+        displayUserImage(userImgContainer, userImg.banana);
+    }
+    
+    const categoryEl = document.createElement('p');
+    categoryEl.innerText = item.category;
+    categoryEl.id = 'categoryTitle'
+    const usernameEl = document.createElement('p')
+    usernameEl.innerText = `u/${item.user.username}`;
+    usernameEl.classList.add('username')
+    const titleEl = document.createElement('h2');
+    titleEl.innerText = item.title;
+    const contentEl = document.createElement('p');
+    contentEl.innerHTML=item.body;
+    
 
-  const categoryEl = document.createElement("p");
-  categoryEl.innerText = item.category;
-  categoryEl.id = "categoryTitle";
-  const usernameEl = document.createElement("p");
-  usernameEl.innerText = `u/${item.user.username}`;
-  usernameEl.classList.add("username");
-  const titleEl = document.createElement("h2");
-  titleEl.innerText = item.title;
-  const contentEl = document.createElement("p");
-  contentEl.innerText = item.body;
+    contentDiv.append(titleEl, contentEl)
+    userInfoItem.append(usernameEl, categoryEl)
+    userInfoContainer.append(userInfoItem)
 
-  contentDiv.append(titleEl, contentEl);
-  userInfoItem.append(usernameEl, categoryEl);
-  userInfoContainer.append(userInfoItem);
-
-  container.append(userInfoItem);
+    container.append(userInfoItem);
+   
 }
 
-function displayCommentsOnPost(
-  container: HTMLElement,
-  item: Comments,
-  specificComments: Comments[],
-  userImg: Record<string, string>
-): void {
-  const ammountOfComments = document.querySelector(
-    ".amountOfComments"
-  ) as HTMLSpanElement;
-  ammountOfComments.innerText = specificComments.length.toString();
+function displayCommentsOnPost(container: HTMLElement, item: Comments, specificComments: Comments[], userImg: Record<string, string>):void {
+    
+     const ammountOfComments = document.querySelector('.amountOfComments') as HTMLSpanElement;
+    ammountOfComments.innerText = specificComments.length.toString(); 
+                    
+    const commentItem= document.createElement('div');
+    commentItem.classList.add('commentItem')
+    const timeStampEl = document.createElement('small');
+    timeStampEl.classList.add('timeStampEl')
+    timeStampEl.innerText = dayjs(item.user.created).format('DD MMMM YYYY');
 
-  const commentItem = document.createElement("div");
-  commentItem.classList.add("commentItem");
-  const timeStampEl = document.createElement("small");
-  timeStampEl.classList.add("timeStampEl");
-  timeStampEl.innerText = dayjs(item.user.created).format("DD MMMM YYYY");
+    const imgDiv = document.createElement('div');
+    imgDiv.classList.add('imgDiv');
+    const commentBody = document.createElement('div');
+    commentBody.classList.add('commentBody')
+    const usernameEl = document.createElement('h2')
+    usernameEl.innerText= item.user.username;
+    const contentEl = document.createElement('p');
+    contentEl.innerHTML = item.body;
 
-  const imgDiv = document.createElement("div");
-  imgDiv.classList.add("imgDiv");
-  const commentBody = document.createElement("div");
-  commentBody.classList.add("commentBody");
-  const usernameEl = document.createElement("h2");
-  usernameEl.innerText = item.user.username;
-  const contentEl = document.createElement("p");
-  contentEl.innerText = item.body;
+    if (item.user.userImage === 'pizza') {
+        displayUserImage(imgDiv, userImg.pizza);
+    } 
+    else if (item.user.userImage === 'donut') {
+        displayUserImage(imgDiv, userImg.donut);
+    } 
+    else  displayUserImage(imgDiv, userImg.banana);
+           
+    commentBody.append(usernameEl, contentEl);
+    imgDiv.append(timeStampEl, usernameEl);
 
-  if (item.user.userImage === "pizza") {
-    displayUserImage(imgDiv, userImg.pizza);
-  } else if (item.user.userImage === "donut") {
-    displayUserImage(imgDiv, userImg.donut);
-  } else displayUserImage(imgDiv, userImg.banana);
+    commentItem.append(imgDiv, commentBody);
 
-  commentBody.append(usernameEl, contentEl);
-  imgDiv.append(timeStampEl, usernameEl);
-
-  commentItem.append(imgDiv, commentBody);
-
-  container.append(commentItem);
+    container.append(commentItem);
 }
 
 function displayUserImage(container: HTMLDivElement, imgPath: string): void {

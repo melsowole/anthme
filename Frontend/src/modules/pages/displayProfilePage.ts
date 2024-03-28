@@ -164,7 +164,7 @@ function displayContent(container: HTMLElement, items: (Post | Comments)[], user
         usernameEl.innerText = item.user.username;
 
         const contentEl = document.createElement('p');
-        contentEl.innerText = item.body;
+        contentEl.innerHTML = item.body;
 
         if (item.user.userImage === 'pizza') {
             displayUserImage(imgDiv, userImg.pizza);
