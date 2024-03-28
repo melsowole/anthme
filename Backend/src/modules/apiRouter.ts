@@ -60,6 +60,8 @@ apiRouter
 // Categories
 
 apiRouter.route("/categories").get(categories.getAll);
+apiRouter.route("/categories/:categoryName").get(categories.getOneCategory);
+apiRouter.route("/categories/category/:categoryName").get(categories.filterCategory);
 
 // Cookie and login routes
 apiRouter.route("/read-cookie").get(readCookie);

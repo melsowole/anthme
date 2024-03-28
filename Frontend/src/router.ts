@@ -1,11 +1,11 @@
 import Navigo from "navigo";
-import displayPostPage from "./modules/pages/displayCreatePostPage.ts";
-import { displayLandingPage } from "./modules/pages/displayLandingPage.ts";
-import displayHomePage from "./modules/pages/displayHomePage.ts";
-import { displayUsersPage } from "./modules/pages/components/UsersPage.ts";
-import { readCookie } from "./modules/api.ts";
-import { displayProfile } from "./modules/pages/displayProfilePage.ts";
-import { displayViewPostPage } from "./modules/pages/displayPostPage.ts";
+import displayPostPage from "./modules/pages/displayCreatePostPage.js";
+import { displayLandingPage } from "./modules/pages/displayLandingPage.js";
+import displayHomePage from "./modules/pages/displayHomePage.js";
+import { displayUsersPage } from "./modules/pages/displayUsersPage.js";
+import { readCookie } from "./modules/api.js";
+import { displayProfile } from "./modules/pages/displayProfilePage.js";
+import { displayViewPostPage } from "./modules/pages/displayPostPage.js";
 
 const router = new Navigo("/");
 
@@ -18,11 +18,7 @@ function setupRouter(): Promise<void> {
         if (!response) {
           router.on("*", displayLandingPage);
         } else {
-          router.on("/", () => {
-            fetch("http://localhost:3000/posts/")
-              .then((res) => res.json())
-              .then(displayHomePage);
-          });
+          router.on("/", displayHomePage);
           router.on("/create-post", displayPostPage);
           router.on("/users", () => {
             fetch("http://localhost:3000/users/")

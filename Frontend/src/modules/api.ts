@@ -1,7 +1,25 @@
-import { User, Post, Comments } from "./utilities/pathTypes";
+import { User, Post, Comments, Category } from "./utilities/pathTypes";
 
 const baseUrl: string = 'http://localhost:3000/';
 const header = {"Content-type": "application/json; charset=UTF-8"};
+
+async function getCategories(): Promise<Category[]> {
+    const url = `${baseUrl}categories`;
+
+    const res = await fetch(url);
+    const categories = await res.json();
+    console.log(categories);
+    
+    return categories;
+}
+
+async function getFilteredCategories(categoryName: string): Promise<Category[]> {
+  const url = `${baseUrl}categories/category/${categoryName}`;
+
+  const res = await fetch(url);
+  const filteredCategories = await res.json();
+  return filteredCategories;
+}
 
 async function getAllUsers():Promise<User[]>{
     const url = baseUrl + 'users/';
@@ -13,10 +31,19 @@ async function getAllUsers():Promise<User[]>{
 
 async function getUserByUsername(username: string): Promise<User> {
     const url = `${baseUrl}users/username/${username}`;
-
+  console.log(url)
     const res = await fetch(url);
     const user = await res.json();
+    console.log(user)
     return user;
+}
+
+async function getPosts(): Promise<Post[]> {
+  const url = `${baseUrl}posts`;
+
+  const res = await fetch(url);
+  const posts = await res.json();
+  return posts;
 }
 
 async function getPost(id: string): Promise<Post> {
@@ -27,7 +54,7 @@ async function getPost(id: string): Promise<Post> {
   return post;
 }
 
-async function getPostByUser(userId:string): Promise<Post>{
+async function getPostByUser(userId:string): Promise<Post[]>{
   const url = `${baseUrl}users/${userId}/posts`
 
   const res = await fetch(url);
@@ -133,5 +160,8 @@ export {
   deleteAccount,
   getUserByUsername,
   getPostByUser,
-  getCommentsByUser
+  getCommentsByUser,
+  getCategories,
+  getPosts,
+  getFilteredCategories
 };

@@ -94,14 +94,16 @@ async function handleCreateAccount(event: Event): Promise<void> {
         password: password,
         userImage: selectedValue
     };
+    
+    
 
     try {
-        const addedUser = await api.submitPost(newUser, 'user')
+        const addedUser = await api.submitPost(newUser, 'user')        
         
         if(!('statusCode' in addedUser && addedUser.statusCode == 409)) {
             await api.sendLogInRequest(username, password);
             window.location.replace("/");
-        }
+        } 
         
     } catch (error) {
         console.error("Error adding user:", error);

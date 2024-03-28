@@ -1,30 +1,28 @@
 [
   {
-    "id": "edb57baa-4180-45ed-8ac8-bba1ba1e718a",
-    "created": "2024-03-26T18:21:19.729Z",
-    "category": "Chicken",
-    "title": "Egg",
-    "body": "Egg.",
-    "comments": [
-      "8e64e301-df09-4fbf-9a15-4adbed2a09ae"
-    ],
+    "id": "6a6e0aeb-9dd8-4b7f-bc73-225743983e3d",
+    "created": "2024-03-27T18:52:34.741Z",
+    "category": "hejsan",
+    "title": "hhggh",
+    "body": "gjgn",
+    "comments": ["201b4af3-a4ce-47e5-aec2-feb8322f7560"],
     "user": {
-      "id": "a4dc10e9-7e86-4afd-8c04-a8b3eb944577",
-      "username": "chicken",
-      "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1711476329608"
+      "id": "6bc7985f-3ab4-4aeb-a41b-1c4cac410ae7",
+      "username": "hejsan",
+      "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711565536744"
     }
   },
   {
-    "id": "b27c720c-1afb-44c0-819e-9dca26c595c2",
-    "created": "2024-03-26T19:34:17.851Z",
-    "category": "abc",
-    "title": "abc",
-    "body": "abc",
-    "comments": [],
+    "id": "5739dc72-fd85-4cf0-9185-f8d0ff276593",
+    "created": "2024-03-27T18:53:04.823Z",
+    "category": "tomato",
+    "title": "hej",
+    "body": "vjvk",
+    "comments": ["5b97783c-6e5b-4391-8f12-5498929b365b"],
     "user": {
-      "id": "a4dc10e9-7e86-4afd-8c04-a8b3eb944577",
-      "username": "chicken",
-      "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1711476329608"
+      "id": "e517952d-5c7f-43bf-b43a-504afd8ee239",
+      "username": "tomato",
+      "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711565563660"
     }
   }
 ]

@@ -45,8 +45,8 @@ export async function getUserByUsername(
     const users: DB<User> = await read.users();
 
     // getItemById throws error if Id not found
-    const user = users.find((u) => (u.username = req.params.username));
-
+    const user = users.find((u) => (u.username == req.params.username));
+   
     if (!user) throw new CustomError(404, "User not found");
 
     res.json(sanitizeResponse(user));

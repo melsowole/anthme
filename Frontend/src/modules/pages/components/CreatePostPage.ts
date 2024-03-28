@@ -1,18 +1,23 @@
 import Header from "./Header.ts";
 import PostForm from "./PostForm.ts";
-import PostNoticeboard from "./Noticeboard.ts";
+import PostNoticeboard from "./PostNoticeboard.ts";
+import { Category } from "../../utilities/pathTypes.ts";
 
-function renderCreatePostPage(
-  noticeboardTitle: string,
-  noticeboardText: string[]
-): void {
-  const postContainerEl = PostForm.createDOM();
-  const NoticeboardEl = PostNoticeboard.createDOM(
-    noticeboardTitle,
-    noticeboardText
-  );
+class CreatePostPage {
+  static create(
+    categories: Category[],
+    noticeboardTitle: string,
+    noticeboardText: string[]
+  ): void {
+    const postContainerEl = PostForm.create(categories);
+    const NoticeboardEl = PostNoticeboard.create(
+      noticeboardTitle,
+      noticeboardText
+    );
+    postContainerEl.append(NoticeboardEl);
 
-  document.body.append(Header.create(), postContainerEl, NoticeboardEl);
+    document.body.append(Header.create(), postContainerEl);
+  }
 }
 
-export { renderCreatePostPage };
+export { CreatePostPage };

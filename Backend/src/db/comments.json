@@ -1,12 +1,22 @@
 [
   {
-    "id": "8e64e301-df09-4fbf-9a15-4adbed2a09ae",
-    "body": "This is a comment",
-    "created": "2024-03-27T09:03:52.662Z",
+    "id": "201b4af3-a4ce-47e5-aec2-feb8322f7560",
+    "body": "tomato was here",
+    "created": "2024-03-27T18:53:19.084Z",
     "user": {
-      "id": "a4dc10e9-7e86-4afd-8c04-a8b3eb944577",
-      "username": "chicken",
-      "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1711476329608"
+      "id": "e517952d-5c7f-43bf-b43a-504afd8ee239",
+      "username": "tomato",
+      "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711565563660"
+    }
+  },
+  {
+    "id": "5b97783c-6e5b-4391-8f12-5498929b365b",
+    "body": "hejsan was here",
+    "created": "2024-03-27T18:53:51.562Z",
+    "user": {
+      "id": "6bc7985f-3ab4-4aeb-a41b-1c4cac410ae7",
+      "username": "hejsan",
+      "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711565536744"
     }
   }
 ]

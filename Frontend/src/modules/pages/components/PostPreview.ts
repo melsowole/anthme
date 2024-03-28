@@ -2,6 +2,7 @@ import * as template from "./templates/post-preview.ts";
 import { replace, stringToDOM } from "../../utilities/templateUtils.ts";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { Post } from "../../utilities/pathTypes.ts";
 
 dayjs.extend(relativeTime);
 

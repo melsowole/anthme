@@ -1,17 +1,19 @@
 type User = {
-  id?: string;
+  id: string;
   username: string;
   password: string;
   userImage: string;
   posts?: string[];
+  comments?: string[];
+  created?: number;
 };
 
 type Post = {
   id: string;
-  created: string;
   category: string;
   title: string;
   body: string;
+  created?: string;
   comments: string[];
   user: {
     id: string;
@@ -32,4 +34,22 @@ type Comments = {
   };
 };
 
-export { User, Post, Comments };
+type Category = {
+  name: string;
+  color: string;
+  icon: string;
+  category: string;
+};
+
+type MainCategory = {
+  label: string;
+  id: string;
+  items: SubCategory[];
+};
+
+type SubCategory = {
+  name: string;
+  url: string;
+};
+
+export { User, Post, Comments, Category, MainCategory };
