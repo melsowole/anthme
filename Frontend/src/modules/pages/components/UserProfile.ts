@@ -2,7 +2,6 @@ import * as template from "./templates/user-profile.ts";
 import { replace, stringToDOM } from "../../utilities/templateUtils.ts";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import * as userImg from "../../utilities/userImgUtils.js";
 
 dayjs.extend(relativeTime);
 

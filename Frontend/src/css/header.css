@@ -27,10 +27,10 @@
 }
 
 .profile-menu {
-  position: absolute;
+  position: fixed;
   right: 1rem;
   top: var(--header-height);
-  padding: 1rem;
+  padding: 1rem 0;
   border-radius: 5px;
   width: 250px;
 
@@ -39,6 +39,22 @@
 
   opacity: 0;
   animation: fadeIn 0.2s ease forwards;
+}
+
+.profile-menu hr {
+  margin: 0.5rem 0;
+}
+
+.profile-menu .user a,
+.profile-menu button {
+  padding: 1rem 1rem;
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+.profile-menu button:hover {
+  background-color: var(--neutLight);
 }
 
 @keyframes fadeIn {

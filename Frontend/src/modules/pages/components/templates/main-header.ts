@@ -13,11 +13,7 @@ const header = `
 
 const profileMenu = `
 <div class="profile-menu">
-    <div class="user">
-        <div class="img-icon"></div>
-        <a class="to-profile unstyle" href="/profile/__username__"><small>View Profile</small></a>
-        <small class="username">u/__username__</small>
-    </div>
+    <!--user preview here -->
     <hr>
     <ul>
         <li><button id="log-out" class="unstyle">Log Out</button></li>

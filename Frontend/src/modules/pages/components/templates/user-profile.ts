@@ -1,6 +1,6 @@
 const userImg = ` <img class="user-img" src="__img__">`;
 
-const username = `<small class="username">__username__</small>`;
+const username = `<small class="username">u/__username__</small>`;
 
 const timestamp = `
 <small class="timestamp">__timestamp__</small>

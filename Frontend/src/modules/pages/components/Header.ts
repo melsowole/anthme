@@ -17,8 +17,6 @@ export default class Header {
       filterCookieValue("userimage", "user")
     );
 
-    console.log(document.cookie);
-
     header.querySelector("nav").append(user);
 
     user.addEventListener("click", toggleUserProfileMenu);
@@ -40,11 +38,14 @@ function toggleUserProfileMenu(): void {
 function userProfileMenu(): HTMLElement {
   let menuTemplate = template.profileMenu;
 
-  menuTemplate = replace(menuTemplate, [
-    { pattern: "username", replacement: filterCookieValue("username", "user") },
-  ]);
-
   const menuDOM = stringToDOM(menuTemplate);
+
+  const userPreview = UserProfile.createPreview(
+    filterCookieValue("username", "user"),
+    filterCookieValue("userimage", "user")
+  );
+
+  menuDOM.prepend(userPreview);
 
   menuDOM
     .querySelector("button#log-out")
