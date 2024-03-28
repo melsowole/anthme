@@ -4,7 +4,7 @@ import Header from "./components/Header.js"
 import MainNav from "./components/MainNav.js";
 import * as userImg from "../utilities/userImgUtils.js"
 import * as api from "../api.js"
-import { deleteCookie } from "../utilities/cookieUtils.js";
+import { deleteCookie, filterCookieValue  } from "../utilities/cookieUtils.js";
 import { User } from "../utilities/pathTypes.js";
 import dayjs from "dayjs";
 import {getPostByUser, getCommentsByUser} from "../api.js"
@@ -46,6 +46,7 @@ async function displayProfile():Promise<void> {
             
             if (user) {
                 displayUserProfile(user, userInfoContainer);
+                showDeleteBtnCurrentUser(user)
             }
             else {
                 console.log(`Ingen användare hittades`);
@@ -83,13 +84,17 @@ async function displayProfile():Promise<void> {
                 })
             }
             
-            function handleDeleteAccount():void{
-                alert('Are you sure that you want to delete your account? This can not be undone.');
-                api.deleteAccount(user.id)
-                .then(() => {
+            function handleDeleteAccount(): void {
+            const confirmation = confirm('Are you sure that you want to delete your account? This cannot be undone.');
+
+                if (confirmation) {
+                    api.deleteAccount(user.id)
+                    .then(() => {
                     logOut();    
                 });
             }
+}
+
 
             function handleUserPageLink(clickedLink: HTMLElement):void {
                 userPageLinks.forEach(link => {
@@ -110,14 +115,28 @@ function logOut() {
     window.location.href = "/";
 }
 
+function showDeleteBtnCurrentUser(user: User): void {
+    const loggedInUserId = filterCookieValue('id', 'user');
+    if (user.id === loggedInUserId) {
+        displayDeleteAccountBtn();
+    }
+}
+function displayDeleteAccountBtn():void{
+    const userInfoContainer = document.querySelector('.userInfo') as HTMLDivElement;
+    const deleteAccountBtn = document.createElement('button');
+    deleteAccountBtn.innerText = 'Delete account'
+    deleteAccountBtn.classList.add('delAccountBtn')
+
+    userInfoContainer.append(deleteAccountBtn)
+}
 function displayUserProfile(user: User, container: HTMLDivElement): void {
     container.innerHTML = "";
     const userInfo = document.createElement('div');
     const userNameEl = document.createElement('h2');
     userNameEl.innerText = user.username;
-    const deleteAccountBtn = document.createElement('button');
+  /*   const deleteAccountBtn = document.createElement('button');
     deleteAccountBtn.innerText = 'Delete account'
-    deleteAccountBtn.classList.add('delAccountBtn')
+    deleteAccountBtn.classList.add('delAccountBtn') */
     
 
     const userImageUrl = userImg[user.userImage] || userImg.donut;
@@ -125,7 +144,7 @@ function displayUserProfile(user: User, container: HTMLDivElement): void {
     userImage.src = userImageUrl;
 
     userInfo.append(userImage, userNameEl)
-    container.append(userInfo, deleteAccountBtn );
+    container.append(userInfo);
 }
 
 function displayContent(container: HTMLElement, items: (Post | Comments)[], userImg: Record<string, string>) {
