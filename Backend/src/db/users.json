@@ -5,8 +5,12 @@
     "password": "hej",
     "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711565536744",
     "created": "2024-03-27T18:52:24.495Z",
-    "posts": ["6a6e0aeb-9dd8-4b7f-bc73-225743983e3d"],
-    "comments": ["5b97783c-6e5b-4391-8f12-5498929b365b"]
+    "posts": [
+      "6a6e0aeb-9dd8-4b7f-bc73-225743983e3d"
+    ],
+    "comments": [
+      "5b97783c-6e5b-4391-8f12-5498929b365b"
+    ]
   },
   {
     "id": "e517952d-5c7f-43bf-b43a-504afd8ee239",
@@ -14,7 +18,20 @@
     "password": "red",
     "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711565563660",
     "created": "2024-03-27T18:52:52.077Z",
-    "posts": ["5739dc72-fd85-4cf0-9185-f8d0ff276593"],
-    "comments": ["201b4af3-a4ce-47e5-aec2-feb8322f7560"]
+    "posts": [
+      "5739dc72-fd85-4cf0-9185-f8d0ff276593"
+    ],
+    "comments": [
+      "201b4af3-a4ce-47e5-aec2-feb8322f7560"
+    ]
+  },
+  {
+    "id": "5b2d80b4-a5a5-4e75-80dd-eb9bf0f8f448",
+    "username": "melchan",
+    "password": "pass",
+    "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1711613629375",
+    "created": "2024-03-28T08:13:59.881Z",
+    "posts": [],
+    "comments": []
   }
 ]

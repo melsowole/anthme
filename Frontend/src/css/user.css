@@ -1,8 +1,11 @@
 .user {
-  display: flex;
+  display: block;
   gap: 0.2rem 0.75rem;
-  display: flex;
   align-items: center;
+}
+
+.user.preview {
+  /* padding: 0; */
 }
 
 .user.preview a {

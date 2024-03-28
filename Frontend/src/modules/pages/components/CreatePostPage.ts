@@ -1,6 +1,6 @@
 import Header from "./Header.ts";
 import PostForm from "./PostForm.ts";
-import PostNoticeboard from "./PostNoticeboard.ts";
+import Noticeboard from "./Noticeboard.ts";
 import { Category } from "../../utilities/pathTypes.ts";
 
 class CreatePostPage {
@@ -10,13 +10,10 @@ class CreatePostPage {
     noticeboardText: string[]
   ): void {
     const postContainerEl = PostForm.create(categories);
-    const NoticeboardEl = PostNoticeboard.create(
-      noticeboardTitle,
-      noticeboardText
-    );
-    postContainerEl.append(NoticeboardEl);
+    const NoticeboardEl = Noticeboard.create(noticeboardTitle, noticeboardText);
+    NoticeboardEl.classList.add("light");
 
-    document.body.append(Header.create(), postContainerEl);
+    document.body.append(Header.create(), postContainerEl, NoticeboardEl);
   }
 }
 

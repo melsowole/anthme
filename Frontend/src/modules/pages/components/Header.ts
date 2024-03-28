@@ -17,7 +17,9 @@ export default class Header {
       filterCookieValue("userimage", "user")
     );
 
-    header.append(user);
+    console.log(document.cookie);
+
+    header.querySelector("nav").append(user);
 
     user.addEventListener("click", toggleUserProfileMenu);
 

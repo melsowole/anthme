@@ -6,7 +6,7 @@ import {
 } from "../../utilities/templateUtils.ts";
 
 export default class Noticeboard {
-  static createDOM(
+  static create(
     headerContent: string,
     itemsArray: string[] | HTMLElement[]
   ): HTMLDivElement {

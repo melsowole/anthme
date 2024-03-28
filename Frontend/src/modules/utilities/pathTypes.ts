@@ -3,9 +3,9 @@ type User = {
   username: string;
   password: string;
   userImage: string;
-  posts?: string[];
-  comments?: string[];
-  created?: number;
+  posts: string[];
+  comments: string[];
+  created: number;
 };
 
 type Post = {
@@ -13,7 +13,7 @@ type Post = {
   category: string;
   title: string;
   body: string;
-  created?: string;
+  created: string;
   comments: string[];
   user: {
     id: string;
@@ -27,8 +27,8 @@ type Comments = {
   body: string;
   created: string;
   user: {
-    id?: string;
-    created?: string;
+    id: string;
+    created: string;
     username: string;
     userImage: string;
   };

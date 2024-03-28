@@ -115,13 +115,9 @@
   border-radius: 9999px;
 }
 
-.bottom-border {
-  border-bottom: 1px solid #edeff1;
-}
-
 @media screen and (min-width: 640px) {
   #mainContainer {
-    padding: 20px 24px;
+    /* padding: 20px 24px; */
   }
 
   .category-container > select {
