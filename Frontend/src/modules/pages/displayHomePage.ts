@@ -5,7 +5,7 @@ import * as api from "../api.ts";
 import { generateDropdowns } from "../utilities/dropdownUtils.ts";
 import UserProfile from "./components/UserProfile.ts";
 import Noticeboard from "./components/Noticeboard.ts";
-import { noticeboard } from "./components/templates/post-noticeboard.ts";
+import { User } from "../utilities/pathTypes.ts";
 
 async function displayHomePage() {
   const posts = await api.getPosts();
@@ -25,7 +25,7 @@ async function usersNoticeBoard(): Promise<HTMLElement[]> {
   const r = await fetch("http://localhost:3000/users");
   const users = await r.json();
 
-  const userArr = users.map((u) =>
+  const userArr = users.map((u: User) =>
     UserProfile.createPreview(u.username, u.userImage)
   );
 

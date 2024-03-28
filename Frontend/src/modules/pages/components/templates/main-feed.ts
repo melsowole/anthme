@@ -12,4 +12,8 @@ const feed = `
 </main>
 `;
 
-export { feed };
+const noPosts = `
+  <div>No posts yet...</div>
+`;
+
+export { feed, noPosts };

@@ -39,9 +39,10 @@ async function getUserByUsername(username: string): Promise<User> {
 
 async function getPosts(): Promise<Post[]> {
   const url = `${baseUrl}posts`;
-
+  
   const res = await fetch(url);
   const posts = await res.json();
+
   return posts;
 }
 
