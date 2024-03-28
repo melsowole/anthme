@@ -112,7 +112,7 @@ function displayUserProfile(container: HTMLElement, item: (Post), userImg: Recor
     const titleEl = document.createElement('h2');
     titleEl.innerText = item.title;
     const contentEl = document.createElement('p');
-    contentEl.innerText=item.body;
+    contentEl.innerHTML=item.body;
     
 
     contentDiv.append(titleEl, contentEl)
@@ -141,7 +141,7 @@ function displayCommentsOnPost(container: HTMLElement, item: Comments, specificC
     const usernameEl = document.createElement('h2')
     usernameEl.innerText= item.user.username;
     const contentEl = document.createElement('p');
-    contentEl.innerText = item.body;
+    contentEl.innerHTML = item.body;
 
     if (item.user.userImage === 'pizza') {
         displayUserImage(imgDiv, userImg.pizza);
