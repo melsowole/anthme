@@ -29,5 +29,14 @@
       "1cad3626-28ea-4995-8ceb-fa997dbc40b0",
       "844a2c0c-3f74-4e66-86bd-91ec26721b06"
     ]
+  },
+  {
+    "id": "5b2d80b4-a5a5-4e75-80dd-eb9bf0f8f448",
+    "username": "melchan",
+    "password": "pass",
+    "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1711613629375",
+    "created": "2024-03-28T08:13:59.881Z",
+    "posts": [],
+    "comments": []
   }
 ]
