@@ -8,7 +8,6 @@ async function getCategories(): Promise<Category[]> {
 
     const res = await fetch(url);
     const categories = await res.json();
-    console.log(categories);
     
     return categories;
 }

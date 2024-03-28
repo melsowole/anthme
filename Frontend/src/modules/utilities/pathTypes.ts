@@ -5,7 +5,7 @@ type User = {
   userImage: string;
   posts: string[];
   comments: string[];
-  created: number;
+  created?: number;
 };
 
 type Post = {

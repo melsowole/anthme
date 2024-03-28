@@ -16,6 +16,8 @@ export default async function displayPostPage(): Promise<void> {
 
   const postForm = document.querySelector("#postForm") as HTMLFormElement;
 
+  const formData: FormData = new FormData(postForm);
+
   postForm.addEventListener("submit", (event) => {
     event.preventDefault();
     let postContent: string = (

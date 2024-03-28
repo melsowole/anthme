@@ -1,8 +1,12 @@
 const main = `
 <main class="main-feed">
-    <div class="userInfoItem"></div> 
 
-    <div class="titleDiv"></div>
+    <div class="userInfoContainer">
+        <div class="userImgContainer"></div>
+        <div class="userInfoItem"></div> 
+    </div>
+    
+    <div class="contentDiv"></div>
 
     <div class="interactionContainer">
         <span class="outerSpan">

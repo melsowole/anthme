@@ -18,5 +18,35 @@
       "username": "hejsan",
       "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711565536744"
     }
+  },
+  {
+    "id": "51ed4cb2-70c4-48ff-8f24-5246d7c09d6d",
+    "body": "hello",
+    "created": "2024-03-27T22:01:11.407Z",
+    "user": {
+      "id": "e517952d-5c7f-43bf-b43a-504afd8ee239",
+      "username": "tomato",
+      "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711565563660"
+    }
+  },
+  {
+    "id": "1cad3626-28ea-4995-8ceb-fa997dbc40b0",
+    "body": "does it work?",
+    "created": "2024-03-27T22:01:27.283Z",
+    "user": {
+      "id": "e517952d-5c7f-43bf-b43a-504afd8ee239",
+      "username": "tomato",
+      "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711565563660"
+    }
+  },
+  {
+    "id": "844a2c0c-3f74-4e66-86bd-91ec26721b06",
+    "body": "yeees",
+    "created": "2024-03-27T22:03:25.695Z",
+    "user": {
+      "id": "e517952d-5c7f-43bf-b43a-504afd8ee239",
+      "username": "tomato",
+      "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711565563660"
+    }
   }
 ]

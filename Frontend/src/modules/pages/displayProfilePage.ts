@@ -4,6 +4,7 @@ import Header from "./components/Header.js";
 import MainNav from "./components/MainNav.js";
 import * as userImg from "../utilities/userImgUtils.js";
 import * as api from "../api.js";
+import { deleteCookie } from "../utilities/cookieUtils.js";
 import { User } from "../utilities/pathTypes.js";
 import dayjs from "dayjs";
 import { getPostByUser, getCommentsByUser } from "../api.js";
@@ -20,15 +21,11 @@ async function displayProfile(): Promise<void> {
   document.body.append(profilepage, mainNav, header);
 
   const userInfoContainer = profilepage.querySelector(
-    ".userInfoItem"
+    ".userInfo"
   ) as HTMLDivElement;
   const userPageLinks = profilepage.querySelectorAll(
     ".userPageLink"
   ) as NodeListOf<HTMLAnchorElement>;
-
-  const urlParts: string[] = window.location.pathname.split("/");
-  const urlPathEndpoint: string = urlParts[urlParts.length - 1];
-
   const postLink = document.querySelector(".postLink") as HTMLAnchorElement;
   const commentsLink = document.querySelector(
     ".commentsLink"
@@ -37,7 +34,9 @@ async function displayProfile(): Promise<void> {
     ".commentContainer"
   ) as HTMLDivElement;
 
-  console.log(urlPathEndpoint);
+  const urlParts: string[] = window.location.pathname.split("/");
+  const urlPathEndpoint: string = urlParts[urlParts.length - 1];
+
   await api
     .getUserByUsername(urlPathEndpoint)
     .then(async (user) => {
@@ -54,51 +53,80 @@ async function displayProfile(): Promise<void> {
         console.log(`Ingen användare hittades`);
       }
 
-      postLink.addEventListener("click", () => {
-        console.log("postLink");
+      const deleteAccountBtn = document.querySelector(
+        ".delAccountBtn"
+      ) as HTMLButtonElement;
+
+      postLink.addEventListener("click", handlePostLink);
+      commentsLink.addEventListener("click", handleCommentsLink);
+      deleteAccountBtn.addEventListener("click", handleDeleteAccount);
+
+      userPageLinks.forEach((userPageLink) => {
+        userPageLink.addEventListener("click", () => {
+          handleUserPageLink(userPageLink);
+        });
+      });
+
+      function handlePostLink(): void {
         container.innerHTML = "";
+
         getPostByUser(user.id).then((posts) => {
           container.innerHTML = "";
           displayContent(container, posts, userImg);
-          console.log(user.id);
         });
-      });
-      commentsLink.addEventListener("click", () => {
-        console.log("commentsLink");
+      }
+
+      function handleCommentsLink(): void {
         container.innerHTML = "";
+
         getCommentsByUser(user.id).then((comments) => {
           container.innerHTML = "";
-          console.log(comments);
           displayContent(container, comments, userImg);
         });
-      });
+      }
+
+      function handleDeleteAccount(): void {
+        alert(
+          "Are you sure that you want to delete your account? This can not be undone."
+        );
+        api.deleteAccount(user.id).then(() => {
+          logOut();
+        });
+      }
+
+      function handleUserPageLink(clickedLink: HTMLElement): void {
+        userPageLinks.forEach((link) => {
+          link.classList.remove("addGreyBGColor");
+        });
+
+        clickedLink.classList.add("addGreyBGColor");
+      }
     })
     .catch((error) => {
       console.error("Error fetching users:", error);
     });
+}
 
-  userPageLinks.forEach((userPageLink) => {
-    userPageLink.addEventListener("click", () => {
-      userPageLinks.forEach((link) => {
-        link.classList.remove("addGreyBGColor");
-      });
-
-      userPageLink.classList.add("addGreyBGColor");
-    });
-  });
+function logOut() {
+  deleteCookie("user");
+  window.location.href = "/";
 }
 
 function displayUserProfile(user: User, container: HTMLDivElement): void {
   container.innerHTML = "";
+  const userInfo = document.createElement("div");
   const userNameEl = document.createElement("h2");
   userNameEl.innerText = user.username;
-  container.append(userNameEl);
+  const deleteAccountBtn = document.createElement("button");
+  deleteAccountBtn.innerText = "Delete account";
+  deleteAccountBtn.classList.add("delAccountBtn");
 
   const userImageUrl = userImg[user.userImage] || userImg.donut;
-  console.log(userImageUrl);
   const userImage = new Image();
   userImage.src = userImageUrl;
-  container.appendChild(userImage);
+
+  userInfo.append(userImage, userNameEl);
+  container.append(userInfo, deleteAccountBtn);
 }
 
 function displayContent(

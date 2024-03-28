@@ -1,20 +1,29 @@
 /* Styling for profilepage goes here */
 
-.userInfoItem{
+.userInfo{
     display: flex;
     align-items: center;
     padding-top: 2rem; 
-    flex-direction: row-reverse;
-    justify-content: flex-end; 
+    justify-content: space-between;
+}
+.userInfo > div{
+    display:flex;
+    align-items: center;
 }
 
-.userInfoItem > h2{
+.userInfo > div > h2{
     margin-left: 1rem;
 }
 
+.delAccountBtn{
+    padding: 0.8rem;
+    border-radius: 30px;
+    border:none;
+    cursor: pointer;
+    color: red;
+}
 .userInteractionsOverview{
     display: flex;
-    justify-content: space-evenly; 
     width: 200px; 
     margin-top: 2rem;
 }
