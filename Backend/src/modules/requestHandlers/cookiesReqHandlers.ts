@@ -18,7 +18,7 @@ async function setCookie(req: Request, res: Response, next: NextFunction): Promi
         const {username, password} = req.body;
         const foundUser = users.find(u => u.username === username.trim() && u.password === password.trim())
         
-        if(!foundUser) throw new CustomError(401, 'Login Failed')
+        if(!foundUser) throw new CustomError(401, 'Incorrect credentials. Verify username and password.')
         
         res.set('Access-Control-Allow-Origin', req.headers.origin);
         res.set('Access-Control-Allow-Credentials', 'true');
