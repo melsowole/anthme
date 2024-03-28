@@ -33,7 +33,6 @@ async function displayProfile():Promise<void> {
     const postLink = document.querySelector('.postLink') as HTMLAnchorElement;
     const commentsLink = document.querySelector('.commentsLink') as HTMLAnchorElement;
     const container = document.querySelector('.commentContainer') as HTMLDivElement;
-    container.innerHTML = "";
     
     console.log(urlPathEndpoint)
     await api.getUserByUsername(urlPathEndpoint)
@@ -43,9 +42,8 @@ async function displayProfile():Promise<void> {
 
            await getPostByUser(user.id)
                 .then(posts =>{
-                    container.innerHTML = "";
                     displayContent(container, posts, userImg);    
-            }) 
+                }) 
             
             if (user) {
                 displayUserProfile(user, userInfoContainer);
@@ -62,7 +60,7 @@ async function displayProfile():Promise<void> {
                         container.innerHTML = "";
                         displayContent(container, posts, userImg);   
                         console.log(user.id)
-                })   
+                    })   
             })
             commentsLink.addEventListener('click', ()=>{
                 console.log('commentsLink')

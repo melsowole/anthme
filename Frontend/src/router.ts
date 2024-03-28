@@ -2,7 +2,7 @@ import Navigo from "navigo";
 import displayPostPage from "./modules/pages/displayCreatePostPage.js";
 import { displayLandingPage } from "./modules/pages/displayLandingPage.js";
 import { displayHomePage } from "./modules/pages/displayHomePage.js";
-import { displayUsersPage } from "./modules/pages/displayUsersPage.js";
+//import { displayUsersPage } from "./modules/pages/displayUsersPage.js";
 import { readCookie } from "./modules/api.js";
 import { displayProfile } from "./modules/pages/displayProfilePage.js";
 import { displayViewPostPage } from "./modules/pages/displayPostPage.js";
