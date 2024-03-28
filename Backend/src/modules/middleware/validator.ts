@@ -15,12 +15,14 @@ const userValidations = [
     .exists()
     .isString()
     .notEmpty()
-    .custom((value) => value.trim() !== ""),
+    .custom((value) => value.trim() !== "")
+    .escape(),
   body("userImage")
     .exists()
     .isString()
     .notEmpty()
-    .custom((value) => value.trim() !== ""),
+    .custom((value) => value.trim() !== "")
+    .escape(),
   body().custom((body) => {
     const keys = ["username", "password", "userImage", "timestamp"];
     return Object.keys(body).every((key) => keys.includes(key));
@@ -32,12 +34,14 @@ const postValidations = [
     .exists()
     .isString()
     .notEmpty()
-    .custom((value) => value.trim() !== ""),
+    .custom((value) => value.trim() !== "")
+    .escape(),
   body("title")
     .exists()
     .isString()
     .notEmpty()
-    .custom((value) => value.trim() !== ""),
+    .custom((value) => value.trim() !== "")
+    .escape(),
   body("body")
     .exists()
     .isString()
