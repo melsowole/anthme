@@ -33,10 +33,8 @@
   font-weight: 600;
 }
 
-.interactionContainer {
-  display: flex;
-  margin-top: 1rem;
-  gap: 0.8rem;
+.userImg {
+  order: 1;
 }
 .interactionContainer {
   display: flex;
@@ -158,7 +156,27 @@
   width: 500px;
   position: relative;
 }
+.imgDiv {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
 
+.imgDiv > h2,
+.timeStampEl {
+  color: #2a3c42;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.imgDiv > h2::after {
+  content: "•";
+  margin-left: 0.5rem;
+}
 .commentBody {
   position: relative;
   margin-left: 3rem;
