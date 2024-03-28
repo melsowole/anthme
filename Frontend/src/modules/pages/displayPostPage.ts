@@ -9,7 +9,6 @@ import * as userImg from "../utilities/userImgUtils.js"
 import { generateDropdowns } from "../utilities/dropdownUtils.js";
 import {Post, Comments} from "../utilities/pathTypes.js"
 
-
 async function displayViewPostPage(): Promise<void>{
     const mainNavDropdowns = await generateDropdowns();
 

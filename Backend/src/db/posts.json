@@ -31,5 +31,31 @@
       "username": "tomato",
       "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711565563660"
     }
+  },
+  {
+    "id": "51a3b71e-9b5c-4349-8c1f-9a9f21ef02f4",
+    "created": "2024-03-27T20:29:28.174Z",
+    "category": "Depressed",
+    "title": "Typescript",
+    "body": "Typescript gör mig deprimerad :()",
+    "comments": [],
+    "user": {
+      "id": "e517952d-5c7f-43bf-b43a-504afd8ee239",
+      "username": "tomato",
+      "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711565563660"
+    }
+  },
+  {
+    "id": "e6585070-5454-4c0d-8f81-dffe57d1590c",
+    "created": "2024-03-27T20:30:58.627Z",
+    "category": "Backend",
+    "title": "b",
+    "body": "b",
+    "comments": [],
+    "user": {
+      "id": "e517952d-5c7f-43bf-b43a-504afd8ee239",
+      "username": "tomato",
+      "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711565563660"
+    }
   }
 ]

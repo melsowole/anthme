@@ -94,8 +94,6 @@ async function handleCreateAccount(event: Event): Promise<void> {
         password: password,
         userImage: selectedValue
     };
-    
-    
 
     try {
         const addedUser = await api.submitPost(newUser, 'user')        

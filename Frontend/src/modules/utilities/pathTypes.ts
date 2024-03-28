@@ -3,8 +3,8 @@ type User = {
     username: string,
     password: string,
     userImage: string,
-    posts?: string[],
-    comments?: string[],
+    posts: string[],
+    comments: string[],
     created?: number
 };
 
