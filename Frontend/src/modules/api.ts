@@ -12,6 +12,15 @@ async function getCategories(): Promise<Category[]> {
     return categories;
 }
 
+async function getCategory(categoryName: string): Promise<Category> {
+    const url = `${baseUrl}categories/${categoryName}`;
+
+    const res = await fetch(url);
+    const category = await res.json();
+    
+    return category;
+}
+
 async function getFilteredCategories(categoryName: string): Promise<Category[]> {
   const url = `${baseUrl}categories/category/${categoryName}`;
 
@@ -161,6 +170,7 @@ export {
   getPostByUser,
   getCommentsByUser,
   getCategories,
+  getCategory,
   getPosts,
   getFilteredCategories
 };

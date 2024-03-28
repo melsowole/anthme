@@ -6,16 +6,6 @@ import { Post } from "../../utilities/pathTypes.ts";
 
 dayjs.extend(relativeTime);
 
-type Post = {
-  id: string;
-  created: string;
-  category: string;
-  title: string;
-  body: string;
-  userImg: string;
-  comments: string[];
-};
-
 export default class postPreview {
   static create(post: Post): HTMLElement {
     let previewTemplate = template.postPreview;
