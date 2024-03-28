@@ -20,11 +20,7 @@ function setupRouter(): Promise<void> {
             else {
                 router.on('/', displayHomePage)
                 router.on('/create-post', displayPostPage)
-                router.on('/users', () => {
-                    fetch('http://localhost:3000/users/')
-                    .then(res => res.json())
-                    .then(displayUsersPage)
-                })
+                router.on('/users', displayUsersPage)
                 router.on('/profile/:username', displayProfile)
                 router.on('/posts/:postId', displayViewPostPage)
             }

@@ -9,7 +9,6 @@ import { filterCookieValue } from "../utilities/cookieUtils.js";
 import * as userImg from "../utilities/userImgUtils.js"
 import { generateDropdowns } from "../utilities/dropdownUtils.js";
 
-
 async function displayViewPostPage(): Promise<void>{
     const mainNavDropdowns = await generateDropdowns();
 
@@ -26,11 +25,9 @@ async function displayViewPostPage(): Promise<void>{
     // Get URL:s post id
     const urlParts:string[] = window.location.pathname.split('/');
     const urlPathEndpoint:string = urlParts[urlParts.length - 1];
-        console.log(filterCookieValue('id', 'user'))
    
     getPost(urlPathEndpoint)
     .then(post => {  
-       
         const titleDiv = document.querySelector('.titleDiv') as HTMLDivElement;
         const userInfoItem = document.querySelector('.userInfoItem') as HTMLDivElement;
         const commentDiv = document.querySelector('.commentInfo') as HTMLDivElement;
@@ -83,8 +80,6 @@ async function displayViewPostPage(): Promise<void>{
                     
                     commentItem.append(imgDiv, commentBody);
                     commentDiv.append(commentItem);
-
-
                 }
             })
             .catch(error => {
