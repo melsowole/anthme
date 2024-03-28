@@ -1,91 +1,108 @@
 import { main } from "./components/templates/viewPostpage.js";
 import { stringToDOM } from "../utilities/templateUtils.js";
-import Header from "./components/Header.js"
+import Header from "./components/Header.js";
 import MainNav from "./components/MainNav.js";
-import {getPost, getComments, submitPost} from "../api.js"
+import { getPost, getComments, submitPost } from "../api.js";
 import dayjs from "dayjs";
 import { filterCookieValue } from "../utilities/cookieUtils.js";
-import * as userImg from "../utilities/userImgUtils.js"
+import * as userImg from "../utilities/userImgUtils.js";
 import { generateDropdowns } from "../utilities/dropdownUtils.js";
-import {Post, Comments} from "../utilities/pathTypes.js"
+import { Post, Comments } from "../utilities/pathTypes.js";
 
-async function displayViewPostPage(): Promise<void>{
-    const mainNavDropdowns = await generateDropdowns();
+async function displayViewPostPage(): Promise<void> {
+  const mainNavDropdowns = await generateDropdowns();
 
-    const viewPostpage: HTMLElement = stringToDOM(main);
-    const header = Header.create();
-    const mainNav = MainNav.create(mainNavDropdowns);
+  const viewPostpage: HTMLElement = stringToDOM(main);
+  const header = Header.create();
+  const mainNav = MainNav.create(mainNavDropdowns);
 
-    document.body.append(
-        viewPostpage,
-        header,
-        mainNav
-    )
-    
-    const urlParts:string[] = window.location.pathname.split('/');
-    const urlPathEndpoint:string = urlParts[urlParts.length - 1];
-   
-    getPost(urlPathEndpoint)
-        .then(post => {  
-       const userInfoContainer = document.querySelector('.userInfoContainer') as HTMLDivElement;
-       const postCommentsIds = post.comments;
-       
-       displayUserProfile(userInfoContainer, post, userImg)
-        
-        getComments()
-            .then(comments => {
-                const specificComments = comments.filter(comment => postCommentsIds.includes(comment.id));
-                const commentDiv = document.querySelector('.commentInfo') as HTMLDivElement;
+  document.body.append(viewPostpage, header, mainNav);
 
-               for(const comment of specificComments){
-                    displayCommentsOnPost(commentDiv, comment, specificComments, userImg)
-                } 
-            })
+  document.body.append(viewPostpage, header, mainNav);
 
-            .catch(error => {
-                console.error('Error fetching comments:', error);
-            });
+  const urlParts: string[] = window.location.pathname.split("/");
+  const urlPathEndpoint: string = urlParts[urlParts.length - 1];
 
-            const commentForm = document.querySelector('.commentForm') as HTMLFormElement;
-            commentForm.addEventListener('submit', (event)=>{
-            event.preventDefault()
-             const commentInput = document.querySelector('.commentInput') as HTMLTextAreaElement;
-                const commentValue = commentInput.value;
-              
-                const newComment ={
-                    body: commentValue
-                }
+  getPost(urlPathEndpoint)
+    .then((post) => {
+      const userInfoContainer = document.querySelector(
+        ".userInfoContainer"
+      ) as HTMLDivElement;
+      const postCommentsIds = post.comments;
 
-                if (event.submitter && event.submitter.id === 'addCommentBtn') {
-                    const loggedInUserId = filterCookieValue('id', 'user')
-                    submitPost(newComment, 'comment', loggedInUserId, post.id);
-                  
-                }
-            
-                commentForm.reset();
-            }); 
-        
-        const addCommentBtn = document.querySelector('.addCommentBtn') as HTMLButtonElement;
-        const textareaContainer = document.querySelector('.textareaContainer') as HTMLTextAreaElement;
-        const cancelBtn = document.querySelector('.cancelButton') as HTMLButtonElement;
-        
-        addCommentBtn.addEventListener('click', handleAddCommentBtn);
-        cancelBtn.addEventListener('click', handleCancelBtn);
-    
-        function handleAddCommentBtn():void{
-            textareaContainer.classList.remove('hide');
-        }
-        function handleCancelBtn(event: Event): void {
-            event.preventDefault();
-            textareaContainer.classList.add('hide');
-            commentForm.reset();
-        }
+      displayUserProfile(userInfoContainer, post, userImg);
+
+      getComments()
+        .then((comments) => {
+          const specificComments = comments.filter((comment) =>
+            postCommentsIds.includes(comment.id)
+          );
+          const commentDiv = document.querySelector(
+            ".commentInfo"
+          ) as HTMLDivElement;
+
+          for (const comment of specificComments) {
+            displayCommentsOnPost(
+              commentDiv,
+              comment,
+              specificComments,
+              userImg
+            );
+          }
         })
 
-    .catch(error => {
-        console.error('Error fetching post:', error);
-    });  
-    
+        .catch((error) => {
+          console.error("Error fetching comments:", error);
+        });
+
+      const commentForm = document.querySelector(
+        ".commentForm"
+      ) as HTMLFormElement;
+      commentForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const commentInput = document.querySelector(
+          ".commentInput"
+        ) as HTMLTextAreaElement;
+        const commentValue = commentInput.value;
+
+        const newComment = {
+          body: commentValue,
+        };
+
+        if (event.submitter && event.submitter.id === "addCommentBtn") {
+          const loggedInUserId = filterCookieValue("id", "user");
+          submitPost(newComment, "comment", loggedInUserId, post.id);
+        }
+
+        commentForm.reset();
+      });
+
+      const addCommentBtn = document.querySelector(
+        ".addCommentBtn"
+      ) as HTMLButtonElement;
+      const textareaContainer = document.querySelector(
+        ".textareaContainer"
+      ) as HTMLTextAreaElement;
+      const cancelBtn = document.querySelector(
+        ".cancelButton"
+      ) as HTMLButtonElement;
+
+      addCommentBtn.addEventListener("click", handleAddCommentBtn);
+      cancelBtn.addEventListener("click", handleCancelBtn);
+
+      function handleAddCommentBtn(): void {
+        textareaContainer.classList.remove("hide");
+      }
+      function handleCancelBtn(event: Event): void {
+        event.preventDefault();
+        textareaContainer.classList.add("hide");
+        commentForm.reset();
+      }
+    })
+
+    .catch((error) => {
+      console.error("Error fetching post:", error);
+    });
 }
 
 function displayUserProfile(container: HTMLElement, item: (Post), userImg: Record<string, string>):void {
@@ -159,12 +176,12 @@ function displayCommentsOnPost(container: HTMLElement, item: Comments, specificC
     container.append(commentItem);
 }
 
-function displayUserImage(container: HTMLDivElement, imgPath:string): void {
-    const imgEl = document.createElement('img');
-    imgEl.src = imgPath; 
-    imgEl.classList.add('userImg');
+function displayUserImage(container: HTMLDivElement, imgPath: string): void {
+  const imgEl = document.createElement("img");
+  imgEl.src = imgPath;
+  imgEl.classList.add("userImg");
 
-   container.appendChild(imgEl);
+  container.appendChild(imgEl);
 }
 
-export {displayViewPostPage, displayUserImage}
+export { displayViewPostPage, displayUserImage };
