@@ -62,7 +62,7 @@ const commentValidations = [
     .custom((value) => value.trim() !== "")
     .escape(),
   body().custom((body) => {
-    const keys = ["body", "user", "timestamp"];
+    const keys = ["body",  "user", "timestamp"];
     return Object.keys(body).every((key) => keys.includes(key));
   }),
 ];

@@ -33,6 +33,7 @@ export type Comment = {
   created: number;
   body: string;
   user: UserShort;
+  postId: string;
 };
 
 export type Category = {

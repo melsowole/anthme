@@ -80,8 +80,10 @@ export async function addComment(
       body: req.body.body,
       created: req.body.timestamp,
       user: req.body.user,
+      postId: req.params.postId
     };
 
+    console.log(req.params.postId)
     comments.push(newComment);
 
     await write.comments(comments);
