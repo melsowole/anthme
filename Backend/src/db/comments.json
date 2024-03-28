@@ -48,5 +48,15 @@
       "username": "tomato",
       "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711565563660"
     }
+  },
+  {
+    "id": "50bef20d-ef8b-497a-b1e9-b952d2ecce7c",
+    "body": "tomato was here",
+    "created": "2024-03-28T11:31:29.212Z",
+    "user": {
+      "id": "e517952d-5c7f-43bf-b43a-504afd8ee239",
+      "username": "tomato",
+      "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711565563660"
+    }
   }
 ]
