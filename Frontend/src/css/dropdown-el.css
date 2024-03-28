@@ -31,6 +31,10 @@
   opacity: 1;
 }
 
+.dropdown li {
+  padding: 0.5rem;
+}
+
 .dropdown li:hover {
   background-color: var(--neutLighter);
 }

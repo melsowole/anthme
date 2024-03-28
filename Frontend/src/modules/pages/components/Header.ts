@@ -5,6 +5,7 @@ import {
   deleteCookie,
 } from "../../utilities/cookieUtils.ts";
 import * as api from "../../api.ts";
+import UserProfile from "./UserProfile.ts";
 
 export default class Header {
   static create() {
@@ -12,9 +13,13 @@ export default class Header {
 
     const header = stringToDOM(headerTemplate);
 
-    header
-      .querySelector(".user")
-      .addEventListener("click", toggleUserProfileMenu);
+    const user = UserProfile.createProfileImg(
+      filterCookieValue("userimage", "user")
+    );
+
+    header.querySelector("nav").append(user);
+
+    user.addEventListener("click", toggleUserProfileMenu);
 
     return header;
   }
@@ -33,11 +38,14 @@ function toggleUserProfileMenu(): void {
 function userProfileMenu(): HTMLElement {
   let menuTemplate = template.profileMenu;
 
-  menuTemplate = replace(menuTemplate, [
-    { pattern: "username", replacement: filterCookieValue("username", "user") },
-  ]);
-
   const menuDOM = stringToDOM(menuTemplate);
+
+  const userPreview = UserProfile.createPreview(
+    filterCookieValue("username", "user"),
+    filterCookieValue("userimage", "user")
+  );
+
+  menuDOM.prepend(userPreview);
 
   menuDOM
     .querySelector("button#log-out")

@@ -23,9 +23,7 @@
     "category": "tomato",
     "title": "hej",
     "body": "vjvk",
-    "comments": [
-      "5b97783c-6e5b-4391-8f12-5498929b365b"
-    ],
+    "comments": ["5b97783c-6e5b-4391-8f12-5498929b365b"],
     "user": {
       "id": "e517952d-5c7f-43bf-b43a-504afd8ee239",
       "username": "tomato",

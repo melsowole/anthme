@@ -1,18 +1,20 @@
 import Header from "./Header.ts";
 import PostForm from "./PostForm.ts";
-import PostNoticeboard from "./PostNoticeboard.ts";
+import Noticeboard from "./Noticeboard.ts";
 import { Category } from "../../utilities/pathTypes.ts";
 
 class CreatePostPage {
-    static create(categories: Category[], noticeboardTitle: string, noticeboardText: string[]): void {
-        const postContainerEl = PostForm.create(categories);
-        const NoticeboardEl = PostNoticeboard.create(noticeboardTitle, noticeboardText);
-        postContainerEl.append(NoticeboardEl)
-        
-        document.body.append(
-            Header.create(),
-            postContainerEl);
-    }
+  static create(
+    categories: Category[],
+    noticeboardTitle: string,
+    noticeboardText: string[]
+  ): void {
+    const postContainerEl = PostForm.create(categories);
+    const NoticeboardEl = Noticeboard.create(noticeboardTitle, noticeboardText);
+    NoticeboardEl.classList.add("light");
+
+    document.body.append(Header.create(), postContainerEl, NoticeboardEl);
+  }
 }
 
-export {CreatePostPage}
+export { CreatePostPage };

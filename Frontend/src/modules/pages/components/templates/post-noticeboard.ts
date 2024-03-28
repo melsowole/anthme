@@ -1,6 +1,5 @@
-const noticeboardString = 
-`
-<aside id="sidebarContainer">
+const noticeboard = `
+<aside id="sidebarContainer" class="main-aside">
     <div class="sidebar">
         <h2 class="bottom-border">__header__</h2>
             <ol>
@@ -10,6 +9,8 @@ const noticeboardString =
 </aside>
 `;
 
-const listItemString = `<li class="bottom-border">__textContent__</li>`
+const listItem = `<li class="bottom-border">__textContent__</li>`;
 
-export {noticeboardString, listItemString}
+const listItemFree = `<li class="unstyled"></li>`;
+
+export { noticeboard, listItem, listItemFree };
