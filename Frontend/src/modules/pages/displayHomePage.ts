@@ -4,6 +4,7 @@ import MainFeed from "./components/MainFeed.ts";
 import * as api from "../api.ts";
 import { generateDropdowns } from "../utilities/dropdownUtils.ts";
 import UserProfile from "./components/UserProfile.ts";
+import Noticeboard from "./components/Noticeboard.ts";
 
 async function displayHomePage() {
   const posts = await api.getPosts();

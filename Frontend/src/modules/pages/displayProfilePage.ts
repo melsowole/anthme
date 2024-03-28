@@ -19,7 +19,12 @@ async function displayProfile(): Promise<void> {
 
   document.body.append(profilepage, mainNav, header);
 
-  document.body.append(profilepage, mainNav, header);
+  const userInfoContainer = profilepage.querySelector(
+    ".userInfoItem"
+  ) as HTMLDivElement;
+  const userPageLinks = profilepage.querySelectorAll(
+    ".userPageLink"
+  ) as NodeListOf<HTMLAnchorElement>;
 
   const urlParts: string[] = window.location.pathname.split("/");
   const urlPathEndpoint: string = urlParts[urlParts.length - 1];
@@ -31,7 +36,6 @@ async function displayProfile(): Promise<void> {
   const container = document.querySelector(
     ".commentContainer"
   ) as HTMLDivElement;
-  container.innerHTML = "";
 
   console.log(urlPathEndpoint);
   await api
@@ -41,7 +45,6 @@ async function displayProfile(): Promise<void> {
       postLink.classList.add("addGreyBGColor");
 
       await getPostByUser(user.id).then((posts) => {
-        container.innerHTML = "";
         displayContent(container, posts, userImg);
       });
 
@@ -74,18 +77,15 @@ async function displayProfile(): Promise<void> {
       console.error("Error fetching users:", error);
     });
 
-  api
-    .getUserByUsername(urlPathEndpoint)
-    .then((user) => {
-      if (user) {
-        displayUserProfile(user, userInfoContainer);
-      } else {
-        console.log(`Ingen användare hittades`);
-      }
-    })
-    .catch((error) => {
-      console.error("Error fetching users:", error);
+  userPageLinks.forEach((userPageLink) => {
+    userPageLink.addEventListener("click", () => {
+      userPageLinks.forEach((link) => {
+        link.classList.remove("addGreyBGColor");
+      });
+
+      userPageLink.classList.add("addGreyBGColor");
     });
+  });
 }
 
 function displayUserProfile(user: User, container: HTMLDivElement): void {
