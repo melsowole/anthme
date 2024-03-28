@@ -1,6 +1,6 @@
 const main = `
 <main class="main-feed">
-    <div class="userInfoItem"></div>    
+    <div class="userInfo"></div>    
 
     <div class="userInteractionsOverview">
         <a class="postLink userPageLink" href="#">

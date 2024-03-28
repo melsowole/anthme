@@ -46,42 +46,45 @@ async function displayViewPostPage(): Promise<void>{
                 console.error('Error fetching comments:', error);
             });
 
-        commentForm.addEventListener('submit', (event)=>{
+            const commentForm = document.querySelector('.commentForm') as HTMLFormElement;
+            commentForm.addEventListener('submit', (event)=>{
             event.preventDefault()
-            const commentInput = document.querySelector('.commentInput') as HTMLTextAreaElement;
-            const commentValue = commentInput.value;
+             const commentInput = document.querySelector('.commentInput') as HTMLTextAreaElement;
+                const commentValue = commentInput.value;
               
-            const newComment ={
-                body: commentValue
-            }
+                const newComment ={
+                    body: commentValue
+                }
 
-            if (event.submitter && event.submitter.id === 'addCommentBtn') {
-                const loggedInUserId = filterCookieValue('id', 'user')
-                submitPost(newComment, 'comment', loggedInUserId, post.id);
+                if (event.submitter && event.submitter.id === 'addCommentBtn') {
+                    const loggedInUserId = filterCookieValue('id', 'user')
+                    submitPost(newComment, 'comment', loggedInUserId, post.id);
                   
-            }
+                }
             
+                commentForm.reset();
+            }); 
+        
+        const addCommentBtn = document.querySelector('.addCommentBtn') as HTMLButtonElement;
+        const textareaContainer = document.querySelector('.textareaContainer') as HTMLTextAreaElement;
+        const cancelBtn = document.querySelector('.cancelButton') as HTMLButtonElement;
+        
+        addCommentBtn.addEventListener('click', handleAddCommentBtn);
+        cancelBtn.addEventListener('click', handleCancelBtn);
+    
+        function handleAddCommentBtn():void{
+            textareaContainer.classList.remove('hide');
+        }
+        function handleCancelBtn(event: Event): void {
+            event.preventDefault();
+            textareaContainer.classList.add('hide');
             commentForm.reset();
-        }); 
-    })
+        }
+        })
+
     .catch(error => {
         console.error('Error fetching post:', error);
-    });
-
-    const addCommentBtn = document.querySelector('.addCommentBtn') as HTMLButtonElement;
-    const textareaContainer = document.querySelector('.textareaContainer') as HTMLTextAreaElement;
-
-    addCommentBtn.addEventListener('click', ()=>{
-        textareaContainer.classList.remove('hide');
-    });
-
-    const commentForm = document.querySelector('.commentForm') as HTMLFormElement;
-    const cancelBtn = document.querySelector('.cancelButton') as HTMLButtonElement;
-    cancelBtn.addEventListener('click', (event)=>{
-        event.preventDefault(); 
-        textareaContainer.classList.add('hide');
-        commentForm.reset();
-    }); 
+    });  
     
 }
 
@@ -110,6 +113,7 @@ function displayUserProfile(container: HTMLElement, item: (Post), userImg: Recor
     titleEl.innerText = item.title;
     const contentEl = document.createElement('p');
     contentEl.innerText=item.body;
+    
 
     contentDiv.append(titleEl, contentEl)
     userInfoItem.append(usernameEl, categoryEl)

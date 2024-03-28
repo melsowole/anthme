@@ -3,6 +3,7 @@
     display: flex;
    padding-top: 1rem;
    padding-bottom: 1.5rem;
+   align-items: center;
 }
 .userImg{
     width: 40px;
@@ -23,6 +24,8 @@
 
 .userInfoItem{
     padding-top: 0;
+    display: flex;
+    flex-direction: row-reverse;
 }
 
  .username {
