@@ -7,28 +7,6 @@
   padding: 0 1rem;
 }
 
-.user {
-  display: grid;
-  grid-template-areas:
-    "icon link"
-    "icon name";
-  grid-template-columns: auto 1fr;
-  gap: 0.2rem 0.75rem;
-}
-
-.user .img-icon {
-  background-color: pink;
-  grid-area: icon;
-}
-
-.user .to-profile {
-  grid-area: link;
-}
-
-.user .username {
-  grid-area: name;
-}
-
 .user-nav {
   display: flex;
   align-items: center;

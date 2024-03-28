@@ -1,0 +1,24 @@
+.sidebar {
+  background-color: var(--neutLighter);
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.sidebar > h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  padding-top: 1rem;
+}
+
+.sidebar > ol {
+  font-size: 14px;
+  list-style-position: inside;
+}
+
+li.unstyled {
+  list-style-type: none;
+}
+
+ol > * {
+  padding: 0.5rem 0.25px;
+}

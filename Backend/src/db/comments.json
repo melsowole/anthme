@@ -1,0 +1,12 @@
+[
+  {
+    "id": "8e64e301-df09-4fbf-9a15-4adbed2a09ae",
+    "body": "This is a comment",
+    "created": "2024-03-27T09:03:52.662Z",
+    "user": {
+      "id": "a4dc10e9-7e86-4afd-8c04-a8b3eb944577",
+      "username": "chicken",
+      "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1711476329608"
+    }
+  }
+]

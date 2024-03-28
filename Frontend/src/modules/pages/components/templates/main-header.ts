@@ -6,9 +6,7 @@ const header = `
             <span class="icon material-symbols-outlined">add</span>
             Create
         </a>
-        <div class="user">
-            <div class="img-icon"></div>
-        </div>
+        
     </nav>
 </header>
 `;

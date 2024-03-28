@@ -11,6 +11,6 @@ const noticeboard = `
 
 const listItem = `<li class="bottom-border">__textContent__</li>`;
 
-const listItemLink = `<li class="unstyled"><a href="__link__">__textContent__</a></li>`;
+const listItemFree = `<li class="unstyled"></li>`;
 
-export { noticeboard, listItem, listItemLink };
+export { noticeboard, listItem, listItemFree };

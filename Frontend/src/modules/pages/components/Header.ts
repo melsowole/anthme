@@ -5,6 +5,7 @@ import {
   deleteCookie,
 } from "../../utilities/cookieUtils.ts";
 import * as api from "../../api.ts";
+import UserProfile from "./UserProfile.ts";
 
 export default class Header {
   static create() {
@@ -12,9 +13,13 @@ export default class Header {
 
     const header = stringToDOM(headerTemplate);
 
-    header
-      .querySelector(".user")
-      .addEventListener("click", toggleUserProfileMenu);
+    const user = UserProfile.createProfileImg(
+      filterCookieValue("userimage", "user")
+    );
+
+    header.append(user);
+
+    user.addEventListener("click", toggleUserProfileMenu);
 
     return header;
   }

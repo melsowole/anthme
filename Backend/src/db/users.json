@@ -9,7 +9,7 @@
       "edb57baa-4180-45ed-8ac8-bba1ba1e718a",
       "b27c720c-1afb-44c0-819e-9dca26c595c2"
     ],
-    "comments": []
+    "comments": ["8e64e301-df09-4fbf-9a15-4adbed2a09ae"]
   },
   {
     "id": "8bc69779-4191-44b6-a3b3-9dce4f3a4428",
@@ -24,7 +24,7 @@
     "id": "3ccb5681-aa08-4bb9-a0c6-0209439f429f",
     "username": "melchan",
     "password": "pass",
-    "userImage": "banana",
+    "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1711476329608",
     "created": "2024-03-26T13:25:22.614Z",
     "posts": [],
     "comments": []
@@ -33,7 +33,7 @@
     "id": "48b98377-3727-4fb6-aef8-4dd892cbd78d",
     "username": "spaceman",
     "password": "pass",
-    "userImage": "Choose user image:",
+    "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711476774927",
     "created": "2024-03-26T13:25:35.084Z",
     "posts": [],
     "comments": []
@@ -42,7 +42,7 @@
     "id": "e4e9d504-748e-4407-ba6a-04ed93d5caba",
     "username": "gottegris",
     "password": "pass",
-    "userImage": "Choose user image:",
+    "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1711476329608",
     "created": "2024-03-26T13:25:54.716Z",
     "posts": [],
     "comments": []

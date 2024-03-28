@@ -4,11 +4,19 @@
   --aside-width: 300px;
 }
 
+body {
+  display: flex;
+  padding-top: var(--header-height);
+  gap: 1rem;
+  justify-content: center;
+}
+
 .main-header {
   height: 60px;
   background-color: pink;
   position: fixed;
   top: 0;
+  left: 0;
 }
 
 .main-nav {
@@ -17,7 +25,7 @@
 
 main {
   padding: 0 0.5rem;
-  margin-top: var(--header-height);
+  flex-grow: 1;
 }
 
 .main-aside {
@@ -31,7 +39,7 @@ main {
 
   .main-aside {
     width: var(--aside-width);
-    position: fixed;
+    position: sticky;
     top: var(--header-height);
     right: 0;
     display: block;
@@ -39,11 +47,12 @@ main {
 }
 
 @media (min-width: 1200px) {
+  body {
+    padding-left: var(--nav-width);
+  }
   main {
     width: calc(100% - var(--aside-width) - var(--nav-width) - 100px);
     max-width: 750px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .main-nav {
@@ -52,5 +61,6 @@ main {
     width: var(--nav-width);
     position: fixed;
     top: var(--header-height);
+    left: 0;
   }
 }

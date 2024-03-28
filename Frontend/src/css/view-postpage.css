@@ -1,253 +1,211 @@
-
-
-.userImg{
-    width: 40px;
+#usernameTitle {
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+  color: #576f76;
+  font-weight: 400;
 }
 
-#usernameTitle{
-    font-size: .75rem; 
-    margin-left: 0.5rem;
-    color: #576F76;
-    font-weight: 400;
-    
-}
-
-#usernameTitle::after {
-    content: "•";
-    margin-left: 0.5rem;
-}
-
-.userInfoItem{
-    padding-top: 2rem;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-    margin-bottom: 0.5rem;
-   
+.userInfoItem {
+  padding-top: 2rem;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
 }
 
 .userInfoItem > p {
-    font-size: .75rem; 
-    margin-left: 0.5rem;
-    color:#2A3C42;
-    font-weight: 600;
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+  color: #2a3c42;
+  font-weight: 600;
 }
 
-.userImg {
-    order: 1; 
+.interactionContainer {
+  display: flex;
+  margin-top: 1rem;
+  gap: 0.8rem;
 }
-.interactionContainer{
-    display:flex;
-    margin-top: 1rem;
-    gap: 0.8rem;
-}
-.outerSpan{
-    background-color: #eaedef;
-    border-radius: 30px;
-    width: 70px;
-    height: 32px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.outerSpan {
+  background-color: #eaedef;
+  border-radius: 30px;
+  width: 70px;
+  height: 32px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.outerSpan > button{
-    background-color: none;
-    border:none;
-    width: 32px;
-    height: 32px;
-    border-radius: 100%;
-    cursor: pointer;
+.outerSpan > button {
+  background-color: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  cursor: pointer;
 }
 
-.fi-ts-up, .fi-ts-down{
-    font-size: 1rem;
-    font-weight: 800;
-    color: black;
-   
+.fi-ts-up,
+.fi-ts-down {
+  font-size: 1rem;
+  font-weight: 800;
+  color: black;
 }
 
-.fi-ts-up:hover{
-    color:#D93A00;
+.fi-ts-up:hover {
+  color: #d93a00;
 }
 
-.fi-ts-down:hover{
-    color: #6A5CFF;
+.fi-ts-down:hover {
+  color: #6a5cff;
 }
 
-.amountOfLikes{
-    font-size: 0.75rem;
-    
+.amountOfLikes {
+  font-size: 0.75rem;
 }
 
-.fa-message{
-    color: #434f53;
+.fa-message {
+  color: #434f53;
 }
 
-.commentSpan{
-    background-color: #eaedef;
-    border-radius: 30px;
-    width: 65px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.commentSpan {
+  background-color: #eaedef;
+  border-radius: 30px;
+  width: 65px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.commentSpan > a{
-    text-decoration: none;
-    color: black;
-    display: flex;
-    gap: 0.5rem;
+.commentSpan > a {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  gap: 0.5rem;
 }
 
-.commentSpan > button{
-    background-color: none;
-    border:none;
-    width: 32px;
-    height: 32px;
-    border-radius: 100%;
-    cursor: pointer;
+.commentSpan > button {
+  background-color: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  cursor: pointer;
 }
 
-.commentSpan > button:hover{
-    background-color:transparent;
+.commentSpan > button:hover {
+  background-color: transparent;
 }
 
-.amountOfComments{
-    font-size: 0.75rem;
-  
+.amountOfComments {
+  font-size: 0.75rem;
 }
 
-.addCommentBtn{
-    width: 155px;
-    height: 40px;
-    border-radius: 30px;
-    border: 1px solid #576F76;
-    background-color: transparent;
-    font-size: 0.9rem;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   gap: 0.4rem;
-   cursor: pointer;
-
+.addCommentBtn {
+  width: 155px;
+  height: 40px;
+  border-radius: 30px;
+  border: 1px solid #576f76;
+  background-color: transparent;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
 }
 
-.addCommentBtn:hover{
-    border: 1px solid black;
+.addCommentBtn:hover {
+  border: 1px solid black;
 }
 
-.fi-rr-plus{
-    font-size: 1.2rem;
-    
+.fi-rr-plus {
+  font-size: 1.2rem;
 }
 .fa-regular.fa-message {
-    font-weight: 300; /* Justera fontvikten för ikonen */
+  font-weight: 300; /* Justera fontvikten för ikonen */
 }
 
-.commentBtn{
-    margin-top: 3rem;
+.commentBtn {
+  margin-top: 3rem;
 }
 
-.commentContainer{
-    margin-top: 2rem;
+.commentContainer {
+  margin-top: 2rem;
 }
 
-.commentItem{
-    margin-bottom: 2rem;
-    border-bottom: 1px solid var(--neut);
-    width: 500px;
-    position: relative;
-   
-}
-.imgDiv{
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-    position: relative;
+.commentItem {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--neut);
+  width: 500px;
+  position: relative;
 }
 
-.imgDiv > h2, .timeStampEl{
-    color: #2a3c42;
-    font-size: .75rem;
-    font-weight: 600;
+.commentBody {
+  position: relative;
+  margin-left: 3rem;
+}
+.commentBody > p {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-bottom: 0.4rem;
 }
 
-.imgDiv > h2::after {
-    content: "•";
-    margin-left: 0.5rem;
-}
-.commentBody{
-    position: relative;
-    margin-left: 3rem;
-}
-.commentBody > p{
-    font-size: .875rem;
-    line-height: 1.25rem;
-    margin-bottom: 0.4rem;
-}
-
-.commentInput{
-    margin-top: 1rem;
-    border-radius: 20px;
-    resize: none;
-    border: 1px solid #576F76;
-    padding-left: 10px;
-    
+.commentInput {
+  margin-top: 1rem;
+  border-radius: 20px;
+  resize: none;
+  border: 1px solid #576f76;
+  padding-left: 10px;
 }
 
 .commentInput:focus {
-    border-color: black;
-    outline: none;
+  border-color: black;
+  outline: none;
 }
 
 .textareaContainer {
-    position: relative;
+  position: relative;
 }
 
 .submitButton {
-    position: absolute;
-    top: 70px;
-    right:210px;
-    width: 74px; 
-    height: 32px;
-    border: none;
-    background-color: #014a84;
-    color: #fff;
-    font-weight: bolder;
-    font-size: .75rem;
-    border-radius: 20px; 
-    cursor: pointer;
+  position: absolute;
+  top: 70px;
+  right: 210px;
+  width: 74px;
+  height: 32px;
+  border: none;
+  background-color: #014a84;
+  color: #fff;
+  font-weight: bolder;
+  font-size: 0.75rem;
+  border-radius: 20px;
+  cursor: pointer;
 }
-.submitButton:hover{
-    background-color: #003763;
-}
-
-.buttonComments{
-    border: none;
-    cursor: pointer;
+.submitButton:hover {
+  background-color: #003763;
 }
 
-.buttonComments:hover{
-    background-color: transparent;
-}
-.cancelButton{
-    width: 60px; 
-    height: 32px;
-    position: absolute;
-    top: 70px;
-    right:292px;
-    border-radius: 20px; 
-    border: none;
-    background-color: #dde8fe;
-    cursor: pointer;
-    font-weight: bolder;
+.buttonComments {
+  border: none;
+  cursor: pointer;
 }
 
-.cancelButton:hover{
-    background-color: #bfd5fe;
+.buttonComments:hover {
+  background-color: transparent;
+}
+.cancelButton {
+  width: 60px;
+  height: 32px;
+  position: absolute;
+  top: 70px;
+  right: 292px;
+  border-radius: 20px;
+  border: none;
+  background-color: #dde8fe;
+  cursor: pointer;
+  font-weight: bolder;
 }
 
+.cancelButton:hover {
+  background-color: #bfd5fe;
+}

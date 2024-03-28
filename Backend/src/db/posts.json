@@ -5,7 +5,9 @@
     "category": "Chicken",
     "title": "Egg",
     "body": "Egg.",
-    "comments": [],
+    "comments": [
+      "8e64e301-df09-4fbf-9a15-4adbed2a09ae"
+    ],
     "user": {
       "id": "a4dc10e9-7e86-4afd-8c04-a8b3eb944577",
       "username": "chicken",
