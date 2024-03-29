@@ -25,9 +25,10 @@ async function displayViewPostPage(): Promise<void> {
 
   getPost(urlPathEndpoint)
     .then((post) => {
-      const userInfoContainer = document.querySelector(
-        ".userInfoContainer"
-      ) as HTMLDivElement;
+      if('statusCode' in post) throw new Error(post.message);
+      else if ('id' in post){
+        const userInfoContainer = getElement(".userInfoContainer");
+
       const postCommentsIds = post.comments;
 
       displayUserProfile(userInfoContainer, post, userImg);
@@ -37,9 +38,13 @@ async function displayViewPostPage(): Promise<void> {
           const specificComments = comments.filter((comment) =>
             postCommentsIds.includes(comment.id)
           );
-          const commentDiv = document.querySelector(
-            ".commentInfo"
-          ) as HTMLDivElement;
+
+          if(specificComments.length == 0){
+            throw new Error("204");
+          }
+
+
+          const commentDiv = getElement(".commentInfo");
 
           for (const comment of specificComments) {
             displayCommentsOnPost(
@@ -49,20 +54,23 @@ async function displayViewPostPage(): Promise<void> {
               userImg
             );
           }
-        })
-
+        }) 
         .catch((error) => {
-          console.error("Error fetching comments:", error);
+          if(error.message == "204"){
+            const noComments = document.createElement("p");
+            noComments.textContent = "No Comments yet..."
+            const commentsContainer = getElement(".commentInfo");
+            commentsContainer.append(noComments);
+
+          } else {
+            alert(error);
+          }
         });
 
-      const commentForm = document.querySelector(
-        ".commentForm"
-      ) as HTMLFormElement;
-      commentForm.addEventListener("submit", (event) => {
+      const commentForm = getElement(".commentForm") as HTMLFormElement;
+      commentForm.addEventListener("submit", async (event) => {
         event.preventDefault();
-        const commentInput = document.querySelector(
-          ".commentInput"
-        ) as HTMLTextAreaElement;
+        const commentInput = getElement(".commentInput") as HTMLTextAreaElement;
         const commentValue = commentInput.value;
 
         const newComment = {
@@ -71,21 +79,31 @@ async function displayViewPostPage(): Promise<void> {
 
         if (event.submitter && event.submitter.id === "addCommentBtn") {
           const loggedInUserId = filterCookieValue("id", "user");
-          submitPost(newComment, "comment", loggedInUserId, post.id);
+
+          try {
+            const response = await submitPost(newComment, "comment", loggedInUserId, post.id);
+
+            if('statusCode' in response){
+              throw new Error(response.message);
+
+            } else if('id' in response){
+              // submit succes
+              commentForm.reset();
+
+            } else {
+              throw new Error("Unexpected error. Try again later!")
+            }
+          } catch(err){
+            alert(err)
+          }
         }
 
         commentForm.reset();
       });
 
-      const addCommentBtn = document.querySelector(
-        ".addCommentBtn"
-      ) as HTMLButtonElement;
-      const textareaContainer = document.querySelector(
-        ".textareaContainer"
-      ) as HTMLTextAreaElement;
-      const cancelBtn = document.querySelector(
-        ".cancelButton"
-      ) as HTMLButtonElement;
+      const addCommentBtn = getElement(".addCommentBtn") as HTMLButtonElement;
+      const textareaContainer = getElement(".textareaContainer") as HTMLTextAreaElement;
+      const cancelBtn = getElement(".cancelButton") as HTMLButtonElement;
 
       addCommentBtn.addEventListener("click", handleAddCommentBtn);
       cancelBtn.addEventListener("click", handleCancelBtn);
@@ -98,19 +116,21 @@ async function displayViewPostPage(): Promise<void> {
         textareaContainer.classList.add("hide");
         commentForm.reset();
       }
-    })
 
-    .catch((error) => {
-      console.error("Error fetching post:", error);
+      }
+
+      
+    }).catch((error) => {
+      alert(error)
     });
 }
 
 function displayUserProfile(container: HTMLElement, item: (Post), userImg: Record<string, string>):void {
     
-    const userInfoContainer = document.querySelector('.userInfoContainer') as HTMLDivElement;
-    const contentDiv = document.querySelector('.contentDiv') as HTMLDivElement;
-    const userInfoItem = document.querySelector('.userInfoItem') as HTMLDivElement;
-    const userImgContainer = document.querySelector('.userImgContainer') as HTMLImageElement;
+    const userInfoContainer = getElement('.userInfoContainer');
+    const contentDiv = getElement('.contentDiv');
+    const userInfoItem = getElement('.userInfoItem');
+    const userImgContainer = getElement('.userImgContainer') as HTMLImageElement;
 
     if (item.user.userImage === 'pizza') {
         displayUserImage(userImgContainer, userImg.pizza);
@@ -142,7 +162,7 @@ function displayUserProfile(container: HTMLElement, item: (Post), userImg: Recor
 
 function displayCommentsOnPost(container: HTMLElement, item: Comment, specificComments: Comment[], userImg: Record<string, string>):void {
     
-     const ammountOfComments = document.querySelector('.amountOfComments') as HTMLSpanElement;
+     const ammountOfComments = getElement('.amountOfComments');
     ammountOfComments.innerText = specificComments.length.toString(); 
                     
     const commentItem= document.createElement('div');
@@ -182,6 +202,10 @@ function displayUserImage(container: HTMLDivElement, imgPath: string): void {
   imgEl.classList.add("userImg");
 
   container.appendChild(imgEl);
+}
+
+function getElement(selector:string): HTMLElement{
+  return document.querySelector(selector) as HTMLElement;
 }
 
 export { displayViewPostPage, displayUserImage };

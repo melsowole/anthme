@@ -46,7 +46,7 @@ async function getPosts(): Promise<Post[]> {
   return posts;
 }
 
-async function getPost(id: string): Promise<Post> {
+async function getPost(id: string): Promise<Post|Error> {
   const url = baseUrl + `posts/${id}`;
 
   const res = await fetch(url);
