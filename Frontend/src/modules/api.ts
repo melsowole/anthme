@@ -1,4 +1,4 @@
-import { User, Post, Comment, Category } from "./utilities/pathTypes";
+import { Error, User, Post, Comment, Category } from "./utilities/pathTypes";
 
 const baseUrl: string = 'http://localhost:3000/';
 const header = {"Content-type": "application/json; charset=UTF-8"};
@@ -85,7 +85,7 @@ async function getCommentsByUser(userId:string): Promise<Comment[]>{
   return comment;
 }
 
-async function submitPost<T extends User | Post | Comment>(
+async function submitPost<T extends User | Post | Comment | Error>(
   createdObject: Object,
   typeOfPost: string,
   userId?: string,

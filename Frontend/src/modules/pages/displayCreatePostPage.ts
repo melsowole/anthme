@@ -18,7 +18,7 @@ export default async function displayPostPage(): Promise<void> {
 
   const formData: FormData = new FormData(postForm);
 
-  postForm.addEventListener("submit", (event) => {
+  postForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     let postContent: string = (
       postForm.querySelector(".textarea") as HTMLDivElement
@@ -32,16 +32,24 @@ export default async function displayPostPage(): Promise<void> {
     }
 
     try {
-      api
-        .submitPost(newPost, "post", filterCookieValue("id", "user"))
-        .then((createdPost) =>
-          window.location.assign(`/posts/${createdPost.id}`)
-        );
+      const response = await api.submitPost(newPost, "post", filterCookieValue("id", "user"))
+
+      if('statusCode' in response){
+        throw new Error(response.message);
+
+      } else if('id' in response){
+        window.location.assign(`/posts/${response.id}`);
+
+      } else {
+        throw new Error("Unexpected Error. Try again later!")
+      }
+
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
 
     (postForm.querySelector(".textarea") as HTMLDivElement).innerText = "";
     postForm.reset();
   });
 }
+
