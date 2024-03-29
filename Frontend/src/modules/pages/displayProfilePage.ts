@@ -100,11 +100,13 @@ async function displayProfile():Promise<void> {
                 function handleDeleteAccount(): void {
                 const confirmation = confirm('Are you sure that you want to delete your account? This cannot be undone.');
 
-                    if (confirmation) {
+                    if('id' in user){
+                        if (confirmation) {
                         api.deleteAccount(user.id)
-                        .then(() => {
-                        logOut();    
-                    });
+                            .then(() => {
+                                logOut();    
+                            });
+                    }
                 }
         }
 

@@ -78,7 +78,11 @@ function logOut() {
 }
 
 async function deleteAccount() {
-  console.log(filterCookieValue("id", "user"));
-  await api.deleteAccount(filterCookieValue("id", "user"));
-  logOut();
+  const response = await api.deleteAccount(filterCookieValue("id", "user"));
+  
+  if('statusCode' in response){
+    alert(response.message)
+  } else {
+    logOut();
+  }
 }
