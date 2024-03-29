@@ -22,10 +22,11 @@ type Post = {
   };
 };
 
-type Comments = {
+type Comment = {
   id: string;
   body: string;
   created: string;
+  postId:string;
   user: {
     id: string;
     created: string;
@@ -52,4 +53,4 @@ type SubCategory = {
   url: string;
 };
 
-export { User, Post, Comments, Category, MainCategory };
+export { User, Post, Comment, Category, MainCategory };

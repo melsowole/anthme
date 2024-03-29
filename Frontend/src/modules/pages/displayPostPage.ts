@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import { filterCookieValue } from "../utilities/cookieUtils.js";
 import * as userImg from "../utilities/userImgUtils.js";
 import { generateDropdowns } from "../utilities/dropdownUtils.js";
-import { Post, Comments } from "../utilities/pathTypes.js";
+import { Post, Comment } from "../utilities/pathTypes.js";
 
 async function displayViewPostPage(): Promise<void> {
   const mainNavDropdowns = await generateDropdowns();
@@ -140,7 +140,7 @@ function displayUserProfile(container: HTMLElement, item: (Post), userImg: Recor
    
 }
 
-function displayCommentsOnPost(container: HTMLElement, item: Comments, specificComments: Comments[], userImg: Record<string, string>):void {
+function displayCommentsOnPost(container: HTMLElement, item: Comment, specificComments: Comment[], userImg: Record<string, string>):void {
     
      const ammountOfComments = document.querySelector('.amountOfComments') as HTMLSpanElement;
     ammountOfComments.innerText = specificComments.length.toString(); 
