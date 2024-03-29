@@ -21,8 +21,7 @@ const userValidations = [
     .exists()
     .isString()
     .notEmpty()
-    .custom((value) => value.trim() !== "")
-    .escape(),
+    .custom((value) => value.trim() !== ""),
   body().custom((body) => {
     const keys = ["username", "password", "userImage", "timestamp"];
     return Object.keys(body).every((key) => keys.includes(key));
