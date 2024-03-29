@@ -36,80 +36,76 @@ async function displayProfile():Promise<void> {
    
     await api.getUserByUsername(urlPathEndpoint)
         .then(async (user) => {
-           
-            console.log(user)
-            postLink.classList.add('addGreyBGColor')
 
-           await getPostByUser(user.id)
-                .then(posts =>{
-                    //FLYTTA EJ PÅ DENNA
-                    userPageLinks.forEach(userPageLink => {
-                        userPageLink.addEventListener('click', () => {
-                            handleUserPageLink(userPageLink);
+            console.log(user);
+
+            if('statusCode' in user) throw new Error("404")
+            else if('id' in user){
+
+                postLink.classList.add('addGreyBGColor')
+
+                await getPostByUser(user.id)
+                    .then(posts =>{
+                        //FLYTTA EJ PÅ DENNA
+                        userPageLinks.forEach(userPageLink => {
+                            userPageLink.addEventListener('click', () => {
+                                handleUserPageLink(userPageLink);
+                            });
                         });
-                    });
-        
-                    displayContent(container, posts, userImg, 'post'); 
-                    handleDeleteBtn();
-                    
-                }) 
             
-            if (user) {
-                displayUserProfile(user, userInfoContainer);
-                const loggedInUserId = filterCookieValue('id', 'user');
-                if (user.id === loggedInUserId) {
-                    displayDeleteAccountBtn();
-                   
-                   
+                        displayContent(container, posts, userImg, 'post'); 
+                        handleDeleteBtn();
+                        
+                    }) 
+            
+                if (user) {
+                    displayUserProfile(user, userInfoContainer);
+                    const loggedInUserId = filterCookieValue('id', 'user');
+                    if (user.id === loggedInUserId) {
+                        displayDeleteAccountBtn();
+                    }
                 }
-               else return
-            }
 
+                const deleteAccountBtn = document.querySelector('.delAccountBtn') as HTMLButtonElement;
             
-            else {
-                console.log(`Ingen anvÃ¤ndare hittades`);
-            }
-
-            const deleteAccountBtn = document.querySelector('.delAccountBtn') as HTMLButtonElement;
-            
-
-            postLink.addEventListener('click', handlePostLink);
-            commentsLink.addEventListener('click', handleCommentsLink);
-            deleteAccountBtn.addEventListener('click', handleDeleteAccount);
+                postLink.addEventListener('click', handlePostLink);
+                commentsLink.addEventListener('click', handleCommentsLink);
+                deleteAccountBtn.addEventListener('click', handleDeleteAccount);
            
-            function handlePostLink():void{
-                container.innerHTML = "";
-            
-                getPostByUser(user.id)
-                    .then(posts => {
-                        console.log(posts)
-                        container.innerHTML = "";
-                        displayContent(container, posts, userImg, 'post');
-                        handleDeleteBtn();  
-                    });     
-            }
-           
-            function handleCommentsLink():void{
-                container.innerHTML = "";
-               
-                getCommentsByUser(user.id)
-                .then(comments=>{
+                function handlePostLink():void{
                     container.innerHTML = "";
-                    displayContent(container, comments, userImg, 'comment')
-                    handleDeleteBtn();
-                    //displayDeleteBtn('comment');
-                })
-            }
+                
+                    if('id' in user){
+                        getPostByUser(user.id)
+                            .then(posts => {
+                                container.innerHTML = "";
+                                displayContent(container, posts, userImg, 'post');
+                                handleDeleteBtn();  
+                            }); }    
+                }
+           
+                function handleCommentsLink():void{
+                    container.innerHTML = "";
+                
+                    if('id' in user){
+                        getCommentsByUser(user.id)
+                            .then(comments=>{
+                                container.innerHTML = "";
+                                displayContent(container, comments, userImg, 'comment')
+                                handleDeleteBtn();
+                            })
+                    }
+                }
             
-            function handleDeleteAccount(): void {
-            const confirmation = confirm('Are you sure that you want to delete your account? This cannot be undone.');
+                function handleDeleteAccount(): void {
+                const confirmation = confirm('Are you sure that you want to delete your account? This cannot be undone.');
 
-                if (confirmation) {
-                    api.deleteAccount(user.id)
-                    .then(() => {
-                    logOut();    
-                });
-            }
+                    if (confirmation) {
+                        api.deleteAccount(user.id)
+                        .then(() => {
+                        logOut();    
+                    });
+                }
         }
 
         function handleUserPageLink(clickedLink: HTMLElement):void {
@@ -119,12 +115,21 @@ async function displayProfile():Promise<void> {
             
             clickedLink.classList.add('addGreyBGColor');
         }
+            } 
+        })
+        .catch(error => {
+            if(error.message == "404"){
+                const main = document.querySelector("main") as HTMLElement;
 
-        
-    })
-    .catch(error => {
-        console.error('Error fetching users:', error);
-    });
+                main.innerHTML = `
+                    <h1>User not found</h1>
+                    <a href="/">Return to homepage</a>
+                `;
+
+            } else {
+                alert(error)
+            }
+        });
    
 }
 
@@ -156,7 +161,6 @@ function displayUserProfile(user: User, container: HTMLDivElement): void {
 }
 
 
-
  function handleDeleteBtn():void {
     const deleteBtns = document.querySelectorAll('.delete-btn') as NodeListOf<HTMLButtonElement>;
     console.log(deleteBtns)
@@ -164,29 +168,29 @@ function displayUserProfile(user: User, container: HTMLDivElement): void {
         deleteBtn.addEventListener('click', async (event) => {
 
             event.stopPropagation();
-            const container = (event.target as HTMLElement).closest('.commentItem')
-            const containerId = container.id
+            const container = (event.target as HTMLElement).closest('.commentItem') as HTMLElement;
+            const containerId = container.id;
             const loggedInUserId = filterCookieValue('id', 'user')
-           
-            if(deleteBtn.classList.contains('post')){
-                console.log('post')
-                api.deletePost(loggedInUserId, containerId)
+
+            try{
+                if(deleteBtn.classList.contains('post')){
+                    const response = await api.deletePost(loggedInUserId, containerId);
+
+                    if('statusCode' in response) throw new Error(response.message)
+        
+                } else{
+                    const commentObj = await api.getComment(containerId)
+                    const response = await api.deleteComment(commentObj.postId, loggedInUserId, commentObj.id)
+
+                    if('statusCode' in response) throw new Error(response.message)
+
+                }
+
                 container.remove();
+            } catch(err){
+                alert(err);
             }
-
-            else{
-                console.log('comment')
-                console.log(containerId)
-
-                api.getComment(containerId)
-                const commentObj = await api.getComment(containerId)
-                console.log(commentObj.postId)
-
-                api.deleteComment(commentObj.postId, loggedInUserId, commentObj.id)
-                container.remove();
-
-            }
-            
+                
         });
     });
 }

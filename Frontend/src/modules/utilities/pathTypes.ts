@@ -3,6 +3,10 @@ type Error = {
   message: string;
 }
 
+type Success = {
+  message: string;
+}
+
 type User = {
   id: string;
   username: string;
@@ -58,4 +62,4 @@ type SubCategory = {
   url: string;
 };
 
-export {Error, User, Post, Comment, Category, MainCategory };
+export {Error, Success, User, Post, Comment, Category, MainCategory };
