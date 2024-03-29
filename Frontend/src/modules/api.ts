@@ -91,7 +91,7 @@ async function submitPost<T extends User | Post | Comment>(
   userId?: string,
   postId?: string,
  
-): Promise<T> {
+): Promise<any> {
   let url: string = baseUrl;
   if (typeOfPost === "user") url += `users`;
   else if (typeOfPost === "post") url += `users/${userId}/posts`;
@@ -112,7 +112,7 @@ async function submitPost<T extends User | Post | Comment>(
 async function sendLogInRequest(
   username: string,
   password: string
-): Promise<void> {
+): Promise<User | Error> {
   const url = `${baseUrl}user/login`;
 
   const user = {
@@ -130,6 +130,8 @@ async function sendLogInRequest(
 
   const res = await fetch(url, options);
   const info = await res.json();
+
+  return info;
 }
 
 async function readCookie(): Promise<boolean> {

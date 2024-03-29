@@ -96,15 +96,21 @@ async function handleCreateAccount(event: Event): Promise<void> {
     };
 
     try {
-        const addedUser = await api.submitPost(newUser, 'user')        
-        
-        if(!('statusCode' in addedUser && addedUser.statusCode == 409)) {
+        const response = await api.submitPost(newUser, 'user')   
+
+        if('statusCode' in response){
+            throw new Error(response.message);
+
+        } else if('id' in response){
             await api.sendLogInRequest(username, password);
             window.location.replace("/");
-        } 
+
+        } else {
+            throw new Error("Unexpected Error. Try again later!")
+        }
         
     } catch (error) {
-        console.error("Error adding user:", error);
+        alert(error);
     }
 
     createAccountForm.reset();
@@ -119,11 +125,14 @@ async function handleLogInForm(event: Event): Promise<void> {
     const password = logInPassword.value;
 
     try {
-        await api.sendLogInRequest(username, password);
+        const response = await api.sendLogInRequest(username, password);
+
+        if(response.statusCode === 401) throw new Error(response.message);
+        
         window.location.replace("/");
     }
     catch(error) {
-        console.log('Error logging in:', error);
+        alert(error)
     }
 
     logInForm.reset();
