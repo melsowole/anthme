@@ -25,103 +25,110 @@ async function displayViewPostPage(): Promise<void> {
 
   getPost(urlPathEndpoint)
     .then((post) => {
-      if('statusCode' in post) throw new Error(post.message);
+      if('statusCode' in post) throw new Error("404");
       else if ('id' in post){
         const userInfoContainer = getElement(".userInfoContainer");
 
-      const postCommentsIds = post.comments;
+        const postCommentsIds = post.comments;
 
-      displayUserProfile(userInfoContainer, post, userImg);
+        displayUserProfile(userInfoContainer, post, userImg);
 
-      getComments()
-        .then((comments) => {
-          const specificComments = comments.filter((comment) =>
-            postCommentsIds.includes(comment.id)
-          );
-
-          if(specificComments.length == 0){
-            throw new Error("204");
-          }
-
-
-          const commentDiv = getElement(".commentInfo");
-
-          for (const comment of specificComments) {
-            displayCommentsOnPost(
-              commentDiv,
-              comment,
-              specificComments,
-              userImg
+        getComments()
+          .then((comments) => {
+            const specificComments = comments.filter((comment) =>
+              postCommentsIds.includes(comment.id)
             );
-          }
-        }) 
-        .catch((error) => {
-          if(error.message == "204"){
-            const noComments = document.createElement("p");
-            noComments.textContent = "No Comments yet..."
-            const commentsContainer = getElement(".commentInfo");
-            commentsContainer.append(noComments);
 
-          } else {
-            alert(error);
-          }
-        });
+            if(specificComments.length == 0){
+              throw new Error("204");
+            }
 
-      const commentForm = getElement(".commentForm") as HTMLFormElement;
-      commentForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const commentInput = getElement(".commentInput") as HTMLTextAreaElement;
-        const commentValue = commentInput.value;
+            const commentDiv = getElement(".commentInfo");
 
-        const newComment = {
-          body: commentValue,
-        };
-
-        if (event.submitter && event.submitter.id === "addCommentBtn") {
-          const loggedInUserId = filterCookieValue("id", "user");
-
-          try {
-            const response = await submitPost(newComment, "comment", loggedInUserId, post.id);
-
-            if('statusCode' in response){
-              throw new Error(response.message);
-
-            } else if('id' in response){
-              // submit succes
-              commentForm.reset();
+            for (const comment of specificComments) {
+              displayCommentsOnPost(
+                commentDiv,
+                comment,
+                specificComments,
+                userImg
+              );
+            }
+          }) 
+          .catch((error) => {
+            if(error.message == "204"){
+              const noComments = document.createElement("p");
+              noComments.textContent = "No Comments yet..."
+              const commentsContainer = getElement(".commentInfo");
+              commentsContainer.append(noComments);
 
             } else {
-              throw new Error("Unexpected error. Try again later!")
+              alert(error);
             }
-          } catch(err){
-            alert(err)
+          });
+
+          const commentForm = getElement(".commentForm") as HTMLFormElement;
+          
+          commentForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const commentInput = getElement(".commentInput") as HTMLTextAreaElement;
+            const commentValue = commentInput.value;
+
+            const newComment = {
+              body: commentValue,
+            };
+
+            if (event.submitter && event.submitter.id === "addCommentBtn") {
+              const loggedInUserId = filterCookieValue("id", "user");
+
+              try {
+                const response = await submitPost(newComment, "comment", loggedInUserId, post.id);
+
+                if('statusCode' in response){
+                  throw new Error(response.message);
+
+                } else if('id' in response){
+                  // submit succes
+                  commentForm.reset();
+
+                } else {
+                  throw new Error("Unexpected error. Try again later!")
+                }
+              } catch(err){
+                alert(err)
+              }
+            }
+
+            commentForm.reset();
+          });
+
+          const addCommentBtn = getElement(".addCommentBtn") as HTMLButtonElement;
+          const textareaContainer = getElement(".textareaContainer") as HTMLTextAreaElement;
+          const cancelBtn = getElement(".cancelButton") as HTMLButtonElement;
+
+          addCommentBtn.addEventListener("click", handleAddCommentBtn);
+          cancelBtn.addEventListener("click", handleCancelBtn);
+
+          function handleAddCommentBtn(): void {
+            textareaContainer.classList.remove("hide");
           }
-        }
-
-        commentForm.reset();
-      });
-
-      const addCommentBtn = getElement(".addCommentBtn") as HTMLButtonElement;
-      const textareaContainer = getElement(".textareaContainer") as HTMLTextAreaElement;
-      const cancelBtn = getElement(".cancelButton") as HTMLButtonElement;
-
-      addCommentBtn.addEventListener("click", handleAddCommentBtn);
-      cancelBtn.addEventListener("click", handleCancelBtn);
-
-      function handleAddCommentBtn(): void {
-        textareaContainer.classList.remove("hide");
+          function handleCancelBtn(event: Event): void {
+            event.preventDefault();
+            textareaContainer.classList.add("hide");
+            commentForm.reset();
+          }
+       
       }
-      function handleCancelBtn(event: Event): void {
-        event.preventDefault();
-        textareaContainer.classList.add("hide");
-        commentForm.reset();
-      }
-
-      }
-
-      
     }).catch((error) => {
-      alert(error)
+      if(error.message == "404"){
+        const main = getElement("main");
+        main.innerHTML = `
+          <h1>Post not found</h1>
+          <a href="/">Return to home page</a>
+        `;
+
+      } else {
+        alert(error)
+      }
     });
 }
 
