@@ -5,21 +5,42 @@ import * as api from "../api.ts";
 import { generateDropdowns } from "../utilities/dropdownUtils.ts";
 import UserProfile from "./components/UserProfile.ts";
 import Noticeboard from "./components/Noticeboard.ts";
-import { noticeboard } from "./components/templates/post-noticeboard.ts";
+import { Category } from "../utilities/pathTypes.ts";
 
-async function displayHomePage() {
-  const posts = await api.getPosts();
+export default async function displayHomePage() {
+  let posts = await api.getPosts();
   const dropdowns = await generateDropdowns();
+
+  
+  const category : false | Category = await getPageCategory()
+
+  if(category){
+    posts = posts.filter(p=>p.category == category.name);
+  }
 
   document.body.append(
     Header.create(),
     MainNav.create(dropdowns),
-    MainFeed.create(posts),
+    MainFeed.create(posts, category),
     Noticeboard.create("Users", await usersNoticeBoard())
   );
 }
 
-export default displayHomePage;
+async function getPageCategory():Promise<Category|false>{
+  const categoryName = getPageURLParam();
+
+  console.log(categoryName)
+
+  if(!categoryName) return false;
+
+  return await api.getCategory(categoryName)
+}
+
+function getPageURLParam() :string{
+  const urlParts: string[] = window.location.pathname.split("/");
+  const urlPathEndpoint: string = urlParts[urlParts.length - 1];
+  return urlPathEndpoint
+}
 
 async function usersNoticeBoard(): Promise<HTMLElement[]> {
   const r = await fetch("http://localhost:3000/users");
