@@ -104,7 +104,7 @@ async function submitPost<T extends User | Post | Comments>(
 async function sendLogInRequest(
   username: string,
   password: string
-): Promise<any> {
+): Promise<User | Error> {
   const url = `${baseUrl}user/login`;
 
   const user = {

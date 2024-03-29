@@ -97,11 +97,17 @@ async function handleCreateAccount(event: Event): Promise<void> {
 
     try {
         const response = await api.submitPost(newUser, 'user')   
-        
-        if(response.statusCode ===  409) throw new Error(response.message);
-        
-        await api.sendLogInRequest(username, password);
-        window.location.replace("/");
+
+        if('statusCode' in response){
+            throw new Error(response.message);
+
+        } else if('id' in response){
+            await api.sendLogInRequest(username, password);
+            window.location.replace("/");
+
+        } else {
+            throw new Error("Unexpected Error. Try again later!")
+        }
         
     } catch (error) {
         alert(error);
