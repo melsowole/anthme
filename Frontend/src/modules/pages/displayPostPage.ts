@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import { filterCookieValue } from "../utilities/cookieUtils.js";
 import * as userImg from "../utilities/userImgUtils.js";
 import { generateDropdowns } from "../utilities/dropdownUtils.js";
-import { Post, Comment } from "../utilities/pathTypes.js";
+import { Post, Comment, User } from "../utilities/pathTypes.js";
 
 async function displayViewPostPage(): Promise<void> {
   const mainNavDropdowns = await generateDropdowns();
@@ -64,40 +64,36 @@ async function displayViewPostPage(): Promise<void> {
       commentForm.addEventListener("submit", (event) => {
         event.preventDefault();
         const commentInput = document.querySelector(
-          ".commentInput"
+            ".commentInput"
         ) as HTMLTextAreaElement;
         const commentValue = commentInput.value;
     
         const newComment = {
-          body: commentValue,
+            body: commentValue,
         };
     
         if (event.submitter && event.submitter.id === "addCommentBtn") {
           const loggedInUserId = filterCookieValue("id", "user");
           submitPost(newComment, "comment", loggedInUserId, post.id)
-            .then(() => {
-              getComments()
-                .then(comments => {
-                  console.log(comments);
-                  const commentDiv = document.querySelector(
+          .then((result: Post | Comment | User) => {
+            if ('postId' in result) {
+                const newlyCreatedComment = result as Comment;
+                console.log(newlyCreatedComment);
+                const commentDiv = document.querySelector(
                     ".commentInfo"
-                  ) as HTMLDivElement;
-                  commentDiv.innerHTML = ""; 
-                  for (const singleComment of comments) {
-                    displayCommentsOnPost(commentDiv, singleComment, comments, userImg);
-                  }
-                })
-                .catch(error => {
-                  console.error("Error fetching comments:", error);
-                });
-            })
-            .catch(error => {
-              console.error("Error submitting comment:", error);
-            });
-        }
-    
+                ) as HTMLDivElement;
+                displayCommentsOnPost(commentDiv, newlyCreatedComment, [], userImg);
+            } else {
+            
+                console.log("Received data of unknown type:", result);
+            }
+        })
+        
+      }
+      
         commentForm.reset();
-      });
+    });
+    
     
       const addCommentBtn = document.querySelector(
         ".addCommentBtn"
@@ -205,5 +201,7 @@ function displayUserImage(container: HTMLDivElement, imgPath: string): void {
 
   container.appendChild(imgEl);
 }
+
+
 
 export { displayViewPostPage, displayUserImage };
