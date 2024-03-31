@@ -9,9 +9,10 @@ import { User } from "../utilities/pathTypes.js";
 import dayjs from "dayjs";
 import {getPostByUser, getCommentsByUser} from "../api.js"
 import {displayUserImage} from "./displayPostPage"
-import {Post, Comments} from "../utilities/pathTypes.js"
+import {Post, Comment} from "../utilities/pathTypes.js"
 import { generateDropdowns } from "../utilities/dropdownUtils.js";
 import { htmlEntitiesToString } from "../utilities/stringUtils.js";
+import {DeleteContentBtn} from"./components/DeleteContentBtn.js"
 
 
 async function displayProfile():Promise<void> {
@@ -37,42 +38,57 @@ async function displayProfile():Promise<void> {
    
     await api.getUserByUsername(urlPathEndpoint)
         .then(async (user) => {
+           
             console.log(user)
             postLink.classList.add('addGreyBGColor')
 
             await getPostByUser(user.id)
                 .then(posts =>{
-                    displayContent(container, posts, userImg);    
+                    //FLYTTA EJ PÅ DENNA
+                    userPageLinks.forEach(userPageLink => {
+                        userPageLink.addEventListener('click', () => {
+                            handleUserPageLink(userPageLink);
+                        });
+                    });
+        
+                    displayContent(container, posts, userImg, 'post'); 
+                    handleDeleteBtn();
+                    
                 }) 
             
             if (user) {
                 displayUserProfile(user, userInfoContainer);
-                showDeleteBtnCurrentUser(user)
+                const loggedInUserId = filterCookieValue('id', 'user');
+                if (user.id === loggedInUserId) {
+                    displayDeleteAccountBtn();
+                   
+                   
+                }
+               else return
             }
+
+            
             else {
                 console.log(`Ingen anvÃ¤ndare hittades`);
             }
 
             const deleteAccountBtn = document.querySelector('.delAccountBtn') as HTMLButtonElement;
+            
 
             postLink.addEventListener('click', handlePostLink);
             commentsLink.addEventListener('click', handleCommentsLink);
-            deleteAccountBtn.addEventListener('click', handleDeleteAccount)
-            
-            userPageLinks.forEach(userPageLink => {
-                userPageLink.addEventListener('click', () => {
-                    handleUserPageLink(userPageLink);
-                });
-            });
-
+            deleteAccountBtn.addEventListener('click', handleDeleteAccount);
+           
             function handlePostLink():void{
                 container.innerHTML = "";
             
                 getPostByUser(user.id)
                     .then(posts => {
+                        console.log(posts)
                         container.innerHTML = "";
-                        displayContent(container, posts, userImg);
-                    });
+                        displayContent(container, posts, userImg, 'post');
+                        handleDeleteBtn();  
+                    });     
             }
            
             function handleCommentsLink():void{
@@ -81,7 +97,9 @@ async function displayProfile():Promise<void> {
                 getCommentsByUser(user.id)
                 .then(comments=>{
                     container.innerHTML = "";
-                    displayContent(container, comments, userImg)
+                    displayContent(container, comments, userImg, 'comment')
+                    handleDeleteBtn();
+                    //displayDeleteBtn('comment');
                 })
             }
             
@@ -94,13 +112,12 @@ async function displayProfile():Promise<void> {
                     logOut();    
                 });
             }
-}
+        }
 
-
-            function handleUserPageLink(clickedLink: HTMLElement):void {
-                userPageLinks.forEach(link => {
-                    link.classList.remove('addGreyBGColor');
-                });
+        function handleUserPageLink(clickedLink: HTMLElement):void {
+            userPageLinks.forEach(link => {
+                link.classList.remove('addGreyBGColor');
+            });
             
                 clickedLink.classList.add('addGreyBGColor');
             }
@@ -108,6 +125,8 @@ async function displayProfile():Promise<void> {
         .catch(error => {
             console.error('Error fetching users:', error);
         });
+
+     
 }
 
 function logOut() {
@@ -115,12 +134,6 @@ function logOut() {
     window.location.href = "/";
 }
 
-function showDeleteBtnCurrentUser(user: User): void {
-    const loggedInUserId = filterCookieValue('id', 'user');
-    if (user.id === loggedInUserId) {
-        displayDeleteAccountBtn();
-    }
-}
 function displayDeleteAccountBtn():void{
     const userInfoContainer = document.querySelector('.userInfo') as HTMLDivElement;
     const deleteAccountBtn = document.createElement('button');
@@ -143,12 +156,52 @@ function displayUserProfile(user: User, container: HTMLDivElement): void {
     container.append(userInfo);
 }
 
-function displayContent(container: HTMLElement, items: (Post | Comments)[], userImg: Record<string, string>) {
+
+
+ function handleDeleteBtn():void {
+    const deleteBtns = document.querySelectorAll('.delete-btn') as NodeListOf<HTMLButtonElement>;
+    console.log(deleteBtns)
+    deleteBtns.forEach(deleteBtn => {
+        deleteBtn.addEventListener('click', async (event) => {
+
+            event.stopPropagation();
+            const container = (event.target as HTMLElement).closest('.commentItem')
+            const containerId = container.id
+            const loggedInUserId = filterCookieValue('id', 'user')
+           
+            if(deleteBtn.classList.contains('post')){
+                console.log('post')
+                api.deletePost(loggedInUserId, containerId)
+                container.remove();
+            }
+
+            else{
+                console.log('comment')
+                console.log(containerId)
+
+                api.getComment(containerId)
+                const commentObj = await api.getComment(containerId)
+                console.log(commentObj.postId)
+
+                api.deleteComment(commentObj.postId, loggedInUserId, commentObj.id)
+                container.remove();
+
+            }
+            
+        });
+    });
+}
+
+function displayContent(container: HTMLElement, items: (Post | Comment)[], userImg: Record<string, string>, typeOfContent:string) {
     container.innerHTML = "";
 
     items.forEach(item => {
+        console.log(item)
         const itemElement = document.createElement('div');
         itemElement.classList.add('commentItem');
+        itemElement.id = item.id;
+        const commentWrapper = document.createElement('div');
+        commentWrapper.classList.add('commentWrapper')
 
         const timeStampEl = document.createElement('small');
         timeStampEl.classList.add('timeStampEl');
@@ -174,13 +227,29 @@ function displayContent(container: HTMLElement, items: (Post | Comments)[], user
             displayUserImage(imgDiv, userImg.banana);
         }
 
+         const loggedInUserId = filterCookieValue('id', 'user');
+         if (item.user.id === loggedInUserId) {
+            const deleteBtn = DeleteContentBtn.create(typeOfContent);
+            commentWrapper.append(imgDiv, deleteBtn);
+            
+        } 
+         else{
+           
+            commentWrapper.append(imgDiv, usernameEl);
+         }
+        
+        
         itemBody.appendChild(contentEl);
         imgDiv.append(timeStampEl, usernameEl);
-        itemElement.append(imgDiv, itemBody);
+        itemElement.append(commentWrapper, itemBody);
+        
 
         container.append(itemElement);
     });
+
 }
+
+
 
 
 export{displayProfile, displayUserProfile}

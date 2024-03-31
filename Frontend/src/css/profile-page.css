@@ -14,7 +14,17 @@
 .userInfo > div > h2{
     margin-left: 1rem;
 }
+.commentWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
+.delete-btn{
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
+  cursor: pointer;
+}
 .delAccountBtn{
     padding: 0.8rem;
     border-radius: 30px;

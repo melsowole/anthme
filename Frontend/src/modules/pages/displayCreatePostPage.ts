@@ -1,7 +1,7 @@
 import { CreatePostPage } from "./components/CreatePostPage.js";
 import * as api from "../api.js";
 import { filterCookieValue } from "../utilities/cookieUtils.js";
-import { User, Post, Comments } from "../utilities/pathTypes.js";
+import { User, Post, Comment } from "../utilities/pathTypes.js";
 
 export default async function displayCreatePostPage(): Promise<void> {
     const textContentArray: string[] = [

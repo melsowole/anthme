@@ -1,4 +1,4 @@
-import { User, Post, Comments, Category } from "./utilities/pathTypes";
+import { User, Post, Comment, Category } from "./utilities/pathTypes";
 
 const baseUrl: string = 'http://localhost:3000/';
 const header = {"Content-type": "application/json; charset=UTF-8"};
@@ -10,6 +10,15 @@ async function getCategories(): Promise<Category[]> {
     const categories = await res.json();
     
     return categories;
+}
+
+async function getCategory(categoryName: string): Promise<Category> {
+    const url = `${baseUrl}categories/${categoryName}`;
+
+    const res = await fetch(url);
+    const category = await res.json();
+    
+    return category;
 }
 
 async function getFilteredCategories(categoryName: string): Promise<Category[]> {
@@ -61,14 +70,21 @@ async function getPostByUser(userId:string): Promise<Post[]>{
   return post;
 }
 
-async function getComments(): Promise<Comments[]> {
+async function getComments(): Promise<Comment[]> {
   const url = baseUrl + "comments";
   const res = await fetch(url);
   const comments = await res.json();
   return comments;
 }
 
-async function getCommentsByUser(userId:string): Promise<Comments[]>{
+async function getComment(commentId:string): Promise<Comment>{
+  const url = `${baseUrl}comments/${commentId}`
+
+  const res = await fetch(url);
+  const comment = await res.json();
+  return comment;
+}
+async function getCommentsByUser(userId:string): Promise<Comment[]>{
   const url = `${baseUrl}users/${userId}/comments`
 
   const res = await fetch(url);
@@ -77,7 +93,7 @@ async function getCommentsByUser(userId:string): Promise<Comments[]>{
   return comment;
 }
 
-async function submitPost<T extends User | Post | Comments>(
+async function submitPost<T extends User | Post | Comment>(
   createdObject: Object,
   typeOfPost: string,
   userId?: string,
@@ -149,6 +165,35 @@ async function deleteAccount(userId: string): Promise<any> {
   return info;
 }
 
+async function deletePost(userId: string, postId:string):Promise<Post>{
+  const url = `${baseUrl}users/${userId}/posts/${postId}`; 
+
+  const options = {
+    method: "DELETE",
+    headers: header,
+  };
+
+  const res = await fetch(url, options);
+  const info = await res.json();
+
+  return info;
+
+}
+
+async function deleteComment(postId:string, userId:string, commentId:string):Promise<Comment>{
+  const url = `${baseUrl}posts/${postId}/users/${userId}/comments/${commentId}` 
+
+  const options = {
+    method: "DELETE",
+    headers: header,
+  };
+
+  const res = await fetch(url, options);
+  const info = await res.json();
+
+  return info;
+}
+
 export {
   submitPost,
   getAllUsers,
@@ -156,11 +201,15 @@ export {
   sendLogInRequest,
   getPost,
   getComments,
+  getComment,
   deleteAccount,
+  deletePost,
+  deleteComment,
   getUserByUsername,
   getPostByUser,
   getCommentsByUser,
   getCategories,
+  getCategory,
   getPosts,
   getFilteredCategories
 };

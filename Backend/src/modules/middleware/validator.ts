@@ -21,8 +21,7 @@ const userValidations = [
     .exists()
     .isString()
     .notEmpty()
-    .custom((value) => value.trim() !== "")
-    .escape(),
+    .custom((value) => value.trim() !== ""),
   body().custom((body) => {
     const keys = ["username", "password", "userImage", "timestamp"];
     return Object.keys(body).every((key) => keys.includes(key));
@@ -62,7 +61,7 @@ const commentValidations = [
     .custom((value) => value.trim() !== "")
     .escape(),
   body().custom((body) => {
-    const keys = ["body", "user", "timestamp"];
+    const keys = ["body",  "user", "timestamp"];
     return Object.keys(body).every((key) => keys.includes(key));
   }),
 ];
