@@ -9,6 +9,9 @@ import * as userImg from "../utilities/userImgUtils.js";
 import { generateDropdowns } from "../utilities/dropdownUtils.js";
 import { Post, Comment, User } from "../utilities/pathTypes.js";
 
+
+let specificComments: Comment[] = [];
+
 async function displayViewPostPage(): Promise<void> {
   const mainNavDropdowns = await generateDropdowns();
 
@@ -18,12 +21,9 @@ async function displayViewPostPage(): Promise<void> {
 
   document.body.append(viewPostpage, header, mainNav);
 
-  document.body.append(viewPostpage, header, mainNav);
-
   const urlParts: string[] = window.location.pathname.split("/");
   const urlPathEndpoint: string = urlParts[urlParts.length - 1];
   
-
   getPost(urlPathEndpoint)
     .then((post) => {
       const userInfoContainer = document.querySelector(
@@ -35,7 +35,7 @@ async function displayViewPostPage(): Promise<void> {
 
       getComments()
         .then((comments) => {
-          const specificComments = comments.filter((comment) =>
+          specificComments = comments.filter((comment) =>
             postCommentsIds.includes(comment.id)
           );
           console.log(specificComments)
@@ -79,10 +79,12 @@ async function displayViewPostPage(): Promise<void> {
             if ('postId' in result) {
                 const newlyCreatedComment = result as Comment;
                 console.log(newlyCreatedComment);
+                specificComments.push(newlyCreatedComment);
                 const commentDiv = document.querySelector(
                     ".commentInfo"
                 ) as HTMLDivElement;
-                displayCommentsOnPost(commentDiv, newlyCreatedComment, [], userImg);
+                displayCommentsOnPost(commentDiv, newlyCreatedComment, specificComments, userImg);
+                updateAmountOfComments();
             } else {
             
                 console.log("Received data of unknown type:", result);
@@ -202,6 +204,9 @@ function displayUserImage(container: HTMLDivElement, imgPath: string): void {
   container.appendChild(imgEl);
 }
 
-
+function updateAmountOfComments() {
+    const ammountOfComments = document.querySelector('.amountOfComments') as HTMLSpanElement;
+    ammountOfComments.innerText = specificComments.length.toString(); 
+}
 
 export { displayViewPostPage, displayUserImage };
