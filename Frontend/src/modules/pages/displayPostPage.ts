@@ -22,6 +22,7 @@ async function displayViewPostPage(): Promise<void> {
 
   const urlParts: string[] = window.location.pathname.split("/");
   const urlPathEndpoint: string = urlParts[urlParts.length - 1];
+  
 
   getPost(urlPathEndpoint)
     .then((post) => {
@@ -37,6 +38,7 @@ async function displayViewPostPage(): Promise<void> {
           const specificComments = comments.filter((comment) =>
             postCommentsIds.includes(comment.id)
           );
+          console.log(specificComments)
           const commentDiv = document.querySelector(
             ".commentInfo"
           ) as HTMLDivElement;
@@ -58,25 +60,45 @@ async function displayViewPostPage(): Promise<void> {
       const commentForm = document.querySelector(
         ".commentForm"
       ) as HTMLFormElement;
+
       commentForm.addEventListener("submit", (event) => {
         event.preventDefault();
         const commentInput = document.querySelector(
           ".commentInput"
         ) as HTMLTextAreaElement;
         const commentValue = commentInput.value;
-
+    
         const newComment = {
           body: commentValue,
         };
-
+    
         if (event.submitter && event.submitter.id === "addCommentBtn") {
           const loggedInUserId = filterCookieValue("id", "user");
-          submitPost(newComment, "comment", loggedInUserId, post.id);
+          submitPost(newComment, "comment", loggedInUserId, post.id)
+            .then(() => {
+              getComments()
+                .then(comments => {
+                  console.log(comments);
+                  const commentDiv = document.querySelector(
+                    ".commentInfo"
+                  ) as HTMLDivElement;
+                  commentDiv.innerHTML = ""; 
+                  for (const singleComment of comments) {
+                    displayCommentsOnPost(commentDiv, singleComment, comments, userImg);
+                  }
+                })
+                .catch(error => {
+                  console.error("Error fetching comments:", error);
+                });
+            })
+            .catch(error => {
+              console.error("Error submitting comment:", error);
+            });
         }
-
+    
         commentForm.reset();
       });
-
+    
       const addCommentBtn = document.querySelector(
         ".addCommentBtn"
       ) as HTMLButtonElement;
