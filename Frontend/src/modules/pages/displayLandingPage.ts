@@ -63,13 +63,9 @@ function handleDocumentClick(event: MouseEvent): void {
 function handleSelectImgElement(): void {
     const imageContainer = document.querySelector('.imgContainer') as HTMLDivElement;
     let selectedValue = selectElement.value;
-    if (selectedValue === 'banana') {
-        displayUserImage(imageContainer, userImg.banana)
-    } else if (selectedValue === 'donut') {
-        displayUserImage(imageContainer, userImg.donut)
-    } else {
-        displayUserImage(imageContainer, userImg.pizza)
-    }
+    
+    displayUserImage(imageContainer, selectedValue)
+
 }
 
 function handleCloseFormBtn(event: MouseEvent): void {
