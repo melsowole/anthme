@@ -1,6 +1,6 @@
 .background-container {
   min-height: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
 }
 
@@ -77,10 +77,6 @@
   border: 1px solid #1a1a1b;
 }
 
-.text-features {
-  background-color: #f6f7f8;
-}
-
 .post-content > .textarea {
   min-height: 122px;
   outline: none;
@@ -115,11 +111,12 @@
   border-radius: 9999px;
 }
 
-@media screen and (min-width: 640px) {
-  #mainContainer {
-    /* padding: 20px 24px; */
-  }
+.highlight-submit-btn {
+  background-color: #fc471e;
+  color: #FFFFFF;
+}
 
+@media screen and (min-width: 640px) {
   .category-container > select {
     width: inherit;
   }

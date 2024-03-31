@@ -1,3 +1,4 @@
+import "quill/dist/quill.snow.css";
 import {router, setupRouter} from "./router.js"
 
 setupRouter()

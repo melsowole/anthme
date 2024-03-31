@@ -11,7 +11,9 @@ import {getPostByUser, getCommentsByUser} from "../api.js"
 import {displayUserImage} from "./displayPostPage"
 import {Post, Comment} from "../utilities/pathTypes.js"
 import { generateDropdowns } from "../utilities/dropdownUtils.js";
+import { htmlEntitiesToString } from "../utilities/stringUtils.js";
 import {DeleteContentBtn} from"./components/DeleteContentBtn.js"
+
 
 async function displayProfile():Promise<void> {
     const mainNavDropdowns = await generateDropdowns();
@@ -40,7 +42,7 @@ async function displayProfile():Promise<void> {
             console.log(user)
             postLink.classList.add('addGreyBGColor')
 
-           await getPostByUser(user.id)
+            await getPostByUser(user.id)
                 .then(posts =>{
                     //FLYTTA EJ PÅ DENNA
                     userPageLinks.forEach(userPageLink => {
@@ -117,15 +119,14 @@ async function displayProfile():Promise<void> {
                 link.classList.remove('addGreyBGColor');
             });
             
-            clickedLink.classList.add('addGreyBGColor');
-        }
+                clickedLink.classList.add('addGreyBGColor');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching users:', error);
+        });
 
-        
-    })
-    .catch(error => {
-        console.error('Error fetching users:', error);
-    });
-   
+     
 }
 
 function logOut() {
@@ -215,8 +216,8 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], userI
         const usernameEl = document.createElement('h2');
         usernameEl.innerText = item.user.username;
 
-        const contentEl = document.createElement('p');
-        contentEl.innerHTML = item.body;
+        const contentEl = document.createElement('div');
+        contentEl.innerHTML = htmlEntitiesToString(item.body);
 
         if (item.user.userImage === 'pizza') {
             displayUserImage(imgDiv, userImg.pizza);

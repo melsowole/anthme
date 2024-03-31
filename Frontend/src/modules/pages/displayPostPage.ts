@@ -7,8 +7,8 @@ import dayjs from "dayjs";
 import { filterCookieValue } from "../utilities/cookieUtils.js";
 import * as userImg from "../utilities/userImgUtils.js";
 import { generateDropdowns } from "../utilities/dropdownUtils.js";
-import { Post, Comment, User } from "../utilities/pathTypes.js";
-
+import { Post, Comments, User } from "../utilities/pathTypes.js";
+import { htmlEntitiesToString } from "../utilities/stringUtils.js";
 
 let specificComments: Comment[] = [];
 
@@ -52,11 +52,7 @@ async function displayViewPostPage(): Promise<void> {
             );
           }
         })
-
-        .catch((error) => {
-          console.error("Error fetching comments:", error);
-        });
-
+ 
       const commentForm = document.querySelector(
         ".commentForm"
       ) as HTMLFormElement;
@@ -125,83 +121,83 @@ async function displayViewPostPage(): Promise<void> {
     });
 }
 
-function displayUserProfile(container: HTMLElement, item: (Post), userImg: Record<string, string>):void {
-    
-    const userInfoContainer = document.querySelector('.userInfoContainer') as HTMLDivElement;
-    const contentDiv = document.querySelector('.contentDiv') as HTMLDivElement;
-    const userInfoItem = document.querySelector('.userInfoItem') as HTMLDivElement;
-    const userImgContainer = document.querySelector('.userImgContainer') as HTMLImageElement;
+    function displayUserProfile(container: HTMLElement, item: (Post), userImg: Record<string, string>):void {
+        
+        const userInfoContainer = document.querySelector('.userInfoContainer') as HTMLDivElement;
+        const contentDiv = document.querySelector('.contentDiv') as HTMLDivElement;
+        const userInfoItem = document.querySelector('.userInfoItem') as HTMLDivElement;
+        const userImgContainer = document.querySelector('.userImgContainer') as HTMLImageElement;
 
-    if (item.user.userImage === 'pizza') {
-        displayUserImage(userImgContainer, userImg.pizza);
-    } else if (item.user.userImage === 'donut') {
-        displayUserImage(userImgContainer, userImg.donut);
-    } else {
-        displayUserImage(userImgContainer, userImg.banana);
+        if (item.user.userImage === 'pizza') {
+            displayUserImage(userImgContainer, userImg.pizza);
+        } else if (item.user.userImage === 'donut') {
+            displayUserImage(userImgContainer, userImg.donut);
+        } else {
+            displayUserImage(userImgContainer, userImg.banana);
+        }
+        
+        const categoryEl = document.createElement('p');
+        categoryEl.innerText = item.category;
+        categoryEl.id = 'categoryTitle'
+        const usernameEl = document.createElement('p')
+        usernameEl.innerText = `u/${item.user.username}`;
+        usernameEl.classList.add('username')
+        const titleEl = document.createElement('h2');
+        titleEl.innerText = item.title;
+        const contentEl = document.createElement('div');
+        contentEl.innerHTML = htmlEntitiesToString(item.body);
+
+        contentDiv.append(titleEl, contentEl)
+        userInfoItem.append(usernameEl, categoryEl)
+        userInfoContainer.append(userInfoItem)
+
+        container.append(userInfoItem);
+    
     }
-    
-    const categoryEl = document.createElement('p');
-    categoryEl.innerText = item.category;
-    categoryEl.id = 'categoryTitle'
-    const usernameEl = document.createElement('p')
-    usernameEl.innerText = `u/${item.user.username}`;
-    usernameEl.classList.add('username')
-    const titleEl = document.createElement('h2');
-    titleEl.innerText = item.title;
-    const contentEl = document.createElement('p');
-    contentEl.innerHTML=item.body;
-    
 
-    contentDiv.append(titleEl, contentEl)
-    userInfoItem.append(usernameEl, categoryEl)
-    userInfoContainer.append(userInfoItem)
+    function displayCommentsOnPost(container: HTMLElement, item: Comments, specificComments: Comments[], userImg: Record<string, string>):void {
+        
+        const ammountOfComments = document.querySelector('.amountOfComments') as HTMLSpanElement;
+        ammountOfComments.innerText = specificComments.length.toString(); 
+                        
+        const commentItem= document.createElement('div');
+        commentItem.classList.add('commentItem')
+        const timeStampEl = document.createElement('small');
+        timeStampEl.classList.add('timeStampEl')
+        timeStampEl.innerText = dayjs(item.user.created).format('DD MMMM YYYY');
 
-    container.append(userInfoItem);
-   
-}
+        const imgDiv = document.createElement('div');
+        imgDiv.classList.add('imgDiv');
+        const commentBody = document.createElement('div');
+        commentBody.classList.add('commentBody')
+        const usernameEl = document.createElement('h2')
+        usernameEl.innerText= item.user.username;
+        const contentEl = document.createElement('div');
+        contentEl.innerHTML = htmlEntitiesToString(item.body);
 
-function displayCommentsOnPost(container: HTMLElement, item: Comment, specificComments: Comment[], userImg: Record<string, string>):void {
-    
-     const ammountOfComments = document.querySelector('.amountOfComments') as HTMLSpanElement;
-    ammountOfComments.innerText = specificComments.length.toString(); 
-                    
-    const commentItem= document.createElement('div');
-    commentItem.classList.add('commentItem')
-    const timeStampEl = document.createElement('small');
-    timeStampEl.classList.add('timeStampEl')
-    timeStampEl.innerText = dayjs(item.user.created).format('DD MMMM YYYY');
+        if (item.user.userImage === 'pizza') {
+            displayUserImage(imgDiv, userImg.pizza);
+        } 
+        else if (item.user.userImage === 'donut') {
+            displayUserImage(imgDiv, userImg.donut);
+        } 
+        else  displayUserImage(imgDiv, userImg.banana);
+            
+        commentBody.append(usernameEl, contentEl);
+        imgDiv.append(timeStampEl, usernameEl);
 
-    const imgDiv = document.createElement('div');
-    imgDiv.classList.add('imgDiv');
-    const commentBody = document.createElement('div');
-    commentBody.classList.add('commentBody')
-    const usernameEl = document.createElement('h2')
-    usernameEl.innerText= item.user.username;
-    const contentEl = document.createElement('p');
-    contentEl.innerHTML = item.body;
+        commentItem.append(imgDiv, commentBody);
 
-    if (item.user.userImage === 'pizza') {
-        displayUserImage(imgDiv, userImg.pizza);
-    } 
-    else if (item.user.userImage === 'donut') {
-        displayUserImage(imgDiv, userImg.donut);
-    } 
-    else  displayUserImage(imgDiv, userImg.banana);
-           
-    commentBody.append(usernameEl, contentEl);
-    imgDiv.append(timeStampEl, usernameEl);
+        container.append(commentItem);
+    }
 
-    commentItem.append(imgDiv, commentBody);
 
-    container.append(commentItem);
-}
+    function displayUserImage(container: HTMLDivElement, imgPath: string): void {
+    const imgEl = document.createElement("img");
+    imgEl.src = imgPath;
+    imgEl.classList.add("userImg");
 
-function displayUserImage(container: HTMLDivElement, imgPath: string): void {
-  const imgEl = document.createElement("img");
-  imgEl.src = imgPath;
-  imgEl.classList.add("userImg");
-
-  container.appendChild(imgEl);
+    container.appendChild(imgEl);
 }
 
 function updateAmountOfComments() {

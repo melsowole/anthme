@@ -1,5 +1,5 @@
 import Navigo from "navigo";
-import displayPostPage from "./modules/pages/displayCreatePostPage.js";
+import displayCreatePostPage from "./modules/pages/displayCreatePostPage.js";
 import { displayLandingPage } from "./modules/pages/displayLandingPage.js";
 import displayHomePage from "./modules/pages/displayHomePage.js";
 import { displayUsersPage } from "./modules/pages/displayUsersPage.js";
@@ -20,7 +20,7 @@ function setupRouter(): Promise<void> {
         } else {
           router.on("/", ()=> displayHomePage() );
           router.on("/:category", ()=> displayHomePage() );
-          router.on("/create-post", displayPostPage);
+          router.on("/create-post", displayCreatePostPage);
           router.on("/users", displayUsersPage);
           router.on("/profile/:username", displayProfile);
           router.on("/posts/:postId", displayViewPostPage);
