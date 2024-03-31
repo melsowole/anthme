@@ -19,8 +19,8 @@ function setupRouter(): Promise<void> {
           router.on("*", displayLandingPage);
         } else {
           router.on("/", ()=> displayHomePage() );
-          router.on("/:category", ()=> displayHomePage() );
           router.on("/create-post", displayCreatePostPage);
+          router.on("/:category", ()=> displayHomePage() );
           router.on("/users", displayUsersPage);
           router.on("/profile/:username", displayProfile);
           router.on("/posts/:postId", displayViewPostPage);
