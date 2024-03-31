@@ -8,7 +8,8 @@ import {
 export default class Noticeboard {
   static create(
     headerContent: string,
-    itemsArray: string[] | HTMLElement[]
+    itemsArray: string[] | HTMLElement[],
+    itemsN: number = itemsArray.length
   ): HTMLDivElement {
     const headerTemp = replace(template.noticeboard, [
       { pattern: "header", replacement: headerContent },
@@ -16,28 +17,32 @@ export default class Noticeboard {
     const noticeboardEl = stringToDOM(headerTemp) as HTMLDivElement;
     const orderedListEl = noticeboardEl.querySelector("ol") as HTMLOListElement;
 
-    itemsArray.forEach((item: string | HTMLElement) => {
-      let itemTemp = isHTMLElement(item)
-        ? template.listItemFree
-        : template.listItem;
-
-      let listItemEl: HTMLElement;
-
-      if (isHTMLElement(item)) {
-        listItemEl = stringToDOM(itemTemp);
-        listItemEl.append(item);
-      } else {
-        itemTemp = replace(itemTemp, [
-          { pattern: "textContent", replacement: item },
-        ]);
-        listItemEl = stringToDOM(itemTemp);
-      }
-
-      orderedListEl.append(listItemEl);
-    });
+    for (let i = 0; i < itemsN || i == itemsArray.length; i++) 
+      orderedListEl.append(this.createItem(itemsArray[i]));
 
     return noticeboardEl;
   }
+
+  private static createItem(item: string | HTMLElement):HTMLElement{
+    let itemTemp = isHTMLElement(item)
+      ? template.listItemFree
+      : template.listItem;
+
+    let listItemEl: HTMLElement;
+
+    if (isHTMLElement(item)) {
+      listItemEl = stringToDOM(itemTemp);
+      listItemEl.append(item);
+    } else {
+      itemTemp = replace(itemTemp, [
+        { pattern: "textContent", replacement: item },
+      ]);
+      listItemEl = stringToDOM(itemTemp);
+    }
+
+    return listItemEl
+  }
+
 }
 
 function isHTMLElement(item: string | HTMLElement): item is HTMLElement {

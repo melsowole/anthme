@@ -21,8 +21,8 @@ export default async function displayHomePage() {
   document.body.append(
     Header.create(),
     MainNav.create(dropdowns),
-    MainFeed.create(posts, category),
-    Noticeboard.create("Users", await usersNoticeBoard())
+    MainFeed.create(posts),
+    Noticeboard.create("Users", await usersNoticeBoard(), 5)
   );
 }
 
