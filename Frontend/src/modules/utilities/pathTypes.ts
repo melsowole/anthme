@@ -29,7 +29,7 @@ type Comment = {
   postId:string;
   user: {
     id: string;
-    created: string;
+    created?: string;
     username: string;
     userImage: string;
   };
