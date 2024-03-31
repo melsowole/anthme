@@ -11,6 +11,7 @@ import {getPostByUser, getCommentsByUser} from "../api.js"
 import {displayUserImage} from "./displayPostPage"
 import {Post, Comments} from "../utilities/pathTypes.js"
 import { generateDropdowns } from "../utilities/dropdownUtils.js";
+import { htmlEntitiesToString } from "../utilities/stringUtils.js";
 
 
 async function displayProfile():Promise<void> {
@@ -39,7 +40,7 @@ async function displayProfile():Promise<void> {
             console.log(user)
             postLink.classList.add('addGreyBGColor')
 
-           await getPostByUser(user.id)
+            await getPostByUser(user.id)
                 .then(posts =>{
                     displayContent(container, posts, userImg);    
                 }) 
@@ -107,7 +108,6 @@ async function displayProfile():Promise<void> {
         .catch(error => {
             console.error('Error fetching users:', error);
         });
-   
 }
 
 function logOut() {
@@ -163,8 +163,8 @@ function displayContent(container: HTMLElement, items: (Post | Comments)[], user
         const usernameEl = document.createElement('h2');
         usernameEl.innerText = item.user.username;
 
-        const contentEl = document.createElement('p');
-        contentEl.innerHTML = item.body;
+        const contentEl = document.createElement('div');
+        contentEl.innerHTML = htmlEntitiesToString(item.body);
 
         if (item.user.userImage === 'pizza') {
             displayUserImage(imgDiv, userImg.pizza);

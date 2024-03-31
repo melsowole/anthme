@@ -3,18 +3,9 @@ import { replace, stringToDOM } from "../../utilities/templateUtils.ts";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Post } from "../../utilities/pathTypes.ts";
+import { htmlEntitiesToString } from "../../utilities/stringUtils.ts";
 
 dayjs.extend(relativeTime);
-
-type Post = {
-  id: string;
-  created: string;
-  category: string;
-  title: string;
-  body: string;
-  userImg: string;
-  comments: string[];
-};
 
 export default class postPreview {
   static create(post: Post): HTMLElement {
@@ -26,7 +17,7 @@ export default class postPreview {
       { pattern: "category", replacement: post.category },
       { pattern: "age", replacement: dayjs(post.created).fromNow() },
       { pattern: "title", replacement: post.title },
-      { pattern: "body", replacement: post.body },
+      { pattern: "body", replacement: htmlEntitiesToString(post.body) },
       { pattern: "comments", replacement: post.comments.length.toString() },
     ]);
 
