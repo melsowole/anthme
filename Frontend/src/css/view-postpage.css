@@ -3,11 +3,21 @@
   padding-top: 1rem;
   padding-bottom: 1.5rem;
   align-items: center;
+  margin-left: 2rem;
 }
+
 .userImg {
   width: 40px;
 }
 
+.commentInput{
+  width: 350px;
+  margin-left: 2rem;
+}
+
+.contentDiv{
+  margin-left: 2rem;
+}
 #categoryTitle {
   font-size: 0.75rem;
   margin-left: 0.5rem;
@@ -40,6 +50,7 @@
   display: flex;
   margin-top: 2rem;
   gap: 0.8rem;
+  margin-left: 2rem;
 }
 .outerSpan {
   background-color: #eaedef;
@@ -121,6 +132,7 @@
   width: 155px;
   height: 40px;
   border-radius: 30px;
+  margin-left: 2rem;
   border: 1px solid #576f76;
   background-color: transparent;
   font-size: 0.9rem;
@@ -153,8 +165,9 @@
 .commentItem {
   margin-bottom: 2rem;
   border-bottom: 1px solid var(--neut);
-  width: 500px;
+  width: 320px;
   position: relative;
+  margin-left: 2rem;
 }
 .imgDiv {
   display: flex;
@@ -206,8 +219,8 @@
 
 .submitButton {
   position: absolute;
-  top: 70px;
-  right: 250px;
+  top: 55px;
+  right: 35px;
   width: 74px;
   height: 32px;
   border: none;
@@ -234,8 +247,8 @@
   width: 60px;
   height: 32px;
   position: absolute;
-  top: 70px;
-  right: 330px;
+  top: 55px;
+  right: 115px;
   border-radius: 20px;
   border: none;
   background-color: #dde8fe;
@@ -245,4 +258,53 @@
 
 .cancelButton:hover {
   background-color: #bfd5fe;
+}
+
+
+
+@media screen and (min-width: 640px){
+
+  .submitButton {
+    top: 70px;
+    right: 250px;
+  }
+  
+  .cancelButton {
+    top: 70px;
+    right: 330px;
+  }
+
+  
+
+}
+
+@media screen and (min-width: 960px) {
+
+ 
+  .commentInput{
+    width: 490px;
+    margin-left: 0rem;
+  }
+
+  .submitButton {
+    top: 70px;
+    right: 250px;
+  }
+  
+  .cancelButton {
+    top: 70px;
+    right: 330px;
+  }
+
+  .commentItem {
+    width: 500px;
+    margin-left: 0rem;
+  }
+  
+.contentDiv, .userInfoContainer, .addCommentBtn, .interactionContainer{
+  margin-left: 0rem;
+}
+
+  
+  
 }
