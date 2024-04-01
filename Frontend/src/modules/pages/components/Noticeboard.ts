@@ -1,4 +1,4 @@
-import * as template from "./templates/post-noticeboard.ts";
+import * as template from "./templates/noticeboard.ts";
 import {
   replace,
   stringToDOM,
@@ -9,7 +9,6 @@ export default class Noticeboard {
   static create(
     headerContent: string,
     itemsArray: string[] | HTMLElement[],
-    itemsN: number = itemsArray.length
   ): HTMLDivElement {
     const headerTemp = replace(template.noticeboard, [
       { pattern: "header", replacement: headerContent },
@@ -17,8 +16,10 @@ export default class Noticeboard {
     const noticeboardEl = stringToDOM(headerTemp) as HTMLDivElement;
     const orderedListEl = noticeboardEl.querySelector("ol") as HTMLOListElement;
 
-    for (let i = 0; i < itemsN || i == itemsArray.length; i++) 
-      orderedListEl.append(this.createItem(itemsArray[i]));
+    for (const item of itemsArray) {
+      orderedListEl.append(this.createItem(item));
+      
+    }
 
     return noticeboardEl;
   }

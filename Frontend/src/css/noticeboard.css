@@ -1,19 +1,19 @@
-.sidebar {
+.noticeboard {
   background-color: var(--neutLighter);
   border-radius: 5px;
   padding: 1rem 0;
 }
 
-.light .sidebar {
+.light .noticeboard {
   background-color: var(--bg);
 }
 
-.sidebar > *,
-.sidebar a {
+.noticeboard > *,
+.noticeboard a {
   padding: 0.5rem 1rem;
 }
 
-.sidebar li.bottom-border {
+.noticeboard li.bottom-border {
   padding: 0.5rem 0;
   margin: 0.5rem 1rem;
 }
@@ -26,7 +26,7 @@
   border-bottom: 1px solid var(--neutLight);
 }
 
-.sidebar h2 {
+.noticeboard h2 {
   font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -34,7 +34,7 @@
   letter-spacing: 0.2pt;
 }
 
-.sidebar > ol {
+.noticeboard > ol {
   list-style-position: inside;
   padding: 0;
 }
