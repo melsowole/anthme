@@ -80,20 +80,32 @@ async function displayProfile():Promise<void> {
                     // TODO -  NO POST
                     const posts = await getPostByUser(user.id);
 
-                    container.innerHTML = "";
-                    displayContent(container, posts, userImg, 'post');
-                    handleDeleteBtn();
+                    if(posts.length){
+                        displayContent(container, posts, userImg, 'post');
+                        handleDeleteBtn();
+                        
+                    } else{
+                        container.innerHTML = `
+                            <div>No posts...</div>
+                        `;
+                    }
+
                 }
             
                 async function handleCommentsLink():Promise<void>{
                     container.innerHTML = "";
-                
-                    // TODO - NO COMMENTS
+
                     const comments = await getCommentsByUser(user.id);
 
-                    container.innerHTML = "";
-                    displayContent(container, comments, userImg, 'comment')
-                    handleDeleteBtn();
+                    if(comments.length){
+                        displayContent(container, comments, userImg, 'comment')
+                        handleDeleteBtn(); 
+                    } else {
+                        container.innerHTML = `
+                            <div>No comments...</div>
+                        `;
+                    }
+
                 }
             
                 async function handleDeleteAccount(): Promise<void> {
@@ -171,7 +183,6 @@ function displayUserProfile(user: User, container: HTMLDivElement): void {
 
  function handleDeleteBtn():void {
     const deleteBtns = document.querySelectorAll('.delete-btn') as NodeListOf<HTMLButtonElement>;
-    console.log(deleteBtns)
     deleteBtns.forEach(deleteBtn => {
         deleteBtn.addEventListener('click', async (event) => {
 
@@ -207,7 +218,6 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], userI
     container.innerHTML = "";
 
     items.forEach(item => {
-        console.log(item)
         const itemElement = document.createElement('div');
         itemElement.classList.add('commentItem');
         itemElement.id = item.id;
