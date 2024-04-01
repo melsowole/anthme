@@ -54,12 +54,18 @@
     "comments": []
   },
   {
-    "id": "e15e8565-3695-4017-818f-1184894b232a",
-    "username": "afs",
-    "password": "afs",
-    "userImage": "Choose user image:",
-    "created": "2024-03-28T17:05:58.966Z",
-    "posts": [],
-    "comments": []
+    "id": "59907d51-6657-4f68-9728-fce91abb0d70",
+    "username": "lynx",
+    "password": "hej",
+    "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1711959978771",
+    "created": "2024-04-01T08:26:56.084Z",
+    "posts": [
+      "066788f9-42b9-4e8b-a882-1fcc2a994866"
+    ],
+    "comments": [
+      "3d126211-c40a-43af-904d-66c298f8869f",
+      "be3f9e4b-fa2d-4835-acd8-4c44e69f2d07",
+      "09c76b6c-0b00-499e-8f2b-2cd98ecd5983"
+    ]
   }
 ]

@@ -11,13 +11,14 @@ import { User, Category } from "../utilities/pathTypes.ts";
 export default async function displayHomePage() {
   let posts = await api.getPosts();
   const dropdowns = await generateDropdowns();
+
   
   const category : false | Category = await getPageCategory()
 
   if(category){
     posts = posts.filter(p=>p.category == category.name);
   }
-
+  
   document.body.append(
     Header.create(),
     MainNav.create(dropdowns),

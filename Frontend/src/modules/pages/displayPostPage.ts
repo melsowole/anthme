@@ -4,6 +4,7 @@ import Header from "./components/Header.js";
 import MainNav from "./components/MainNav.js";
 import { getPost, getComments, submitPost } from "../api.js";
 import dayjs from "dayjs";
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { filterCookieValue } from "../utilities/cookieUtils.js";
 import { generateDropdowns } from "../utilities/dropdownUtils.js";
 import { Post, Comment, User } from "../utilities/pathTypes.js";
@@ -178,7 +179,7 @@ function displayCommentsOnPost(container: HTMLElement, item: Comment, specificCo
   commentItem.classList.add('commentItem')
   const timeStampEl = document.createElement('small');
   timeStampEl.classList.add('timeStampEl')
-  timeStampEl.innerText = dayjs(item.user.created).format('DD MMMM YYYY');
+  timeStampEl.innerText = dayjs(item.created).fromNow()
 
   const imgDiv = document.createElement('div');
   imgDiv.classList.add('imgDiv');
