@@ -234,6 +234,7 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], userI
     container.innerHTML = "";
 
     items.forEach(item => {
+        console.log(item)
         const itemElement = document.createElement('div');
         itemElement.classList.add('commentItem');
         itemElement.id = item.id;
@@ -254,6 +255,13 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], userI
         const usernameEl = document.createElement('h2');
         usernameEl.innerText = item.user.username;
 
+        if ('title' in item) {
+            const titleEl = document.createElement('h2');
+            titleEl.classList.add('postTitle');
+            titleEl.innerText =item.title;
+            itemBody.appendChild(titleEl);
+        }
+        
         const contentEl = document.createElement('div');
         contentEl.innerHTML = htmlEntitiesToString(item.body);
 

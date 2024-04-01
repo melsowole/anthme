@@ -19,7 +19,9 @@
     align-items: center;
     justify-content: space-between;
 }
-
+.postTitle{
+ margin-bottom: 0.5rem;   
+}
 .delete-btn{
   padding-left: 0.2rem;
   padding-right: 0.2rem;
