@@ -1,3 +1,17 @@
+/*
+
+DisplayProfilePage:
+
+* `displayProfile` function is responsible for rendering the user profile page.
+* It fetches the user's information and displays their username and profile image.
+* It retrieves the user's posts and comments and allows navigation between them.
+* Users can delete their own posts and comments directly from the profile page.
+* It provides a "Delete Account" button for users to delete their accounts, which logs them out afterward.
+* If the user is not found, it displays an error message.
+* `displayUserProfile` function displays the user's profile information (username and their selected userImage).
+
+*/
+
 import { main } from "./components/templates/profile-page.js";
 import { stringToDOM } from "../utilities/templateUtils.js";
 import Header from "./components/Header.js"
