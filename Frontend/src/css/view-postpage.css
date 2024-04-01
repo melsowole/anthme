@@ -207,7 +207,7 @@
 .submitButton {
   position: absolute;
   top: 70px;
-  right: 210px;
+  right: 250px;
   width: 74px;
   height: 32px;
   border: none;
@@ -235,7 +235,7 @@
   height: 32px;
   position: absolute;
   top: 70px;
-  right: 292px;
+  right: 330px;
   border-radius: 20px;
   border: none;
   background-color: #dde8fe;

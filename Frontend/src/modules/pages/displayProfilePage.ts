@@ -11,7 +11,9 @@ import {getPostByUser, getCommentsByUser} from "../api.js"
 import {displayUserImage} from "./displayPostPage"
 import {Post, Comment} from "../utilities/pathTypes.js"
 import { generateDropdowns } from "../utilities/dropdownUtils.js";
+import { htmlEntitiesToString } from "../utilities/stringUtils.js";
 import {DeleteContentBtn} from"./components/DeleteContentBtn.js"
+
 
 async function displayProfile():Promise<void> {
     const mainNavDropdowns = await generateDropdowns();
@@ -34,30 +36,30 @@ async function displayProfile():Promise<void> {
     const urlParts: string[] = window.location.pathname.split('/');
     const urlPathEndpoint: string = urlParts[urlParts.length - 1];
    
-    await api.getUserByUsername(urlPathEndpoint)
-        .then(async (user) => {
+    api.getUserByUsername(urlPathEndpoint)
+        .then(async (response) => {
 
-            console.log(user);
+            if('statusCode' in response){
+                throw new Error("404");
 
-            if('statusCode' in user) throw new Error("404")
-            else if('id' in user){
+            } else if('id' in response){
+                const user :User = response;
 
                 postLink.classList.add('addGreyBGColor')
 
-                await getPostByUser(user.id)
-                    .then(posts =>{
-                        //FLYTTA EJ PÅ DENNA
-                        userPageLinks.forEach(userPageLink => {
-                            userPageLink.addEventListener('click', () => {
-                                handleUserPageLink(userPageLink);
-                            });
-                        });
+                const posts = await getPostByUser(user.id);
+
+                //FLYTTA EJ PÅ DENNA
+                userPageLinks.forEach(userPageLink => {
+                    userPageLink.addEventListener('click', () => {
+                        handleUserPageLink(userPageLink);
+                    });
+                });
+    
+                displayContent(container, posts, userImg, 'post'); 
+                handleDeleteBtn();
             
-                        displayContent(container, posts, userImg, 'post'); 
-                        handleDeleteBtn();
-                        
-                    }) 
-            
+                    // TODO REMOVE?
                 if (user) {
                     displayUserProfile(user, userInfoContainer);
                     const loggedInUserId = filterCookieValue('id', 'user');
@@ -71,50 +73,55 @@ async function displayProfile():Promise<void> {
                 postLink.addEventListener('click', handlePostLink);
                 commentsLink.addEventListener('click', handleCommentsLink);
                 deleteAccountBtn.addEventListener('click', handleDeleteAccount);
-           
-                function handlePostLink():void{
+            
+                async function handlePostLink():Promise<void>{
                     container.innerHTML = "";
                 
-                    if('id' in user){
-                        getPostByUser(user.id)
-                            .then(posts => {
-                                container.innerHTML = "";
-                                displayContent(container, posts, userImg, 'post');
-                                handleDeleteBtn();  
-                            }); }    
-                }
-           
-                function handleCommentsLink():void{
+                    // TODO -  NO POST
+                    const posts = await getPostByUser(user.id);
+
                     container.innerHTML = "";
-                
-                    if('id' in user){
-                        getCommentsByUser(user.id)
-                            .then(comments=>{
-                                container.innerHTML = "";
-                                displayContent(container, comments, userImg, 'comment')
-                                handleDeleteBtn();
-                            })
-                    }
+                    displayContent(container, posts, userImg, 'post');
+                    handleDeleteBtn();
                 }
             
-                function handleDeleteAccount(): void {
-                const confirmation = confirm('Are you sure that you want to delete your account? This cannot be undone.');
+                async function handleCommentsLink():Promise<void>{
+                    container.innerHTML = "";
+                
+                    // TODO - NO COMMENTS
+                    const comments = await getCommentsByUser(user.id);
 
-                    if('id' in user){
-                        if (confirmation) {
-                        api.deleteAccount(user.id)
-                            .then(() => {
-                                logOut();    
-                            });
+                    container.innerHTML = "";
+                    displayContent(container, comments, userImg, 'comment')
+                    handleDeleteBtn();
+                }
+            
+                async function handleDeleteAccount(): Promise<void> {
+                    const confirmation = confirm('Are you sure that you want to delete your account? This cannot be undone.');
+
+                    if (confirmation) {
+                        try {
+                            const response = await api.deleteAccount(user.id);
+
+                            if('statusCode' in response){
+                                throw new Error(response.message);
+                            } else{
+                                // success
+                                logOut();
+                            }
+
+                        } catch(err){
+                            alert(err);
+                        }
+
                     }
                 }
-        }
 
         function handleUserPageLink(clickedLink: HTMLElement):void {
             userPageLinks.forEach(link => {
                 link.classList.remove('addGreyBGColor');
             });
-            
+
             clickedLink.classList.add('addGreyBGColor');
         }
             } 
@@ -132,7 +139,6 @@ async function displayProfile():Promise<void> {
                 alert(error)
             }
         });
-   
 }
 
 function logOut() {
@@ -221,8 +227,8 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], userI
         const usernameEl = document.createElement('h2');
         usernameEl.innerText = item.user.username;
 
-        const contentEl = document.createElement('p');
-        contentEl.innerHTML = item.body;
+        const contentEl = document.createElement('div');
+        contentEl.innerHTML = htmlEntitiesToString(item.body);
 
         if (item.user.userImage === 'pizza') {
             displayUserImage(imgDiv, userImg.pizza);
