@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import { filterCookieValue } from "../utilities/cookieUtils.js";
 import * as userImg from "../utilities/userImgUtils.js";
 import { generateDropdowns } from "../utilities/dropdownUtils.js";
-import { Post, Comments, User } from "../utilities/pathTypes.js";
+import { Post, Comment, User } from "../utilities/pathTypes.js";
 import { htmlEntitiesToString } from "../utilities/stringUtils.js";
 
 let specificComments: Comment[] = [];
@@ -74,6 +74,7 @@ async function displayViewPostPage(): Promise<void> {
           .then((result: Post | Comment | User) => {
             if ('postId' in result) {
                 const newlyCreatedComment = result as Comment;
+                
                 console.log(newlyCreatedComment);
                 specificComments.push(newlyCreatedComment);
                 const commentDiv = document.querySelector(
@@ -155,7 +156,7 @@ async function displayViewPostPage(): Promise<void> {
     
     }
 
-    function displayCommentsOnPost(container: HTMLElement, item: Comments, specificComments: Comments[], userImg: Record<string, string>):void {
+    function displayCommentsOnPost(container: HTMLElement, item: Comment, specificComments: Comment[], userImg: Record<string, string>):void {
         
         const ammountOfComments = document.querySelector('.amountOfComments') as HTMLSpanElement;
         ammountOfComments.innerText = specificComments.length.toString(); 
@@ -165,6 +166,7 @@ async function displayViewPostPage(): Promise<void> {
         const timeStampEl = document.createElement('small');
         timeStampEl.classList.add('timeStampEl')
         timeStampEl.innerText = dayjs(item.user.created).format('DD MMMM YYYY');
+        
 
         const imgDiv = document.createElement('div');
         imgDiv.classList.add('imgDiv');

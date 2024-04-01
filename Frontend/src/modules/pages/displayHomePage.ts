@@ -10,7 +10,6 @@ import { Category } from "../utilities/pathTypes.ts";
 export default async function displayHomePage() {
   let posts = await api.getPosts();
   const dropdowns = await generateDropdowns();
-
   
   const category : false | Category = await getPageCategory()
 
