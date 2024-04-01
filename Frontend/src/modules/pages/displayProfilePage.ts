@@ -172,7 +172,7 @@ function displayUserProfile(user: User, container: HTMLDivElement): void {
     const userNameEl = document.createElement('h2');
     userNameEl.innerText = user.username;
 
-    const userImageUrl = userImg[user.userImage] || userImg.donut;
+    const userImageUrl = user.userImage 
     const userImage = new Image();
     userImage.src = userImageUrl;
 
@@ -226,7 +226,8 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], userI
 
         const timeStampEl = document.createElement('small');
         timeStampEl.classList.add('timeStampEl');
-        timeStampEl.innerText = dayjs(item.created).format('DD MMMM YYYY');
+        timeStampEl.innerText = dayjs(item.created).fromNow()
+       
 
         const imgDiv = document.createElement('div');
         imgDiv.classList.add('imgDiv');
@@ -240,13 +241,8 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], userI
         const contentEl = document.createElement('div');
         contentEl.innerHTML = htmlEntitiesToString(item.body);
 
-        if (item.user.userImage === 'pizza') {
-            displayUserImage(imgDiv, userImg.pizza);
-        } else if (item.user.userImage === 'donut') {
-            displayUserImage(imgDiv, userImg.donut);
-        } else {
-            displayUserImage(imgDiv, userImg.banana);
-        }
+        
+            displayUserImage(imgDiv, item.user.userImage);
 
          const loggedInUserId = filterCookieValue('id', 'user');
          if (item.user.id === loggedInUserId) {
@@ -269,8 +265,6 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], userI
     });
 
 }
-
-
 
 
 export{displayProfile, displayUserProfile}

@@ -41,7 +41,7 @@ async function displayViewPostPage(): Promise<void> {
             const specificComments = comments.filter((comment) =>
               postCommentsIds.includes(comment.id)
             );
-
+            
             if(specificComments.length == 0){
               // if post has no comments
               throw new Error("204");
@@ -148,15 +148,8 @@ function displayUserProfile(container: HTMLElement, item: (Post), userImg: strin
   const userInfoItem = getElement('.userInfoItem');
   const userImgContainer = getElement('.userImgContainer') as HTMLImageElement;
 
+
   displayUserImage(userImgContainer, userImg);
-  // TODO
-  // if (item.user.userImage === 'pizza') {
-  //     displayUserImage(userImgContainer, userImg.pizza);
-  // } else if (item.user.userImage === 'donut') {
-  //     displayUserImage(userImgContainer, userImg.donut);
-  // } else {
-  //     displayUserImage(userImgContainer, userImg.banana);
-  // }
   
   const categoryEl = document.createElement('p');
   categoryEl.innerText = item.category;
@@ -197,15 +190,6 @@ function displayCommentsOnPost(container: HTMLElement, item: Comment, specificCo
   contentEl.innerHTML = htmlEntitiesToString(item.body);
 
   displayUserImage(imgDiv, item.user.userImage);
-
-  // TODO
-  // if (item.user.userImage === 'pizza') {
-  //   displayUserImage(imgDiv, userImg.pizza);
-  // } 
-  // else if (item.user.userImage === 'donut') {
-  //   displayUserImage(imgDiv, userImg.donut);
-  // } 
-  // else  displayUserImage(imgDiv, userImg.banana);
       
   commentBody.append(usernameEl, contentEl);
   imgDiv.append(timeStampEl, usernameEl);
