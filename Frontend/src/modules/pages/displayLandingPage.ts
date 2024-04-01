@@ -1,10 +1,21 @@
+/*
+
+DisplayLandingPage:
+
+* The `displayLandingPage` function is responsible for rending  the landing page template.
+* Users can create an account, log in, and select a profile image.
+* Error handling is implemented for account creation, users get informed when they try to create a account that already exists. 
+* If login and the account created is valid, user get redirected to homepage. 
+
+*/
+
 import {  User} from '../utilities/pathTypes.js'
 import {landingPageString} from "./components/templates/landing-page.js"
 import { replace, stringToDOM } from "../utilities/templateUtils.js";
 import * as api  from '../api.js';
 import * as userImg from "../utilities/userImgUtils.js"
 
-// Variabler för formulär och andra element
+
 let createAccountForm: HTMLFormElement;
 let logInForm: HTMLFormElement;
 let selectElement: HTMLSelectElement;
@@ -29,7 +40,7 @@ function displayLandingPage(): void {
     const signUpLinks = landingPage.querySelectorAll('.link') as NodeListOf<HTMLAnchorElement>;
 
     createAccountBtn.addEventListener('click', handleCreateAccountBtn);
-    signInBtn.addEventListener('click', handleSignInBtnClick);
+    signInBtn.addEventListener('click', handleSignInBtn);
     document.addEventListener('click', handleDocumentClick);
     selectElement.addEventListener("change", handleSelectImgElement);
     closeFormBtns.forEach(closeFormBtn => {
@@ -47,7 +58,7 @@ function handleCreateAccountBtn(): void {
     logInForm.classList.add('hide');
 }
 
-function handleSignInBtnClick(): void {
+function handleSignInBtn(): void {
     logInForm.classList.remove('hide');
     createAccountForm.classList.add('hide');
 }

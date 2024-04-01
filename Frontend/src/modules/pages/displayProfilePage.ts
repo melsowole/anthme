@@ -1,3 +1,17 @@
+/*
+
+DisplayProfilePage:
+
+* `displayProfile` function is responsible for rendering the user profile page.
+* It fetches the user's information and displays their username and profile image.
+* It retrieves the user's posts and comments and allows navigation between them.
+* Users can delete their own posts and comments directly from the profile page.
+* It provides a "Delete Account" button for users to delete their accounts, which logs them out afterward.
+* If the user is not found, it displays an error message.
+* `displayUserProfile` function displays the user's profile information (username and their selected userImage).
+
+*/
+
 import { main } from "./components/templates/profile-page.js";
 import { stringToDOM } from "../utilities/templateUtils.js";
 import Header from "./components/Header.js"
@@ -220,6 +234,7 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], userI
     container.innerHTML = "";
 
     items.forEach(item => {
+        console.log(item)
         const itemElement = document.createElement('div');
         itemElement.classList.add('commentItem');
         itemElement.id = item.id;
@@ -240,6 +255,13 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], userI
         const usernameEl = document.createElement('h2');
         usernameEl.innerText = item.user.username;
 
+        if ('title' in item) {
+            const titleEl = document.createElement('h2');
+            titleEl.classList.add('postTitle');
+            titleEl.innerText =item.title;
+            itemBody.appendChild(titleEl);
+        }
+        
         const contentEl = document.createElement('div');
         contentEl.innerHTML = htmlEntitiesToString(item.body);
 

@@ -1,3 +1,14 @@
+/*
+
+* DisplayPostPage
+*
+* `displayViewPostPage` is responsible for rendering the header, navigation, and main content of the page.
+* It fetches the post data using `getPost` API and renders the user profile and comments associated with the post.
+* Users can add comments to the post, and the page updates dynamically to reflect the new comment.
+* If the post is not found, it displays an error message.
+
+*/
+
 import { main } from "./components/templates/viewPostpage.js";
 import { stringToDOM } from "../utilities/templateUtils.js";
 import Header from "./components/Header.js";
