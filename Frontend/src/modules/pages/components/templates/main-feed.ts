@@ -19,4 +19,10 @@ const homePageHeader = `
   <h2>All Posts</h2>
 `;
 
-export { feed, categoryHeader, homePageHeader };
+const noPosts = `
+  <div>No posts yet...</div>
+`;
+
+
+export { feed, categoryHeader, homePageHeader, noPosts };
+

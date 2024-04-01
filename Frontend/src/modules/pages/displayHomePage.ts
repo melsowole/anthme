@@ -5,7 +5,8 @@ import * as api from "../api.ts";
 import { generateDropdowns } from "../utilities/dropdownUtils.ts";
 import UserProfile from "./components/UserProfile.ts";
 import Noticeboard from "./components/Noticeboard.ts";
-import { Category } from "../utilities/pathTypes.ts";
+import { User, Category } from "../utilities/pathTypes.ts";
+
 
 export default async function displayHomePage() {
   let posts = await api.getPosts();
@@ -41,11 +42,12 @@ function getPageURLParam() :string{
   return urlPathEndpoint
 }
 
-async function usersNoticeBoard(): Promise<HTMLElement[]> {
-  const r = await fetch("http://localhost:3000/users");
-  const users = await r.json();
+async function usersNoticeBoard(): Promise<any[]> {
+  const users = await api.getAllUsers();
 
-  const userArr = users.map((u) =>
+  if(users.length == 0 ) return ["No users..."];
+
+  const userArr = users.map((u: User) =>
     UserProfile.createPreview(u.username, u.userImage)
   );
 

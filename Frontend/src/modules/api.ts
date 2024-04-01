@@ -1,4 +1,4 @@
-import { User, Post, Comment, Category } from "./utilities/pathTypes";
+import { Error, Success, User, Post, Comment, Category } from "./utilities/pathTypes";
 
 const baseUrl: string = 'http://localhost:3000/';
 const header = {"Content-type": "application/json; charset=UTF-8"};
@@ -37,24 +37,25 @@ async function getAllUsers():Promise<User[]>{
     return users;
 }
 
-async function getUserByUsername(username: string): Promise<User> {
+async function getUserByUsername(username: string): Promise<User | Error> {
     const url = `${baseUrl}users/username/${username}`;
-  console.log(url)
+    
     const res = await fetch(url);
     const user = await res.json();
-    console.log(user)
+
     return user;
 }
 
 async function getPosts(): Promise<Post[]> {
   const url = `${baseUrl}posts`;
-
+  
   const res = await fetch(url);
   const posts = await res.json();
+
   return posts;
 }
 
-async function getPost(id: string): Promise<Post> {
+async function getPost(id: string): Promise<Post|Error> {
   const url = baseUrl + `posts/${id}`;
 
   const res = await fetch(url);
@@ -93,13 +94,13 @@ async function getCommentsByUser(userId:string): Promise<Comment[]>{
   return comment;
 }
 
-async function submitPost<T extends User | Post | Comment>(
+async function submitPost<T extends User | Post | Comment | Error>(
   createdObject: Object,
   typeOfPost: string,
   userId?: string,
   postId?: string,
  
-): Promise<T> {
+): Promise<any> {
   let url: string = baseUrl;
   if (typeOfPost === "user") url += `users`;
   else if (typeOfPost === "post") url += `users/${userId}/posts`;
@@ -120,7 +121,7 @@ async function submitPost<T extends User | Post | Comment>(
 async function sendLogInRequest(
   username: string,
   password: string
-): Promise<void> {
+): Promise<User | Error> {
   const url = `${baseUrl}user/login`;
 
   const user = {
@@ -138,6 +139,8 @@ async function sendLogInRequest(
 
   const res = await fetch(url, options);
   const info = await res.json();
+
+  return info;
 }
 
 async function readCookie(): Promise<boolean> {
@@ -151,7 +154,7 @@ async function readCookie(): Promise<boolean> {
   return cookieInfo.ok;
 }
 
-async function deleteAccount(userId: string): Promise<any> {
+async function deleteAccount(userId: string): Promise<Success | Error> {
   const url = `${baseUrl}users/${userId}`;
 
   const options = {
@@ -165,7 +168,7 @@ async function deleteAccount(userId: string): Promise<any> {
   return info;
 }
 
-async function deletePost(userId: string, postId:string):Promise<Post>{
+async function deletePost(userId: string, postId:string):Promise<Post|Error>{
   const url = `${baseUrl}users/${userId}/posts/${postId}`; 
 
   const options = {
@@ -180,7 +183,7 @@ async function deletePost(userId: string, postId:string):Promise<Post>{
 
 }
 
-async function deleteComment(postId:string, userId:string, commentId:string):Promise<Comment>{
+async function deleteComment(postId:string, userId:string, commentId:string):Promise<Comment|Error>{
   const url = `${baseUrl}posts/${postId}/users/${userId}/comments/${commentId}` 
 
   const options = {
