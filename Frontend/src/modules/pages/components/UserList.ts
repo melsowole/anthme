@@ -1,7 +1,7 @@
 import * as template from "./templates/user-list.js";
 import {replace, stringToDOM} from "../../utilities/templateUtils.js";
 import dayjs from "dayjs";
-import { User } from "../../utilities/pathTypes";
+import { User } from "../../utilities/types.js";
 
 
 

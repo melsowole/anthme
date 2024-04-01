@@ -1,13 +1,14 @@
 import * as template from "./templates/main-feed.js";
 import {replace, stringToDOM} from "../../utilities/templateUtils.ts";
 import PostPreview from "./PostPreview.js";
-import { Category, Post } from "../../utilities/pathTypes.ts";
+import { Category, Post, Rating } from "../../utilities/types.ts";
 
 export default class MainFeed {
 
   static create(posts: Post[], category?: Category|false) {
 
-    const main = stringToDOM(template.feed);
+    const templateFeed = replace(template.feed, [{pattern: 'containerType', replacement: 'posts'}])
+    const main = stringToDOM(templateFeed);
 
     const header = category ? categoryHeader(category) : stringToDOM(template.homePageHeader);
 

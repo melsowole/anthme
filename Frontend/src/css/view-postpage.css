@@ -1,6 +1,5 @@
 .userInfoContainer {
   display: flex;
-  padding-top: 1rem;
   padding-bottom: 1.5rem;
   align-items: center;
   margin-left: 2rem;
@@ -63,7 +62,7 @@
 }
 
 .outerSpan > button {
-  background-color: none;
+  background: none;
   border: none;
   width: 32px;
   height: 32px;
@@ -76,6 +75,9 @@
   font-size: 1rem;
   font-weight: 800;
   color: black;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
 }
 
 .fi-ts-up:hover {
@@ -86,7 +88,11 @@
   color: #6a5cff;
 }
 
-.amountOfLikes {
+.rating {
+  cursor: default;
+}
+
+.rating, .amountOfComments {
   font-size: 0.75rem;
 }
 
@@ -122,10 +128,6 @@
 
 .commentSpan > button:hover {
   background-color: transparent;
-}
-
-.amountOfComments {
-  font-size: 0.75rem;
 }
 
 .addCommentBtn {

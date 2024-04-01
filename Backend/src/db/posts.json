@@ -1,3 +1,47 @@
 [
-  
+  {
+    "id": "c2af3506-0282-424f-a5fc-11dc391e207d",
+    "created": "2024-04-01T10:16:11.434Z",
+    "category": "Frontend",
+    "title": "Hello World",
+    "body": "&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;miro.medium.com&#x2F;v2&#x2F;resize:fit:1024&#x2F;0*pl3wnRCOkivJWOxG.png&quot; class=&quot;linked-image&quot;&gt;&lt;&#x2F;p&gt;",
+    "comments": [
+      "f18802d5-2f90-412e-b17d-6bea7177f4f5"
+    ],
+    "user": {
+      "id": "ad993ee0-e708-400c-8705-e4f1eeed8e54",
+      "username": "chicken",
+      "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1711966504626"
+    },
+    "rating": {
+      "upvotes": [
+        "ad993ee0-e708-400c-8705-e4f1eeed8e54",
+        "cabe1d1b-12d8-4297-aa11-93ee101a644e",
+        "8736fab1-c1d6-4e54-b989-375bb807d90d"
+      ],
+      "downvotes": []
+    }
+  },
+  {
+    "id": "8fa7bcb0-6952-47b4-a6e4-33f9bd344b46",
+    "created": "2024-04-01T10:17:20.279Z",
+    "category": "Food",
+    "title": "Tomatoes",
+    "body": "&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;www.alfalaval.com&#x2F;globalassets&#x2F;images&#x2F;media&#x2F;here-magazine&#x2F;no34&#x2F;tomatoes.jpg&quot; class=&quot;linked-image&quot;&gt;&lt;&#x2F;p&gt;",
+    "comments": [
+      "71ee5540-5de8-40e2-8d5a-6f064aadca0f"
+    ],
+    "user": {
+      "id": "8736fab1-c1d6-4e54-b989-375bb807d90d",
+      "username": "tomato",
+      "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711966580462"
+    },
+    "rating": {
+      "upvotes": [],
+      "downvotes": [
+        "ad993ee0-e708-400c-8705-e4f1eeed8e54",
+        "8736fab1-c1d6-4e54-b989-375bb807d90d"
+      ]
+    }
+  }
 ]

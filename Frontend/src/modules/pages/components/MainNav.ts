@@ -1,7 +1,7 @@
 import * as template from "./templates/main-nav.js";
 import { replace, stringToDOM } from "../../utilities/templateUtils.ts";
 import Dropdown from "./DropdownElement.js";
-import { MainCategory } from "../../utilities/pathTypes.ts";
+import { MainCategory } from "../../utilities/types.ts";
 
 type FeedItem = {
   link: string;

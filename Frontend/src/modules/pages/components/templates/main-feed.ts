@@ -2,7 +2,7 @@ const feed = `
   <main class="main-feed">
     <!--header goes here-->
     <hr />
-    <div id="posts"></div>
+    <div id="__containerType__"></div>
   </main>
 `;
 

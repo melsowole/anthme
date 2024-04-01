@@ -20,8 +20,8 @@ function setupRouter(): Promise<void> {
         } else {
           router.on("/", ()=> displayHomePage() );
           router.on("/create-post", displayCreatePostPage);
-          router.on("/:category", ()=> displayHomePage() );
           router.on("/users", displayUsersPage);
+          router.on("/:category", ()=> displayHomePage() );
           router.on("/profile/:username", displayProfile);
           router.on("/posts/:postId", displayViewPostPage);
         }

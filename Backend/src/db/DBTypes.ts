@@ -26,7 +26,13 @@ export type Post = {
   body: string;
   comments: string[];
   user: UserShort;
+  rating: Rating;
 };
+
+type Rating = {
+  upvotes: string[];
+  downvotes: string[];
+}
 
 export type Comment = {
   id: string;

@@ -16,14 +16,16 @@ import { main } from "./components/templates/profile-page.js";
 import { stringToDOM } from "../utilities/templateUtils.js";
 import Header from "./components/Header.js"
 import MainNav from "./components/MainNav.js";
+import Sidebar from "./components/Sidebar.js";
+import UserNoticeboard from "./components/UserNoticeboard.js";
 import * as userImg from "../utilities/userImgUtils.js"
 import * as api from "../api.js"
 import { deleteCookie, filterCookieValue  } from "../utilities/cookieUtils.js";
-import { User } from "../utilities/pathTypes.js";
+import { User } from "../utilities/types.js";
 import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import {displayUserImage} from "./displayPostPage"
-import {Post, Comment} from "../utilities/pathTypes.js"
+import {Post, Comment} from "../utilities/types.js"
 import { generateDropdowns } from "../utilities/dropdownUtils.js";
 import { htmlEntitiesToString } from "../utilities/stringUtils.js";
 import {DeleteContentBtn} from"./components/DeleteContentBtn.js"
@@ -34,11 +36,13 @@ async function displayProfile():Promise<void> {
     const profilepage: HTMLElement = stringToDOM(main);
     const header = Header.create();
     const mainNav = MainNav.create(mainNavDropdowns);
+    const sidebar = Sidebar.create([await (UserNoticeboard.create())])
   
     document.body.append(
-        profilepage,
+        header,
         mainNav,
-        header
+        profilepage,
+        sidebar
     )
 
     const userInfoContainer = profilepage.querySelector('.userInfo') as HTMLDivElement;
@@ -57,11 +61,10 @@ async function displayProfile():Promise<void> {
                 throw new Error("404");
 
             } else if('id' in response){
-                const user :User = response;
-
+                const user: User = response;
                 postLink.classList.add('addGreyBGColor')
 
-                const posts = await api.getPostByUser(user.id);
+                const posts = await api.getPostByUser(user.id as string);
 
                 userPageLinks.forEach(userPageLink => {
                     userPageLink.addEventListener('click', () => {
@@ -72,7 +75,7 @@ async function displayProfile():Promise<void> {
                 displayContent(container, posts, userImg, 'post'); 
                 handleDeleteBtn();
             
-                    // TODO REMOVE?
+                // TODO REMOVE?
                 if (user) {
                     displayUserProfile(user, userInfoContainer);
                     const loggedInUserId = filterCookieValue('id', 'user');
@@ -94,24 +97,22 @@ async function displayProfile():Promise<void> {
                     container.innerHTML = "";
                 
                     // TODO -  NO POST
-                    const posts = await api.getPostByUser(user.id);
+                    const posts = await api.getPostByUser(user.id as string);
 
                     if(posts.length){
                         displayContent(container, posts, userImg, 'post');
                         handleDeleteBtn();
-                        
                     } else{
                         container.innerHTML = `
                             <div>No posts...</div>
                         `;
                     }
-
                 }
             
                 async function handleCommentsLink():Promise<void>{
                     container.innerHTML = "";
 
-                    const comments = await api.getCommentsByUser(user.id);
+                    const comments = await api.getCommentsByUser(user.id as string);
 
                     if(comments.length){
                         displayContent(container, comments, userImg, 'comment')
@@ -121,15 +122,13 @@ async function displayProfile():Promise<void> {
                             <div>No comments...</div>
                         `;
                     }
-
                 }
             
                 async function handleDeleteAccount(): Promise<void> {
                     const confirmation = confirm('Are you sure that you want to delete your account? This cannot be undone.');
-
                     if (confirmation) {
                         try {
-                            const response = await api.deleteAccount(user.id);
+                            const response = await api.deleteAccount(user.id as string);
 
                             if('statusCode' in response){
                                 throw new Error(response.message);
@@ -141,18 +140,17 @@ async function displayProfile():Promise<void> {
                         } catch(err){
                             alert(err);
                         }
-
                     }
                 }
 
-        function handleUserPageLink(clickedLink: HTMLElement):void {
-            userPageLinks.forEach(link => {
-                link.classList.remove('addGreyBGColor');
-            });
+                function handleUserPageLink(clickedLink: HTMLElement):void {
+                    userPageLinks.forEach(link => {
+                        link.classList.remove('addGreyBGColor');
+                    });
 
-            clickedLink.classList.add('addGreyBGColor');
-        }
-            } 
+                    clickedLink.classList.add('addGreyBGColor');
+                }
+            }
         })
         .catch(error => {
             if(error.message == "404"){

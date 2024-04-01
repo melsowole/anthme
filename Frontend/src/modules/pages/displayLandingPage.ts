@@ -9,7 +9,7 @@ DisplayLandingPage:
 
 */
 
-import {  User} from '../utilities/pathTypes.js'
+import {  User} from '../utilities/types.js'
 import {landingPageString} from "./components/templates/landing-page.js"
 import { replace, stringToDOM } from "../utilities/templateUtils.js";
 import * as api  from '../api.js';
@@ -134,7 +134,7 @@ async function handleLogInForm(event: Event): Promise<void> {
     try {
         const response = await api.sendLogInRequest(username, password);
 
-        if(response.statusCode === 401) throw new Error(response.message);
+        if('statusCode' in response && response.statusCode === 401) throw new Error(response.message);
         
         window.location.replace("/");
     }

@@ -1,7 +1,7 @@
 import * as template from "./templates/post-form.ts";
 import PostFormDropdownOption from "./PostFormDropdownOption.ts";
 import {replace, stringToDOM} from "../../utilities/templateUtils.ts";
-import { Category } from "../../utilities/pathTypes.ts";
+import { Category } from "../../utilities/types.ts";
 import Quill from "quill";
 
 export default class PostForm {

@@ -10,45 +10,56 @@
 */
 
 import { main } from "./components/templates/viewPostpage.js";
-import { stringToDOM } from "../utilities/templateUtils.js";
+import { replace, stringToDOM } from "../utilities/templateUtils.js";
 import Header from "./components/Header.js";
 import MainNav from "./components/MainNav.js";
-import { getPost, getComments, submitPost } from "../api.js";
+import Sidebar from "./components/Sidebar.js";
+import UserNoticeboard from "./components/UserNoticeboard.js";
+import * as api from "../api.js";
 import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { filterCookieValue } from "../utilities/cookieUtils.js";
 import { generateDropdowns } from "../utilities/dropdownUtils.js";
-import { Post, Comment } from "../utilities/pathTypes.js";
+import { Post, Comment, User } from "../utilities/types.js";
 import { htmlEntitiesToString } from "../utilities/stringUtils.js";
+import * as rating from "../utilities/ratingVoteUtils.js";
+import { addRatingClassToAuthUser } from "../utilities/authenticatedUserUtils.js";
+import Noticeboard from "./components/Noticeboard.js";
 
 let specificComments: Comment[] = [];
 
 async function displayViewPostPage(): Promise<void> {
-  const mainNavDropdowns = await generateDropdowns();
-
-  const viewPostpage: HTMLElement = stringToDOM(main);
-  const header = Header.create();
-  const mainNav = MainNav.create(mainNavDropdowns);
-
-  document.body.append(viewPostpage, header, mainNav);
-
   const urlParts: string[] = window.location.pathname.split("/");
   const urlPathEndpoint: string = urlParts[urlParts.length - 1];
   
-  getPost(urlPathEndpoint)
-    .then((post) => {
+  await api.getPost(urlPathEndpoint)
+    .then(async (post) => {
       if('statusCode' in post) {
         // if post not found
         throw new Error("404");
 
       } else if ('id' in post){
+
+        const mainNavDropdowns = await generateDropdowns();
+        const mainTemplate = replace(main, [
+          {pattern: "postId", replacement: post.id},
+          {pattern: "rating", replacement: (post.rating.upvotes.length - post.rating.downvotes.length).toString()}
+        ]);
+
+        const header = Header.create();
+        const viewPostpage: HTMLElement = stringToDOM(mainTemplate);
+        const mainNav = MainNav.create(mainNavDropdowns);
+        const sidebar = Sidebar.create([await UserNoticeboard.create()]);
+
+        document.body.append(header, viewPostpage, mainNav, sidebar);
+
+        addRatingClassToAuthUser(post);
+
         const userInfoContainer = getElement(".userInfoContainer");
-
         const postCommentsIds = post.comments;
-
         displayUserProfile(userInfoContainer, post, post.user.userImage);
 
-        getComments()
+        await api.getComments()
           .then((comments) => {
             specificComments = comments.filter((comment) =>
               postCommentsIds.includes(comment.id)
@@ -82,10 +93,41 @@ async function displayViewPostPage(): Promise<void> {
             }
           });
 
-        // Add comment functionality
-        const commentForm = getElement(".commentForm") as HTMLFormElement;
-        
-        commentForm.addEventListener("submit", async (event) => {
+          const postFooter = getElement('.interactionContainer') as HTMLDivElement;
+          postFooter.addEventListener('click', async (event) => {
+            const {target} = event;
+
+            if(!(target instanceof HTMLElement)) return; // Narrow down the types on target so it won't complain
+
+            if(target.closest('.outerSpan')) {
+              event.preventDefault();
+              const postContainer = target.closest('.post-container') as HTMLDivElement;
+              const loggedInUserId = filterCookieValue('id', 'user');
+              
+
+              if(target.closest('.buttonUp')) {
+                  await api.updateUpvotes(post.id, loggedInUserId)
+                      .then(postRating => {
+                          rating.updateRating(postRating, postContainer);
+                          rating.updateBGColor(target);
+                      });
+              }
+              else if(target.closest('.buttonDown')) {
+                  await api.updateDownvotes(post.id, loggedInUserId)
+                      .then(postRating => {
+                          rating.updateRating(postRating, postContainer);
+                          rating.updateBGColor(target);
+                      });
+              }
+            }
+            // Add logic for Share button on post
+            else return;     
+          });
+
+          // Add comment functionality
+          const commentForm = getElement(".commentForm") as HTMLFormElement;
+          
+          commentForm.addEventListener("submit", async (event) => {
           event.preventDefault();
           const commentInput = getElement(".commentInput") as HTMLTextAreaElement;
           const commentValue = commentInput.value;
@@ -98,7 +140,7 @@ async function displayViewPostPage(): Promise<void> {
             const loggedInUserId = filterCookieValue("id", "user");
 
             try {
-              const response = await submitPost(newComment, "comment", loggedInUserId, post.id);
+              const response = await api.submitPost(newComment, "comment", loggedInUserId, post.id);
 
               if('id' in response){
                 // comment submit success
