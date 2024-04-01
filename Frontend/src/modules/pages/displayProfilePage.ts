@@ -8,7 +8,6 @@ import { deleteCookie, filterCookieValue  } from "../utilities/cookieUtils.js";
 import { User } from "../utilities/pathTypes.js";
 import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime';
-import {getPostByUser, getCommentsByUser} from "../api.js"
 import {displayUserImage} from "./displayPostPage"
 import {Post, Comment} from "../utilities/pathTypes.js"
 import { generateDropdowns } from "../utilities/dropdownUtils.js";
@@ -48,7 +47,7 @@ async function displayProfile():Promise<void> {
 
                 postLink.classList.add('addGreyBGColor')
 
-                const posts = await getPostByUser(user.id);
+                const posts = await api.getPostByUser(user.id);
 
                 userPageLinks.forEach(userPageLink => {
                     userPageLink.addEventListener('click', () => {
@@ -81,7 +80,7 @@ async function displayProfile():Promise<void> {
                     container.innerHTML = "";
                 
                     // TODO -  NO POST
-                    const posts = await getPostByUser(user.id);
+                    const posts = await api.getPostByUser(user.id);
 
                     if(posts.length){
                         displayContent(container, posts, userImg, 'post');
@@ -98,7 +97,7 @@ async function displayProfile():Promise<void> {
                 async function handleCommentsLink():Promise<void>{
                     container.innerHTML = "";
 
-                    const comments = await getCommentsByUser(user.id);
+                    const comments = await api.getCommentsByUser(user.id);
 
                     if(comments.length){
                         displayContent(container, comments, userImg, 'comment')

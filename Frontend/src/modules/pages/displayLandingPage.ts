@@ -1,4 +1,4 @@
-import { addUser, User, getAllUsers} from '../fetchUsers.js';
+import {  User} from '../utilities/pathTypes.js'
 import {landingPageString} from "./components/templates/landing-page.js"
 import { replace, stringToDOM } from "../utilities/templateUtils.js";
 import * as api  from '../api.js';

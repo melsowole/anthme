@@ -37,6 +37,8 @@ async function getAllUsers():Promise<User[]>{
     return users;
 }
 
+
+
 async function getUserByUsername(username: string): Promise<User | Error> {
     const url = `${baseUrl}users/username/${username}`;
     

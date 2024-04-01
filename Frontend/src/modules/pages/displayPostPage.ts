@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { filterCookieValue } from "../utilities/cookieUtils.js";
 import { generateDropdowns } from "../utilities/dropdownUtils.js";
-import { Post, Comment, User } from "../utilities/pathTypes.js";
+import { Post, Comment } from "../utilities/pathTypes.js";
 import { htmlEntitiesToString } from "../utilities/stringUtils.js";
 
 let specificComments: Comment[] = [];
@@ -39,7 +39,7 @@ async function displayViewPostPage(): Promise<void> {
 
         getComments()
           .then((comments) => {
-            const specificComments = comments.filter((comment) =>
+            specificComments = comments.filter((comment) =>
               postCommentsIds.includes(comment.id)
             );
             
@@ -57,6 +57,7 @@ async function displayViewPostPage(): Promise<void> {
                 specificComments,
               );
             }
+            
           }) 
           .catch((error) => {
             if(error.message == "204"){
@@ -92,6 +93,7 @@ async function displayViewPostPage(): Promise<void> {
                 // comment submit success
                 const addedComment = response as Comment;
                 specificComments.push(addedComment);
+                console.log(specificComments)
                 const commentDiv = getElement(".commentInfo");
                 displayCommentsOnPost(commentDiv, addedComment, specificComments);
                 updateAmountOfComments();
