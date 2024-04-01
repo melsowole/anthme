@@ -7,6 +7,7 @@ import * as api from "../api.js"
 import { deleteCookie, filterCookieValue  } from "../utilities/cookieUtils.js";
 import { User } from "../utilities/pathTypes.js";
 import dayjs from "dayjs";
+import relativeTime from 'dayjs/plugin/relativeTime';
 import {getPostByUser, getCommentsByUser} from "../api.js"
 import {displayUserImage} from "./displayPostPage"
 import {Post, Comment} from "../utilities/pathTypes.js"
@@ -49,7 +50,6 @@ async function displayProfile():Promise<void> {
 
                 const posts = await getPostByUser(user.id);
 
-                //FLYTTA EJ PÅ DENNA
                 userPageLinks.forEach(userPageLink => {
                     userPageLink.addEventListener('click', () => {
                         handleUserPageLink(userPageLink);
@@ -72,8 +72,11 @@ async function displayProfile():Promise<void> {
             
                 postLink.addEventListener('click', handlePostLink);
                 commentsLink.addEventListener('click', handleCommentsLink);
-                deleteAccountBtn.addEventListener('click', handleDeleteAccount);
-            
+
+                if(deleteAccountBtn){
+                    deleteAccountBtn.addEventListener('click', handleDeleteAccount);
+                }
+                
                 async function handlePostLink():Promise<void>{
                     container.innerHTML = "";
                 
