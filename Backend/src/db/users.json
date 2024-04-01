@@ -52,5 +52,14 @@
     "created": "2024-03-28T08:13:59.881Z",
     "posts": [],
     "comments": []
+  },
+  {
+    "id": "e15e8565-3695-4017-818f-1184894b232a",
+    "username": "afs",
+    "password": "afs",
+    "userImage": "Choose user image:",
+    "created": "2024-03-28T17:05:58.966Z",
+    "posts": [],
+    "comments": []
   }
 ]

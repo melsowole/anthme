@@ -4,21 +4,28 @@ import PostPreview from "./PostPreview.js";
 import { Category, Post } from "../../utilities/pathTypes.ts";
 
 export default class MainFeed {
+
   static create(posts: Post[], category?: Category|false) {
 
     const main = stringToDOM(template.feed);
-
-    console.log(category)
 
     const header = category ? categoryHeader(category) : stringToDOM(template.homePageHeader);
 
     main.prepend(header);
 
-    posts.forEach((post) =>
+
+    if(posts.length == 0){
+      main.querySelector("#posts").append(stringToDOM(template.noPosts))
+    } else {
+      posts.forEach((post: Post) => {
       main
         .querySelector("#posts")
-        .append(PostPreview.create(post), document.createElement("hr"))
-    );
+        .append(
+          PostPreview.create(post), 
+          document.createElement("hr")
+        )
+    });
+    }
 
     return main;
   }
@@ -40,9 +47,9 @@ function categoryHeader(category: Category): HTMLElement{
 
 // Thanks ChatGPT
 function getContrastColor(hexColor: string): 'black' | 'white' {
-    const r = parseInt(hexColor.substr(1, 2), 16);
-    const g = parseInt(hexColor.substr(3, 2), 16);
-    const b = parseInt(hexColor.substr(5, 2), 16);
+    const r = parseInt(hexColor.substring(1, 2), 16);
+    const g = parseInt(hexColor.substring(3, 2), 16);
+    const b = parseInt(hexColor.substring(5, 2), 16);
 
     const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
 

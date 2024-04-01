@@ -36,95 +36,121 @@ async function displayProfile():Promise<void> {
     const urlParts: string[] = window.location.pathname.split('/');
     const urlPathEndpoint: string = urlParts[urlParts.length - 1];
    
-    await api.getUserByUsername(urlPathEndpoint)
-        .then(async (user) => {
-           
-            console.log(user)
-            postLink.classList.add('addGreyBGColor')
+    api.getUserByUsername(urlPathEndpoint)
+        .then(async (response) => {
 
-            await getPostByUser(user.id)
-                .then(posts =>{
-                    console.log(posts)
-                    userPageLinks.forEach(userPageLink => {
-                        userPageLink.addEventListener('click', () => {
-                            handleUserPageLink(userPageLink);
-                        });
+            if('statusCode' in response){
+                throw new Error("404");
+
+            } else if('id' in response){
+                const user :User = response;
+
+                postLink.classList.add('addGreyBGColor')
+
+                const posts = await getPostByUser(user.id);
+
+                //FLYTTA EJ PÅ DENNA
+                userPageLinks.forEach(userPageLink => {
+                    userPageLink.addEventListener('click', () => {
+                        handleUserPageLink(userPageLink);
                     });
-        
-                    displayContent(container, posts, userImg, 'post'); 
-                    handleDeleteBtn();
-                    
-                }) 
-               
-
+                });
+    
+                displayContent(container, posts, userImg, 'post'); 
+                handleDeleteBtn();
+            
+                    // TODO REMOVE?
                 if (user) {
                     displayUserProfile(user, userInfoContainer);
                     const loggedInUserId = filterCookieValue('id', 'user');
                     if (user.id === loggedInUserId) {
-                        displayDeleteAccountBtn(); 
+                        displayDeleteAccountBtn();
                     }
-                } else {
-                    console.log(`Ingen användare hittades`);
-                    
-                }            
+                }
 
-            const deleteAccountBtn = document.querySelector('.delAccountBtn') as HTMLButtonElement;
-
-            postLink.addEventListener('click', handlePostLink);
-            commentsLink.addEventListener('click', handleCommentsLink);
-            if(deleteAccountBtn){
+                const deleteAccountBtn = document.querySelector('.delAccountBtn') as HTMLButtonElement;
+            
+                postLink.addEventListener('click', handlePostLink);
+                commentsLink.addEventListener('click', handleCommentsLink);
                 deleteAccountBtn.addEventListener('click', handleDeleteAccount);
-            }
             
-           
-            function handlePostLink():void{
-                container.innerHTML = "";
-            
-                getPostByUser(user.id)
-                    .then(posts => {
-                        console.log(posts)
-                        container.innerHTML = "";
-                        displayContent(container, posts, userImg, 'post');
-                        handleDeleteBtn();  
-                    });     
-            }
-         
-            function handleCommentsLink():void{
-                container.innerHTML = "";
-               console.log(user.id)
-                getCommentsByUser(user.id)
-                .then(comments=>{
+                async function handlePostLink():Promise<void>{
                     container.innerHTML = "";
-                    console.log(comments)
-                    displayContent(container, comments, userImg, 'comment')
-                    handleDeleteBtn();
-                })
-            }
-            
-            function handleDeleteAccount(): void {
-            const confirmation = confirm('Are you sure that you want to delete your account? This cannot be undone.');
+                
+                    // TODO -  NO POST
+                    const posts = await getPostByUser(user.id);
 
-                if (confirmation) {
-                    api.deleteAccount(user.id)
-                    .then(() => {
-                    logOut();    
-                });
-            }
-        }
+                    if(posts.length){
+                        displayContent(container, posts, userImg, 'post');
+                        handleDeleteBtn();
+                        
+                    } else{
+                        container.innerHTML = `
+                            <div>No posts...</div>
+                        `;
+                    }
+
+                }
+            
+                async function handleCommentsLink():Promise<void>{
+                    container.innerHTML = "";
+
+                    const comments = await getCommentsByUser(user.id);
+
+                    if(comments.length){
+                        displayContent(container, comments, userImg, 'comment')
+                        handleDeleteBtn(); 
+                    } else {
+                        container.innerHTML = `
+                            <div>No comments...</div>
+                        `;
+                    }
+
+                }
+            
+                async function handleDeleteAccount(): Promise<void> {
+                    const confirmation = confirm('Are you sure that you want to delete your account? This cannot be undone.');
+
+                    if (confirmation) {
+                        try {
+                            const response = await api.deleteAccount(user.id);
+
+                            if('statusCode' in response){
+                                throw new Error(response.message);
+                            } else{
+                                // success
+                                logOut();
+                            }
+
+                        } catch(err){
+                            alert(err);
+                        }
+
+                    }
+                }
 
         function handleUserPageLink(clickedLink: HTMLElement):void {
             userPageLinks.forEach(link => {
                 link.classList.remove('addGreyBGColor');
             });
-            
-                clickedLink.classList.add('addGreyBGColor');
-            }
+
+            clickedLink.classList.add('addGreyBGColor');
+        }
+            } 
         })
         .catch(error => {
-            console.error('Error fetching users:', error);
-        });
+            if(error.message == "404"){
+                const main = document.querySelector("main") as HTMLElement;
 
-     
+                main.innerHTML = `
+                    <h1>User not found</h1>
+                    <a href="/">Return to homepage</a>
+                `;
+
+            } else {
+                alert(error)
+            }
+        });
 }
 
 function logOut() {
@@ -155,36 +181,35 @@ function displayUserProfile(user: User, container: HTMLDivElement): void {
 }
 
 
-
  function handleDeleteBtn():void {
     const deleteBtns = document.querySelectorAll('.delete-btn') as NodeListOf<HTMLButtonElement>;
     deleteBtns.forEach(deleteBtn => {
         deleteBtn.addEventListener('click', async (event) => {
 
             event.stopPropagation();
-            const container = (event.target as HTMLElement).closest('.commentItem')
-            const containerId = container.id
+            const container = (event.target as HTMLElement).closest('.commentItem') as HTMLElement;
+            const containerId = container.id;
             const loggedInUserId = filterCookieValue('id', 'user')
-           
-            if(deleteBtn.classList.contains('post')){
-                console.log('post')
-                api.deletePost(loggedInUserId, containerId)
+
+            try{
+                if(deleteBtn.classList.contains('post')){
+                    const response = await api.deletePost(loggedInUserId, containerId);
+
+                    if('statusCode' in response) throw new Error(response.message)
+        
+                } else{
+                    const commentObj = await api.getComment(containerId)
+                    const response = await api.deleteComment(commentObj.postId, loggedInUserId, commentObj.id)
+
+                    if('statusCode' in response) throw new Error(response.message)
+
+                }
+
                 container.remove();
+            } catch(err){
+                alert(err);
             }
-
-            else{
-                console.log('comment')
-                console.log(containerId)
-
-                api.getComment(containerId)
-                const commentObj = await api.getComment(containerId)
-                console.log(commentObj.postId)
-
-                api.deleteComment(commentObj.postId, loggedInUserId, commentObj.id)
-                container.remove();
-
-            }
-            
+                
         });
     });
 }
@@ -193,7 +218,6 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], userI
     container.innerHTML = "";
 
     items.forEach(item => {
-        console.log(item)
         const itemElement = document.createElement('div');
         itemElement.classList.add('commentItem');
         itemElement.id = item.id;

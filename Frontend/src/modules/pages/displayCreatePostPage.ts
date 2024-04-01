@@ -22,19 +22,30 @@ export default async function displayCreatePostPage(): Promise<void> {
         const formData: FormData = new FormData(postForm);
         formData.append("body", postContent);
 
-        const newPost: Partial<Post> = {};
+        const newPost: Post = {} as Post;
 
         for (const [key, values] of formData) {
             newPost[key] = values;
         }
 
         if(checkFormValidity()) {
+
             try {
-                const createdPost = await api.submitPost(newPost, "post", filterCookieValue("id", "user"))
-                window.location.assign(`/posts/${createdPost.id}`)
-            }
-            catch (error) {
-                console.log(error);
+                const response = await api.submitPost(newPost, "post", filterCookieValue("id", "user"))
+
+                if('id' in response){
+                    // post submit success
+                    window.location.assign(`/posts/${response.id}`);
+                }
+                else if('statusCode' in response){
+                    throw new Error(response.message);
+
+                } else {
+                    throw new Error("Unexpected Error. Try again later!")
+                }
+
+            } catch (error) {
+                alert(error);
             }
         }
 
@@ -81,6 +92,7 @@ export default async function displayCreatePostPage(): Promise<void> {
         const hasTextContent = element.textContent?.trim() !== '';
         
         return hasTextContent || hasImages || hasIframes;
+
     }
 
     // Listens for DOM changes such as <img> or <iframe> and checks form validity
