@@ -1,5 +1,5 @@
-import * as template from "./templates/user-profile.ts";
-import { replace, stringToDOM } from "../../utilities/templateUtils.ts";
+import * as template from "./templates/user-profile.js";
+import { replace, stringToDOM } from "../../utilities/templateUtils.js";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 

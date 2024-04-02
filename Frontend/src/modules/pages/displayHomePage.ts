@@ -17,7 +17,7 @@ export default async function displayHomePage() {
 
     const pageLayout = new PageLayout();
 
-    pageLayout.create(MainFeed.create(posts, category))
+    await pageLayout.create(MainFeed.create(posts, category))
     
     posts.forEach(applyUserRatingClassToPost)
 

@@ -1,9 +1,9 @@
-import * as template from "./templates/post-preview.ts";
-import { replace, stringToDOM } from "../../utilities/templateUtils.ts";
+import * as template from "./templates/post-preview.js";
+import { replace, stringToDOM } from "../../utilities/templateUtils.js";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { Post } from "../../utilities/types.ts";
-import { htmlEntitiesToString } from "../../utilities/stringUtils.ts";
+import { Post } from "../../utilities/types.js";
+import { htmlEntitiesToString } from "../../utilities/convertToStringUtils.js";
 
 dayjs.extend(relativeTime);
 

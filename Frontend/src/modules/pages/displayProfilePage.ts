@@ -13,14 +13,13 @@ DisplayProfilePage:
 
 import { main } from "./components/templates/profile-page.js";
 import { stringToDOM } from "../utilities/templateUtils.js";
-import * as userImg from "../utilities/userImgUtils.js"
 import * as api from "../api.js"
 import { deleteCookie, filterCookieValue  } from "../utilities/cookieUtils.js";
 import { User } from "../utilities/types.js";
 import dayjs from "dayjs";
 //import relativeTime from 'dayjs/plugin/relativeTime';
 import {Post, Comment} from "../utilities/types.js"
-import { htmlEntitiesToString } from "../utilities/stringUtils.js";
+import { htmlEntitiesToString } from "../utilities/convertToStringUtils.js";
 import {DeleteContentBtn} from"./components/DeleteContentBtn.js"
 import PageLayout from "./components/PageLayout.js";
 
@@ -33,8 +32,8 @@ async function displayProfile():Promise<void> {
 
     const userInfoContainer = document.querySelector('.userInfo') as HTMLDivElement;
     const userPageLinks = document.querySelectorAll('.userPageLink') as NodeListOf<HTMLAnchorElement>;
-    const postLink = document.querySelector('.postLink') as HTMLAnchorElement;
-    const commentsLink = document.querySelector('.commentsLink') as HTMLAnchorElement;
+    const postLinkEl = document.querySelector('.postLink') as HTMLAnchorElement;
+    const commentsLinkEl = document.querySelector('.commentsLink') as HTMLAnchorElement;
     const container = document.querySelector('.commentContainer') as HTMLDivElement;
 
     const urlParts: string[] = window.location.pathname.split('/');
@@ -48,7 +47,7 @@ async function displayProfile():Promise<void> {
 
             } else if('id' in response){
                 const user: User = response;
-                postLink.classList.add('addGreyBGColor')
+                postLinkEl.classList.add('addGreyBGColor')
 
                 const posts = await api.getPostByUser(user.id as string);
 
@@ -61,7 +60,7 @@ async function displayProfile():Promise<void> {
                 displayContent(container, posts, 'post'); 
                 handleDeleteBtn();
             
-                // TODO REMOVE?
+                // TODO REMOVE? Prova att ta bort yttersta if-statementet
                 if (user) {
                     displayUserProfile(user, userInfoContainer);
                     const loggedInUserId = filterCookieValue('id', 'user');
@@ -72,8 +71,8 @@ async function displayProfile():Promise<void> {
 
                 const deleteAccountBtn = document.querySelector('.delAccountBtn') as HTMLButtonElement;
             
-                postLink.addEventListener('click', handlePostLink);
-                commentsLink.addEventListener('click', handleCommentsLink);
+                postLinkEl.addEventListener('click', handlePostLink);
+                commentsLinkEl.addEventListener('click', handleCommentsLink);
 
                 if(deleteAccountBtn){
                     deleteAccountBtn.addEventListener('click', handleDeleteAccount);
@@ -82,7 +81,6 @@ async function displayProfile():Promise<void> {
                 async function handlePostLink():Promise<void>{
                     container.innerHTML = "";
                 
-                    // TODO -  NO POST
                     const posts = await api.getPostByUser(user.id as string);
 
                     if(posts.length){
@@ -119,7 +117,6 @@ async function displayProfile():Promise<void> {
                             if('statusCode' in response){
                                 throw new Error(response.message);
                             } else{
-                                // success
                                 logOut();
                             }
 
@@ -230,7 +227,6 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], typeO
         timeStampEl.classList.add('timeStampEl');
         timeStampEl.innerText = dayjs(item.created).fromNow()
        
-        //Kolla så att denna funkar
         const imgDiv = document.createElement('div');
         imgDiv.classList.add('imgDiv');
 
@@ -238,7 +234,7 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], typeO
         itemBody.classList.add('commentBody');
 
         const userImg = document.createElement('img')
-        userImg.src = item.user.userImage ;
+        userImg.src = item.user.userImage;
 
         const usernameEl = document.createElement('h2');
         usernameEl.innerText = item.user.username;
@@ -252,11 +248,6 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], typeO
         
         const contentEl = document.createElement('div');
         contentEl.innerHTML = htmlEntitiesToString(item.body);
-
-        
-        
-        
-            //displayUserImage(imgDiv, item.user.userImage);
 
          const loggedInUserId = filterCookieValue('id', 'user');
          if (item.user.id === loggedInUserId) {

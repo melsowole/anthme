@@ -1,6 +1,6 @@
 import * as api from "../api.js";
 import { filterCookieValue } from "../utilities/cookieUtils.js";
-import { User, Post, Comment } from "../utilities/types.js";
+import { Post } from "../utilities/types.js";
 import PageLayout from "./components/PageLayout.js";
 import PostForm from "./components/PostForm.js";
 import Noticeboard from "./components/Noticeboard.js";

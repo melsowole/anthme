@@ -1,7 +1,7 @@
 import * as template from "./templates/main-feed.js";
-import {replace, stringToDOM} from "../../utilities/templateUtils.ts";
+import {replace, stringToDOM} from "../../utilities/templateUtils.js";
 import PostPreview from "./PostPreview.js";
-import { Category, Post, Rating } from "../../utilities/types.ts";
+import { Category, Post} from "../../utilities/types.js";
 
 export default class MainFeed {
 
@@ -46,7 +46,6 @@ function categoryHeader(category: Category): HTMLElement{
     return header;
 }
 
-// Thanks ChatGPT
 function getContrastColor(hexColor: string): 'black' | 'white' {
     const r = parseInt(hexColor.substring(1, 2), 16);
     const g = parseInt(hexColor.substring(3, 2), 16);

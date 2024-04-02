@@ -1,4 +1,4 @@
-import MainFeedUsers from "./components/MainFeedUsers.js";
+import MainFeedUsers from "./components/UserDirectory";
 import * as api from "../api.js"
 import PageLayout from "./components/PageLayout.js";
 

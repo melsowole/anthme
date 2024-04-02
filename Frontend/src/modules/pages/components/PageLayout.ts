@@ -1,8 +1,8 @@
-import Header from "./Header.ts";
-import MainNav from "./MainNav.ts";
-import Sidebar from "./Sidebar.ts";
-import UserNoticeboard from "./UserNoticeboard.ts";
-import { generateDropdowns } from "../../utilities/dropdownUtils.ts";
+import Header from "./Header.js";
+import MainNav from "./MainNav.js";
+import Sidebar from "./Sidebar.js";
+import UserNoticeboard from "./UserNoticeboard.js";
+import { generateDropdowns } from "../../utilities/dropdownUtils.js";
 
 
 export default class PageLayout{

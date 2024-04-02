@@ -10,19 +10,19 @@
 
 */
 
-import * as template from "./components/templates/viewPostpage.js";
+import * as template from "./components/templates/post-page.js";
 import { replace, stringToDOM } from "../utilities/templateUtils.js";
 import * as api from "../api.js";
 import dayjs from "dayjs";
 //import relativeTime from 'dayjs/plugin/relativeTime';
 import { filterCookieValue } from "../utilities/cookieUtils.js";
 import { Post, Comment } from "../utilities/types.js";
-import { htmlEntitiesToString } from "../utilities/stringUtils.js";
-import * as rating from "../utilities/ratingVoteUtils.js";
+import { htmlEntitiesToString } from "../utilities/convertToStringUtils.js";
+import * as rating from "../utilities/ratingUtils.js";
 import { applyUserRatingClassToPost } from "../utilities/loggedInUserUtils.js";
 import PageLayout from "./components/PageLayout.js";
 
-let specificComments: Comment[] = [];
+let postComments: Comment[] = [];
 
 async function displayViewPostPage(): Promise<void> {
   const urlParts: string[] = window.location.pathname.split("/");
@@ -53,22 +53,22 @@ async function displayViewPostPage(): Promise<void> {
 
         await api.getAllComments()
           .then((comments) => {
-            specificComments = comments.filter((comment) =>
+            postComments = comments.filter((comment) =>
               postCommentsIds.includes(comment.id)
             );
             
-            if(specificComments.length == 0){
+            if(postComments.length == 0){
               // if post has no comments
               throw new Error("204");
             }
 
             const commentDiv = getElement(".commentInfo");
 
-            for (const comment of specificComments) {
+            for (const comment of postComments) {
               displayCommentsOnPost(
                 commentDiv,
                 comment,
-                specificComments,
+                postComments,
               );
             }
             
@@ -137,10 +137,9 @@ async function displayViewPostPage(): Promise<void> {
               if('id' in response){
                 // comment submit success
                 const addedComment = response as Comment;
-                specificComments.push(addedComment);
-                console.log(specificComments)
+                postComments.push(addedComment);
                 const commentDiv = getElement(".commentInfo");
-                displayCommentsOnPost(commentDiv, addedComment, specificComments);
+                displayCommentsOnPost(commentDiv, addedComment, postComments);
                 updateAmountOfComments();
 
                 commentForm.reset();
@@ -257,7 +256,7 @@ function displayUserImage(container: HTMLDivElement, imgPath: string): void {
 
 function updateAmountOfComments() {
   const ammountOfComments = document.querySelector('.amountOfComments') as HTMLSpanElement;
-  ammountOfComments.innerText = specificComments.length.toString(); 
+  ammountOfComments.innerText = postComments.length.toString(); 
 }
 
 function getElement(selector:string): HTMLElement{
