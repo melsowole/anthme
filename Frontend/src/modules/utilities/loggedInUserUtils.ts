@@ -10,7 +10,7 @@ function applyUserRatingClassToPost(post: Post) {
 
     if(hasUserUpvoted || hasUserDownvoted) {
         const postContainer = document.body.querySelector(`[id="${post.id}"]`) as HTMLElement;
-        const ratingContainer = postContainer.querySelector('.outerSpan') as HTMLSpanElement;
+        const ratingContainer = postContainer.querySelector('.outer-span') as HTMLSpanElement;
         
         if(hasUserUpvoted) {
             ratingContainer.classList.add('upvote-active');

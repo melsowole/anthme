@@ -15,12 +15,12 @@ const postPreview = `
             </p>
         </section>
         <footer>
-            <span class="outerSpan">
-                <button class="buttonUp"> 
+            <span class="outer-span">
+                <button class="button-up"> 
                     <i class="fi fi-ts-up"></i> 
                 </button>
                 <span class="rating">__rating__</span>
-                <button class="buttonDown">
+                <button class="button-down">
                     <i class="fi fi-ts-down"></i>
                 </button>
             </span>
