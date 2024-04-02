@@ -2,7 +2,7 @@ const header = `
 <header class="main-header">
     <a class="logo" href="/">ANTHME</a>
     <nav class="user-nav">
-        <a class="unstyle pill" href="/create-post" aria-label="Create Post" aria-hidden="true">
+        <a class="unstyle pill hint--left hint--rounded" href="/create-post" aria-label="Create Post" aria-hidden="true">
             <span class="icon material-symbols-outlined">add</span>
             Create
         </a>

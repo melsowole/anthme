@@ -1,4 +1,4 @@
-const userImg = ` <img class="user-img" src="__img__">`;
+const userImg = ` <span class="hint--left hint--rounded" aria-label="View profile" > <img class="user-img"  src="__img__"> </span>`;
 
 const username = `<small class="username">u/__username__</small>`;
 
