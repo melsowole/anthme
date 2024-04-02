@@ -9,6 +9,7 @@ import { displayViewPostPage } from "./modules/pages/displayPostPage.js";
 
 const router = new Navigo("/");
 
+//Tänk på att ta bort nedanstående kommentarer inför inlämning.
 // Funktionen returnerar ett promise för att vänta tills readCookie() är klar
 // innan router.resolve() körs från main.ts
 function setupRouter(): Promise<void> {

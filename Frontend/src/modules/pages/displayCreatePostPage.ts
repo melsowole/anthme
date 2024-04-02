@@ -41,7 +41,7 @@ export default async function displayCreatePostPage(): Promise<void> {
         if(checkFormValidity()) {
 
             try {
-                const response = await api.submitPost(newPost, "post", filterCookieValue("id", "user"))
+                const response = await api.sendDataToServer(newPost, "post", filterCookieValue("id", "user"))
 
                 if('id' in response){
                     // post submit success

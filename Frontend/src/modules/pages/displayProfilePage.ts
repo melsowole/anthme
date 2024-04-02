@@ -4,11 +4,10 @@ DisplayProfilePage:
 
 * `displayProfile` function is responsible for rendering the user profile page.
 * It fetches the user's information and displays their username and profile image.
-* It retrieves the user's posts and comments and allows navigation between them.
+* It retrieves the user's posts and comments and allows navigation between the tabs.
 * Users can delete their own posts and comments directly from the profile page.
 * It provides a "Delete Account" button for users to delete their accounts, which logs them out afterward.
 * If the user is not found, it displays an error message.
-* `displayUserProfile` function displays the user's profile information (username and their selected userImage).
 
 */
 
@@ -19,8 +18,7 @@ import * as api from "../api.js"
 import { deleteCookie, filterCookieValue  } from "../utilities/cookieUtils.js";
 import { User } from "../utilities/types.js";
 import dayjs from "dayjs";
-import relativeTime from 'dayjs/plugin/relativeTime';
-import {displayUserImage} from "./displayPostPage"
+//import relativeTime from 'dayjs/plugin/relativeTime';
 import {Post, Comment} from "../utilities/types.js"
 import { htmlEntitiesToString } from "../utilities/stringUtils.js";
 import {DeleteContentBtn} from"./components/DeleteContentBtn.js"
@@ -60,7 +58,7 @@ async function displayProfile():Promise<void> {
                     });
                 });
     
-                displayContent(container, posts, userImg, 'post'); 
+                displayContent(container, posts, 'post'); 
                 handleDeleteBtn();
             
                 // TODO REMOVE?
@@ -88,7 +86,7 @@ async function displayProfile():Promise<void> {
                     const posts = await api.getPostByUser(user.id as string);
 
                     if(posts.length){
-                        displayContent(container, posts, userImg, 'post');
+                        displayContent(container, posts, 'post');
                         handleDeleteBtn();
                     } else{
                         container.innerHTML = `
@@ -100,10 +98,10 @@ async function displayProfile():Promise<void> {
                 async function handleCommentsLink():Promise<void>{
                     container.innerHTML = "";
 
-                    const comments = await api.getCommentsByUser(user.id as string);
+                    const comments = await api.getAllCommentsByUser(user.id as string);
 
                     if(comments.length){
-                        displayContent(container, comments, userImg, 'comment')
+                        displayContent(container, comments, 'comment')
                         handleDeleteBtn(); 
                     } else {
                         container.innerHTML = `
@@ -168,6 +166,7 @@ function displayDeleteAccountBtn():void{
 
     userInfoContainer.append(deleteAccountBtn)
 }
+//`displayUserProfile` displays the user's profile information (username and their selected userImage).
 function displayUserProfile(user: User, container: HTMLDivElement): void {
     container.innerHTML = "";
     const userInfo = document.createElement('div');
@@ -216,7 +215,7 @@ function displayUserProfile(user: User, container: HTMLDivElement): void {
     });
 }
 
-function displayContent(container: HTMLElement, items: (Post | Comment)[], userImg: Record<string, string>, typeOfContent:string) {
+function displayContent(container: HTMLElement, items: (Post | Comment)[], typeOfContent:string) {
     container.innerHTML = "";
 
     items.forEach(item => {
@@ -231,12 +230,15 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], userI
         timeStampEl.classList.add('timeStampEl');
         timeStampEl.innerText = dayjs(item.created).fromNow()
        
-
+        //Kolla så att denna funkar
         const imgDiv = document.createElement('div');
         imgDiv.classList.add('imgDiv');
 
         const itemBody = document.createElement('div');
         itemBody.classList.add('commentBody');
+
+        const userImg = document.createElement('img')
+        userImg.src = item.user.userImage ;
 
         const usernameEl = document.createElement('h2');
         usernameEl.innerText = item.user.username;
@@ -252,7 +254,9 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], userI
         contentEl.innerHTML = htmlEntitiesToString(item.body);
 
         
-            displayUserImage(imgDiv, item.user.userImage);
+        
+        
+            //displayUserImage(imgDiv, item.user.userImage);
 
          const loggedInUserId = filterCookieValue('id', 'user');
          if (item.user.id === loggedInUserId) {
@@ -267,7 +271,7 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], userI
         
         
         itemBody.appendChild(contentEl);
-        imgDiv.append(timeStampEl, usernameEl);
+        imgDiv.append(timeStampEl, usernameEl, userImg);
         itemElement.append(commentWrapper, itemBody);
         
 

@@ -1,13 +1,13 @@
-import { Category, MainCategory } from "./types.ts";
-import * as api from "../api.ts"
+import {Category, NavMainCategory} from "./types.ts"
+import * as api from "../api.js"
 
-async function generateDropdowns(): Promise<MainCategory[]> {
-    const programmingCategories = await api.getFilteredCategories('Programming');
-    const frustratingCategories = await api.getFilteredCategories('Frustration');
-    const feelGoodCategories = await api.getFilteredCategories('joyful');
-    const allCategories = await api.getCategories();
+async function generateDropdowns(): Promise<NavMainCategory[]> {
+    const programmingCategories = await api.getAllFilteredCategories('Programming');
+    const frustratingCategories = await api.getAllFilteredCategories('Frustration');
+    const feelGoodCategories = await api.getAllFilteredCategories('joyful');
+    const allCategories = await api.getAllCategories();
     
-    let dropdowns: MainCategory[] = [];
+    let dropdowns: NavMainCategory[] = [];
     dropdowns.push(
         createDropdown(feelGoodCategories[0].category, feelGoodCategories),
         createDropdown(frustratingCategories[0].category, frustratingCategories),
@@ -17,8 +17,8 @@ async function generateDropdowns(): Promise<MainCategory[]> {
     return dropdowns;
 }
 
-function createDropdown(label:string, categories: Category[]): MainCategory {
-    const mainCategory: MainCategory = {
+function createDropdown(label:string, categories: Category[]): NavMainCategory {
+    const mainCategory: NavMainCategory = {
       label: label,
       id: `dropdown-${label}`,
       items: []

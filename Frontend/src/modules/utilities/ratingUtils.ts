@@ -1,4 +1,4 @@
-import { Rating } from "./types.ts";
+import { Rating } from "./types.js";
 
 function updateRating(postRating: Rating, postContainer: HTMLDivElement): void {
     const ratingEl = postContainer.querySelector('.rating') as HTMLSpanElement;

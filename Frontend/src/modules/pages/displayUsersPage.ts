@@ -1,6 +1,6 @@
-import MainFeedUsers from "./components/MainFeedUsers.ts";
-import * as api from "../api.ts"
-import PageLayout from "./components/PageLayout.ts";
+import MainFeedUsers from "./components/MainFeedUsers.js";
+import * as api from "../api.js"
+import PageLayout from "./components/PageLayout.js";
 
 async function displayUsersPage(): Promise<void> {
     const users = await api.getAllUsers()

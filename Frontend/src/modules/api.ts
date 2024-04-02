@@ -1,9 +1,9 @@
-import { Error, Success, User, Post, Rating, Comment, Category } from "./utilities/types";
+import { Error, SuccessfulResponse, User, Post, Rating, Comment, Category } from "./utilities/types.js";
 
 const baseUrl: string = 'http://localhost:3000/';
 const header = {"Content-type": "application/json; charset=UTF-8"};
 
-async function getCategories(): Promise<Category[]> {
+async function getAllCategories(): Promise<Category[]> {
     const url = `${baseUrl}categories`;
 
     const res = await fetch(url);
@@ -21,7 +21,7 @@ async function getCategory(categoryName: string): Promise<Category> {
     return category;
 }
 
-async function getFilteredCategories(categoryName: string): Promise<Category[]> {
+async function getAllFilteredCategories(categoryName: string): Promise<Category[]> {
   const url = `${baseUrl}categories/category/${categoryName}`;
 
   const res = await fetch(url);
@@ -37,8 +37,6 @@ async function getAllUsers():Promise<User[]>{
     return users;
 }
 
-
-
 async function getUserByUsername(username: string): Promise<User | Error> {
     const url = `${baseUrl}users/username/${username}`;
     
@@ -48,7 +46,7 @@ async function getUserByUsername(username: string): Promise<User | Error> {
     return user;
 }
 
-async function getPosts(): Promise<Post[]> {
+async function getAllPosts(): Promise<Post[]> {
   const url = `${baseUrl}posts`;
   
   const res = await fetch(url);
@@ -73,7 +71,7 @@ async function getPostByUser(userId:string): Promise<Post[]>{
   return post;
 }
 
-async function getComments(): Promise<Comment[]> {
+async function getAllComments(): Promise<Comment[]> {
   const url = baseUrl + "comments";
   const res = await fetch(url);
   const comments = await res.json();
@@ -87,7 +85,8 @@ async function getComment(commentId:string): Promise<Comment>{
   const comment = await res.json();
   return comment;
 }
-async function getCommentsByUser(userId:string): Promise<Comment[]>{
+
+async function getAllCommentsByUser(userId:string): Promise<Comment[]>{
   const url = `${baseUrl}users/${userId}/comments`
 
   const res = await fetch(url);
@@ -96,7 +95,7 @@ async function getCommentsByUser(userId:string): Promise<Comment[]>{
   return comment;
 }
 
-async function submitPost<T extends User | Post | Comment | Error>(
+async function sendDataToServer<T extends User | Post | Comment | Error>(
   createdObject: Object,
   typeOfPost: string,
   userId?: string,
@@ -156,7 +155,7 @@ async function readCookie(): Promise<boolean> {
   return cookieInfo.ok;
 }
 
-async function deleteAccount(userId: string): Promise<Success | Error> {
+async function deleteAccount(userId: string): Promise<SuccessfulResponse | Error> {
   const url = `${baseUrl}users/${userId}`;
 
   const options = {
@@ -228,23 +227,23 @@ async function updateDownvotes(postId: string, loggedInUserId: string): Promise<
 }
 
 export {
-  submitPost,
+  sendDataToServer,
   getAllUsers,
   readCookie,
   sendLogInRequest,
   getPost,
-  getComments,
+  getAllComments,
   getComment,
   deleteAccount,
   deletePost,
   deleteComment,
   getUserByUsername,
   getPostByUser,
-  getCommentsByUser,
-  getCategories,
+  getAllCommentsByUser,
+  getAllCategories,
   getCategory,
-  getPosts,
-  getFilteredCategories,
+  getAllPosts,
+  getAllFilteredCategories,
   updateUpvotes,
   updateDownvotes
 };
