@@ -15,12 +15,11 @@
     },
     "rating": {
       "upvotes": [
-        "ad993ee0-e708-400c-8705-e4f1eeed8e54",
-        "cabe1d1b-12d8-4297-aa11-93ee101a644e",
-        "8736fab1-c1d6-4e54-b989-375bb807d90d"
+        "cabe1d1b-12d8-4297-aa11-93ee101a644e"
       ],
       "downvotes": [
-        "8207746e-dfca-41f5-89de-5347d7de51fb"
+        "8207746e-dfca-41f5-89de-5347d7de51fb",
+        "ad993ee0-e708-400c-8705-e4f1eeed8e54"
       ]
     }
   },

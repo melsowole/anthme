@@ -44,7 +44,6 @@ async function displayViewPostPage(): Promise<void> {
         const pageLayout = new PageLayout();
         await pageLayout.create(postPage);
 
-    
         applyUserRatingClassToPost(post);
 
         const userInfoContainer = getElement(".user-info-container");
@@ -128,7 +127,7 @@ async function displayViewPostPage(): Promise<void> {
             body: commentValue,
           };
 
-          if (event.submitter && event.submitter.id === "add-comment-btn") {
+          if (event.submitter && event.submitter.id === "addCommentBtn") {
             const loggedInUserId = filterCookieValue("id", "user");
 
             try {
@@ -194,7 +193,6 @@ function displayUserProfile(container: HTMLElement, item: (Post), userImg: strin
   const contentDiv = getElement('.content-div');
   const userInfoItem = getElement('.user-info-item');
   const userImgContainer = getElement('.user-img-container') as HTMLImageElement;
-
 
   displayUserImage(userImgContainer, userImg);
   

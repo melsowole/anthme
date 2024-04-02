@@ -3,7 +3,7 @@ const postPage = `
     <article id="__postId__" class="post-container">
         <div class="user-info-container">
             <div class="user-img-container"></div>
-            <div class="user-infoitem"></div> 
+            <div class="user-info-item"></div> 
         </div>
         
         <div class="content-div"></div>
