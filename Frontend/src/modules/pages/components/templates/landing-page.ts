@@ -14,19 +14,25 @@ const landingPageString = `
         
     </div>
     
-    <div class="form-container popup-form-container">
+    <div class="form-container popup-form-container hide">
         <form class="create-account-form hide popup popup-form">
             <i class="fas fa-times fa-lg xmark-close "></i>
             <h2>Create account</h2>
-            <input type="text" id="userNameInput" name="username"  placeholder="Username *" required>
-            <input type="password" id="passwordInput" name="password"  placeholder="Password *" required>
+            <span class="input-wrapper">
+                <label for="userNameInput"><small>Username * :</small></label>
+                <input type="text" id="userNameInput" name="username" required>
+            </span>
+            <span class="input-wrapper">
+                <label for="passwordInput"><small>Password * :</small></label>
+                <input type="password" id="passwordInput" name="password" required>
+            </span>
 
             <div class="select-user-img">
                 <div class="img-container"></div>
 
                 <select name="userImage" id="userImage">
                     <option disabled selected>Choose user image:</option>
-                    <option value="__banana__">Banana</option>
+                    <option value="__banana__" selected>Banana</option>
                     <option value="__donut__">Donut</option>
                     <option value="__pizza__">Pizza</option>
                 </select>
@@ -38,8 +44,17 @@ const landingPageString = `
         <form class="log-in-form hide popup popup-form">
             <i class="fas fa-times fa-lg xmark-close xmark-close-login"></i>
             <h2>Log in</h2>
-            <input type="text" id="logInUsername" name="username"  placeholder="Username *" required>
-            <input type="password" id="logInPassword" name="password"  placeholder="Password *" required>
+
+            <span class="input-wrapper">
+                <label for="logInUsername"><small>Username * :</small></label>
+                <input type="text" id="logInUsername" name="username" required>
+
+            </span>
+            <span class="input-wrapper">
+                <label for="passwordInput"><small>Password * :</small></label>
+                <input type="password" id="logInPassword" name="password" required>
+
+            </span>
             <span class="account-details">New to Antheme? <a class="link" href="#">Sign up</a></span>
             <button id="logInBtn">Log in</button>
         </form>

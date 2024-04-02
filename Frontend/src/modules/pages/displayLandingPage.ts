@@ -19,6 +19,7 @@ import * as userImg from "../utilities/userImgUtils.js"
 let createAccountForm: HTMLFormElement;
 let logInForm: HTMLFormElement;
 let selectElement: HTMLSelectElement;
+let formContainer: HTMLElement;
 
 function displayLandingPage(): void {
     let landingpageTemplate = landingPageString;
@@ -38,10 +39,12 @@ function displayLandingPage(): void {
     selectElement = landingPage.querySelector('#userImage') as HTMLSelectElement;
     const closeFormBtns = landingPage.querySelectorAll('.xmark-close') as NodeListOf<HTMLElement>;
     const signUpLinks = landingPage.querySelectorAll('.link') as NodeListOf<HTMLAnchorElement>;
+    formContainer = document.querySelector('.form-container') as HTMLDivElement;
+
 
     createAccountBtn.addEventListener('click', handleCreateAccountBtn);
     signInBtn.addEventListener('click', handleSignInBtn);
-    document.addEventListener('click', handleDocumentClick);
+    document.addEventListener('click', handleFormClick);
     selectElement.addEventListener("change", handleSelectImgElement);
     closeFormBtns.forEach(closeFormBtn => {
         closeFormBtn.addEventListener('click', handleCloseFormBtn);
@@ -53,22 +56,33 @@ function displayLandingPage(): void {
     });
 }
 
-function handleCreateAccountBtn(): void {
+function handleCreateAccountBtn(e): void {
+    e.stopPropagation();
+    formContainer.classList.remove("hide");
+    console.log(formContainer)
     createAccountForm.classList.remove('hide');
     logInForm.classList.add('hide');
+
+    // auto shows preselected profile image
+    handleSelectImgElement();
 }
 
-function handleSignInBtn(): void {
+function handleSignInBtn(e): void {
+    e.stopPropagation();
+
     logInForm.classList.remove('hide');
+    formContainer.classList.remove("hide");
     createAccountForm.classList.add('hide');
 }
 
-function handleDocumentClick(event: MouseEvent): void {
-    const container = document.querySelector('.landing-page-container') as HTMLDivElement;
-    if (container && !container.contains(event.target as Node)) {
-        createAccountForm.classList.add('hide');
-        logInForm.classList.add('hide');
-    }
+function handleFormClick(e: MouseEvent): void {
+    const target = e.target as HTMLElement;
+
+    if(target.closest("form")) return;
+
+    createAccountForm.classList.add('hide');
+    logInForm.classList.add('hide');
+    formContainer.classList.add("hide");
 }
 
 function handleSelectImgElement(): void {
@@ -83,6 +97,7 @@ function handleCloseFormBtn(event: MouseEvent): void {
     const formToHide = (event.currentTarget as HTMLElement).closest('form');
     if (formToHide) {
         formToHide.classList.add('hide');
+        formContainer.classList.add('hide');
     }
 }
 
