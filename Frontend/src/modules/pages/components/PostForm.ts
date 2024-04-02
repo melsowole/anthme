@@ -3,9 +3,12 @@ import PostFormDropdownOption from "./PostFormDropdownOption.ts";
 import {replace, stringToDOM} from "../../utilities/templateUtils.ts";
 import { Category } from "../../utilities/types.ts";
 import Quill from "quill";
+import * as api from "../../api.ts";
 
 export default class PostForm {
-    static create(categories: Category[]): HTMLDivElement {
+    static async create(): Promise<HTMLDivElement> {
+        const categories = await api.getCategories();
+
         const mainContainerEl = stringToDOM(template.mainContainer);
         const postFormDropdown = mainContainerEl.querySelector('.category-container > select') as HTMLSelectElement;
 

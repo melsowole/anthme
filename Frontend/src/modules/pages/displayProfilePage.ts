@@ -14,10 +14,6 @@ DisplayProfilePage:
 
 import { main } from "./components/templates/profile-page.js";
 import { stringToDOM } from "../utilities/templateUtils.js";
-import Header from "./components/Header.js"
-import MainNav from "./components/MainNav.js";
-import Sidebar from "./components/Sidebar.js";
-import UserNoticeboard from "./components/UserNoticeboard.js";
 import * as userImg from "../utilities/userImgUtils.js"
 import * as api from "../api.js"
 import { deleteCookie, filterCookieValue  } from "../utilities/cookieUtils.js";
@@ -26,27 +22,19 @@ import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import {displayUserImage} from "./displayPostPage"
 import {Post, Comment} from "../utilities/types.js"
-import { generateDropdowns } from "../utilities/dropdownUtils.js";
 import { htmlEntitiesToString } from "../utilities/stringUtils.js";
 import {DeleteContentBtn} from"./components/DeleteContentBtn.js"
+import PageLayout from "./components/PageLayout.js";
 
 
 async function displayProfile():Promise<void> {
-    const mainNavDropdowns = await generateDropdowns();
-    const profilepage: HTMLElement = stringToDOM(main);
-    const header = Header.create();
-    const mainNav = MainNav.create(mainNavDropdowns);
-    const sidebar = Sidebar.create([await (UserNoticeboard.create())])
-  
-    document.body.append(
-        header,
-        mainNav,
-        profilepage,
-        sidebar
-    )
+    const profilePage: HTMLElement = stringToDOM(main);
 
-    const userInfoContainer = profilepage.querySelector('.userInfo') as HTMLDivElement;
-    const userPageLinks = profilepage.querySelectorAll('.userPageLink') as NodeListOf<HTMLAnchorElement>;
+    const pageLayout = new PageLayout();
+    await pageLayout.create(profilePage)
+
+    const userInfoContainer = document.querySelector('.userInfo') as HTMLDivElement;
+    const userPageLinks = document.querySelectorAll('.userPageLink') as NodeListOf<HTMLAnchorElement>;
     const postLink = document.querySelector('.postLink') as HTMLAnchorElement;
     const commentsLink = document.querySelector('.commentsLink') as HTMLAnchorElement;
     const container = document.querySelector('.commentContainer') as HTMLDivElement;
