@@ -1,8 +1,11 @@
+//PostForm.ts
 import * as template from "./templates/post-form.js";
 import CreatePostFormDropdown from "./CreatePostFormDropdown.js";
 import { stringToDOM} from "../../utilities/templateUtils.js";
 import Quill from "quill";
 import * as api from "../../api.js";
+
+
 
 export default class PostForm {
     static async create(): Promise<HTMLDivElement> {
@@ -66,6 +69,12 @@ export default class PostForm {
                 }
             }
         }
+
+        quill.on('editor-change', (eventType: string) => {
+            if (eventType === 'text-change') {
+                addToolTipsToQuillButtons(mainContainerEl);
+            }
+        });
         
         const textEditorToolbar = mainContainerEl.querySelector('.ql-toolbar');
         const divContentEditable = textEditorContainer.querySelector('.ql-editor');
@@ -76,4 +85,57 @@ export default class PostForm {
 
         return mainContainerEl;
     }
+}
+
+export function addToolTipsToQuillButtons(mainContainerEl: HTMLElement): void {
+    const quillToolbarEl = mainContainerEl.querySelector('.ql-toolbar') as HTMLElement;
+    const quillFormatsEl = mainContainerEl.querySelector('.ql-formats') as HTMLElement;
+
+    if (quillToolbarEl && quillFormatsEl) {
+        const quillButtons = [...quillToolbarEl.querySelectorAll('button'), ...quillFormatsEl.querySelectorAll('button')];
+        quillButtons.forEach((button: HTMLElement) => {
+            const label = getLabelForQuillButton(button);
+            if (label) {
+                button.setAttribute('aria-label', label);
+                button.classList.add('hint', 'hint--rounded', 'hint--top');
+
+            }
+        });
+    }
+}
+
+function getLabelForQuillButton(button: HTMLElement): string | null {
+    const btnClassNames: { [key: string]: string } = {
+        'ql-bold': 'Bold',
+        'ql-italic': 'Italic',
+        'ql-link': 'Create link',
+        'ql-strike': 'Line through',
+        'ql-code': 'Tag',
+        'ql-script': 'Superscript',
+        'ql-header': 'Header',
+        'ql-image': 'Image',
+        'ql-blockquote': 'Blockquote',
+        'ql-code-block': 'Codeblock',
+        'ql-video': 'Video'
+    };
+
+    const btnClasses = button.classList;
+    let label = null;
+
+    for (const btnClassName of Object.keys(btnClassNames)) {
+        if (btnClasses.contains(btnClassName)) {
+            return btnClassNames[btnClassName];
+        }
+    }
+
+    const buttonValue = button.getAttribute('value');
+    if (buttonValue === 'ordered') {
+        label = 'Ordered list';
+    } else if (buttonValue === 'bullet') {
+        label = 'Unordered list';
+    } else if (buttonValue) {
+        label = 'List';
+    }
+
+    return label;
 }

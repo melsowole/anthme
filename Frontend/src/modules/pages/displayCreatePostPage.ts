@@ -1,9 +1,10 @@
+//DisplayCreatePostPage
 import * as api from "../api.js";
 import { filterCookieValue } from "../utilities/cookieUtils.js";
 import { Post } from "../utilities/types.js";
 import PageLayout from "./components/PageLayout.js";
-import PostForm from "./components/PostForm.js";
 import Noticeboard from "./components/Noticeboard.js";
+import PostForm, { addToolTipsToQuillButtons } from "./components/PostForm.js";
 
 export default async function displayCreatePostPage(): Promise<void> {
     document.body.id = "createPostPage";
@@ -19,10 +20,14 @@ export default async function displayCreatePostPage(): Promise<void> {
 
     const pageLayout =  new PageLayout();
     await pageLayout.create(await PostForm.create());
+  
 
     const noticeBoard = Noticeboard.create("Posting to anthme", noticeBoardText)
 
     pageLayout.repopulateSideBar([noticeBoard]);
+
+    const mainContainerEl = document.querySelector("#mainContainer") as HTMLElement;
+    addToolTipsToQuillButtons(mainContainerEl);
 
 
     const postForm = document.querySelector("#postForm") as HTMLFormElement;
@@ -119,5 +124,9 @@ export default async function displayCreatePostPage(): Promise<void> {
             if(record.removedNodes.length > 0) checkFormValidity();
         }
     }
+
+
+    
+
 }
 
