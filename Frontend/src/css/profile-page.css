@@ -1,25 +1,25 @@
 /* Styling for profilepage goes here */
 
-.userInfo{
+.user-info{
     display: flex;
     align-items: center;
     padding-top: 2rem; 
     justify-content: space-between;
 }
-.userInfo > div{
+.user-info > div{
     display:flex;
     align-items: center;
 }
 
-.userInfo > div > h2{
+.user-info > div > h2{
     margin-left: 1rem;
 }
-.commentWrapper{
+.comment-wrapper{
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.postTitle{
+.post-title{
  margin-bottom: 0.5rem;   
 }
 .delete-btn{
@@ -27,20 +27,20 @@
   padding-right: 0.2rem;
   cursor: pointer;
 }
-.delAccountBtn{
+.del-account-btn{
     padding: 0.8rem;
     border-radius: 30px;
     border:none;
     cursor: pointer;
     color: red;
 }
-.userInteractionsOverview{
+.user-interactions-overview{
     display: flex;
     width: 200px; 
     margin-top: 2rem;
 }
 
-.userInteractionsOverview > a{
+.user-interactions-overview > a{
     text-decoration: none;
     color: #0F1A1C;
     padding: 0.7rem;
@@ -49,12 +49,12 @@
 }
 
 
-.userInteractionsOverview > a:hover{
+.user-interactions-overview > a:hover{
     text-decoration: underline;
    
 }
 
-.addGreyBGColor{
+.add-grey-bg-color{
     background-color: #D2DADD;
     text-decoration: underline;
     

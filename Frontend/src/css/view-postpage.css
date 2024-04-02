@@ -1,20 +1,20 @@
-.userInfoContainer {
+.user-info-container {
   display: flex;
   padding-bottom: 1.5rem;
   align-items: center;
   margin-left: 2rem;
 }
 
-.userImg {
+.user-img {
   width: 40px;
 }
 
-.commentInput{
+.comment-input{
   width: 350px;
   margin-left: 2rem;
 }
 
-.contentDiv{
+.content-div{
   margin-left: 2rem;
 }
 #categoryTitle {
@@ -29,7 +29,7 @@
   margin-left: 0.5rem;
 }
 
-.userInfoItem {
+.user-info-item {
   padding-top: 0;
   display: flex;
   flex-direction: row-reverse;
@@ -42,16 +42,16 @@
   font-weight: 600;
 }
 
-.userImg {
+.user-img {
   order: 1;
 }
-.interactionContainer {
+.interaction-container {
   display: flex;
   margin-top: 2rem;
   gap: 0.8rem;
   margin-left: 2rem;
 }
-.outerSpan {
+.outer-span {
   background-color: #eaedef;
   border-radius: 30px;
   width: 70px;
@@ -61,7 +61,7 @@
   align-items: center;
 }
 
-.outerSpan > button {
+.outer-span > button {
   background: none;
   border: none;
   width: 32px;
@@ -92,7 +92,7 @@
   cursor: default;
 }
 
-.rating, .amountOfComments {
+.rating, .amount-of-comments {
   font-size: 0.75rem;
 }
 
@@ -100,7 +100,7 @@
   color: #434f53;
 }
 
-.commentSpan {
+.comment-span {
   background-color: #eaedef;
   border-radius: 30px;
   width: 65px;
@@ -110,14 +110,14 @@
   justify-content: center;
 }
 
-.commentSpan > a {
+.comment-span > a {
   text-decoration: none;
   color: black;
   display: flex;
   gap: 0.5rem;
 }
 
-.commentSpan > button {
+.comment-span > button {
   background-color: none;
   border: none;
   width: 32px;
@@ -126,11 +126,11 @@
   cursor: pointer;
 }
 
-.commentSpan > button:hover {
+.comment-span > button:hover {
   background-color: transparent;
 }
 
-.addCommentBtn {
+.add-comment-btn {
   width: 155px;
   height: 40px;
   border-radius: 30px;
@@ -145,7 +145,7 @@
   cursor: pointer;
 }
 
-.addCommentBtn:hover {
+.add-comment-btn:hover {
   border: 1px solid black;
 }
 
@@ -156,22 +156,22 @@
   font-weight: 300; /* Justera fontvikten för ikonen */
 }
 
-.commentBtn {
+.comment-btn {
   margin-top: 3rem;
 }
 
-.commentContainer {
+.comment-container {
   margin-top: 2rem;
 }
 
-.commentItem {
+.comment-item {
   margin-bottom: 2rem;
   border-bottom: 1px solid var(--neut);
   width: 320px;
   position: relative;
   margin-left: 2rem;
 }
-.imgDiv {
+.img-div {
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-end;
@@ -181,28 +181,28 @@
   position: relative;
 }
 
-.imgDiv > h2,
-.timeStampEl {
+.img-div > h2,
+.timestamp-el {
   color: #2a3c42;
   font-size: 0.75rem;
   font-weight: 600;
 }
 
-.imgDiv > h2::after {
+.img-div > h2::after {
   content: "•";
   margin-left: 0.5rem;
 }
-.commentBody {
+.comment-body {
   position: relative;
   margin-left: 3rem;
 }
-.commentBody > p {
+.comment-body > p {
   font-size: 0.875rem;
   line-height: 1.25rem;
   margin-bottom: 0.4rem;
 }
 
-.commentInput {
+.comment-input {
   margin-top: 1rem;
   border-radius: 20px;
   resize: none;
@@ -210,16 +210,16 @@
   padding-left: 10px;
 }
 
-.commentInput:focus {
+.comment-input:focus {
   border-color: black;
   outline: none;
 }
 
-.textareaContainer {
+.textarea-container {
   position: relative;
 }
 
-.submitButton {
+.submit-button {
   position: absolute;
   top: 55px;
   right: 35px;
@@ -233,19 +233,19 @@
   border-radius: 20px;
   cursor: pointer;
 }
-.submitButton:hover {
+.submit-button:hover {
   background-color: #003763;
 }
 
-.buttonComments {
+.button-comments {
   border: none;
   cursor: pointer;
 }
 
-.buttonComments:hover {
+.button-comments:hover {
   background-color: transparent;
 }
-.cancelButton {
+.cancel-button {
   width: 60px;
   height: 32px;
   position: absolute;
@@ -258,7 +258,7 @@
   font-weight: bolder;
 }
 
-.cancelButton:hover {
+.cancel-button:hover {
   background-color: #bfd5fe;
 }
 
@@ -266,12 +266,12 @@
 
 @media screen and (min-width: 640px){
 
-  .submitButton {
+  .submit-button {
     top: 70px;
     right: 250px;
   }
   
-  .cancelButton {
+  .cancel-button {
     top: 70px;
     right: 330px;
   }
@@ -283,27 +283,27 @@
 @media screen and (min-width: 960px) {
 
  
-  .commentInput{
+  .comment-input{
     width: 490px;
     margin-left: 0rem;
   }
 
-  .submitButton {
+  .submit-button {
     top: 70px;
     right: 250px;
   }
   
-  .cancelButton {
+  .cancel-button {
     top: 70px;
     right: 330px;
   }
 
-  .commentItem {
+  .comment-item {
     width: 500px;
     margin-left: 0rem;
   }
   
-.contentDiv, .userInfoContainer, .addCommentBtn, .interactionContainer{
+.content-div, .user-info-container, .add-comment-btn, .interaction-container{
   margin-left: 0rem;
 }
 

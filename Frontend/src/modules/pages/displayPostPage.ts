@@ -47,7 +47,7 @@ async function displayViewPostPage(): Promise<void> {
     
         applyUserRatingClassToPost(post);
 
-        const userInfoContainer = getElement(".userInfoContainer");
+        const userInfoContainer = getElement(".user-info-container");
         const postCommentsIds = post.comments;
         displayUserProfile(userInfoContainer, post, post.user.userImage);
 
@@ -62,7 +62,7 @@ async function displayViewPostPage(): Promise<void> {
               throw new Error("204");
             }
 
-            const commentDiv = getElement(".commentInfo");
+            const commentDiv = getElement(".comment-info");
 
             for (const comment of postComments) {
               displayCommentsOnPost(
@@ -77,7 +77,7 @@ async function displayViewPostPage(): Promise<void> {
             if(error.message == "204"){
               const noComments = document.createElement("p");
               noComments.textContent = "No Comments yet..."
-              const commentsContainer = getElement(".commentInfo");
+              const commentsContainer = getElement(".comment-info");
               commentsContainer.append(noComments);
 
             } else {
@@ -85,26 +85,26 @@ async function displayViewPostPage(): Promise<void> {
             }
           });
 
-          const postFooter = getElement('.interactionContainer') as HTMLDivElement;
+          const postFooter = getElement('.interaction-container') as HTMLDivElement;
           postFooter.addEventListener('click', async (event) => {
             const {target} = event;
 
             if(!(target instanceof HTMLElement)) return; // Narrow down the types on target so it won't complain
 
-            if(target.closest('.outerSpan')) {
+            if(target.closest('.outer-span')) {
               event.preventDefault();
               const postContainer = target.closest('.post-container') as HTMLDivElement;
               const loggedInUserId = filterCookieValue('id', 'user');
               
 
-              if(target.closest('.buttonUp')) {
+              if(target.closest('.button-up')) {
                   await api.updateUpvotes(post.id, loggedInUserId)
                       .then(postRating => {
                           rating.updateRating(postRating, postContainer);
                           rating.updateBGColor(target);
                       });
               }
-              else if(target.closest('.buttonDown')) {
+              else if(target.closest('.button-down')) {
                   await api.updateDownvotes(post.id, loggedInUserId)
                       .then(postRating => {
                           rating.updateRating(postRating, postContainer);
@@ -117,18 +117,18 @@ async function displayViewPostPage(): Promise<void> {
           });
 
           // Add comment functionality
-          const commentForm = getElement(".commentForm") as HTMLFormElement;
+          const commentForm = getElement(".comment-form") as HTMLFormElement;
           
           commentForm.addEventListener("submit", async (event) => {
           event.preventDefault();
-          const commentInput = getElement(".commentInput") as HTMLTextAreaElement;
+          const commentInput = getElement(".comment-input") as HTMLTextAreaElement;
           const commentValue = commentInput.value;
 
           const newComment = {
             body: commentValue,
           };
 
-          if (event.submitter && event.submitter.id === "addCommentBtn") {
+          if (event.submitter && event.submitter.id === "add-comment-btn") {
             const loggedInUserId = filterCookieValue("id", "user");
 
             try {
@@ -138,7 +138,7 @@ async function displayViewPostPage(): Promise<void> {
                 // comment submit success
                 const addedComment = response as Comment;
                 postComments.push(addedComment);
-                const commentDiv = getElement(".commentInfo");
+                const commentDiv = getElement(".comment-info");
                 displayCommentsOnPost(commentDiv, addedComment, postComments);
                 updateAmountOfComments();
 
@@ -156,9 +156,9 @@ async function displayViewPostPage(): Promise<void> {
           }
         });
 
-        const addCommentBtn = getElement(".addCommentBtn") as HTMLButtonElement;
-        const textareaContainer = getElement(".textareaContainer") as HTMLTextAreaElement;
-        const cancelBtn = getElement(".cancelButton") as HTMLButtonElement;
+        const addCommentBtn = getElement(".add-comment-btn") as HTMLButtonElement;
+        const textareaContainer = getElement(".textarea-container") as HTMLTextAreaElement;
+        const cancelBtn = getElement(".cancel-button") as HTMLButtonElement;
 
         addCommentBtn.addEventListener("click", handleAddCommentBtn);
         cancelBtn.addEventListener("click", handleCancelBtn);
@@ -190,10 +190,10 @@ async function displayViewPostPage(): Promise<void> {
 
 function displayUserProfile(container: HTMLElement, item: (Post), userImg: string):void {
     
-  const userInfoContainer = getElement('.userInfoContainer');
-  const contentDiv = getElement('.contentDiv');
-  const userInfoItem = getElement('.userInfoItem');
-  const userImgContainer = getElement('.userImgContainer') as HTMLImageElement;
+  const userInfoContainer = getElement('.user-info-container');
+  const contentDiv = getElement('.content-div');
+  const userInfoItem = getElement('.user-info-item');
+  const userImgContainer = getElement('.user-img-container') as HTMLImageElement;
 
 
   displayUserImage(userImgContainer, userImg);
@@ -218,19 +218,19 @@ function displayUserProfile(container: HTMLElement, item: (Post), userImg: strin
 }
 
 function displayCommentsOnPost(container: HTMLElement, item: Comment, specificComments: Comment[]):void {
-  const ammountOfComments = document.querySelector('.amountOfComments') as HTMLSpanElement;
+  const ammountOfComments = document.querySelector('.amount-of-comments') as HTMLSpanElement;
   ammountOfComments.innerText = specificComments.length.toString(); 
                   
   const commentItem= document.createElement('div');
-  commentItem.classList.add('commentItem')
+  commentItem.classList.add('comment-item')
   const timeStampEl = document.createElement('small');
-  timeStampEl.classList.add('timeStampEl')
+  timeStampEl.classList.add('timestamp-el')
   timeStampEl.innerText = dayjs(item.created).fromNow()
 
   const imgDiv = document.createElement('div');
-  imgDiv.classList.add('imgDiv');
+  imgDiv.classList.add('img-div');
   const commentBody = document.createElement('div');
-  commentBody.classList.add('commentBody')
+  commentBody.classList.add('comment-body')
   const usernameEl = document.createElement('h2')
   usernameEl.innerText= item.user.username;
   const contentEl = document.createElement('div');
@@ -249,13 +249,13 @@ function displayCommentsOnPost(container: HTMLElement, item: Comment, specificCo
 function displayUserImage(container: HTMLDivElement, imgPath: string): void {
   const imgEl = document.createElement("img");
   imgEl.src = imgPath;
-  imgEl.classList.add("userImg");
+  imgEl.classList.add("user-img");
 
   container.appendChild(imgEl);
 }
 
 function updateAmountOfComments() {
-  const ammountOfComments = document.querySelector('.amountOfComments') as HTMLSpanElement;
+  const ammountOfComments = document.querySelector('.amount-of-comments') as HTMLSpanElement;
   ammountOfComments.innerText = postComments.length.toString(); 
 }
 

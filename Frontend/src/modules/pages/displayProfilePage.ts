@@ -30,11 +30,11 @@ async function displayProfile():Promise<void> {
     const pageLayout = new PageLayout();
     await pageLayout.create(profilePage)
 
-    const userInfoContainer = document.querySelector('.userInfo') as HTMLDivElement;
-    const userPageLinks = document.querySelectorAll('.userPageLink') as NodeListOf<HTMLAnchorElement>;
-    const postLinkEl = document.querySelector('.postLink') as HTMLAnchorElement;
-    const commentsLinkEl = document.querySelector('.commentsLink') as HTMLAnchorElement;
-    const container = document.querySelector('.commentContainer') as HTMLDivElement;
+    const userInfoContainer = document.querySelector('.user-info') as HTMLDivElement;
+    const userPageLinks = document.querySelectorAll('.user-page-link') as NodeListOf<HTMLAnchorElement>;
+    const postLinkEl = document.querySelector('.post-link') as HTMLAnchorElement;
+    const commentsLinkEl = document.querySelector('.comments-link') as HTMLAnchorElement;
+    const container = document.querySelector('.comment-container') as HTMLDivElement;
 
     const urlParts: string[] = window.location.pathname.split('/');
     const urlPathEndpoint: string = urlParts[urlParts.length - 1];
@@ -47,7 +47,7 @@ async function displayProfile():Promise<void> {
 
             } else if('id' in response){
                 const user: User = response;
-                postLinkEl.classList.add('addGreyBGColor')
+                postLinkEl.classList.add('add-grey-bg-color')
 
                 const posts = await api.getPostByUser(user.id as string);
 
@@ -69,7 +69,7 @@ async function displayProfile():Promise<void> {
                     }
                 }
 
-                const deleteAccountBtn = document.querySelector('.delAccountBtn') as HTMLButtonElement;
+                const deleteAccountBtn = document.querySelector('.del-account-btn') as HTMLButtonElement;
             
                 postLinkEl.addEventListener('click', handlePostLink);
                 commentsLinkEl.addEventListener('click', handleCommentsLink);
@@ -128,10 +128,10 @@ async function displayProfile():Promise<void> {
 
                 function handleUserPageLink(clickedLink: HTMLElement):void {
                     userPageLinks.forEach(link => {
-                        link.classList.remove('addGreyBGColor');
+                        link.classList.remove('add-grey-bg-color');
                     });
 
-                    clickedLink.classList.add('addGreyBGColor');
+                    clickedLink.classList.add('add-grey-bg-color');
                 }
             }
         })
@@ -156,10 +156,10 @@ function logOut() {
 }
 
 function displayDeleteAccountBtn():void{
-    const userInfoContainer = document.querySelector('.userInfo') as HTMLDivElement;
+    const userInfoContainer = document.querySelector('.user-info') as HTMLDivElement;
     const deleteAccountBtn = document.createElement('button');
     deleteAccountBtn.innerText = 'Delete account'
-    deleteAccountBtn.classList.add('delAccountBtn')
+    deleteAccountBtn.classList.add('del-account-btn')
 
     userInfoContainer.append(deleteAccountBtn)
 }
@@ -185,7 +185,7 @@ function displayUserProfile(user: User, container: HTMLDivElement): void {
         deleteBtn.addEventListener('click', async (event) => {
 
             event.stopPropagation();
-            const container = (event.target as HTMLElement).closest('.commentItem') as HTMLElement;
+            const container = (event.target as HTMLElement).closest('.comment-item') as HTMLElement;
             const containerId = container.id;
             const loggedInUserId = filterCookieValue('id', 'user')
 
@@ -218,20 +218,20 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], typeO
     items.forEach(item => {
         console.log(item)
         const itemElement = document.createElement('div');
-        itemElement.classList.add('commentItem');
+        itemElement.classList.add('comment-item');
         itemElement.id = item.id;
         const commentWrapper = document.createElement('div');
-        commentWrapper.classList.add('commentWrapper')
+        commentWrapper.classList.add('comment-wrapper')
 
         const timeStampEl = document.createElement('small');
-        timeStampEl.classList.add('timeStampEl');
+        timeStampEl.classList.add('timestamp-el');
         timeStampEl.innerText = dayjs(item.created).fromNow()
        
         const imgDiv = document.createElement('div');
-        imgDiv.classList.add('imgDiv');
+        imgDiv.classList.add('img-div');
 
         const itemBody = document.createElement('div');
-        itemBody.classList.add('commentBody');
+        itemBody.classList.add('comment-body');
 
         const userImg = document.createElement('img')
         userImg.src = item.user.userImage;
@@ -241,7 +241,7 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], typeO
 
         if ('title' in item) {
             const titleEl = document.createElement('h2');
-            titleEl.classList.add('postTitle');
+            titleEl.classList.add('post-title');
             titleEl.innerText =item.title;
             itemBody.appendChild(titleEl);
         }
