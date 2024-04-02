@@ -1,36 +1,36 @@
 /* Styling for landing page goes here */
-.landingPageContainer{
+.landing-page-container{
     width: 300px;
     margin:auto;
    padding: 2rem;
 }
 
-.landingPageTitle{
+.landing-page-title{
     display:flex;
     align-items: flex-start;
     flex-direction: column;
     justify-content: center;
 }
 
-.landingPageTitle > h1{
+.landing-page-title > h1{
     font-size: 32px;
     margin-bottom: 2rem;
 }
 
-.landingPageContent > h2, h3{
+.landing-page-content > h2, h3{
     font-size: 18px;
 }
 
-.landingPageContent > * {
+.landing-page-content > * {
     margin-bottom: 2rem; 
 }
 
 #createAccountBtn{
-    background-color: #D93A00;
+    background-color: var(--color);
     border:none;
     cursor: pointer;
     border-radius: 30px;
-    color: white;
+    color: var(--bg);
     width: 250px;
     padding: 0.8rem;
     font-size: 1rem;
@@ -38,17 +38,17 @@
 }
 
 #signInBtn{
-    border: 2px solid #D93A00;
+    border: 2px solid var(--color);
     cursor: pointer;
     border-radius: 30px;
-    color: #D93A00;
+    color: var(--color);
     width: 250px;
     padding: 0.8rem;
     font-weight: bolder;
     font-size: 1rem;
-    background-color: white;
+    background-color: var(--bg);
 }
-.formContainer {
+.form-container {
     position: absolute;
     top: 28%; 
     left: 50%; 
@@ -57,8 +57,8 @@
     
 }
 
-.xmarkClose{
-    color:black;
+.xmark-close{
+    color:var(--text);
     position:relative;
     right: 150px;
     background: transparent;
@@ -67,8 +67,8 @@
 
 }
 
-.xmarkCloseLogin{
-    color:black;
+.xmark-close-login{
+    color:var(--text);
     position:relative;
     right: 150px;
     background: transparent;
@@ -78,7 +78,7 @@
 
 }
 
-.createAccountform, .logInForm{
+.create-account-form, .log-in-form{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -87,29 +87,29 @@
     border-radius: 20px;
     width: 350px;
     height: 400px;
-    background-color: white;
+    background-color: var(--bg);
 }
 
-.logInForm > h2{
+.log-in-form > h2{
     margin-bottom: 1rem;
 }
 
-.createAccountform > input:first-of-type{
+.create-account-form > input:first-of-type{
     margin-top: 1rem;
 }
 
-.createAccountform > input, .logInForm > input{
+.create-account-form > input, .log-in-form > input{
     height: 40px;
     width: 300px;
     margin-bottom: 1rem;
 }
 
-.accountDetails{
+.account-details{
     margin-top: 1.5rem;
     font-size: 12px;
 }
 
-.accountDetails > a{
+.account-details > a{
     font-size: 12px;
 }
 
@@ -118,8 +118,8 @@
     border: none;
     cursor: pointer;
     border-radius: 30px;
-    background-color: #D93A00;
-    color:white;
+    background-color: var(--color);
+    color:var(--bg);
     padding: 0.8rem;
     font-weight: bolder;
     width: 300px;
@@ -133,7 +133,7 @@ img{
     width:70px;
 }
 
-.selectUserImg{
+.select-user-img{
     display:flex;
     align-items: center;
     justify-content: space-evenly;
@@ -143,7 +143,7 @@ img{
 
 @media screen and (min-width: 640px){
 
-    .formContainer {
+    .form-container {
         top: 37%; 
      
     }
@@ -151,25 +151,25 @@ img{
 }
 
 @media screen and (min-width: 960px) {
-    .landingPageContainer{
+    .landing-page-container{
         padding: 6rem;
         margin-left: 3rem;
         width: 5px;
         height: 5px;
     }
 
-    .landingPageTitle{
+    .landing-page-title{
         width: 600px;
         height: 400px;
         
     }
 
-    .landingPageTitle > h1{
+    .landing-page-title > h1{
         font-size: 52px;
         margin-bottom: 2rem;
     }
 
-    .landingPageContent > h2, h3{
+    .landing-page-content > h2, h3{
         font-size: 32px;
     }
 
@@ -178,19 +178,19 @@ img{
         
     }
 
-    .createAccountform, .logInForm{
+    .create-account-form, .log-in-form{
         width: 450px;
         height: 400px;
        
     }
 
-    .formContainer {
+    .form-container {
         top: 40%; 
         left: 50%; 
      
     }
 
-    .xmarkClose, .xmarkCloseLogin{
+    .xmark-close, .xmark-close-login{
         right: 201px;
     }
 

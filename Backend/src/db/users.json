@@ -42,5 +42,14 @@
     "created": "2024-04-02T07:13:01.811Z",
     "posts": [],
     "comments": []
+  },
+  {
+    "id": "cc624e6c-369a-4851-9225-6af06dd9c640",
+    "username": "melchan",
+    "password": "pass",
+    "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1712059039110",
+    "created": "2024-04-02T11:57:48.684Z",
+    "posts": [],
+    "comments": []
   }
 ]
