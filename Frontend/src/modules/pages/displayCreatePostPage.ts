@@ -21,6 +21,8 @@ export default async function displayCreatePostPage(): Promise<void> {
 
     const noticeBoard = Noticeboard.create("Posting to anthme", noticeBoardText)
 
+    pageLayout.populateSideBar([noticeBoard]);
+
 
     const postForm = document.querySelector("#postForm") as HTMLFormElement;
     postForm.addEventListener("submit", async (event) => {

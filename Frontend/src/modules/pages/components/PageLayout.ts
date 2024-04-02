@@ -8,12 +8,14 @@ import { generateDropdowns } from "../../utilities/dropdownUtils.ts";
 export default class PageLayout{
 
   private sidebar: HTMLElement;
+  private userNoticeboard: HTMLElement;
 
   constructor(){}   
 
   public async create(main: HTMLElement):Promise<void>{
     const dropdowns = await generateDropdowns();
-    this.sidebar = Sidebar.create([await UserNoticeboard.create()])
+    this.userNoticeboard = await UserNoticeboard.create();
+    this.sidebar = Sidebar.create([this.userNoticeboard]);
 
     document.body.append(
       await Header.create(),
@@ -24,6 +26,6 @@ export default class PageLayout{
   }
 
   public async populateSideBar(itemsArr: HTMLElement[]):Promise<void>{
-
+    console.log(this.sidebar);
   }
 }
