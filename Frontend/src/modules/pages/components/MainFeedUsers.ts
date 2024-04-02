@@ -2,13 +2,13 @@ import * as template from "./templates/main-feed.js";
 import { userListContainer } from "./templates/user-list.ts";
 import {replace, stringToDOM} from "../../utilities/templateUtils.ts";
 import UserList from "./UserList.ts";
-import { User } from "../../utilities/pathTypes.ts";
+import { User } from "../../utilities/types.ts";
 
 export default class MainFeedUsers {
     static create(users: User[]) {
         const templateFeed = replace(template.feed, [
             {pattern: 'sort', replacement: 'Newest'},
-            {pattern: 'containerId', replacement: 'users'}
+            {pattern: 'containerType', replacement: 'users'}
         ])
         
         const main = stringToDOM(templateFeed);

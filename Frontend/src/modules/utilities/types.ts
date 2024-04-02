@@ -29,7 +29,13 @@ type Post = {
     username: string;
     userImage: string;
   };
+  rating: Rating;
 };
+
+type Rating = {
+  upvotes: string[];
+  downvotes: string[];
+}
 
 type Comment = {
   id: string;
@@ -62,4 +68,4 @@ type SubCategory = {
   url: string;
 };
 
-export {Error, Success, User, Post, Comment, Category, MainCategory };
+export {Error, Success, User, Post, Rating, Comment, Category, MainCategory };

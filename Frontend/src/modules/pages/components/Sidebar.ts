@@ -15,5 +15,5 @@ export default class Sidebar{
     content.forEach(el => sidebar.append(el))
 
     return aside;
-}
+    }
 }

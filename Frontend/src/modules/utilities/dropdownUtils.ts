@@ -1,4 +1,4 @@
-import { Category, MainCategory } from "../utilities/pathTypes.ts";
+import { Category, MainCategory } from "./types.ts";
 import * as api from "../api.ts"
 
 async function generateDropdowns(): Promise<MainCategory[]> {

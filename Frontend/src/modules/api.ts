@@ -1,4 +1,4 @@
-import { Error, Success, User, Post, Comment, Category } from "./utilities/pathTypes";
+import { Error, Success, User, Post, Rating, Comment, Category } from "./utilities/types";
 
 const baseUrl: string = 'http://localhost:3000/';
 const header = {"Content-type": "application/json; charset=UTF-8"};
@@ -199,6 +199,34 @@ async function deleteComment(postId:string, userId:string, commentId:string):Pro
   return info;
 }
 
+async function updateUpvotes(postId: string, loggedInUserId: string): Promise<Rating> {
+    const url = `${baseUrl}posts/${postId}/update-upvotes/${loggedInUserId}`
+
+    const options = {
+        method: "PATCH",
+        headers: header
+    }
+
+    const res = await fetch(url, options);
+    const rating = await res.json();
+
+    return rating;
+}
+
+async function updateDownvotes(postId: string, loggedInUserId: string): Promise<Rating> {
+    const url = `${baseUrl}posts/${postId}/update-downvotes/${loggedInUserId}`
+
+    const options = {
+        method: "PATCH",
+        headers: header
+    }
+
+    const res = await fetch(url, options);
+    const rating = await res.json();
+    
+    return rating;
+}
+
 export {
   submitPost,
   getAllUsers,
@@ -216,5 +244,7 @@ export {
   getCategories,
   getCategory,
   getPosts,
-  getFilteredCategories
+  getFilteredCategories,
+  updateUpvotes,
+  updateDownvotes
 };

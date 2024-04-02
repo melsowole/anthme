@@ -15,6 +15,15 @@ const postPreview = `
             </p>
         </section>
         <footer>
+            <span class="outerSpan">
+                <button class="buttonUp"> 
+                    <i class="fi fi-ts-up"></i> 
+                </button>
+                <span class="rating">__rating__</span>
+                <button class="buttonDown">
+                    <i class="fi fi-ts-down"></i>
+                </button>
+            </span>
             <span class="pill unstyle">
                 <small>
                     <span class="icon material-symbols-outlined">comment</span>

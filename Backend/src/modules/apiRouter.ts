@@ -42,8 +42,9 @@ apiRouter.route("/users/:userId/posts/:postId").delete(posts.deletePost);
 
 // Posts routes
 apiRouter.route("/posts").get(posts.getAllPosts);
-
 apiRouter.route("/posts/:postId").get(posts.getPostById);
+apiRouter.route("/posts/:postId/update-upvotes/:userId").patch(posts.updateUpvotes);
+apiRouter.route("/posts/:postId/update-downvotes/:userId").patch(posts.updateDownvotes);
 
 // Comments routes
 apiRouter.route("/comments").get(comments.getAllComments);

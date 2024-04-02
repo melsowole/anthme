@@ -1,15 +1,13 @@
 import Noticeboard from "./Noticeboard";
 import * as api from "../../api.ts";
 import UserProfile from "./UserProfile";
-import {User} from "../../utilities/pathTypes.ts"
+import {User} from "../../utilities/types.ts"
 
 export default class UserNoticeboard{
     private static visibleUsersN = 5;
 
     static async create(): Promise<HTMLElement>{
         const users = await api.getAllUsers();
-        console.log(this.visibleUsersN)
-
         const header = "Users";
         const itemsArray=  this.createItemsArray(users);
 

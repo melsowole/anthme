@@ -1,7 +1,7 @@
 import Header from "./Header.ts";
 import PostForm from "./PostForm.ts";
 import Noticeboard from "./Noticeboard.ts";
-import { Category } from "../../utilities/pathTypes.ts";
+import { Category } from "../../utilities/types.ts";
 
 class CreatePostPage {
   static create(

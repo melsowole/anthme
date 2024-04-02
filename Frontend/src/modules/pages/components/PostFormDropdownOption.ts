@@ -1,6 +1,6 @@
 import * as template from "./templates/post-form-dropdown";
 import { replace, stringToDOM } from "../../utilities/templateUtils";
-import { Category } from "../../utilities/pathTypes";
+import { Category } from "../../utilities/types";
 
 class PostFormDropdownOption {
     static create(category: Category): HTMLOptionElement {

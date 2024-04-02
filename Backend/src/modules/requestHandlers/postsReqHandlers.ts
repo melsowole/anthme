@@ -76,13 +76,17 @@ export async function createPost(
 
     // create new post
     const newPost: Post = {
-      id: crypto.randomUUID(),
-      created: req.body.timestamp,
-      category: req.body.category,
-      title: req.body.title,
-      body: req.body.body,
-      comments: [],
-      user: req.body.user,
+        id: crypto.randomUUID(),
+        created: req.body.timestamp,
+        category: req.body.category,
+        title: req.body.title,
+        body: req.body.body,
+        comments: [],
+        user: req.body.user,
+        rating: {
+            upvotes: [],
+            downvotes: []
+        }
     };
 
     posts.push(newPost);
@@ -126,4 +130,59 @@ export async function deletePost(
     next(err);
     return;
   }
+}
+
+export async function updateUpvotes(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+        const posts = await read.posts();
+        const post = getItemById(posts, req.params.postId);
+        
+        if(post) {
+            post.rating.downvotes = post.rating.downvotes.filter(userId => userId !== req.params.userId);
+            console.log('removed user from downvotes', post.rating.downvotes);
+
+            if(post.rating.upvotes.includes(req.params.userId)) {
+                post.rating.upvotes = post.rating.upvotes.filter(userId => userId !== req.params.userId);
+                console.log('removed user from upvotes', post.rating.upvotes);
+                
+            }
+            else {
+                post.rating.upvotes.push(req.params.userId);
+                console.log('added user in upvotes', post.rating.upvotes);
+                
+            }
+        }
+
+        await write.posts(posts);
+        res.json(post.rating)
+    }
+    catch (err) {
+        next(err)
+        return;
+    }
+}
+
+export async function updateDownvotes(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+        const posts = await read.posts();
+        const post = getItemById(posts, req.params.postId);
+        
+        if(post) {
+            post.rating.upvotes = post.rating.upvotes.filter(userId => userId !== req.params.userId);
+
+            if(post.rating.downvotes.includes(req.params.userId)) {
+                post.rating.downvotes = post.rating.downvotes.filter(userId => userId !== req.params.userId);
+            }
+            else {
+                post.rating.downvotes.push(req.params.userId);
+            }
+        }
+
+        await write.posts(posts);
+        res.json(post.rating)
+    }
+    catch (err) {
+        next(err)
+        return;
+    }
 }
