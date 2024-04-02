@@ -1,18 +1,18 @@
 const main = `
 <main class="main-feed">
-    <div class="userInfo"></div>    
+    <div class="user-info"></div>    
 
-    <div class="userInteractionsOverview">
-        <a class="postLink userPageLink" href="#">
+    <div class="user-interactions-overview">
+        <a class="post-link user-page-link" href="#">
             <span> Posts </span>
         </a>
 
-        <a class="commentsLink userPageLink" href="#">
+        <a class="comments-link user-page-link" href="#">
             <span> Comments </span>
         </a>
     </div>
 
-    <div id= "comments" class="commentContainer"></div>
+    <div id= "comments" class="comment-container"></div>
 
 </main>
 

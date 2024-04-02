@@ -6,7 +6,7 @@ import PostForm from "./components/PostForm.js";
 import Noticeboard from "./components/Noticeboard.js";
 
 export default async function displayCreatePostPage(): Promise<void> {
-    document.body.id = "create-post-page";
+    document.body.id = "createPostPage";
     document.body.classList.add("no-nav");
 
     const noticeBoardText: string[] = [

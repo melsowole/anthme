@@ -33,10 +33,10 @@ function displayLandingPage(): void {
     
     const createAccountBtn = landingPage.querySelector('#createAccountBtn') as HTMLButtonElement;
     const signInBtn = landingPage.querySelector('#signInBtn') as HTMLButtonElement;
-    createAccountForm = landingPage.querySelector('.createAccountform') as HTMLFormElement;
-    logInForm = landingPage.querySelector('.logInForm') as HTMLFormElement;
+    createAccountForm = landingPage.querySelector('.create-account-form') as HTMLFormElement;
+    logInForm = landingPage.querySelector('.log-in-form') as HTMLFormElement;
     selectElement = landingPage.querySelector('#userImage') as HTMLSelectElement;
-    const closeFormBtns = landingPage.querySelectorAll('.xmarkClose') as NodeListOf<HTMLElement>;
+    const closeFormBtns = landingPage.querySelectorAll('.xmark-close') as NodeListOf<HTMLElement>;
     const signUpLinks = landingPage.querySelectorAll('.link') as NodeListOf<HTMLAnchorElement>;
 
     createAccountBtn.addEventListener('click', handleCreateAccountBtn);
@@ -64,7 +64,7 @@ function handleSignInBtn(): void {
 }
 
 function handleDocumentClick(event: MouseEvent): void {
-    const container = document.querySelector('.landingPageContainer') as HTMLDivElement;
+    const container = document.querySelector('.landing-page-container') as HTMLDivElement;
     if (container && !container.contains(event.target as Node)) {
         createAccountForm.classList.add('hide');
         logInForm.classList.add('hide');
@@ -72,7 +72,7 @@ function handleDocumentClick(event: MouseEvent): void {
 }
 
 function handleSelectImgElement(): void {
-    const imageContainer = document.querySelector('.imgContainer') as HTMLDivElement;
+    const imageContainer = document.querySelector('.img-container') as HTMLDivElement;
     let selectedValue = selectElement.value;
     
     displayUserImage(imageContainer, selectedValue)

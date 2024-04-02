@@ -5,10 +5,6 @@
   margin-top: 2rem;
 }
 
-.light .noticeboard {
-  background-color: var(--bg);
-}
-
 .noticeboard > *,
 .noticeboard a {
   padding: 0.5rem 1rem;

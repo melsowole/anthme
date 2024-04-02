@@ -1,50 +1,50 @@
 const postPage = `
 <main class="main-feed">
     <article id="__postId__" class="post-container">
-        <div class="userInfoContainer">
-            <div class="userImgContainer"></div>
-            <div class="userInfoItem"></div> 
+        <div class="user-info-container">
+            <div class="user-img-container"></div>
+            <div class="user-infoitem"></div> 
         </div>
         
-        <div class="contentDiv"></div>
+        <div class="content-div"></div>
 
-        <div class="interactionContainer">
-            <span class="outerSpan">
-                <button class="buttonUp"> 
+        <div class="interaction-container">
+            <span class="outer-span">
+                <button class="button-up"> 
                     <i class="fi fi-ts-up"></i> 
                 </button>
                 <span class="rating">__rating__</span>
-                <button class="buttonDown">
+                <button class="button-down">
                     <i class="fi fi-ts-down"></i>
                 </button>
             </span>
 
-            <span class="commentSpan">
+            <span class="comment-span">
                 <a href="#comments">
-                    <button class="buttonComments">
+                    <button class="button-comments">
                         <i class="fa-regular fa-message fa-lg" ></i>
                     </button>
-                    <span class="amountOfComments"></span>
+                    <span class="amount-of-comments"></span>
                 </a>
             </span>    
         </div>
     </article>
 
-    <div class="commentBtn">
-        <button class="addCommentBtn"><i class="fi fi-rr-plus"></i> Add a Comment</button>
+    <div class="comment-btn">
+        <button class="add-comment-btn"><i class="fi fi-rr-plus"></i> Add a Comment</button>
     </div>
 
-    <form class="commentForm">
-        <div class="textareaContainer hide">
-            <textarea name="body" class="commentInput" cols="50" rows="4" required></textarea>
-            <button class="cancelButton">Cancel</button>
-            <button id="addCommentBtn" class="submitButton">Comment</button>
+    <form class="comment-form">
+        <div class="textarea-container hide">
+            <textarea name="body" class="comment-input" cols="50" rows="4" required></textarea>
+            <button class="cancel-button">Cancel</button>
+            <button id="addCommentBtn" class="submit-button">Comment</button>
         </div>
     </form>
    
-    <div id= "comments" class="commentContainer">
+    <div id= "comments" class="comment-container">
 
-        <div class="commentInfo"></div>
+        <div class="comment-info"></div>
         
 
     </div>
