@@ -9,22 +9,17 @@
 
 */
 
-import { main } from "./components/templates/viewPostpage.js";
+import * as template from "./components/templates/viewPostpage.js";
 import { replace, stringToDOM } from "../utilities/templateUtils.js";
-import Header from "./components/Header.js";
-import MainNav from "./components/MainNav.js";
-import Sidebar from "./components/Sidebar.js";
-import UserNoticeboard from "./components/UserNoticeboard.js";
 import * as api from "../api.js";
 import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { filterCookieValue } from "../utilities/cookieUtils.js";
-import { generateDropdowns } from "../utilities/dropdownUtils.js";
-import { Post, Comment, User } from "../utilities/types.js";
+import { Post, Comment } from "../utilities/types.js";
 import { htmlEntitiesToString } from "../utilities/stringUtils.js";
 import * as rating from "../utilities/ratingVoteUtils.js";
 import { addRatingClassToAuthUser } from "../utilities/authenticatedUserUtils.js";
-import Noticeboard from "./components/Noticeboard.js";
+import PageLayout from "./components/PageLayout.js";
 
 let specificComments: Comment[] = [];
 
@@ -39,20 +34,16 @@ async function displayViewPostPage(): Promise<void> {
         throw new Error("404");
 
       } else if ('id' in post){
-
-        const mainNavDropdowns = await generateDropdowns();
-        const mainTemplate = replace(main, [
+        const postPageTemplate = replace(template.postPage, [
           {pattern: "postId", replacement: post.id},
           {pattern: "rating", replacement: (post.rating.upvotes.length - post.rating.downvotes.length).toString()}
         ]);
+        const postPage: HTMLElement = stringToDOM(postPageTemplate);
+        
+        const pageLayout = new PageLayout();
+        await pageLayout.create(postPage);
 
-        const header = Header.create();
-        const viewPostpage: HTMLElement = stringToDOM(mainTemplate);
-        const mainNav = MainNav.create(mainNavDropdowns);
-        const sidebar = Sidebar.create([await UserNoticeboard.create()]);
-
-        document.body.append(header, viewPostpage, mainNav, sidebar);
-
+    
         addRatingClassToAuthUser(post);
 
         const userInfoContainer = getElement(".userInfoContainer");

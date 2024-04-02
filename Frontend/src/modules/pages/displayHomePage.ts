@@ -1,33 +1,24 @@
-import Header from "./components/Header.ts";
-import MainNav from "./components/MainNav.ts";
 import MainFeed from "./components/MainFeed.ts";
 import * as api from "../api.ts";
-import { generateDropdowns } from "../utilities/dropdownUtils.ts";
-import UserNoticeBoard from "./components/UserNoticeboard.ts"
-import Sidebar from "./components/Sidebar.ts";
 import { Category } from "../utilities/types.ts";
 import { filterCookieValue } from "../utilities/cookieUtils.ts";
 import { addRatingClassToAuthUser } from "../utilities/authenticatedUserUtils.ts";
 import * as rating from "../utilities/ratingVoteUtils.ts";
+import PageLayout from "./components/PageLayout.ts";
 
 export default async function displayHomePage() {
     let posts = await api.getPosts();
-    const dropdowns = await generateDropdowns();
     
     const category : false | Category = await getPageCategory()
 
     if(category){
         posts = posts.filter(p=>p.category == category.name);
     }
-    
-    document.body.append(
-        Header.create(),
-        MainNav.create(dropdowns),
-        MainFeed.create(posts, category),
-        Sidebar.create([
-            await UserNoticeBoard.create()
-          ])
-    );
+
+    const pageLayout = new PageLayout();
+
+    pageLayout.create(MainFeed.create(posts, category))
+
     
     posts.forEach(addRatingClassToAuthUser)
 

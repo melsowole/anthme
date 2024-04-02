@@ -4,6 +4,14 @@
   --aside-width: 300px;
 }
 
+#no-nav{
+  --nav-width: 0px;
+}
+
+#no-nav .main-nav{
+  display: none;
+}
+
 body {
   display: flex;
   padding-top: var(--header-height);

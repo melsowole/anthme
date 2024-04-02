@@ -1,4 +1,4 @@
-const main = `
+const postPage = `
 <main class="main-feed">
     <article id="__postId__" class="post-container">
         <div class="userInfoContainer">
@@ -54,4 +54,4 @@ const main = `
 
 `
 
-export {main}
+export {postPage}

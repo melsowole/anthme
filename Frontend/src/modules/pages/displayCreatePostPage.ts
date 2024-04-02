@@ -1,18 +1,26 @@
-import { CreatePostPage } from "./components/CreatePostPage.js";
 import * as api from "../api.js";
 import { filterCookieValue } from "../utilities/cookieUtils.js";
 import { User, Post, Comment } from "../utilities/types.js";
+import PageLayout from "./components/PageLayout.js";
+import PostForm from "./components/PostForm.js";
+import Noticeboard from "./components/Noticeboard.js";
 
 export default async function displayCreatePostPage(): Promise<void> {
-    const textContentArray: string[] = [
+    document.body.id = "no-nav";
+
+    const noticeBoardText: string[] = [
         "Remember the human behind the screen",
         "Behave like you would in real life",
         "Look for the original source of content",
         "Search for duplicates before posting",
         `Read the community's rules`,
     ];
-    const categories = await api.getCategories();
-    CreatePostPage.create(categories, "Posting to anthme", textContentArray);
+
+    const pageLayout =  new PageLayout();
+    pageLayout.create(await PostForm.create());
+
+    const noticeBoard = Noticeboard.create("Posting to anthme", noticeBoardText)
+
 
     const postForm = document.querySelector("#postForm") as HTMLFormElement;
     postForm.addEventListener("submit", async (event) => {
