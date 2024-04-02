@@ -74,6 +74,7 @@ function promptDeleteAccount() {
 
 function logOut() {
   deleteCookie("user");
+  console.log("log out");
   window.location.href = "/";
 }
 
