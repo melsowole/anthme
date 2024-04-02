@@ -6,7 +6,8 @@ import PostForm from "./components/PostForm.js";
 import Noticeboard from "./components/Noticeboard.js";
 
 export default async function displayCreatePostPage(): Promise<void> {
-    document.body.id = "no-nav";
+    document.body.id = "create-post-page";
+    document.body.classList.add("no-nav");
 
     const noticeBoardText: string[] = [
         "Remember the human behind the screen",
@@ -17,11 +18,11 @@ export default async function displayCreatePostPage(): Promise<void> {
     ];
 
     const pageLayout =  new PageLayout();
-    pageLayout.create(await PostForm.create());
+    await pageLayout.create(await PostForm.create());
 
     const noticeBoard = Noticeboard.create("Posting to anthme", noticeBoardText)
 
-    pageLayout.populateSideBar([noticeBoard]);
+    pageLayout.repopulateSideBar([noticeBoard]);
 
 
     const postForm = document.querySelector("#postForm") as HTMLFormElement;

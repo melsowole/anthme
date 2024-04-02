@@ -4,6 +4,10 @@
   position: relative;
 }
 
+#create-post-page .sidebar > * {
+  background-color: var(--bg);
+}
+
 .background-container::before {
   content: " ";
   position: fixed;

@@ -4,11 +4,11 @@
   --aside-width: 300px;
 }
 
-#no-nav{
+.no-nav{
   --nav-width: 0px;
 }
 
-#no-nav .main-nav{
+.no-nav .main-nav{
   display: none;
 }
 
