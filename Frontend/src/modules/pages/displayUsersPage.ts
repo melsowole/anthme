@@ -6,7 +6,7 @@ async function displayUsersPage(): Promise<void> {
     const users = await api.getAllUsers()
 
     const pageLayout = new PageLayout();
-    pageLayout.create(MainFeedUsers.create(users))
+    await pageLayout.create(MainFeedUsers.create(users))
 
 }
 
