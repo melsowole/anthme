@@ -2,7 +2,7 @@
 .landing-page-container{
     width: 300px;
     margin:auto;
-   padding: 2rem;
+    padding: 2rem;
 }
 
 .landing-page-title{
@@ -48,60 +48,75 @@
     font-size: 1rem;
     background-color: var(--bg);
 }
+.form-container.hide{
+    display: none;
+}
+
 .form-container {
     position: absolute;
-    top: 28%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-   
-    
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    top:0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    padding-top: 20vmin;
 }
 
 .xmark-close{
     color:var(--text);
-    position:relative;
-    right: 150px;
+    position:absolute;
+    top: 2rem;
+    left: 1rem;
     background: transparent;
     border: none;
     cursor: pointer;
 
 }
 
-.xmark-close-login{
-    color:var(--text);
-    position:relative;
-    right: 150px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    top: -38px;
+.form-container form{
+    height: fit-content;
 
-}
-
-.create-account-form, .log-in-form{
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    border-radius: 20px;
+    box-shadow: var(--neutDark) 0px 7px 29px 0px;
+    border-radius: 0.5rem;
     width: 350px;
-    height: 400px;
+    /* height: 400px; */
     background-color: var(--bg);
+    padding: 2rem;
+}
+
+.form-container form.hide{
+    display:none;
 }
 
 .log-in-form > h2{
     margin-bottom: 1rem;
 }
 
-.create-account-form > input:first-of-type{
-    margin-top: 1rem;
+.landing-page-container .input-wrapper{
+    margin-bottom: 1rem;
+    border: 1px solid var(--neutDark);
+    padding: 0.25rem 0.5rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
 }
 
-.create-account-form > input, .log-in-form > input{
-    height: 40px;
-    width: 300px;
-    margin-bottom: 1rem;
+.landing-page-container .input-wrapper:first-of-type{
+    margin: 1rem 0;
+}
+
+.landing-page-container input{
+    padding: 0.5rem;
+    flex-grow: 1;
+    border: none;
 }
 
 .account-details{
@@ -125,10 +140,6 @@
     width: 300px;
 }
 
-.hide {
-    display:none;
-}
-
 img{
     width:70px;
 }
@@ -139,15 +150,6 @@ img{
     justify-content: space-evenly;
     width: 300px;
     min-height: 75px; 
-}
-
-@media screen and (min-width: 640px){
-
-    .form-container {
-        top: 37%; 
-     
-    }
-
 }
 
 @media screen and (min-width: 960px) {
@@ -180,20 +182,8 @@ img{
 
     .create-account-form, .log-in-form{
         width: 450px;
-        height: 400px;
+        /* height: 400px; */
        
-    }
-
-    .form-container {
-        top: 40%; 
-        left: 50%; 
-     
-    }
-
-    .xmark-close, .xmark-close-login{
-        right: 201px;
-    }
-
-    
+    }   
    
 }
