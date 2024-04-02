@@ -3,7 +3,7 @@ type Error = {
   message: string;
 }
 
-type Success = {
+type SuccessfulResponse = {
   message: string;
 }
 
@@ -57,15 +57,15 @@ type Category = {
   category: string;
 };
 
-type MainCategory = {
+type NavMainCategory = {
   label: string;
   id: string;
-  items: SubCategory[];
+  items: NavSubCategory[];
 };
 
-type SubCategory = {
+type NavSubCategory = {
   name: string;
   url: string;
 };
 
-export {Error, Success, User, Post, Rating, Comment, Category, MainCategory };
+export {Error, SuccessfulResponse, User, Post, Rating, Comment, Category, NavMainCategory };

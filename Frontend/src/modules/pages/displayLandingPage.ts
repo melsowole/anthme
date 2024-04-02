@@ -103,7 +103,7 @@ async function handleCreateAccount(event: Event): Promise<void> {
     };
 
     try {
-        const response = await api.submitPost(newUser, 'user')   
+        const response = await api.sendDataToServer(newUser, 'user')   
 
         if('statusCode' in response){
             throw new Error(response.message);

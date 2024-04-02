@@ -1,12 +1,10 @@
-import { filterCookieValue } from "./cookieUtils.ts";
-import { Post } from "./types.ts";
+import { filterCookieValue } from "./cookieUtils.js";
+import { Post } from "./types.js";
 
 // Only takes one post as argument to reuse function
-function addRatingClassToAuthUser(post: Post) {
+function applyUserRatingClassToPost(post: Post) {
     const loggedInUserId = filterCookieValue('id', 'user');
 
-    // posts.forEach(post => {
-    // })
     const hasUserUpvoted = post.rating.upvotes.includes(loggedInUserId)
     const hasUserDownvoted = post.rating.downvotes.includes(loggedInUserId)
     
@@ -23,4 +21,4 @@ function addRatingClassToAuthUser(post: Post) {
     }
 }
 
-export {addRatingClassToAuthUser}
+export {applyUserRatingClassToPost}

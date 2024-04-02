@@ -1,13 +1,13 @@
-import MainFeed from "./components/MainFeed.ts";
-import * as api from "../api.ts";
-import { Category } from "../utilities/types.ts";
-import { filterCookieValue } from "../utilities/cookieUtils.ts";
-import { addRatingClassToAuthUser } from "../utilities/authenticatedUserUtils.ts";
-import * as rating from "../utilities/ratingVoteUtils.ts";
-import PageLayout from "./components/PageLayout.ts";
+import MainFeed from "./components/MainFeed.js";
+import * as api from "../api.js";
+import { Category } from "../utilities/types.js";
+import { filterCookieValue } from "../utilities/cookieUtils.js";
+import { applyUserRatingClassToPost } from "../utilities/loggedInUserUtils.js";
+import * as rating from "../utilities/ratingUtils.js";
+import PageLayout from "./components/PageLayout.js";
 
 export default async function displayHomePage() {
-    let posts = await api.getPosts();
+    let posts = await api.getAllPosts();
     
     const category : false | Category = await getPageCategory()
 
@@ -19,7 +19,7 @@ export default async function displayHomePage() {
 
     pageLayout.create(MainFeed.create(posts, category))
     
-    posts.forEach(addRatingClassToAuthUser)
+    posts.forEach(applyUserRatingClassToPost)
 
     const postsContainer = document.querySelector('#posts') as HTMLDivElement;
     postsContainer.addEventListener('click', async (event) => {

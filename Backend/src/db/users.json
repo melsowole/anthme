@@ -33,5 +33,14 @@
     "created": "2024-04-01T18:56:56.756Z",
     "posts": [],
     "comments": []
+  },
+  {
+    "id": "8207746e-dfca-41f5-89de-5347d7de51fb",
+    "username": "lynx",
+    "password": "hej",
+    "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1712041976353",
+    "created": "2024-04-02T07:13:01.811Z",
+    "posts": [],
+    "comments": []
   }
 ]

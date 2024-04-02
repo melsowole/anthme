@@ -19,7 +19,9 @@
         "cabe1d1b-12d8-4297-aa11-93ee101a644e",
         "8736fab1-c1d6-4e54-b989-375bb807d90d"
       ],
-      "downvotes": []
+      "downvotes": [
+        "8207746e-dfca-41f5-89de-5347d7de51fb"
+      ]
     }
   },
   {
@@ -37,7 +39,9 @@
       "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711966580462"
     },
     "rating": {
-      "upvotes": [],
+      "upvotes": [
+        "22eee81c-5fec-4934-8521-8d3bbd981d7c"
+      ],
       "downvotes": [
         "ad993ee0-e708-400c-8705-e4f1eeed8e54",
         "8736fab1-c1d6-4e54-b989-375bb807d90d"

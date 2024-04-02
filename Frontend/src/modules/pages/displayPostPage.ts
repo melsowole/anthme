@@ -3,8 +3,9 @@
 * DisplayPostPage
 *
 * `displayViewPostPage` is responsible for rendering the header, navigation, and main content of the page.
-* It fetches the post data using `getPost` API and renders the user profile and comments associated with the post.
+* It fetches the post info and renders the user profile and comments associated with the post.
 * Users can add comments to the post, and the page updates dynamically to reflect the new comment.
+*Users can upvote and downvote. 
 * If the post is not found, it displays an error message.
 
 */
@@ -13,12 +14,12 @@ import * as template from "./components/templates/viewPostpage.js";
 import { replace, stringToDOM } from "../utilities/templateUtils.js";
 import * as api from "../api.js";
 import dayjs from "dayjs";
-import relativeTime from 'dayjs/plugin/relativeTime';
+//import relativeTime from 'dayjs/plugin/relativeTime';
 import { filterCookieValue } from "../utilities/cookieUtils.js";
 import { Post, Comment } from "../utilities/types.js";
 import { htmlEntitiesToString } from "../utilities/stringUtils.js";
 import * as rating from "../utilities/ratingVoteUtils.js";
-import { addRatingClassToAuthUser } from "../utilities/authenticatedUserUtils.js";
+import { applyUserRatingClassToPost } from "../utilities/loggedInUserUtils.js";
 import PageLayout from "./components/PageLayout.js";
 
 let specificComments: Comment[] = [];
@@ -44,13 +45,13 @@ async function displayViewPostPage(): Promise<void> {
         await pageLayout.create(postPage);
 
     
-        addRatingClassToAuthUser(post);
+        applyUserRatingClassToPost(post);
 
         const userInfoContainer = getElement(".userInfoContainer");
         const postCommentsIds = post.comments;
         displayUserProfile(userInfoContainer, post, post.user.userImage);
 
-        await api.getComments()
+        await api.getAllComments()
           .then((comments) => {
             specificComments = comments.filter((comment) =>
               postCommentsIds.includes(comment.id)
@@ -131,7 +132,7 @@ async function displayViewPostPage(): Promise<void> {
             const loggedInUserId = filterCookieValue("id", "user");
 
             try {
-              const response = await api.submitPost(newComment, "comment", loggedInUserId, post.id);
+              const response = await api.sendDataToServer(newComment, "comment", loggedInUserId, post.id);
 
               if('id' in response){
                 // comment submit success
