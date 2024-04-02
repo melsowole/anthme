@@ -1,19 +1,18 @@
-import * as template from "./templates/post-form.ts";
-import PostFormDropdownOption from "./PostFormDropdownOption.ts";
-import {replace, stringToDOM} from "../../utilities/templateUtils.ts";
-import { Category } from "../../utilities/types.ts";
+import * as template from "./templates/post-form.js";
+import CreatePostFormDropdown from "./CreatePostFormDropdown.js";
+import { stringToDOM} from "../../utilities/templateUtils.js";
 import Quill from "quill";
-import * as api from "../../api.ts";
+import * as api from "../../api.js";
 
 export default class PostForm {
     static async create(): Promise<HTMLDivElement> {
-        const categories = await api.getCategories();
+        const categories = await api.getAllCategories();
 
         const mainContainerEl = stringToDOM(template.mainContainer);
         const postFormDropdown = mainContainerEl.querySelector('.category-container > select') as HTMLSelectElement;
 
         categories.forEach(category => {
-            postFormDropdown.append(PostFormDropdownOption.create(category))
+            postFormDropdown.append(CreatePostFormDropdown.create(category))
         })
 
         const textEditorContainer = mainContainerEl.querySelector('#textEditor')

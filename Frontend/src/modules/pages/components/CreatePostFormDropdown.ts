@@ -1,8 +1,8 @@
-import * as template from "./templates/post-form-dropdown";
-import { replace, stringToDOM } from "../../utilities/templateUtils";
-import { Category } from "../../utilities/types";
+import * as template from "./templates/post-form-dropdown.js";
+import { replace, stringToDOM } from "../../utilities/templateUtils.js";
+import { Category } from "../../utilities/types.js";
 
-class PostFormDropdownOption {
+class CreatePostFormDropdown {
     static create(category: Category): HTMLOptionElement {
         let categoryOption = template.categoryOption;
         
@@ -15,4 +15,4 @@ class PostFormDropdownOption {
     }
 }
 
-export default PostFormDropdownOption
+export default CreatePostFormDropdown

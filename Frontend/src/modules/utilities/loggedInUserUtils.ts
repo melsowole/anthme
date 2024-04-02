@@ -7,7 +7,7 @@ function applyUserRatingClassToPost(post: Post) {
 
     const hasUserUpvoted = post.rating.upvotes.includes(loggedInUserId)
     const hasUserDownvoted = post.rating.downvotes.includes(loggedInUserId)
-    
+
     if(hasUserUpvoted || hasUserDownvoted) {
         const postContainer = document.body.querySelector(`[id="${post.id}"]`) as HTMLElement;
         const ratingContainer = postContainer.querySelector('.outerSpan') as HTMLSpanElement;

@@ -1,11 +1,11 @@
 import * as template from "./templates/main-header.js";
-import { replace, stringToDOM } from "../../utilities/templateUtils.ts";
+import { replace, stringToDOM } from "../../utilities/templateUtils.js";
 import {
   filterCookieValue,
   deleteCookie,
-} from "../../utilities/cookieUtils.ts";
-import * as api from "../../api.ts";
-import UserProfile from "./UserProfile.ts";
+} from "../../utilities/cookieUtils.js";
+import * as api from "../../api.js";
+import UserProfile from "./UserProfile.js";
 
 export default class Header {
   static create() {

@@ -1,7 +1,7 @@
 import * as template from "./templates/main-nav.js";
-import { replace, stringToDOM } from "../../utilities/templateUtils.ts";
+import { replace, stringToDOM } from "../../utilities/templateUtils.js";
 import Dropdown from "./DropdownElement.js";
-import { MainCategory } from "../../utilities/types.ts";
+import { NavMainCategory } from "../../utilities/types.js";
 
 type FeedItem = {
   link: string;
@@ -14,11 +14,11 @@ export default class MainNav {
     {
       name: "Home",
       icon: "home",
-      link: "", //tog bort / eftersom den href:a två // styckna
+      link: "", 
     },
   ];
 
-  static create(dropdowns: MainCategory[]): HTMLElement {
+  static create(dropdowns: NavMainCategory[]): HTMLElement {
     const navTemplate = template.nav;
 
     const nav = stringToDOM(navTemplate);

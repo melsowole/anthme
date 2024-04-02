@@ -1,9 +1,8 @@
-import * as template from "./templates/noticeboard.ts";
+import * as template from "./templates/noticeboard.js";
 import {
   replace,
-  stringToDOM,
-  ReplacePair,
-} from "../../utilities/templateUtils.ts";
+  stringToDOM
+} from "../../utilities/templateUtils.js";
 
 export default class Noticeboard {
   static create(
@@ -18,9 +17,7 @@ export default class Noticeboard {
 
     for (const item of itemsArray) {
       orderedListEl.append(this.createItem(item));
-      
     }
-
     return noticeboardEl;
   }
 
