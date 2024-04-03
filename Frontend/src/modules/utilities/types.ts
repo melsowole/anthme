@@ -57,15 +57,31 @@ type Category = {
   category: string;
 };
 
+// Main Nav type
+type LinkItem = {
+  link: string;
+  icon: string;
+  name: string;
+};
+
+// For dropdown
+type DropdownDOM = {
+  dropdown: HTMLElement;
+  label: HTMLElement;
+  ul: HTMLElement;
+  ulWrapper: HTMLElement;
+};
+
 type NavMainCategory = {
   label: string;
   id: string;
-  items: NavSubCategory[];
+  items: CategoryItem[];
 };
 
-type NavSubCategory = {
-  name: string;
+type CategoryItem = {
   url: string;
+  content: HTMLElement;
 };
+// For dropdown end
 
-export {Error, SuccessfulResponse, User, Post, Rating, Comment, Category, NavMainCategory };
+export {Error, SuccessfulResponse, User, Post, Rating, Comment, Category, LinkItem, DropdownDOM, NavMainCategory, CategoryItem };
