@@ -4,6 +4,9 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Post } from "../../utilities/types.js";
 import { htmlEntitiesToString } from "../../utilities/convertToStringUtils.js";
+import {DeleteContentBtn} from"./DeleteContentBtn.js";
+import { filterCookieValue } from "../../utilities/cookieUtils.js";
+
 
 dayjs.extend(relativeTime);
 
@@ -23,6 +26,15 @@ export default class postPreview {
     ]);
 
     const postPreview = stringToDOM(previewTemplate);
+
+    postPreview.classList.add("profile-item");
+
+    const loggedInUserId = filterCookieValue('id', 'user');
+    if (post.user.id === loggedInUserId) {
+      const deleteBtn = DeleteContentBtn.create("post");
+      postPreview.append(deleteBtn);
+      
+  } 
 
     return postPreview;
   }

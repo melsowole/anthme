@@ -21,12 +21,13 @@
   background-color: vaR(--neutLight);
 }
 
-.user .user-img {
+.profile-menu .user.preview .user-img-wrapper {
   grid-area: icon;
 }
 
 .user .to-profile {
   grid-area: link;
+  height: fit-content;
 }
 
 .user .username {

@@ -22,13 +22,14 @@ import {Post, Comment} from "../utilities/types.js"
 import { htmlEntitiesToString } from "../utilities/convertToStringUtils.js";
 import {DeleteContentBtn} from"./components/DeleteContentBtn.js"
 import PageLayout from "./components/PageLayout.js";
+import PostPreview from "./components/PostPreview.js"
 
 
 async function displayProfile():Promise<void> {
     const profilePage: HTMLElement = stringToDOM(main);
 
     const pageLayout = new PageLayout();
-    await pageLayout.create(profilePage)
+    await pageLayout.create(profilePage);
 
     const userInfoContainer = document.querySelector('.user-info') as HTMLDivElement;
     const userPageLinks = document.querySelectorAll('.user-page-link') as NodeListOf<HTMLAnchorElement>;
@@ -57,8 +58,10 @@ async function displayProfile():Promise<void> {
                     });
                 });
     
-                displayContent(container, posts, 'post'); 
-                handleDeleteBtn();
+                for (const post of posts) {
+                    container.append(PostPreview.create(post));
+                }
+                // handleDeleteBtn();
             
                 // TODO REMOVE? Prova att ta bort yttersta if-statementet
                 if (user) {
@@ -84,8 +87,10 @@ async function displayProfile():Promise<void> {
                     const posts = await api.getPostByUser(user.id as string);
 
                     if(posts.length){
-                        displayContent(container, posts, 'post');
-                        handleDeleteBtn();
+                        for (const post of posts) {
+                            container.append(PostPreview.create(post));
+                        }
+                        // handleDeleteBtn();
                     } else{
                         container.innerHTML = `
                             <div>No posts...</div>
@@ -185,7 +190,7 @@ function displayUserProfile(user: User, container: HTMLDivElement): void {
         deleteBtn.addEventListener('click', async (event) => {
 
             event.stopPropagation();
-            const container = (event.target as HTMLElement).closest('.comment-item') as HTMLElement;
+            const container = (event.target as HTMLElement).closest('.profile-item') as HTMLElement;
             const containerId = container.id;
             const loggedInUserId = filterCookieValue('id', 'user')
 
@@ -216,9 +221,8 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], typeO
     container.innerHTML = "";
 
     items.forEach(item => {
-        console.log(item)
         const itemElement = document.createElement('div');
-        itemElement.classList.add('comment-item');
+        itemElement.classList.add('comment-item', 'profile-item');
         itemElement.id = item.id;
         const commentWrapper = document.createElement('div');
         commentWrapper.classList.add('comment-wrapper')
