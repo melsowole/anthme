@@ -24,18 +24,30 @@ const postPreview = `
                     <i class="fi fi-ts-down"></i>
                 </button>
             </span>
-            <span class="pill unstyle">
+            <span class="pill unstyle height">
                 <small>
                     <span class="icon material-symbols-outlined">comment</span>
                     __comments__
                 </small>
             </span>
-            <button class="pill share">
-                <small>
-                    <span class="icon material-symbols-outlined">share</span>
-                    Share
-                </small>
-            </button>
+
+            <div class="hover-container">
+                <button class="share-link-btn pill share">
+                    <small>
+                        <span class=" icon material-symbols-outlined">share</span>
+                        Share
+                    </small>
+                    
+                </button>
+
+                <div class="drop-down-share">
+                        <div class="drop-down-content">
+                            <span class="material-symbols-outlined">add_link</span>
+                            Copy link
+                        </div>
+                </div>
+                
+            </div>
         </footer>
     </a>
 </article>

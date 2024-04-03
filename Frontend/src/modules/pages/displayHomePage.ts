@@ -17,7 +17,7 @@ export default async function displayHomePage() {
 
     const pageLayout = new PageLayout();
     await pageLayout.create(MainFeed.create(posts, category))
-    
+
     posts.forEach(applyUserRatingClassToPost)
 
     const postsContainer = document.querySelector('#posts') as HTMLDivElement;
@@ -50,9 +50,26 @@ export default async function displayHomePage() {
                         });
                 }
             }
-            // Add logic for Share button on post
+                const shareBtn = target.closest(".share-link-btn")
+                const dropDownShare = target.closest(".drop-down-share");
+                
+                if(shareBtn){
+                    event.preventDefault();
+                }
+
+                else if(dropDownShare){
+                    event.preventDefault();
+                    const postId = target.closest(".post.preview").id;
+                    const postUrl = `${window.location.origin}/posts/${postId}`;
+
+                    copyUrlToClipboard(postUrl);
+                }
+            
+
             else return;
         }
+
+      
     });
 }
 
@@ -68,4 +85,13 @@ function getPageURLParam() :string{
     const urlParts: string[] = window.location.pathname.split("/");
     const urlPathEndpoint: string = urlParts[urlParts.length - 1];
     return urlPathEndpoint;
+}
+
+export async function copyUrlToClipboard(text: string) {
+    try {
+        await navigator.clipboard.writeText(text);
+        alert('Text copied to clipboard!');
+    } catch (err) {
+        alert('Failed to copy text to clipboard. Try again later!');
+    }
 }
