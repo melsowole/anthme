@@ -26,12 +26,23 @@ const postPreview = `
                     __comments__
                 </small>
             </span>
-            <button class="pill long hover share">
-                <small>
-                    <span class="icon material-symbols-outlined">upload</span>
-                    Share
-                </small>
-            </button>
+
+            <div class="hover-container">
+                <span class="share-link-btn pill  long hover share">
+                    <small>
+                        <span class=" icon material-symbols-outlined">share</span>
+                        Share
+                    </small>
+                </span>
+
+                <div class="drop-down-share">
+                        <div class="drop-down-content">
+                            <span class="material-symbols-outlined">add_link</span>
+                            Copy link
+                        </div>
+                </div>
+                
+            </div>
         </footer>
     </a>
 </article>

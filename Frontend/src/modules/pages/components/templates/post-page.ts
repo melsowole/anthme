@@ -33,8 +33,10 @@ const postPage = `
     <form class="comment-form">
         <div class="textarea-container hide">
             <textarea name="body" class="comment-input" cols="50" rows="4" required></textarea>
-            <button class="cancel-button">Cancel</button>
-            <button id="addCommentBtn" class="submit-button">Comment</button>
+            <div class="button-wrapper">
+                <button class="cancel-button"><b>Cancel</b></button>
+                <button id="addCommentBtn" class="submit-button"><b>Comment</b></button>
+            </div>
         </div>
     </form>
    
