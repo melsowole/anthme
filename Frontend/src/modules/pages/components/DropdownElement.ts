@@ -1,21 +1,20 @@
+// The Dropdown class provides methods to create dropdown menus
+// for displaying categories in the MainNav.
+//
+// - create method: Returns the DOM for a dropdown element
+// - createCategoryObjectArray (async): Returns an array of objects which can 
+//   be passed into the create method
+// - createCategoryObject: Returns an object which can be passed into the create method
+
 import * as template from "./templates/dropdown.js";
 import {replace, stringToDOM} from "../../utilities/templateUtils.js";
-
-type Item = {
-  name: string;
-  url: string;
-};
-
-type DropdownDOM = {
-  dropdown: HTMLElement;
-  label: HTMLElement;
-  ul: HTMLElement;
-  ulWrapper: HTMLElement;
-};
+import { Category, NavMainCategory, CategoryItem, DropdownDOM } from "../../utilities/types.js";
+import * as api from "../../api.js"
+import CategoryProfile from "./CategoryProfile.js";
 
 export default class Dropdown {
-  static create(label: string, id: string, items: Item[]): HTMLElement {
-    let dropdownTemplate = template.nav;
+  static create(label: string, id: string, items: CategoryItem[]): HTMLElement {
+    let dropdownTemplate = template.dropdown;
 
     dropdownTemplate = replace(dropdownTemplate, [
       { pattern: "heading", replacement: label },
@@ -38,15 +37,16 @@ export default class Dropdown {
     return dropdown;
   }
 
-  private static createLiEl(item: Item) {
-    let liEl: string = template.item;
-
-    liEl = replace(liEl, [
-      { pattern: "url", replacement: item.url },
-      { pattern: "item-name", replacement: item.name },
+  private static createLiEl(item: CategoryItem) {
+    const liTemplate = replace(template.item, [
+      {pattern: "url", replacement: item.url}
     ]);
 
-    return stringToDOM(liEl);
+    const liEl = stringToDOM(liTemplate)
+
+    liEl.firstElementChild.append(item.content);
+
+    return liEl;
   }
 
   private static handleLabelClick(DOM: DropdownDOM): void {
@@ -61,4 +61,32 @@ export default class Dropdown {
 
   private static getUlHeight = (ul: HTMLElement): string =>
     getComputedStyle(ul).height;
+
+  static async createCategoryObjectArray(categoryArray: string[]):Promise<NavMainCategory[]>{
+    const dropdownArray: NavMainCategory[] = [];
+
+    const categories = await api.getAllCategories();
+
+    categoryArray.forEach(categoryName => {
+      const categoryItems = categories.filter(c => c.category == categoryName);
+      dropdownArray.push(this.createCategoryObject(categoryName, categoryItems));
+    });
+
+    dropdownArray.push(this.createCategoryObject("All", categories))
+
+    return dropdownArray;
+  }
+
+  static createCategoryObject(categoryName: string, categoryItems: Category[]):NavMainCategory{
+    return {
+      label: categoryName,
+      id: "dropdown-" + categoryName,
+      items: categoryItems.map(c=> {
+        return {
+          url: "/" + c.name,
+          content: CategoryProfile.create(c, "span")
+        }
+      })
+    }    
+  }
 }

@@ -1,15 +1,18 @@
+// The MainNav class creates the navigation with the page links and dropdown menus.
+// 
+// This class is accessed in the PageLayout module, and wherever the navigation should be 
+// displayed beyond the general page layout.
+//
+// Which links and dropdowns should be displayed can be edited by modifying the 
+// 'links' and 'categoryDropdowns' variables.
+//
+// -  create method (async): Returns the DOM for the page element.
+
 import * as template from "./templates/main-nav.js";
 import { replace, stringToDOM } from "../../utilities/templateUtils.js";
 import Dropdown from "./DropdownElement.js";
-import { NavMainCategory } from "../../utilities/types.js";
 import {filterCookieValue} from "../../utilities/cookieUtils.js";
-import { readCookie } from "../../api.js";
-
-type LinkItem = {
-  link: string;
-  icon: string;
-  name: string;
-};
+import { LinkItem } from "../../utilities/types.js";
 
 const links = [
     {
@@ -20,28 +23,32 @@ const links = [
      {
       name: "Profile",
       icon: "person",
-      get link (){return getUserProfileLink()}, 
+      get link (){return "/profile/" + filterCookieValue("username", "user")}, 
     },
   ];
 
+const categoryDropdowns = ["Programming", "Frustration", "joyful"];
+
 export default class MainNav {  
 
-  static create(dropdowns: NavMainCategory[]): HTMLElement {
+  static async create(): Promise<HTMLElement> {
     const navTemplate = template.nav;
 
     const nav = stringToDOM(navTemplate);
 
-    const feedsContainer = nav.querySelector(".links ul");
+    const linkContainer = nav.querySelector(".links ul");
     const dropdownContainer = nav.querySelector("#dropdowns");
 
     links.forEach((link) =>
-      feedsContainer.append(this.createLinkLiItem(link))
+      linkContainer.append(this.createLinkLiItem(link))
     );
 
-    dropdowns.forEach((dropdown) => {
+    const dropdownObjArr = await Dropdown.createCategoryObjectArray(categoryDropdowns);
+
+    dropdownObjArr.forEach((dropdownObj) => {
       dropdownContainer.append(
         document.createElement("hr"),
-        Dropdown.create(dropdown.label, dropdown.id, dropdown.items)
+        Dropdown.create(dropdownObj.label, dropdownObj.id, dropdownObj.items)
       );
     });
 
@@ -67,15 +74,5 @@ export default class MainNav {
     return linkItemEl
   }
 
-  
 }
 
-function getUserProfileLink():string{
-  const username = filterCookieValue("username", "user");
-
-  if(username){
-    return "/profile/" + username;
-  } else {
-    return "/";
-  }
-}

@@ -1,18 +1,3 @@
 main > *:first-child {
   padding-top: 2rem;
 }
-
-.category-name::before{
-  content: "a/"
-} 
-
-header.category{
-  display: flex;
-  gap: 1rem;
-
-}
-
-header.category.img-icon{
-  height: 50px;
-  aspect-ratio: 1/1;
-}

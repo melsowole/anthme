@@ -2,10 +2,7 @@ const postPreview = `
 <article id="__postId__" class="post preview boxed">
     <a class="unstyle" href="__link__">
         <header>
-            <span class="img-icon">
-                <span class="icon material-symbols-outlined">potted_plant</span>
-            </span>
-            <small class="category">a/__category__</small>
+            <div class="category-wrapper"></div>
             <small class="timestamp">__age__</small>
         </header>
         <section>

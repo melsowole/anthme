@@ -1,4 +1,4 @@
-const nav = `
+const dropdown = `
 <nav class="dropdown">
     <label class="label open" for="__id__">
         <h3 class="list-heading">
@@ -15,7 +15,7 @@ const nav = `
 `;
 
 const item = `
-    <li><a href="__url__"><div class="img-icon"></div> a/__item-name__</a></li>
+    <li><a href="__url__"></a></li>
 `;
 
-export { nav, item };
+export { dropdown, item };

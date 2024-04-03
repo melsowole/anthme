@@ -2,6 +2,7 @@ import * as template from "./templates/main-feed.js";
 import {replace, stringToDOM} from "../../utilities/templateUtils.js";
 import PostPreview from "./PostPreview.js";
 import { Category, Post} from "../../utilities/types.js";
+import CategoryProfile from "./CategoryProfile.js";
 
 export default class MainFeed {
 
@@ -9,11 +10,12 @@ export default class MainFeed {
 
     const templateFeed = replace(template.feed, [{pattern: 'containerType', replacement: 'posts'}])
     const main = stringToDOM(templateFeed);
+    const header = main.querySelector("header") as HTMLElement;
 
-    const header = category ? categoryHeader(category) : stringToDOM(template.homePageHeader);
+    const headerContent = category ? CategoryProfile.create(category, "h2") : stringToDOM(template.defaultTitle);
 
-    main.prepend(header);
-
+    header.append(headerContent);
+    
 
     if(posts.length == 0){
       main.querySelector("#posts").append(stringToDOM(template.noPosts))
@@ -30,28 +32,4 @@ export default class MainFeed {
 
     return main;
   }
-}
-
-function categoryHeader(category: Category): HTMLElement{
-    const headerTemplate = replace(template.categoryHeader, [
-      {pattern: "category", replacement: category.name},
-      {pattern: "color", replacement: category.color},
-      {pattern: "icon", replacement: category.icon}, 
-    ]);
-
-    const header = stringToDOM(headerTemplate);
-
-    header.querySelector(".icon").style.color = getContrastColor(category.color);
-
-    return header;
-}
-
-function getContrastColor(hexColor: string): 'black' | 'white' {
-    const r = parseInt(hexColor.substring(1, 2), 16);
-    const g = parseInt(hexColor.substring(3, 2), 16);
-    const b = parseInt(hexColor.substring(5, 2), 16);
-
-    const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
-
-    return luminance > 0.5 ? 'black' : 'white';
 }

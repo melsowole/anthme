@@ -1,103 +1,103 @@
 [
   {
     "name": "Food",
-    "color": "black",
+    "color": "#008080",
     "icon": "lunch_dining",
     "category": "Food"
   },
   {
     "name": "Music",
-    "color": "black",
+    "color": "#7F62D8",
     "icon": "music_note",
     "category": "Music"
   },
   {
     "name": "Frontend",
-    "color": "black",
+    "color": "#FFA500",
     "icon": "code",
     "category": "Programming"
   },
   {
     "name": "Backend",
-    "color": "black",
+    "color": "#2E8B57",
     "icon": "terminal",
     "category": "Programming"
   },
   {
     "name": "Art",
-    "color": "black",
+    "color": "#4682B4",
     "icon": "palette",
     "category": "Art"
   },
   {
     "name": "Overwatch",
-    "color": "black",
+    "color": "#6017bc",
     "icon": "sports_esports",
     "category": "Gaming"
   },
   {
     "name": "Animal",
-    "color": "black",
+    "color": "#819f84",
     "icon": "pets",
     "category": "Animal"
   },
   {
     "name": "Travel",
-    "color": "black",
+    "color": "#4cafa9",
     "icon": "explore",
     "category": "Traveling"
   },
   {
     "name": "makemesmile",
-    "color": "black",
+    "color": "#8ae169",
     "icon": "sentiment_very_satisfied",
     "category": "joyful"
   },
   {
     "name": "heartwarming",
-    "color": "black",
+    "color": "#cfe10b",
     "icon": "favorite",
     "category": "joyful"
   },
   {
     "name": "Depressed",
-    "color": "black",
+    "color": "#d7e476",
     "icon": "sentiment_sad",
     "category": "Sad"
   },
   {
     "name": "mildlyinfuriating",
-    "color": "black",
+    "color": "#d63225",
     "icon": "sentiment_stressed",
     "category": "Frustration"
   },
   {
     "name": "karen",
-    "color": "black",
+    "color": "#c1645f",
     "icon": "sentiment_extremely_dissatisfied",
     "category": "Frustration"
   },
   {
     "name": "Aww",
-    "color": "black",
+    "color": "#e997d2",
     "icon": "sentiment_excited",
     "category": "Cuteness"
   },
   {
     "name": "Sweden",
-    "color": "black",
+    "color": "#5352cc",
     "icon": "flag",
     "category": "Countries"
   },
   {
     "name": "facepalm",
-    "color": "black",
+    "color": "#76a3d6",
     "icon": "pan_tool",
     "category": "Stupidity"
   },
   {
     "name": "explainlikeimfive",
-    "color": "black",
+    "color": "#f405cd",
     "icon": "live_help",
     "category": "Explanation"
   }
