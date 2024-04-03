@@ -25,7 +25,7 @@ export default class postPreview {
 
     const postPreview = stringToDOM(previewTemplate);
 
-    // chane icon
+    // change category icon
     api.getCategory(post.category).then(category =>{
       const categoryWrapper = postPreview.querySelector(".category-wrapper") as HTMLElement;
 
