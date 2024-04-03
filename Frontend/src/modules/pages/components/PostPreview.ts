@@ -6,6 +6,9 @@ import { Post } from "../../utilities/types.js";
 import { htmlEntitiesToString } from "../../utilities/convertToStringUtils.js";
 import * as api from "../../api.js";
 import CategoryProfile from "./CategoryProfile.js";
+import {DeleteContentBtn} from"./DeleteContentBtn.js";
+import { filterCookieValue } from "../../utilities/cookieUtils.js";
+
 
 dayjs.extend(relativeTime);
 
@@ -31,6 +34,13 @@ export default class postPreview {
 
       categoryWrapper.append(CategoryProfile.create(category, "span"))
     })
+
+    // add delete button to own posts
+    const ownPost = filterCookieValue('id', 'user') == post.user.id;
+    if (ownPost) {
+      const deleteBtn = DeleteContentBtn.create("post");
+      postPreview.append(deleteBtn);
+    } 
 
     return postPreview;
   }
