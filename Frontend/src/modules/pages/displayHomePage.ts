@@ -52,7 +52,7 @@ export default async function displayHomePage() {
             }
                 const shareBtn = target.closest(".share-link-btn")
                 const dropDownShare = target.closest(".drop-down-share");
-                
+
                 if(shareBtn){
                     event.preventDefault();
                 }
@@ -90,8 +90,8 @@ function getPageURLParam() :string{
 export async function copyUrlToClipboard(text: string) {
     try {
         await navigator.clipboard.writeText(text);
-        alert('Text copied to clipboard!');
+        alert('Url copied!');
     } catch (err) {
-        alert('Failed to copy text to clipboard. Try again later!');
+        alert('Failed to copy url. Try again later!');
     }
 }
