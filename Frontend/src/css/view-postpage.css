@@ -241,11 +241,10 @@
   background-color: var(--neutHueLighter);
 
 }
-
-.comment-form button:hover{
-  background-color: var(--neutHueLight);
-
+.hide{
+  display:none;
 }
+
 
 .comment-form .submit-button {
   background-color: var(--neutHue);
