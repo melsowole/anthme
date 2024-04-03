@@ -18,7 +18,7 @@
 
 .post.preview footer {
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .post.preview .body {
@@ -34,9 +34,14 @@
   top: 0.5rem;
   right: 1.5rem;
 }
+
 .hover-container{
   position: relative;
   display: inline-block;
+}
+
+.share-link-btn{
+  height: 100%;
 }
 
 .drop-down-share{
@@ -49,21 +54,15 @@
   border-radius: 20px;
   z-index: 1;
 }
-.drop-down-share:hover{
-  background-color: var(--neut);
-}
 
 .hover-container:hover .drop-down-share{
   display: block;
 }
+
 .drop-down-content{
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-.height{
-  height: 33px;
 }
 
 /* image and video styling on post */

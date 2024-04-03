@@ -70,22 +70,6 @@
   height: 16px;
 }
 
-.fi-ts-up:hover {
-  color: #d93a00;
-}
-
-.fi-ts-down:hover {
-  color: #6a5cff;
-}
-
-.rating {
-  cursor: default;
-}
-
-.rating, .amount-of-comments {
-  font-size: 0.75rem;
-}
-
 .fa-message {
   color: #434f53;
 }

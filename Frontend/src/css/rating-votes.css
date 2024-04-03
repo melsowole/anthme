@@ -1,7 +1,43 @@
+.rating{
+    cursor: default;
+}
+.upvote-active, .downvote-active{
+    color: var(--bg);
+    fill: var(--bg)
+}
+
 .upvote-active {
-    background-color: #D93A00;
+    background-color: var(--color);
 }
 
 .downvote-active {
     background-color: #6A5CFF;
+}
+
+.rating svg{
+    fill: inherit;
+}
+
+.downvote-active .downvote svg .fill,
+.upvote-active .upvote svg .fill{
+    opacity: 1;
+}
+
+
+.rating svg{
+    height: 1.25rem;
+}
+
+.rating button{
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    display: grid;
+    place-content: center;
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+.rating button:hover{
+    background-color: var(--neutOpaque);
 }

@@ -1,3 +1,5 @@
+import * as template from "./rating-element";
+
 const postPreview = `
 <article id="__postId__" class="post preview boxed">
     <a class="unstyle" href="__link__">
@@ -12,30 +14,23 @@ const postPreview = `
             </p>
         </section>
         <footer>
-            <span class="outer-span">
-                <button class="button-up"> 
-                    <i class="fi fi-ts-up"></i> 
-                </button>
-                <span class="rating">__rating__</span>
-                <button class="button-down">
-                    <i class="fi fi-ts-down"></i>
-                </button>
+            <span class="pill rating">
+                ${template.ratingElement}
             </span>
-            <span class="pill unstyle height">
+            <span class="pill long hover unstyle">
                 <small>
-                    <span class="icon material-symbols-outlined">comment</span>
+                    <span class="icon material-symbols-outlined">chat</span>
                     __comments__
                 </small>
             </span>
 
             <div class="hover-container">
-                <button class="share-link-btn pill share">
+                <span class="share-link-btn pill  long hover share">
                     <small>
                         <span class=" icon material-symbols-outlined">share</span>
                         Share
                     </small>
-                    
-                </button>
+                </span>
 
                 <div class="drop-down-share">
                         <div class="drop-down-content">

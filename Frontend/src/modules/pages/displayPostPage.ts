@@ -88,22 +88,23 @@ async function displayViewPostPage(): Promise<void> {
           postFooter.addEventListener('click', async (event) => {
             const {target} = event;
 
-            if(!(target instanceof HTMLElement)) return; // Narrow down the types on target so it won't complain
+            // Narrow down the types on target so it won't complain
+            if(!(target instanceof HTMLElement || target instanceof SVGElement)) return; 
 
-            if(target.closest('.outer-span')) {
+            if(target.closest('.rating')) {
               event.preventDefault();
               const postContainer = target.closest('.post-container') as HTMLDivElement;
               const loggedInUserId = filterCookieValue('id', 'user');
               
 
-              if(target.closest('.button-up')) {
+              if(target.closest('.upvote')) {
                   await api.updateUpvotes(post.id, loggedInUserId)
                       .then(postRating => {
                           rating.updateRating(postRating, postContainer);
                           rating.updateBGColor(target);
                       });
               }
-              else if(target.closest('.button-down')) {
+              else if(target.closest('.downvote')) {
                   await api.updateDownvotes(post.id, loggedInUserId)
                       .then(postRating => {
                           rating.updateRating(postRating, postContainer);

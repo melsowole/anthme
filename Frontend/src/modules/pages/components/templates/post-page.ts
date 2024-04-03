@@ -1,3 +1,5 @@
+import * as template from "./rating-element";
+
 const postPage = `
 <main class="main-feed">
     <article id="__postId__" class="post-container">
@@ -9,24 +11,18 @@ const postPage = `
         <div class="content-div"></div>
 
         <div class="interaction-container">
-            <span class="outer-span">
-                <button class="button-up"> 
-                    <i class="fi fi-ts-up"></i> 
-                </button>
-                <span class="rating">__rating__</span>
-                <button class="button-down">
-                    <i class="fi fi-ts-down"></i>
-                </button>
+            <span class="pill rating">
+                ${template.ratingElement}
             </span>
 
-            <span class="comment-span">
-                <a href="#comments">
-                    <button class="button-comments">
-                        <i class="fa-regular fa-message fa-lg" ></i>
-                    </button>
-                    <span class="amount-of-comments"></span>
+            <span class="pill long hover">
+                <a href="#comments" class="unstyle">
+                    <small>
+                        <span class="icon material-symbols-outlined">chat</span>
+                        <span class="amount-of-comments"></span>
+                    </small>
                 </a>
-            </span>    
+            </span> 
         </div>
     </article>
 
