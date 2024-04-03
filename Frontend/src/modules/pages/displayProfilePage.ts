@@ -59,7 +59,7 @@ async function displayProfile():Promise<void> {
                 });
     
                 for (const post of posts) {
-                    container.append(PostPreview.create(post));
+                    container.append(PostPreview.create(post), document.createElement("hr"));
                 }
                 // handleDeleteBtn();
             
@@ -88,7 +88,7 @@ async function displayProfile():Promise<void> {
 
                     if(posts.length){
                         for (const post of posts) {
-                            container.append(PostPreview.create(post));
+                            container.append(PostPreview.create(post), document.createElement("hr"));
                         }
                         // handleDeleteBtn();
                     } else{

@@ -9,11 +9,6 @@
   width: 40px;
 }
 
-.comment-input{
-  width: 350px;
-  margin-left: 2rem;
-}
-
 .content-div{
   margin-left: 2rem;
 }
@@ -166,11 +161,12 @@
 
 .comment-item {
   margin-bottom: 2rem;
+  padding-bottom: 2rem;
   border-bottom: 1px solid var(--neut);
-  width: 320px;
   position: relative;
-  margin-left: 2rem;
+
 }
+
 .img-div {
   display: flex;
   flex-direction: row-reverse;
@@ -202,40 +198,72 @@
   margin-bottom: 0.4rem;
 }
 
-.comment-input {
+.textarea-container{
   margin-top: 1rem;
-  border-radius: 20px;
+  position: relative;
+  border: 1px solid var(--neutDark);
+  border-radius: 1.5rem;
+}
+
+.textarea-container textarea{
+  padding: 0.5rem;
+  border: none;
+  background-color: transparent;
+}
+
+.comment-input {
+  
+  
   resize: none;
-  border: 1px solid #576f76;
-  padding-left: 10px;
 }
 
-.comment-input:focus {
-  border-color: black;
-  outline: none;
+.comment-input{
+  width: 100%;
 }
 
-.textarea-container {
+.textarea-container{
   position: relative;
 }
 
-.submit-button {
-  position: absolute;
-  top: 55px;
-  right: 35px;
-  width: 74px;
-  height: 32px;
+.comment-input:focus {
+  border-color: var(--text);
+  outline: none;
+}
+
+.comment-form .button-wrapper{
+  display: flex;
+  gap: 1rem;
+  justify-content: end;
+  padding: 0.5rem;
+}
+
+.comment-form button{
+  padding: 0.5rem 0.75rem;
   border: none;
-  background-color: #014a84;
-  color: #fff;
-  font-weight: bolder;
-  font-size: 0.75rem;
   border-radius: 20px;
   cursor: pointer;
+  /* font-size: 0.75rem; */
+
+  background-color: var(--neutHueLighter);
+
 }
-.submit-button:hover {
-  background-color: #003763;
+
+.comment-form button:hover{
+  background-color: var(--neutHueLight);
+
 }
+
+.comment-form .submit-button {
+  background-color: var(--neutHue);
+  color: var(--bg);
+}
+
+.comment-form .submit-button:hover {
+  background-color: var(--neutHueDark);
+}
+
+
+
 
 .button-comments {
   border: none;
@@ -245,68 +273,13 @@
 .button-comments:hover {
   background-color: transparent;
 }
-.cancel-button {
-  width: 60px;
-  height: 32px;
-  position: absolute;
-  top: 55px;
-  right: 115px;
-  border-radius: 20px;
-  border: none;
-  background-color: #dde8fe;
-  cursor: pointer;
-  font-weight: bolder;
-}
-
-.cancel-button:hover {
-  background-color: #bfd5fe;
-}
 
 
-
-@media screen and (min-width: 640px){
-
-  .submit-button {
-    top: 70px;
-    right: 250px;
-  }
-  
-  .cancel-button {
-    top: 70px;
-    right: 330px;
-  }
-
-  
-
-}
 
 @media screen and (min-width: 960px) {
 
- 
-  .comment-input{
-    width: 490px;
+  .content-div, .user-info-container, .add-comment-btn, .interaction-container{
     margin-left: 0rem;
   }
-
-  .submit-button {
-    top: 70px;
-    right: 250px;
-  }
-  
-  .cancel-button {
-    top: 70px;
-    right: 330px;
-  }
-
-  .comment-item {
-    width: 500px;
-    margin-left: 0rem;
-  }
-  
-.content-div, .user-info-container, .add-comment-btn, .interaction-container{
-  margin-left: 0rem;
-}
-
-  
   
 }
