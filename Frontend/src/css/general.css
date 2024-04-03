@@ -10,6 +10,12 @@
   --neutLighter: rgb(241, 241, 241);
   --neut: rgb(202, 202, 202);
   --color: red;
+
+  --neutHueLighter: #dde8fe;
+  --neutHueLight: #d0dbf0;
+  --neutHue: #014a84;
+  --neutHueDark: #003763;
+  --neutHueDarker: #003763;
 }
 
 * {
