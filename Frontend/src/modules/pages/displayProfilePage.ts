@@ -4,7 +4,7 @@ DisplayProfilePage:
 
 * `displayProfile` function is responsible for rendering the user profile page.
 * It fetches the user's information and displays their username and profile image.
-* It retrieves the user's posts and comments and allows navigation between the tabs.
+* It retrieves the user's posts and comments and allows navigation between the tabs, posts displays by default.
 * Users can delete their own posts and comments directly from the profile page.
 * It provides a "Delete Account" button for users to delete their accounts, which logs them out afterward.
 * If the user is not found, it displays an error message.
@@ -17,7 +17,6 @@ import * as api from "../api.js"
 import { deleteCookie, filterCookieValue  } from "../utilities/cookieUtils.js";
 import { User } from "../utilities/types.js";
 import dayjs from "dayjs";
-//import relativeTime from 'dayjs/plugin/relativeTime';
 import {Post, Comment} from "../utilities/types.js"
 import { htmlEntitiesToString } from "../utilities/convertToStringUtils.js";
 import {DeleteContentBtn} from"./components/DeleteContentBtn.js"
@@ -39,6 +38,7 @@ async function displayProfile():Promise<void> {
 
     const urlParts: string[] = window.location.pathname.split('/');
     const urlPathEndpoint: string = urlParts[urlParts.length - 1];
+    
    
     api.getUserByUsername(urlPathEndpoint)
         .then(async (response) => {
@@ -50,32 +50,24 @@ async function displayProfile():Promise<void> {
                 const user: User = response;
                 postLinkEl.classList.add('add-grey-bg-color')
 
-                const posts = await api.getPostByUser(user.id as string);
-
                 userPageLinks.forEach(userPageLink => {
                     userPageLink.addEventListener('click', () => {
                         handleUserPageLink(userPageLink);
                     });
                 });
-    
-                for (const post of posts) {
-                    container.append(PostPreview.create(post), document.createElement("hr"));
-                }
-                // handleDeleteBtn();
-            
-                // TODO REMOVE? Prova att ta bort yttersta if-statementet
-                if (user) {
-                    displayUserProfile(user, userInfoContainer);
+
+                displayUserProfile(user, userInfoContainer);
                     const loggedInUserId = filterCookieValue('id', 'user');
-                    if (user.id === loggedInUserId) {
-                        displayDeleteAccountBtn();
-                    }
+                if (user.id === loggedInUserId) {
+                    displayDeleteAccountBtn();
                 }
+                
 
                 const deleteAccountBtn = document.querySelector('.del-account-btn') as HTMLButtonElement;
             
                 postLinkEl.addEventListener('click', handlePostLink);
                 commentsLinkEl.addEventListener('click', handleCommentsLink);
+                postLinkEl.click();
 
                 if(deleteAccountBtn){
                     deleteAccountBtn.addEventListener('click', handleDeleteAccount);
@@ -90,7 +82,7 @@ async function displayProfile():Promise<void> {
                         for (const post of posts) {
                             container.append(PostPreview.create(post), document.createElement("hr"));
                         }
-                        // handleDeleteBtn();
+                        
                     } else{
                         container.innerHTML = `
                             <div>No posts...</div>
@@ -102,6 +94,7 @@ async function displayProfile():Promise<void> {
                     container.innerHTML = "";
 
                     const comments = await api.getAllCommentsByUser(user.id as string);
+                    
 
                     if(comments.length){
                         displayContent(container, comments, 'comment')
@@ -168,7 +161,7 @@ function displayDeleteAccountBtn():void{
 
     userInfoContainer.append(deleteAccountBtn)
 }
-//`displayUserProfile` displays the user's profile information (username and their selected userImage).
+
 function displayUserProfile(user: User, container: HTMLDivElement): void {
     container.innerHTML = "";
     const userInfo = document.createElement('div');
