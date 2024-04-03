@@ -24,25 +24,25 @@ export default async function displayHomePage() {
     postsContainer.addEventListener('click', async (event) => {
         const {target} = event;
 
-        if(!(target instanceof HTMLElement)) return; // Narrow down the types on target so it won't complain
+        if(!(target instanceof HTMLElement || target instanceof SVGElement)) return; // Narrow down the types on target so it won't complain
         
         if(target.id !== 'posts') {
             let id:string;
 
-            if(target.closest('.outer-span')) {
+            if(target.closest('.rating')) {
                 event.preventDefault();
                 const postContainer = target.closest('.post.preview') as HTMLDivElement;
                 const loggedInUserId = filterCookieValue('id', 'user');
                 id = target.closest('.post.preview')!.id;
 
-                if(target.closest('.button-up')) {
+                if(target.closest('.upvote')) {
                     await api.updateUpvotes(id, loggedInUserId)
                         .then(postRating => {
                             rating.updateRating(postRating, postContainer);
                             rating.updateBGColor(target);
                         });
                 }
-                else if(target.closest('.button-down')) {
+                else if(target.closest('.downvote')) {
                     await api.updateDownvotes(id, loggedInUserId)
                         .then(postRating => {
                             rating.updateRating(postRating, postContainer);

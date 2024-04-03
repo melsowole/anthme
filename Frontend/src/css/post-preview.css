@@ -18,7 +18,7 @@
 
 .post.preview footer {
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .post.preview .body {

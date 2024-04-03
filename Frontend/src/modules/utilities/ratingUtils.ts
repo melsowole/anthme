@@ -1,23 +1,21 @@
 import { Rating } from "./types.js";
 
 function updateRating(postRating: Rating, postContainer: HTMLDivElement): void {
-    const ratingEl = postContainer.querySelector('.rating') as HTMLSpanElement;
+    const ratingEl = postContainer.querySelector('.rating-count') as HTMLSpanElement;
     ratingEl.innerHTML = '';
     ratingEl.innerText = (postRating.upvotes.length - postRating.downvotes.length).toString();
 }
 
-function updateBGColor(target: HTMLElement): void {
-    const ratingContainer = target.closest('.outer-span') as HTMLSpanElement;
-    console.log(ratingContainer);
+function updateBGColor(target: HTMLElement | SVGElement): void {
+    const ratingContainer = target.closest('.rating') as HTMLSpanElement;
     
-
-    if(target.closest('.button-up')) {
+    if(target.closest('.upvote')) {
         if(ratingContainer.classList.contains('downvote-active')) {
             ratingContainer.classList.remove('downvote-active');
         }
         ratingContainer.classList.toggle('upvote-active');
     }
-    else if(target.closest('.button-down')) {
+    else if(target.closest('.downvote')) {
         if(ratingContainer.classList.contains('upvote-active')) {
             ratingContainer.classList.remove('upvote-active');
         }
@@ -25,4 +23,4 @@ function updateBGColor(target: HTMLElement): void {
     }
 }
 
-export {updateRating, updateBGColor,}
+export {updateRating, updateBGColor}

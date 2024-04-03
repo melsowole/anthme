@@ -61,6 +61,8 @@ export default class MainNav {
 
     if(window.location.pathname == item.link){
       linkItemEl.querySelector("a").classList.add("current");
+      linkItemEl.querySelector("span").classList = "material-symbols-sharp";
+
 
     }
 
