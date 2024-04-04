@@ -82,6 +82,7 @@ type NavMainCategory = {
 
 type CategoryItem = {
   url: string;
+  class: string;
   content: HTMLElement;
 };
 // For dropdown end

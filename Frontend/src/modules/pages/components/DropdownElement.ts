@@ -40,7 +40,8 @@ export default class Dropdown {
 
   private static createLiEl(item: CategoryItem) {
     const liTemplate = replace(template.item, [
-      {pattern: "url", replacement: item.url}
+      {pattern: "url", replacement: item.url},
+      {pattern: "class-name", replacement:item.class}
     ]);
 
     const liEl = stringToDOM(liTemplate)
@@ -83,16 +84,18 @@ export default class Dropdown {
   }
 
  static createCategoryObject(categoryName: string, categoryItems: Category[]): NavMainCategory {
-    let items: { url: string, content: HTMLElement }[] = [];
+    // WHAT IS THIS?
+    // let items: { url: string, content: HTMLElement }[] = [];
     
-    if (Array.isArray(categoryItems)) {
-        items = categoryItems.map(c => {
-            return {
-                url: "/" + c.name,
-                content: CategoryProfile.create(c, "span")
-            }
-        });
-    }
+    // if (Array.isArray(categoryItems)) {
+    //     items = categoryItems.map(c => {
+    //         return {
+    //             url: "/" + c.name,
+    //             class: "sub-category",
+    //             content: CategoryProfile.create(c, "span")
+    //         }
+    //     });
+    // }
     
     return {
       label: categoryName,
@@ -100,6 +103,7 @@ export default class Dropdown {
       items: categoryItems.map(c=> {
         return {
           url: "/" + c.name,
+          class: "sub-category",
           content: CategoryProfile.create(c, "small")
         }
       })
@@ -107,4 +111,3 @@ export default class Dropdown {
   }
 }
 
-}
