@@ -5,7 +5,7 @@
 }
 
 #createPostPage .sidebar > * {
-  background-color: var(--bg);
+  background-color: var(--create-post-page-noticeboard);
 }
 
 .background-container::before {
@@ -16,21 +16,21 @@
   top: 0;
   left: 0;
   will-change: transform;
-  background-color: #dae0e6;
+  background-color: var(--create-post-page-bg);
   z-index: -1;
 }
 
 .post-heading {
   padding: 4px;
   margin: 1rem 0;
-  border-bottom: 1px solid #edeff1;
+  border-bottom: 1px solid var(--create-post-page-noticeboard);
 }
 
 .post-heading > h2 {
   font-size: 18px;
   font-weight: 500;
   line-height: 2;
-  color: #1c1c1c;
+  color: var(--text);
 }
 
 .category-container {
@@ -40,19 +40,20 @@
 .input {
   height: 40px;
   border-radius: 4px;
-  border: 1px solid #edeff1;
+  border: 1px solid var(--neut);
   padding: 8px 68px 8px 16px;
+  background-color: transparent;
 }
 
 .input:focus {
-  outline: 1px solid black;
+  outline: 1px solid var(--text);
 }
 
 .category-container > select {
   min-width: 300px;
-  box-shadow: 0 0 0 0 #ffffff;
+  box-shadow: 0 0 0 0 var(--create-post-page-noticeboard);
   width: 100%;
-  background-color: #ffffff;
+  background-color: var(--create-post-page-noticeboard);
   border: none;
   border-radius: 4px;
   height: 40px;
@@ -61,7 +62,7 @@
 }
 
 .post-content-form {
-  background-color: #ffffff;
+  background-color: var(--create-post-page-noticeboard);
   border-radius: 5px;
   padding: 1rem;
 }
@@ -72,13 +73,13 @@
 }
 
 .post-content {
-  border: 1px solid #edeff1;
+  border: 1px solid var(--neut);
   border-radius: 4px;
   margin-bottom: 0.5rem;
 }
 
 .post-content:focus-within {
-  border: 1px solid #1a1a1b;
+  border: 1px solid var(--neutDark);
 }
 
 .post-content > .textarea {
@@ -93,7 +94,7 @@
 
 [contentEditable="true"]:empty:before {
   content: attr(data-placeholder);
-  color: #969899;
+  color: var(--neut);
 }
 
 .post-content-form-footer {
@@ -103,8 +104,8 @@
 
 .submit-btn {
   cursor: pointer;
-  background-color: #848484;
-  color: #bbbbbb;
+  background-color: var(--neutDark);
+  color: var(--neutLighter);
   font-size: 14px;
   font-weight: 700;
   line-height: 17px;
@@ -116,8 +117,8 @@
 }
 
 .highlight-submit-btn {
-  background-color: #fc471e;
-  color: #FFFFFF;
+  background-color: var(--color);
+  color: var(--onColor);
 }
 
 @media screen and (min-width: 640px) {

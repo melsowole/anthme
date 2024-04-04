@@ -35,9 +35,11 @@ export default class postPreview {
       categoryWrapper.append(CategoryProfile.create(category, "span"))
     })
 
+    
     // add delete button to own posts
     const ownPost = filterCookieValue('id', 'user') == post.user.id;
     if (ownPost) {
+      postPreview.classList.add("profile-item");
       const deleteBtn = DeleteContentBtn.create("post");
       postPreview.append(deleteBtn);
     } 
