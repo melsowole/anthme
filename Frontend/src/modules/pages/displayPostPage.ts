@@ -173,7 +173,7 @@ function displayUserProfile(container: HTMLElement, item: (Post), userImg: strin
   const userImgContainer = getElement('.user-img-container') as HTMLImageElement;
 
   displayUserImage(userImgContainer, userImg);
-  
+
   const categoryEl = document.createElement('p');
   categoryEl.innerText = item.category;
   categoryEl.id = 'categoryTitle'
@@ -181,7 +181,8 @@ function displayUserProfile(container: HTMLElement, item: (Post), userImg: strin
   usernameEl.innerText = `u/${item.user.username}`;
   usernameEl.classList.add('username')
   const titleEl = document.createElement('h2');
-  titleEl.innerText = item.title;
+  titleEl.classList.add("title");
+  titleEl.innerText = htmlEntitiesToString(item.title);
   const contentEl = document.createElement('div');
   contentEl.innerHTML = htmlEntitiesToString(item.body);
 

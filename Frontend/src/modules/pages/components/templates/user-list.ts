@@ -13,7 +13,7 @@ const userList =
         <footer class="user-list-footer">
             <ul class="user-list-footer-lists">
                 <li>
-                    <span class="pill unstyle">
+                    <span class="pill long unstyle">
                         <small>
                             <span class="icon material-symbols-outlined">post</span>
                             __amountOfPosts__ Posts
@@ -21,7 +21,7 @@ const userList =
                     </span>
                 </li>
                 <li>
-                    <span class="pill unstyle">
+                    <span class="pill long unstyle">
                         <small>
                             <span class="icon material-symbols-outlined">comment</span>
                             __amountOfComments__ Comments

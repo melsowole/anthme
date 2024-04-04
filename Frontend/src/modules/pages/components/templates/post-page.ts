@@ -2,7 +2,7 @@ import * as template from "./rating-element";
 
 const postPage = `
 <main class="main-feed">
-    <article id="__postId__" class="post-container content-container">
+    <article id="__postId__" class="post post-container content-container">
         <div class="user-info-container">
             <div class="user-img-container"></div>
             <div class="user-info-item"></div> 
@@ -10,7 +10,7 @@ const postPage = `
         
         <div class="content-div"></div>
 
-        <div class="interaction-container content-footer">
+        <footer class="interaction-container content-footer">
             <span class="pill rating">
                 ${template.ratingElement}
             </span>
@@ -23,7 +23,7 @@ const postPage = `
                     </small>
                 </a>
             </span> 
-        </div>
+        </footer>
     </article>
 
     <div class="comment-btn">
@@ -34,8 +34,8 @@ const postPage = `
         <div class="textarea-container hide">
             <textarea name="body" class="comment-input" cols="50" rows="4" required></textarea>
             <div class="button-wrapper">
-                <button class="cancel-button"><b>Cancel</b></button>
-                <button id="addCommentBtn" class="submit-button"><b>Comment</b></button>
+                <button class="cancel-button">Cancel</button>
+                <button id="addCommentBtn" class="submit-button">Comment</button>
             </div>
         </div>
     </form>

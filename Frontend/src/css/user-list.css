@@ -2,6 +2,10 @@
     flex-direction: column;
 }
 
+.user-list .pill{
+    height: 2.5rem;
+}
+
 .user-list > a {
     display: block;
 }

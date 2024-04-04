@@ -7,11 +7,11 @@
 }
 
 .upvote-active {
-    background-color: var(--color);
+    background-color: var(--upvote);
 }
 
 .downvote-active {
-    background-color: #6A5CFF;
+    background-color: var(--downvote);
 }
 
 .rating svg{
