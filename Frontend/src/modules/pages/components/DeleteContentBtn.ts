@@ -22,7 +22,14 @@ class DeleteContentBtn {
     const containerId = container.id;
     const loggedInUserId = filterCookieValue('id', 'user');
 
-    const response = confirm("Are you sure you want to delete this post?");
+    let confirmMessage = "Are you sure you want to delete this ";
+  if (button.classList.contains('post')) {
+    confirmMessage += "post?";
+  } else {
+    confirmMessage += "comment?";
+  }
+
+  const response = confirm(confirmMessage);
 
     if(response){
       try{
