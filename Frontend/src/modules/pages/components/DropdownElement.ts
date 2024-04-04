@@ -82,18 +82,25 @@ export default class Dropdown {
     return dropdownArray;
   }
 
-  static createCategoryObject(categoryName: string, categoryItems: Category[]):NavMainCategory{
+ static createCategoryObject(categoryName: string, categoryItems: Category[]): NavMainCategory {
+    let items: { url: string, content: HTMLElement }[] = [];
+    
+    if (Array.isArray(categoryItems)) {
+        items = categoryItems.map(c => {
+            return {
+                url: "/" + c.name,
+                content: CategoryProfile.create(c, "span")
+            }
+        });
+    }
+    
     return {
-      label: categoryName,
-      id: "dropdown-" + categoryName,
-      items: categoryItems.map(c=> {
-        return {
-          url: "/" + c.name,
-          content: CategoryProfile.create(c, "span")
-        }
-      })
-    }    
-  }
+        label: categoryName,
+        id: "dropdown-" + categoryName,
+        items: items
+    };
+}
+
 
   // static async updateFavoriteCategories(category: Category[]): Promise<NavMainCategory> {
   //   return 
