@@ -13,6 +13,8 @@ import { replace, stringToDOM } from "../../utilities/templateUtils.js";
 import Dropdown from "./DropdownElement.js";
 import {filterCookieValue} from "../../utilities/cookieUtils.js";
 import { LinkItem } from "../../utilities/types.js";
+import * as api from "../../api.js"
+import { dropdown } from "./templates/dropdown.js";
 
 const links = [
     {
@@ -45,12 +47,14 @@ export default class MainNav {
 
     const dropdownObjArr = await Dropdown.createCategoryObjectArray(categoryDropdowns);
 
-    dropdownObjArr.forEach((dropdownObj) => {
+    dropdownObjArr.forEach((dropdownObj) => {  
       dropdownContainer.append(
         document.createElement("hr"),
         Dropdown.create(dropdownObj.label, dropdownObj.id, dropdownObj.items)
       );
     });
+
+    dropdownContainer.addEventListener('click', this.handleFavoriteIconClick);
 
     return nav;
   }
@@ -69,11 +73,30 @@ export default class MainNav {
     if(window.location.pathname == item.link){
       linkItemEl.querySelector("a").classList.add("current");
       linkItemEl.querySelector("span").classList = "material-symbols-sharp";
-
-
     }
 
     return linkItemEl
+  }
+
+  private static async handleFavoriteIconClick(event: MouseEvent): Promise<void> {
+    const {target} = event;
+    if(!(target instanceof HTMLElement || target instanceof SVGElement)) return;
+    
+    if(target.closest('.icon-container')) {
+      const categoryNameEl = target.closest('.sub-category')?.querySelector('.category-name') as HTMLSpanElement;
+      const categoryName = categoryNameEl.innerText.split('/').pop();
+      const loggedInUserId = filterCookieValue('id', 'user');
+
+      if(categoryName) {
+        await api.updateFavoriteCategory(categoryName, loggedInUserId);
+        const favoriteCategories = await api.getFavoriteCategories(loggedInUserId);
+        const updatedFavoriteDropdown = Dropdown.createCategoryObject('Favorites', favoriteCategories);
+        
+        const favoritesDropdown = target.closest('.dropdowns')?.querySelector('#dropdown-Favorites')?.closest('nav') as HTMLElement;
+        favoritesDropdown.innerHTML = '';
+        favoritesDropdown.append(Dropdown.create(updatedFavoriteDropdown.label, updatedFavoriteDropdown.id, updatedFavoriteDropdown.items));
+      }
+    }
   }
 
 }

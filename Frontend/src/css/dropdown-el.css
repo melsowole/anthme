@@ -43,3 +43,32 @@
   text-decoration: none;
   color: var(--text);
 }
+
+.sub-category {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon-container {
+  height: 32px;
+  width: 32px;
+  padding: 0.25rem;
+}
+
+.favorite-icon {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.favorite-icon:hover {
+  cursor: pointer;
+  background-color: #e2e7e9;
+  border-radius: 50%;
+  fill: #FDB0C0;
+}
+
+.favorite-icon:hover .favorite-icon-outline {
+  stroke: #FDB0C0;
+}

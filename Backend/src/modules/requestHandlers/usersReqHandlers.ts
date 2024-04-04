@@ -76,6 +76,7 @@ export async function createUser(
       created: req.body.timestamp,
       posts: [],
       comments: [],
+      favoriteCategories: []
     };
 
     users.push(newUser);

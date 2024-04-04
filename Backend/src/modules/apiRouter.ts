@@ -66,6 +66,8 @@ apiRouter
 apiRouter.route("/categories").get(categories.getAll);
 apiRouter.route("/categories/:categoryName").get(categories.getOneCategory);
 apiRouter.route("/categories/category/:categoryName").get(categories.filterCategory);
+apiRouter.route("/categories/favorites/:userId").get(categories.getFavoriteCategories);
+apiRouter.route("/categories/:categoryName/:userId").patch(categories.handleFavoriteCategory);
 
 // Cookie and login routes
 apiRouter.route("/read-cookie").get(readCookie);
