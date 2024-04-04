@@ -31,7 +31,10 @@ async function readFromDB<T extends User | Post | Comment | Category>(
 
   const dbObj: DB<T> = db == "" ? [] : JSON.parse(db);
 
-  return dbObj.reverse();
+  return dbObj.sort((a, b) => {
+    if (isCategory(a) || isCategory(b)) return 0;
+    return new Date(b.created).getTime() - new Date(a.created).getTime(); 
+  })
 }
 
 async function writeToDB(
@@ -39,6 +42,14 @@ async function writeToDB(
   data: DB<User | Post | Comment | Category>
 ): Promise<void> {
   fs.writeFile(getDBPath(path), JSON.stringify(data, null, 2));
+}
+
+function isCategory (value): value is Category {
+  return typeof value === 'object' 
+    && 'name' in value 
+    && 'color' in value 
+    && 'icon' in value 
+    && 'category' in value
 }
 
 export { read, write };
