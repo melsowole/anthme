@@ -110,6 +110,7 @@ export async function deletePost(
   try {
     const posts = await read.posts();
     const users = await read.users();
+    const comments = await read.comments();
 
     const post = getItemById(posts, req.params.postId);
     const user = getItemById(users, req.params.userId);
@@ -117,14 +118,17 @@ export async function deletePost(
     if (!post) throw new CustomError(404, "Post not found");
 
     removeItemFromArray(posts, post);
-
     removeItemFromArray(user.posts, post.id);
 
+    post.comments.forEach(id => {
+      const comment = getItemById(comments, id)
+      removeItemFromArray(comments, comment)
+    })
+    
     await write.posts(posts);
     await write.users(users);
-
-    //   TODO: REMOVE Comments
-
+    await write.comments(comments);
+    
     res.json({ message: "Deleted post" });
   } catch (err) {
     next(err);
@@ -144,7 +148,6 @@ export async function updateUpvotes(req: Request, res: Response, next: NextFunct
             if(post.rating.upvotes.includes(req.params.userId)) {
                 post.rating.upvotes = post.rating.upvotes.filter(userId => userId !== req.params.userId);
                 console.log('removed user from upvotes', post.rating.upvotes);
-                
             }
             else {
                 post.rating.upvotes.push(req.params.userId);

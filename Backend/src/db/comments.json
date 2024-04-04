@@ -1,3 +1,19 @@
-
-[]
-
+[
+  {
+    "id": "78494b07-1d6a-42c3-a2f1-e0f2c2b7f013",
+    "body": "Don&#x27;t mess with dog",
+    "created": "2024-04-04T19:08:48.021Z",
+    "user": {
+      "id": "776bf00c-64fa-4e60-beba-23dfad7f8265",
+      "username": "tomato",
+      "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1712257235775"
+    },
+    "postId": "38021a38-2fd0-4484-92e2-a1319e031239",
+    "rating": {
+      "upvotes": [
+        "776bf00c-64fa-4e60-beba-23dfad7f8265"
+      ],
+      "downvotes": []
+    }
+  }
+]

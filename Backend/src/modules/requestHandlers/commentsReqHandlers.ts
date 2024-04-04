@@ -142,17 +142,12 @@ export async function updateUpvotes(req: Request, res: Response, next: NextFunct
 
       if(comment) {
         comment.rating.downvotes = comment.rating.downvotes.filter(userId => userId !== req.params.userId);
-          console.log('removed user from downvotes', comment.rating.downvotes);
 
           if(comment.rating.upvotes.includes(req.params.userId)) {
               comment.rating.upvotes = comment.rating.upvotes.filter(userId => userId !== req.params.userId);
-              console.log('removed user from upvotes', comment.rating.upvotes);
-              
           }
           else {
               comment.rating.upvotes.push(req.params.userId);
-              console.log('added user in upvotes', comment.rating.upvotes);
-              
           }
       }
 

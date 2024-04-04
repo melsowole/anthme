@@ -1,3 +1,23 @@
 [
- 
+  {
+    "id": "38021a38-2fd0-4484-92e2-a1319e031239",
+    "created": "2024-04-04T19:05:19.032Z",
+    "category": "Animal",
+    "title": "Dog",
+    "body": "&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;media3.giphy.com&#x2F;media&#x2F;v1.Y2lkPTc5MGI3NjExODB3NHB6OGVmbmJrbHZoY213czB1ajltOHpxOXUwcHF4MjloaW9rbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw&#x2F;7XuKKmGiaxXe6EjOj4&#x2F;giphy.gif&quot; class=&quot;linked-image&quot;&gt;&lt;&#x2F;p&gt;",
+    "comments": [
+      "78494b07-1d6a-42c3-a2f1-e0f2c2b7f013"
+    ],
+    "user": {
+      "id": "776bf00c-64fa-4e60-beba-23dfad7f8265",
+      "username": "tomato",
+      "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1712257235775"
+    },
+    "rating": {
+      "upvotes": [
+        "776bf00c-64fa-4e60-beba-23dfad7f8265"
+      ],
+      "downvotes": []
+    }
+  }
 ]
