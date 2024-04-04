@@ -1,7 +1,7 @@
-import * as template from "./rating-element";
+import * as template from "./rating-element.ts";
 
 const postPreview = `
-<article id="__postId__" class="post preview boxed">
+<article id="__postId__" class="post preview boxed post-container content-container">
     <a class="unstyle" href="__link__">
         <header>
             <div class="category-wrapper"></div>
@@ -9,11 +9,11 @@ const postPreview = `
         </header>
         <section>
             <h2 class="title">__title__</h2>
-            <p class="body">
+            <div class="body">
             __body__
-            </p>
+            </div>
         </section>
-        <footer>
+        <footer class="content-footer">
             <span class="pill rating">
                 ${template.ratingElement}
             </span>

@@ -17,7 +17,6 @@ export default class CategoryProfile{
   }
 
   private static createProfileTemplate(category: Category, tagName: string){
-    console.log(category.color, getContrastColor(category.color))
     const headerTemplate = replace(template.profile, [
       {pattern: "tag-name", replacement: tagName},
       {pattern: "category-name", replacement: category.name},

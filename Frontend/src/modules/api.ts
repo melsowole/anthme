@@ -1,4 +1,4 @@
-import { Error, SuccessfulResponse, User, Post, Rating, Comment, Category } from "./utilities/types.js";
+import { CustomError, SuccessfulResponse, User, Post, Rating, Comment, Category } from "./utilities/types.js";
 
 const baseUrl: string = 'http://localhost:3000/';
 const header = {"Content-type": "application/json; charset=UTF-8"};
@@ -37,7 +37,7 @@ async function getAllUsers():Promise<User[]>{
     return users;
 }
 
-async function getUserByUsername(username: string): Promise<User | Error> {
+async function getUserByUsername(username: string): Promise<User | CustomError> {
     const url = `${baseUrl}users/username/${username}`;
     
     const res = await fetch(url);
@@ -55,7 +55,7 @@ async function getAllPosts(): Promise<Post[]> {
   return posts;
 }
 
-async function getPost(id: string): Promise<Post|Error> {
+async function getPost(id: string): Promise<Post|CustomError> {
   const url = baseUrl + `posts/${id}`;
 
   const res = await fetch(url);
@@ -63,7 +63,7 @@ async function getPost(id: string): Promise<Post|Error> {
   return post;
 }
 
-async function getPostByUser(userId:string): Promise<Post[]>{
+async function getAllPostsByUser(userId:string): Promise<Post[]>{
   const url = `${baseUrl}users/${userId}/posts`
 
   const res = await fetch(url);
@@ -95,7 +95,7 @@ async function getAllCommentsByUser(userId:string): Promise<Comment[]>{
   return comment;
 }
 
-async function sendDataToServer<T extends User | Post | Comment | Error>(
+async function sendDataToServer<T extends User | Post | Comment | CustomError>(
   createdObject: Object,
   typeOfPost: string,
   userId?: string,
@@ -122,7 +122,7 @@ async function sendDataToServer<T extends User | Post | Comment | Error>(
 async function sendLogInRequest(
   username: string,
   password: string
-): Promise<User | Error> {
+): Promise<User | CustomError> {
   const url = `${baseUrl}user/login`;
 
   const user = {
@@ -155,7 +155,7 @@ async function readCookie(): Promise<boolean> {
   return cookieInfo.ok;
 }
 
-async function deleteAccount(userId: string): Promise<SuccessfulResponse | Error> {
+async function deleteAccount(userId: string): Promise<SuccessfulResponse | CustomError> {
   const url = `${baseUrl}users/${userId}`;
 
   const options = {
@@ -169,7 +169,7 @@ async function deleteAccount(userId: string): Promise<SuccessfulResponse | Error
   return info;
 }
 
-async function deletePost(userId: string, postId:string):Promise<Post|Error>{
+async function deletePost(userId: string, postId:string):Promise<Post|CustomError>{
   const url = `${baseUrl}users/${userId}/posts/${postId}`; 
 
   const options = {
@@ -184,7 +184,7 @@ async function deletePost(userId: string, postId:string):Promise<Post|Error>{
 
 }
 
-async function deleteComment(postId:string, userId:string, commentId:string):Promise<Comment|Error>{
+async function deleteComment(postId:string, userId:string, commentId:string):Promise<Comment|CustomError>{
   const url = `${baseUrl}posts/${postId}/users/${userId}/comments/${commentId}` 
 
   const options = {
@@ -198,8 +198,12 @@ async function deleteComment(postId:string, userId:string, commentId:string):Pro
   return info;
 }
 
-async function updateUpvotes(postId: string, loggedInUserId: string): Promise<Rating> {
-    const url = `${baseUrl}posts/${postId}/update-upvotes/${loggedInUserId}`
+async function updateUpvotes(contentType: string, contentId: string, loggedInUserId: string): Promise<Rating> {
+    let url: string;
+
+    if(contentType === 'post') url = `${baseUrl}posts/${contentId}/update-upvotes/${loggedInUserId}`;
+    else if(contentType === 'comment') url = `${baseUrl}comments/${contentId}/update-upvotes/${loggedInUserId}`;
+    else throw new Error('Invalid content type');
 
     const options = {
         method: "PATCH",
@@ -212,18 +216,22 @@ async function updateUpvotes(postId: string, loggedInUserId: string): Promise<Ra
     return rating;
 }
 
-async function updateDownvotes(postId: string, loggedInUserId: string): Promise<Rating> {
-    const url = `${baseUrl}posts/${postId}/update-downvotes/${loggedInUserId}`
+async function updateDownvotes(contentType: string, contentId: string, loggedInUserId: string): Promise<Rating> {
+  let url: string;
 
-    const options = {
-        method: "PATCH",
-        headers: header
-    }
+  if(contentType === 'post') url = `${baseUrl}posts/${contentId}/update-downvotes/${loggedInUserId}`;
+  else if(contentType === 'comment') url = `${baseUrl}comments/${contentId}/update-downvotes/${loggedInUserId}`;
+  else throw new Error('Invalid content type');
 
-    const res = await fetch(url, options);
-    const rating = await res.json();
-    
-    return rating;
+  const options = {
+      method: "PATCH",
+      headers: header
+  }
+
+  const res = await fetch(url, options);
+  const rating = await res.json();
+  
+  return rating;
 }
 
 export {
@@ -238,7 +246,7 @@ export {
   deletePost,
   deleteComment,
   getUserByUsername,
-  getPostByUser,
+  getAllPostsByUser,
   getAllCommentsByUser,
   getAllCategories,
   getCategory,

@@ -6,7 +6,8 @@
     "title": "Hello World",
     "body": "&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;miro.medium.com&#x2F;v2&#x2F;resize:fit:1024&#x2F;0*pl3wnRCOkivJWOxG.png&quot; class=&quot;linked-image&quot;&gt;&lt;&#x2F;p&gt;",
     "comments": [
-      "f18802d5-2f90-412e-b17d-6bea7177f4f5"
+      "558b2753-12d3-471d-a709-1b7bb4a21b4d",
+      "798a26ac-39c0-45cc-b5a6-284acaaf3d38"
     ],
     "user": {
       "id": "ad993ee0-e708-400c-8705-e4f1eeed8e54",
@@ -15,11 +16,11 @@
     },
     "rating": {
       "upvotes": [
-        "cabe1d1b-12d8-4297-aa11-93ee101a644e"
+        "cabe1d1b-12d8-4297-aa11-93ee101a644e",
+        "ad993ee0-e708-400c-8705-e4f1eeed8e54"
       ],
       "downvotes": [
-        "8207746e-dfca-41f5-89de-5347d7de51fb",
-        "ad993ee0-e708-400c-8705-e4f1eeed8e54"
+        "8207746e-dfca-41f5-89de-5347d7de51fb"
       ]
     }
   },
@@ -30,7 +31,7 @@
     "title": "Tomatoes",
     "body": "&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;www.alfalaval.com&#x2F;globalassets&#x2F;images&#x2F;media&#x2F;here-magazine&#x2F;no34&#x2F;tomatoes.jpg&quot; class=&quot;linked-image&quot;&gt;&lt;&#x2F;p&gt;",
     "comments": [
-      "71ee5540-5de8-40e2-8d5a-6f064aadca0f"
+      "838cdd53-4cad-468f-8ace-eb5709f736d7"
     ],
     "user": {
       "id": "8736fab1-c1d6-4e54-b989-375bb807d90d",
@@ -42,9 +43,28 @@
         "22eee81c-5fec-4934-8521-8d3bbd981d7c"
       ],
       "downvotes": [
-        "ad993ee0-e708-400c-8705-e4f1eeed8e54",
-        "8736fab1-c1d6-4e54-b989-375bb807d90d"
+        "8736fab1-c1d6-4e54-b989-375bb807d90d",
+        "ad993ee0-e708-400c-8705-e4f1eeed8e54"
       ]
+    }
+  },
+  {
+    "id": "b385615d-634d-4c43-bcbc-9e24e2f763b4",
+    "created": "2024-04-03T14:41:21.674Z",
+    "category": "Animal",
+    "title": "Chickens second post",
+    "body": "&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;cdn.openart.ai&#x2F;stable_diffusion&#x2F;b2cec2f507f493558fa1a5e9feb43a9ed37384e1_2000x2000.webp&quot; class=&quot;linked-image&quot;&gt;&lt;&#x2F;p&gt;",
+    "comments": [],
+    "user": {
+      "id": "ad993ee0-e708-400c-8705-e4f1eeed8e54",
+      "username": "chicken",
+      "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1711966504626"
+    },
+    "rating": {
+      "upvotes": [
+        "ad993ee0-e708-400c-8705-e4f1eeed8e54"
+      ],
+      "downvotes": []
     }
   }
 ]
