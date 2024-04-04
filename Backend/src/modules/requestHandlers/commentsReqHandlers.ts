@@ -88,6 +88,7 @@ export async function addComment(
     };
 
     console.log(req.params.postId)
+
     comments.push(newComment);
 
     await write.comments(comments);

@@ -1,4 +1,4 @@
-import * as template from "./rating-element.ts";
+import * as template from "./rating-element.js";
 
 const postPreview = `
 <article id="__postId__" class="post preview boxed post-container content-container">

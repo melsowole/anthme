@@ -38,6 +38,7 @@ export type Comment = {
   user: UserShort;
   postId: string;
   rating: Rating;
+  
 };
 
 type Rating = {
