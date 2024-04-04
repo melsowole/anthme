@@ -4,6 +4,12 @@ p {
 
 .post .title {
   padding-top: 0.75rem;
+  padding-bottom: 1rem;
+}
+
+.post.preview .title {
+  font-size: 1.3rem;
+  padding-top: 0.75rem;
   padding-bottom: 0.5rem;
 }
 
@@ -11,6 +17,21 @@ p {
   padding-top: 0.25rem;
 }
 
+.post.preview footer {
+  padding-top: 0.5rem;
+}
+
 .post footer {
+  padding-top: 1rem;
+}
+
+.post p {
+  padding-bottom: 0.5rem;
+}
+
+.post ol, .post ul{
+  list-style-position: inside;
+  list-style-type: unset;
+  padding-bottom: 0.75rem;
   padding-top: 0.5rem;
 }
