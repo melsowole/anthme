@@ -1,3 +1,17 @@
 [
-  
+  {
+    "id": "cecf942a-88b2-443d-aa7a-ae3369e67419",
+    "body": "chicken first",
+    "created": "2024-04-04T14:35:14.669Z",
+    "user": {
+      "id": "7cc1b21b-0db0-46a2-b7d3-11638fe5c46b",
+      "username": "chicken",
+      "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1712215362664"
+    },
+    "postId": "3696a274-e65e-4e64-9fb3-46e6f3c0de23",
+    "rating": {
+      "upvotes": [],
+      "downvotes": []
+    }
+  }
 ]
