@@ -80,7 +80,11 @@ export async function addComment(
       body: req.body.body,
       created: req.body.timestamp,
       user: req.body.user,
-      postId: req.params.postId
+      postId: req.params.postId,
+      rating: {
+        upvotes: [],
+        downvotes: []
+      }
     };
 
     console.log(req.params.postId)
@@ -127,5 +131,60 @@ export async function deleteComment(
   } catch (err) {
     next(err);
     return;
+  }
+}
+
+export async function updateUpvotes(req: Request, res: Response, next: NextFunction): Promise<void> {
+  try {
+      const comments = await read.comments();
+      const comment = getItemById(comments, req.params.commentId);
+
+      if(comment) {
+        comment.rating.downvotes = comment.rating.downvotes.filter(userId => userId !== req.params.userId);
+          console.log('removed user from downvotes', comment.rating.downvotes);
+
+          if(comment.rating.upvotes.includes(req.params.userId)) {
+              comment.rating.upvotes = comment.rating.upvotes.filter(userId => userId !== req.params.userId);
+              console.log('removed user from upvotes', comment.rating.upvotes);
+              
+          }
+          else {
+              comment.rating.upvotes.push(req.params.userId);
+              console.log('added user in upvotes', comment.rating.upvotes);
+              
+          }
+      }
+
+      await write.comments(comments);
+      res.json(comment.rating)
+  }
+  catch (err) {
+      next(err)
+      return;
+  }
+}
+
+export async function updateDownvotes(req: Request, res: Response, next: NextFunction): Promise<void> {
+  try {
+      const comments = await read.comments();
+      const comment = getItemById(comments, req.params.commentId);
+      
+      if(comment) {
+        comment.rating.upvotes = comment.rating.upvotes.filter(userId => userId !== req.params.userId);
+
+          if(comment.rating.downvotes.includes(req.params.userId)) {
+            comment.rating.downvotes = comment.rating.downvotes.filter(userId => userId !== req.params.userId);
+          }
+          else {
+            comment.rating.downvotes.push(req.params.userId);
+          }
+      }
+
+      await write.comments(comments);
+      res.json(comment.rating)
+  }
+  catch (err) {
+      next(err)
+      return;
   }
 }

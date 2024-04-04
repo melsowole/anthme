@@ -1,14 +1,12 @@
 /*
-
-DisplayProfilePage:
-
+* DisplayProfilePage:
+*
 * `displayProfile` function is responsible for rendering the user profile page.
 * It fetches the user's information and displays their username and profile image.
 * It retrieves the user's posts and comments and allows navigation between the tabs, posts displays by default.
 * Users can delete their own posts and comments directly from the profile page.
 * It provides a "Delete Account" button for users to delete their accounts, which logs them out afterward.
 * If the user is not found, it displays an error message.
-
 */
 
 import { main } from "./components/templates/profile-page.js";
@@ -22,7 +20,9 @@ import { htmlEntitiesToString } from "../utilities/convertToStringUtils.js";
 import {DeleteContentBtn} from"./components/DeleteContentBtn.js"
 import PageLayout from "./components/PageLayout.js";
 import PostPreview from "./components/PostPreview.js"
-
+import CommentFooter from "./components/CommentFooter.js";
+import * as rating from "../utilities/footerContentUtils.js"
+import { applyUserFeedbackClassToContent } from "../utilities/loggedInUserUtils.js";
 
 async function displayProfile():Promise<void> {
     const profilePage: HTMLElement = stringToDOM(main);
@@ -38,11 +38,10 @@ async function displayProfile():Promise<void> {
 
     const urlParts: string[] = window.location.pathname.split('/');
     const urlPathEndpoint: string = urlParts[urlParts.length - 1];
-    
    
     api.getUserByUsername(urlPathEndpoint)
         .then(async (response) => {
-
+            
             if('statusCode' in response){
                 throw new Error("404");
 
@@ -61,7 +60,6 @@ async function displayProfile():Promise<void> {
                 if (user.id === loggedInUserId) {
                     displayDeleteAccountBtn();
                 }
-                
 
                 const deleteAccountBtn = document.querySelector('.del-account-btn') as HTMLButtonElement;
             
@@ -76,13 +74,16 @@ async function displayProfile():Promise<void> {
                 async function handlePostLink():Promise<void>{
                     container.innerHTML = "";
                 
-                    const posts = await api.getPostByUser(user.id as string);
+                    const posts = await api.getAllPostsByUser(user.id as string);
 
                     if(posts.length){
                         for (const post of posts) {
-                            container.append(PostPreview.create(post), document.createElement("hr"));
+                            container.append(PostPreview.create(post));
+                            applyUserFeedbackClassToContent(post);
                         }
-                        
+
+                        const postsContainer = document.querySelector('#userHistory') as HTMLDivElement;
+                        postsContainer.addEventListener('click', rating.handleFooterContent);
                     } else{
                         container.innerHTML = `
                             <div>No posts...</div>
@@ -92,18 +93,20 @@ async function displayProfile():Promise<void> {
             
                 async function handleCommentsLink():Promise<void>{
                     container.innerHTML = "";
-
                     const comments = await api.getAllCommentsByUser(user.id as string);
-                    
 
                     if(comments.length){
                         displayContent(container, comments, 'comment')
                         handleDeleteBtn(); 
                     } else {
                         container.innerHTML = `
-                            <div>No comments...</div>
+                        <div>No comments...</div>
                         `;
                     }
+                    comments.forEach(applyUserFeedbackClassToContent);
+                    const commentsContainer = document.querySelector('#userHistory') as HTMLDivElement;
+                    commentsContainer.addEventListener('click', rating.handleFooterContent);
+                    
                 }
             
                 async function handleDeleteAccount(): Promise<void> {
@@ -141,7 +144,6 @@ async function displayProfile():Promise<void> {
                     <h1>User not found</h1>
                     <a href="/">Return to homepage</a>
                 `;
-
             } else {
                 alert(error)
             }
@@ -177,7 +179,7 @@ function displayUserProfile(user: User, container: HTMLDivElement): void {
 }
 
 
- function handleDeleteBtn():void {
+function handleDeleteBtn():void {
     const deleteBtns = document.querySelectorAll('.delete-btn') as NodeListOf<HTMLButtonElement>;
     deleteBtns.forEach(deleteBtn => {
         deleteBtn.addEventListener('click', async (event) => {
@@ -198,14 +200,11 @@ function displayUserProfile(user: User, container: HTMLDivElement): void {
                     const response = await api.deleteComment(commentObj.postId, loggedInUserId, commentObj.id)
 
                     if('statusCode' in response) throw new Error(response.message)
-
                 }
-
                 container.remove();
             } catch(err){
                 alert(err);
             }
-                
         });
     });
 }
@@ -215,7 +214,7 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], typeO
 
     items.forEach(item => {
         const itemElement = document.createElement('div');
-        itemElement.classList.add('comment-item', 'profile-item');
+        itemElement.classList.add('comment-item', 'profile-item', 'content-container');
         itemElement.id = item.id;
         const commentWrapper = document.createElement('div');
         commentWrapper.classList.add('comment-wrapper')
@@ -250,15 +249,10 @@ function displayContent(container: HTMLElement, items: (Post | Comment)[], typeO
          if (item.user.id === loggedInUserId) {
             const deleteBtn = DeleteContentBtn.create(typeOfContent);
             commentWrapper.append(imgDiv, deleteBtn);
-            
         } 
-         else{
-           
-            commentWrapper.append(imgDiv, usernameEl);
-         }
+         else commentWrapper.append(imgDiv, usernameEl);
         
-        
-        itemBody.appendChild(contentEl);
+        itemBody.append(contentEl, CommentFooter.create(item.rating));
         imgDiv.append(timeStampEl, usernameEl, userImg);
         itemElement.append(commentWrapper, itemBody);
         

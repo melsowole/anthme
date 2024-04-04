@@ -54,6 +54,9 @@ apiRouter
   .route("/posts/:postId/users/:userId/comments")
   .post(addUserInfo, validate(commentValidations), comments.addComment);
 
+apiRouter.route("/comments/:commentId/update-upvotes/:userId").patch(comments.updateUpvotes);
+apiRouter.route("/comments/:commentId/update-downvotes/:userId").patch(comments.updateDownvotes);
+
 apiRouter
   .route("/posts/:postId/users/:userId/comments/:commentId")
   .delete(comments.deleteComment);

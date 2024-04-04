@@ -1,16 +1,16 @@
 import { filterCookieValue } from "./cookieUtils.js";
-import { Post } from "./types.js";
+import { Post, Comment } from "./types.js";
 
 // Only takes one post as argument to reuse function
-function applyUserRatingClassToPost(post: Post) {
+function applyUserFeedbackClassToContent(content: Post | Comment) {
     const loggedInUserId = filterCookieValue('id', 'user');
 
-    const hasUserUpvoted = post.rating.upvotes.includes(loggedInUserId)
-    const hasUserDownvoted = post.rating.downvotes.includes(loggedInUserId)
+    const hasUserUpvoted = content.rating.upvotes.includes(loggedInUserId)
+    const hasUserDownvoted = content.rating.downvotes.includes(loggedInUserId)
 
     if(hasUserUpvoted || hasUserDownvoted) {
-        const postContainer = document.body.querySelector(`[id="${post.id}"]`) as HTMLElement;
-        const ratingContainer = postContainer.querySelector('.rating') as HTMLSpanElement;
+        const container = document.body.querySelector(`[id="${content.id}"]`) as HTMLElement;
+        const ratingContainer = container.querySelector('.rating') as HTMLSpanElement;
         
         if(hasUserUpvoted) {
             ratingContainer.classList.add('upvote-active');
@@ -21,4 +21,4 @@ function applyUserRatingClassToPost(post: Post) {
     }
 }
 
-export {applyUserRatingClassToPost}
+export {applyUserFeedbackClassToContent}

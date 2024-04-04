@@ -1,5 +1,4 @@
 /*
-
 * DisplayPostPage
 *
 * `displayViewPostPage` is responsible for rendering the header, navigation, and main content of the page.
@@ -7,7 +6,6 @@
 * Users can add comments to the post, and the page updates dynamically to reflect the new comment.
 *Users can upvote and downvote. 
 * If the post is not found, it displays an error message.
-
 */
 
 import * as template from "./components/templates/post-page.js";
@@ -18,9 +16,10 @@ import dayjs from "dayjs";
 import { filterCookieValue } from "../utilities/cookieUtils.js";
 import { Post, Comment } from "../utilities/types.js";
 import { htmlEntitiesToString } from "../utilities/convertToStringUtils.js";
-import * as rating from "../utilities/ratingUtils.js";
-import { applyUserRatingClassToPost } from "../utilities/loggedInUserUtils.js";
+import * as rating from "../utilities/footerContentUtils.js";
+import { applyUserFeedbackClassToContent } from "../utilities/loggedInUserUtils.js";
 import PageLayout from "./components/PageLayout.js";
+import CommentFooter from "./components/CommentFooter.js"
 
 let postComments: Comment[] = [];
 
@@ -44,7 +43,7 @@ async function displayViewPostPage(): Promise<void> {
         const pageLayout = new PageLayout();
         await pageLayout.create(postPage);
 
-        applyUserRatingClassToPost(post);
+        applyUserFeedbackClassToContent(post);
 
         const userInfoContainer = getElement(".user-info-container");
         const postCommentsIds = post.comments;
@@ -69,8 +68,8 @@ async function displayViewPostPage(): Promise<void> {
                 comment,
                 postComments,
               );
+              applyUserFeedbackClassToContent(comment);
             }
-            
           }) 
           .catch((error) => {
             if(error.message == "204"){
@@ -85,36 +84,10 @@ async function displayViewPostPage(): Promise<void> {
           });
 
           const postFooter = getElement('.interaction-container') as HTMLDivElement;
-          postFooter.addEventListener('click', async (event) => {
-            const {target} = event;
-
-            // Narrow down the types on target so it won't complain
-            if(!(target instanceof HTMLElement || target instanceof SVGElement)) return; 
-
-            if(target.closest('.rating')) {
-              event.preventDefault();
-              const postContainer = target.closest('.post-container') as HTMLDivElement;
-              const loggedInUserId = filterCookieValue('id', 'user');
-              
-
-              if(target.closest('.upvote')) {
-                  await api.updateUpvotes(post.id, loggedInUserId)
-                      .then(postRating => {
-                          rating.updateRating(postRating, postContainer);
-                          rating.updateBGColor(target);
-                      });
-              }
-              else if(target.closest('.downvote')) {
-                  await api.updateDownvotes(post.id, loggedInUserId)
-                      .then(postRating => {
-                          rating.updateRating(postRating, postContainer);
-                          rating.updateBGColor(target);
-                      });
-              }
-            }
-            // Add logic for Share button on post
-            else return;     
-          });
+          const commentsContainer = getElement('#comments') as HTMLDivElement;
+          
+          postFooter.addEventListener('click', rating.handleFooterContent);
+          commentsContainer.addEventListener('click', rating.handleFooterContent);
 
           // Add comment functionality
           const commentForm = getElement(".comment-form") as HTMLFormElement;
@@ -220,8 +193,9 @@ function displayCommentsOnPost(container: HTMLElement, item: Comment, specificCo
   const ammountOfComments = document.querySelector('.amount-of-comments') as HTMLSpanElement;
   ammountOfComments.innerText = specificComments.length.toString(); 
                   
-  const commentItem= document.createElement('div');
-  commentItem.classList.add('comment-item')
+  const commentItem = document.createElement('div');
+  commentItem.id = item.id;
+  commentItem.classList.add('comment-item', 'content-container')
   const timeStampEl = document.createElement('small');
   timeStampEl.classList.add('timestamp-el')
   timeStampEl.innerText = dayjs(item.created).fromNow()
@@ -237,7 +211,7 @@ function displayCommentsOnPost(container: HTMLElement, item: Comment, specificCo
 
   displayUserImage(imgDiv, item.user.userImage);
       
-  commentBody.append(usernameEl, contentEl);
+  commentBody.append(usernameEl, contentEl, CommentFooter.create(item.rating));
   imgDiv.append(timeStampEl, usernameEl);
 
   commentItem.append(imgDiv, commentBody);

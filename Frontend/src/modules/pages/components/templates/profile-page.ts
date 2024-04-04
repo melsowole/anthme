@@ -12,7 +12,7 @@ const main = `
         </a>
     </div>
 
-    <div id= "comments" class="comment-container"></div>
+    <div id= "userHistory" class="comment-container"></div>
 
 </main>
 

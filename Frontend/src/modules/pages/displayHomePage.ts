@@ -1,9 +1,8 @@
 import MainFeed from "./components/MainFeed.js";
 import * as api from "../api.js";
 import { Category } from "../utilities/types.js";
-import { filterCookieValue } from "../utilities/cookieUtils.js";
-import { applyUserRatingClassToPost } from "../utilities/loggedInUserUtils.js";
-import * as rating from "../utilities/ratingUtils.js";
+import { applyUserFeedbackClassToContent } from "../utilities/loggedInUserUtils.js";
+import * as rating from "../utilities/footerContentUtils.js";
 import PageLayout from "./components/PageLayout.js";
 
 export default async function displayHomePage() {
@@ -18,59 +17,10 @@ export default async function displayHomePage() {
     const pageLayout = new PageLayout();
     await pageLayout.create(MainFeed.create(posts, category))
 
-    posts.forEach(applyUserRatingClassToPost)
+    posts.forEach(applyUserFeedbackClassToContent)
 
     const postsContainer = document.querySelector('#posts') as HTMLDivElement;
-    postsContainer.addEventListener('click', async (event) => {
-        const {target} = event;
-
-        if(!(target instanceof HTMLElement || target instanceof SVGElement)) return; // Narrow down the types on target so it won't complain
-        
-        if(target.id !== 'posts') {
-            let id:string;
-
-            if(target.closest('.rating')) {
-                event.preventDefault();
-                const postContainer = target.closest('.post.preview') as HTMLDivElement;
-                const loggedInUserId = filterCookieValue('id', 'user');
-                id = target.closest('.post.preview')!.id;
-
-                if(target.closest('.upvote')) {
-                    await api.updateUpvotes(id, loggedInUserId)
-                        .then(postRating => {
-                            rating.updateRating(postRating, postContainer);
-                            rating.updateBGColor(target);
-                        });
-                }
-                else if(target.closest('.downvote')) {
-                    await api.updateDownvotes(id, loggedInUserId)
-                        .then(postRating => {
-                            rating.updateRating(postRating, postContainer);
-                            rating.updateBGColor(target);
-                        });
-                }
-            }
-                const shareBtn = target.closest(".share-link-btn")
-                const dropDownShare = target.closest(".drop-down-share");
-
-                if(shareBtn){
-                    event.preventDefault();
-                }
-
-                else if(dropDownShare){
-                    event.preventDefault();
-                    const postId = target.closest(".post.preview").id;
-                    const postUrl = `${window.location.origin}/posts/${postId}`;
-
-                    copyUrlToClipboard(postUrl);
-                }
-            
-
-            else return;
-        }
-
-      
-    });
+    postsContainer.addEventListener('click', rating.handleFooterContent)
 }
 
 async function getPageCategory():Promise<Category|false>{
@@ -85,13 +35,4 @@ function getPageURLParam() :string{
     const urlParts: string[] = window.location.pathname.split("/");
     const urlPathEndpoint: string = urlParts[urlParts.length - 1];
     return urlPathEndpoint;
-}
-
-export async function copyUrlToClipboard(text: string) {
-    try {
-        await navigator.clipboard.writeText(text);
-        alert('Url copied!');
-    } catch (err) {
-        alert('Failed to copy url. Try again later!');
-    }
 }

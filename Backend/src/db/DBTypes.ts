@@ -29,10 +29,6 @@ export type Post = {
   rating: Rating;
 };
 
-type Rating = {
-  upvotes: string[];
-  downvotes: string[];
-}
 
 export type Comment = {
   id: string;
@@ -40,7 +36,13 @@ export type Comment = {
   body: string;
   user: UserShort;
   postId: string;
+  rating: Rating;
 };
+
+type Rating = {
+  upvotes: string[];
+  downvotes: string[];
+}
 
 export type Category = {
   name: string;

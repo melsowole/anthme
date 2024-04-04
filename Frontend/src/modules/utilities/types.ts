@@ -1,4 +1,4 @@
-type Error = {
+type CustomError = {
   statusCode: number;
   message: string;
 }
@@ -32,11 +32,6 @@ type Post = {
   rating: Rating;
 };
 
-type Rating = {
-  upvotes: string[];
-  downvotes: string[];
-}
-
 type Comment = {
   id: string;
   body: string;
@@ -48,7 +43,13 @@ type Comment = {
     username: string;
     userImage: string;
   };
+  rating: Rating;
 };
+
+type Rating = {
+  upvotes: string[];
+  downvotes: string[];
+}
 
 type Category = {
   name: string;
@@ -84,4 +85,4 @@ type CategoryItem = {
 };
 // For dropdown end
 
-export {Error, SuccessfulResponse, User, Post, Rating, Comment, Category, LinkItem, DropdownDOM, NavMainCategory, CategoryItem };
+export {CustomError, SuccessfulResponse, User, Post, Rating, Comment, Category, LinkItem, DropdownDOM, NavMainCategory, CategoryItem };
