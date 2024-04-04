@@ -48,10 +48,7 @@
   cursor: pointer;
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  border-radius: 20px;
   z-index: 1;
 }
 
@@ -64,10 +61,14 @@
   align-items: center;
   gap: 0.5rem;
   padding: 12px 16px;
+  border-radius: 20px;
+  background-color: var(--neutLight);
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  
 }
 
 .drop-down-content:hover {
-  background-color: var(--neutLight);
+  background-color: var(--neut);
 }
 
 /* image and video styling on post */
@@ -78,7 +79,3 @@ iframe, .linked-image {
   object-fit: contain;
   aspect-ratio: 1.4166666666666667;
 }
-
-/* iframe {
-  aspect-ratio: 1.4166666666666667;
-} */

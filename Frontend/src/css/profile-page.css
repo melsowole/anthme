@@ -27,12 +27,21 @@
   padding-right: 0.2rem;
   cursor: pointer;
 }
+
+button.del-account-btn{
+    background-color: var(--neutLighter);
+}
+
+button.del-account-btn:hover{
+    background-color: var(--neutLight);
+}
+
 .del-account-btn{
     padding: 0.8rem;
     border-radius: 30px;
     border:none;
     cursor: pointer;
-    color: red;
+    color: var(--error);
 }
 
 .user-interactions-overview{
@@ -43,7 +52,7 @@
 
 .user-interactions-overview > a{
     text-decoration: none;
-    color: #0F1A1C;
+    color: var(--text);
     padding: 0.7rem;
     border-radius: 30px;
     font-size: 14px;
@@ -56,7 +65,7 @@
 }
 
 .add-grey-bg-color{
-    background-color: #D2DADD;
+    background-color: var(--neutLight);
     text-decoration: underline;
     
 }

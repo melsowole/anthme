@@ -11,7 +11,7 @@
 #categoryTitle {
   font-size: 0.75rem;
   margin-left: 0.5rem;
-  color: #576f76;
+  color: var(--text);
   font-weight: 400;
 }
 
@@ -26,22 +26,23 @@
   flex-direction: row-reverse;
 }
 
-.username {
+.user-info-container .username {
   font-size: 0.75rem;
   margin-left: 0.5rem;
-  color: #2a3c42;
-  font-weight: 600;
+  color: var(--text);
 }
 
 .user-img {
   order: 1;
 }
+
 .interaction-container {
   display: flex;
   gap: 0.8rem;
 }
+
 .outer-span {
-  background-color: #eaedef;
+  background-color: var(--neutLight);
   border-radius: 30px;
   width: 70px;
   height: 32px;
@@ -63,18 +64,18 @@
 .fi-ts-down {
   font-size: 1rem;
   font-weight: 800;
-  color: black;
+  color: var(--text);
   display: inline-block;
   width: 16px;
   height: 16px;
 }
 
 .fa-message {
-  color: #434f53;
+  color: var(--neut);
 }
 
 .comment-span {
-  background-color: #eaedef;
+  background-color: var(--neut);
   border-radius: 30px;
   width: 65px;
   height: 32px;
@@ -85,7 +86,7 @@
 
 .comment-span > a {
   text-decoration: none;
-  color: black;
+  color: var(--text);
   display: flex;
   gap: 0.5rem;
 }
@@ -107,7 +108,7 @@
   width: 155px;
   height: 40px;
   border-radius: 30px;
-  border: 1px solid #576f76;
+  border: 1px solid var(--neutDark);
   background-color: transparent;
   font-size: 0.9rem;
   display: flex;
@@ -153,7 +154,7 @@
 
 .img-div > h2,
 .timestamp-el {
-  color: #2a3c42;
+  color: var(--text);
   font-size: 0.75rem;
   font-weight: 600;
 }
@@ -207,6 +208,7 @@
   gap: 1rem;
   justify-content: end;
   padding: 0.5rem;
+  
 }
 
 .comment-form button{
@@ -214,17 +216,16 @@
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  /* font-size: 0.75rem; */
-
   background-color: var(--neutHueLighter);
 }
+
 .hide{
   display:none;
 }
 
 .comment-form .submit-button {
   background-color: var(--neutHue);
-  color: var(--bg);
+  color: var(--onHue);
 }
 
 .comment-form .submit-button:hover {
@@ -241,7 +242,7 @@
 }
 
 .cancel-button:hover {
-  background-color: #bfd5fe;
+  background-color: var(--neut);
 }
 
 .comment-footer {
@@ -255,7 +256,7 @@
 
 .comment-footer > .outer-span > .button-up:hover,
 .comment-footer > .outer-span > .button-down:hover {
-  background-color: #eaedef;
+  background-color: var(--neut);
 }
 
 .comment-footer > .share {
