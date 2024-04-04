@@ -5,6 +5,7 @@ p {
 .post .title {
   padding-top: 0.75rem;
   padding-bottom: 1rem;
+  font-weight: 600;
 }
 
 .post.preview .title {
