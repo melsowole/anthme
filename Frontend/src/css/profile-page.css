@@ -61,17 +61,18 @@ button.del-account-btn:hover{
 
 .user-interactions-overview > a:hover{
     text-decoration: underline;
-   
 }
 
 .add-grey-bg-color{
     background-color: var(--neutLight);
     text-decoration: underline;
-    
 }
 
-.title-el::before{
+.comment-wrapper > .p-c-img-div {
+    gap: 0;
+}
+
+.p-c-post-title::before {
     content: "•";
-    margin-right: 0.5rem;
-   
+    padding: 0 0.25rem;
 }

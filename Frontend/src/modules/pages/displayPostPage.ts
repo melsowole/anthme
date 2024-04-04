@@ -179,20 +179,34 @@ function displayUserProfile(container: HTMLElement, item: (Post), userImg: strin
 
   displayUserImage(userImgContainer, userImg);
 
-  const categoryEl = document.createElement('p');
-  categoryEl.innerText = item.category;
-  categoryEl.id = 'categoryTitle'
-  const usernameEl = document.createElement('p')
+  console.log(item);
+  
+  const categoryEl = document.createElement('span');
+  categoryEl.id = 'categoryTitle';
+
+  const redirectEl = document.createElement('a');
+  redirectEl.innerText = `a/${item.category}`
+  redirectEl.href = `/${item.category}`;
+  redirectEl.classList.add('category-href');
+
+  const postCreatedEl = document.createElement('time');
+  postCreatedEl.innerText = dayjs(item.created).fromNow();
+  postCreatedEl.classList.add('username')
+
+  const usernameEl = document.createElement('a')
   usernameEl.innerText = `u/${item.user.username}`;
-  usernameEl.classList.add('username')
+  usernameEl.href = `/profile/${item.user.username}`;
+  usernameEl.classList.add('username', 'username-margin', 'category-href')
+
   const titleEl = document.createElement('h2');
   titleEl.classList.add("title");
   titleEl.innerText = htmlEntitiesToString(item.title);
   const contentEl = document.createElement('div');
   contentEl.innerHTML = htmlEntitiesToString(item.body);
 
+  categoryEl.append(redirectEl, postCreatedEl)
   contentDiv.append(titleEl, contentEl)
-  userInfoItem.append(usernameEl, categoryEl)
+  userInfoItem.append(categoryEl, usernameEl)
   userInfoContainer.append(userInfoItem)
 
   container.append(userInfoItem);
@@ -214,8 +228,12 @@ function displayCommentOnPost(container: HTMLElement, item: Comment, postComment
   imgDiv.classList.add('img-div');
   const commentBody = document.createElement('div');
   commentBody.classList.add('comment-body')
-  const usernameEl = document.createElement('h2')
-  usernameEl.innerText= item.user.username;
+  
+  const usernameEl = document.createElement('a')
+  usernameEl.innerText = item.user.username;
+  usernameEl.href = `/profile/${item.user.username}`;
+  usernameEl.classList.add('category-href');
+
   const contentEl = document.createElement('div');
   contentEl.innerHTML = htmlEntitiesToString(item.body);
 

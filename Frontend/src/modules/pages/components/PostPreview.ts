@@ -9,7 +9,6 @@ import CategoryProfile from "./CategoryProfile.js";
 import {DeleteContentBtn} from"./DeleteContentBtn.js";
 import { filterCookieValue } from "../../utilities/cookieUtils.js";
 
-
 dayjs.extend(relativeTime);
 
 export default class postPreview {
@@ -17,7 +16,7 @@ export default class postPreview {
     let previewTemplate = template.postPreview;
 
     previewTemplate = replace(previewTemplate, [
-      { pattern: "postId", replacement: post.id },
+      { pattern: "postId", replacement: post.id as string},
       { pattern: "link", replacement: `/posts/${post.id}` },
       { pattern: "age", replacement: dayjs(post.created).fromNow() },
       { pattern: "title", replacement: post.title },

@@ -74,7 +74,6 @@ export async function addComment(
     const user = getItemById(users, req.params.userId);
     const post = getItemById(posts, req.params.postId);
 
-    // create new comment
     const newComment: Comment = {
       id: crypto.randomUUID(),
       body: req.body.body,

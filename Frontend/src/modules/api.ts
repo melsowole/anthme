@@ -1,3 +1,9 @@
+/**
+ * Our own REST API
+ * Following CRUD model
+ * API sends User, Post, Comment, Category, Cookie requests to our Backend
+ */
+
 import { CustomError, SuccessfulResponse, User, Post, Rating, Comment, Category } from "./utilities/types.js";
 
 const baseUrl: string = 'http://localhost:3000/';
