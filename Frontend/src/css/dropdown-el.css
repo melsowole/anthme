@@ -44,15 +44,25 @@
   color: var(--text);
 }
 
+
 .sub-category {
   display: flex;
   justify-content: space-between;
 }
 
+.favorite.sub-category .favorite-icon{
+  fill:var(--color);
+}
+
+.favorite.sub-category .favorite-icon-outline {
+  stroke: var(--color);
+}
+
 .icon-container {
-  height: 32px;
-  width: 32px;
+  height: 2rem;
+  aspect-ratio: 1/1;
   padding: 0.25rem;
+  border-radius: 50%;
 }
 
 .favorite-icon {
@@ -62,13 +72,17 @@
   width: 100%;
 }
 
-.favorite-icon:hover {
-  cursor: pointer;
-  background-color: #e2e7e9;
-  border-radius: 50%;
-  fill: #FDB0C0;
+
+.icon-container:hover {
+  background-color: var(--bg);
 }
 
-.favorite-icon:hover .favorite-icon-outline {
-  stroke: #FDB0C0;
+.icon-container:hover .favorite-icon {
+  cursor: pointer;
+  fill: var(--color);
+  opacity: 0.7;
+}
+
+.icon-container:hover .favorite-icon-outline {
+  stroke: var(--color);
 }

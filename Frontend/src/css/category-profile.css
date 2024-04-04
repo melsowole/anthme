@@ -8,13 +8,13 @@
 .category .img-icon{
   height: 2rem;
   aspect-ratio: 1/1;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 
 /* header size, main-feed*/
 .page-title .category .img-icon{
   height: 3rem;
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 
 .page-title .category{
@@ -25,4 +25,16 @@
   font-size: inherit;
   position: relative;
   bottom: 1%;
+}
+.sub-category a{
+  display: block;
+  width: 100%;
+}
+
+.category .category-name{
+  flex-grow: 1;
+}
+
+.category small{
+  font-size: 0.8rem;
 }

@@ -60,8 +60,8 @@ export default class Dropdown {
     }
   }
 
-  private static getUlHeight = (ul: HTMLElement): string =>
-    getComputedStyle(ul).height;
+  private static getUlHeight = (ul: HTMLElement): string => getComputedStyle(ul).height;
+    
 
   static async createCategoryObjectArray(categoryArray: string[]):Promise<NavMainCategory[]>{
     const dropdownArray: NavMainCategory[] = [];
@@ -95,11 +95,16 @@ export default class Dropdown {
     }
     
     return {
-        label: categoryName,
-        id: "dropdown-" + categoryName,
-        items: items
-    };
+      label: categoryName,
+      id: "dropdown-" + categoryName,
+      items: categoryItems.map(c=> {
+        return {
+          url: "/" + c.name,
+          content: CategoryProfile.create(c, "small")
+        }
+      })
+    }    
+  }
 }
-
 
 }
