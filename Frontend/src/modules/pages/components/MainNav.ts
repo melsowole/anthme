@@ -53,9 +53,15 @@ export default class MainNav {
         Dropdown.create(dropdownObj.label, dropdownObj.id, dropdownObj.items)
       );
     });
-
-    dropdownContainer.addEventListener('click', this.handleFavoriteIconClick);
-
+    
+    dropdownContainer.addEventListener('click', async (e: MouseEvent)=>{
+      await this.handleFavoriteIconClick(e);
+      // update fav highlight
+      this.highlightFavoriteCategories(nav);
+    });
+    
+    // pre highlight fav
+    this.highlightFavoriteCategories(nav);
     return nav;
   }
 
@@ -79,7 +85,10 @@ export default class MainNav {
   }
 
   private static async handleFavoriteIconClick(event: MouseEvent): Promise<void> {
+    event.stopPropagation();
     const {target} = event;
+
+    console.log(target);
     if(!(target instanceof HTMLElement || target instanceof SVGElement)) return;
     
     if(target.closest('.icon-container')) {
@@ -95,8 +104,30 @@ export default class MainNav {
         const favoritesDropdown = target.closest('.dropdowns')?.querySelector('#dropdown-Favorites')?.closest('nav') as HTMLElement;
         favoritesDropdown.innerHTML = '';
         favoritesDropdown.append(Dropdown.create(updatedFavoriteDropdown.label, updatedFavoriteDropdown.id, updatedFavoriteDropdown.items));
+        
       }
+
     }
+  }
+
+  private static async highlightFavoriteCategories(nav:HTMLElement):Promise<void>{
+    const loggedInUserId = filterCookieValue('id', 'user');
+    const favoriteCategories = await api.getFavoriteCategories(loggedInUserId);
+
+    const favNames = favoriteCategories.map(c => c.name);
+
+    const allDropdownSubCategories = nav.querySelectorAll(".sub-category");
+
+    allDropdownSubCategories.forEach((subcat:Element) :void => {
+      const catName = subcat.querySelector(".category-name")?.textContent?.split('/').pop() as string;
+
+      if(favNames.includes(catName)){
+        subcat.classList.add("favorite")
+      } else {
+        subcat.classList.remove("favorite")
+      }
+      
+    });
   }
 
 }
