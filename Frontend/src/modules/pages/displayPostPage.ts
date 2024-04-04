@@ -34,7 +34,7 @@ async function displayViewPostPage(): Promise<void> {
 
       } else if ('id' in post){
         const postPageTemplate = replace(template.postPage, [
-          {pattern: "postId", replacement: post.id},
+          {pattern: "postId", replacement: post.id as string},
           {pattern: "rating", replacement: (post.rating.upvotes.length - post.rating.downvotes.length).toString()}
         ]);
         const postPage: HTMLElement = stringToDOM(postPageTemplate);
@@ -52,7 +52,7 @@ async function displayViewPostPage(): Promise<void> {
           .then((comments) => {
             postComments = comments.filter((comment) =>
               postCommentsIds.includes(comment.id)
-            );
+            );           
             
             if(postComments.length == 0){
               // if post has no comments
@@ -62,7 +62,7 @@ async function displayViewPostPage(): Promise<void> {
             const commentDiv = getElement(".comment-info");
 
             for (const comment of postComments) {
-              displayCommentsOnPost(
+              displayCommentOnPost(
                 commentDiv,
                 comment,
                 postComments,
@@ -115,8 +115,13 @@ async function displayViewPostPage(): Promise<void> {
                 // comment submit success
                 const addedComment = response as Comment;
                 postComments.push(addedComment);
+                postComments.sort((a, b) => new Date(b.created).getTime() - new Date(a.created).getTime());
+                
                 const commentDiv = getElement(".comment-info");
-                displayCommentsOnPost(commentDiv, addedComment, postComments);
+                commentDiv.innerHTML = '';
+                postComments.forEach(postComment => {
+                  displayCommentOnPost(commentDiv, postComment, postComments);
+                })
                 updateAmountOfComments();
 
                 commentForm.reset();
@@ -194,9 +199,9 @@ function displayUserProfile(container: HTMLElement, item: (Post), userImg: strin
     
 }
 
-function displayCommentsOnPost(container: HTMLElement, item: Comment, specificComments: Comment[]):void {
+function displayCommentOnPost(container: HTMLElement, item: Comment, postComments: Comment[]):void {
   const ammountOfComments = document.querySelector('.amount-of-comments') as HTMLSpanElement;
-  ammountOfComments.innerText = specificComments.length.toString(); 
+  ammountOfComments.innerText = postComments.length.toString();
                   
   const commentItem = document.createElement('div');
   commentItem.id = item.id;

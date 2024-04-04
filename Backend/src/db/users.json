@@ -14,21 +14,6 @@
     ]
   },
   {
-    "id": "7cc1b21b-0db0-46a2-b7d3-11638fe5c46b",
-    "username": "chicken",
-    "password": "egg",
-    "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1712215362664",
-    "created": "2024-04-04T07:22:47.594Z",
-    "posts": [
-      "46dd3e7c-e0f0-414c-8c61-7b56afdfc772"
-    ],
-    "comments": [],
-    "favoriteCategories": [
-      "mildlyinfuriating",
-      "Frontend"
-    ]
-  },
-  {
     "id": "b91d2452-aceb-4896-9581-3ae8bf5c7eb7",
     "username": "tomato",
     "password": "red",
@@ -41,6 +26,25 @@
     "favoriteCategories": [
       "Frontend",
       "Depressed"
+    ]
+  },
+  {
+    "id": "7cc1b21b-0db0-46a2-b7d3-11638fe5c46b",
+    "username": "chicken",
+    "password": "egg",
+    "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1712215362664",
+    "created": "2024-04-04T07:22:47.594Z",
+    "posts": [
+      "46dd3e7c-e0f0-414c-8c61-7b56afdfc772"
+    ],
+    "comments": [
+      "cecf942a-88b2-443d-aa7a-ae3369e67419"
+    ],
+    "favoriteCategories": [
+      "Frontend",
+      "Backend",
+      "mildlyinfuriating",
+      "Animal"
     ]
   }
 ]
