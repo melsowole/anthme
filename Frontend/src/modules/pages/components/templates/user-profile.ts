@@ -1,4 +1,5 @@
-const userImg = ` <span class="hint--left hint--rounded user-img-wrapper" aria-label="View profile" > <img class="user-img"  src="__img__"> </span>`;
+const userImgProfile = ` <span class="hint--left hint--rounded user-img-wrapper" aria-label="View profile" > <img class="user-img"  src="__img__"> </span>`;
+const userImg = `  <img class="user-img"  src="__img__">`;
 
 const username = `<small class="username">u/__username__</small>`;
 
@@ -12,7 +13,7 @@ const preview = `
 
 const userProfile = `
 <div class="user __size__">
-    ${userImg}
+    ${userImgProfile}
     ${username}
 </div>
 `;
@@ -27,4 +28,4 @@ const userProfilePreview = `
 </div>
 `;
 
-export { userImg, userProfile, username, timestamp, userProfilePreview };
+export { userImg, userImgProfile, userProfile, username, timestamp, userProfilePreview };

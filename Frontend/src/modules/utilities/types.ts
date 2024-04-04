@@ -19,7 +19,7 @@ type User = {
 };
 
 type Post = {
-  id: string;
+  id?: string;
   category: string;
   title: string;
   body: string;

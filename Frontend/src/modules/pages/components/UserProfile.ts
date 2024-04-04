@@ -53,7 +53,7 @@ export default class UserProfile {
   }
 
   static createProfileImg(img: string): HTMLElement {
-    const imgTemplate = replace(template.userImg, [
+    const imgTemplate = replace(template.userImgProfile, [
       { pattern: "img", replacement: img },
     ]);
     return stringToDOM(imgTemplate);

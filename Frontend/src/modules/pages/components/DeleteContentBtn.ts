@@ -18,7 +18,7 @@ class DeleteContentBtn {
   private static async handleButtonClick(event:Event, button:HTMLButtonElement):Promise<void>{
 
     event.stopPropagation();
-    const container = (event.target as HTMLElement).closest('.profile-item') as HTMLElement;
+    const container = (event.target as HTMLElement).closest('.post-container') as HTMLElement;
     const containerId = container.id;
     const loggedInUserId = filterCookieValue('id', 'user');
 
