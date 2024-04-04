@@ -51,7 +51,7 @@
 }
 
 .favorite.sub-category .favorite-icon{
-  fill:var(--color);
+  fill: var(--color);
 }
 
 .favorite.sub-category .favorite-icon-outline {
@@ -70,6 +70,10 @@
   align-items: center;
   height: 100%;
   width: 100%;
+}
+
+.favorite-icon-outline {
+  stroke: var(--text);
 }
 
 
