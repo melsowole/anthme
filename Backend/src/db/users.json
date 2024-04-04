@@ -1,5 +1,19 @@
 [
   {
+    "id": "2a2c9ee5-d788-4934-8947-1aec924d5209",
+    "username": "melchan",
+    "password": "pass",
+    "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1712243104820",
+    "created": "2024-04-04T15:07:42.269Z",
+    "posts": [],
+    "comments": [],
+    "favoriteCategories": [
+      "heartwarming",
+      "Backend",
+      "Frontend"
+    ]
+  },
+  {
     "id": "7cc1b21b-0db0-46a2-b7d3-11638fe5c46b",
     "username": "chicken",
     "password": "egg",
