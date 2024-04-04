@@ -60,8 +60,8 @@ export default class Dropdown {
     }
   }
 
-  private static getUlHeight = (ul: HTMLElement): string =>
-    getComputedStyle(ul).height;
+  private static getUlHeight = (ul: HTMLElement): string => getComputedStyle(ul).height;
+    
 
   static async createCategoryObjectArray(categoryArray: string[]):Promise<NavMainCategory[]>{
     const dropdownArray: NavMainCategory[] = [];
@@ -89,13 +89,11 @@ export default class Dropdown {
       items: categoryItems.map(c=> {
         return {
           url: "/" + c.name,
-          content: CategoryProfile.create(c, "span")
+          content: CategoryProfile.create(c, "small")
         }
       })
     }    
   }
 
-  // static async updateFavoriteCategories(category: Category[]): Promise<NavMainCategory> {
-  //   return 
-  // }
+
 }
