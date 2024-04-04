@@ -10,6 +10,7 @@ export type User = {
   userImage: string;
   posts: string[];
   comments: string[];
+  favoriteCategories: string[];
 };
 
 export type UserShort = {

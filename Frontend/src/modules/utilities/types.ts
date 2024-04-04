@@ -15,6 +15,7 @@ type User = {
   posts?: string[];
   comments?: string[];
   created?: number;
+  favoriteCategories?: string[];
 };
 
 type Post = {

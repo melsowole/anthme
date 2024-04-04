@@ -1,57 +1,32 @@
 [
   {
-    "id": "ad993ee0-e708-400c-8705-e4f1eeed8e54",
+    "id": "7cc1b21b-0db0-46a2-b7d3-11638fe5c46b",
     "username": "chicken",
     "password": "egg",
-    "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1711966504626",
-    "created": "2024-04-01T10:15:16.691Z",
+    "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1712215362664",
+    "created": "2024-04-04T07:22:47.594Z",
     "posts": [
-      "c2af3506-0282-424f-a5fc-11dc391e207d",
-      "b385615d-634d-4c43-bcbc-9e24e2f763b4"
+      "46dd3e7c-e0f0-414c-8c61-7b56afdfc772"
     ],
-    "comments": [
-      "838cdd53-4cad-468f-8ace-eb5709f736d7",
-      "798a26ac-39c0-45cc-b5a6-284acaaf3d38"
+    "comments": [],
+    "favoriteCategories": [
+      "mildlyinfuriating",
+      "Frontend"
     ]
   },
   {
-    "id": "8736fab1-c1d6-4e54-b989-375bb807d90d",
+    "id": "b91d2452-aceb-4896-9581-3ae8bf5c7eb7",
     "username": "tomato",
     "password": "red",
-    "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1711966580462",
-    "created": "2024-04-01T10:16:30.789Z",
+    "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1712215371613",
+    "created": "2024-04-04T07:22:56.139Z",
     "posts": [
-      "8fa7bcb0-6952-47b4-a6e4-33f9bd344b46"
+      "3696a274-e65e-4e64-9fb3-46e6f3c0de23"
     ],
-    "comments": [
-      "558b2753-12d3-471d-a709-1b7bb4a21b4d"
+    "comments": [],
+    "favoriteCategories": [
+      "Frontend",
+      "Depressed"
     ]
-  },
-  {
-    "id": "cabe1d1b-12d8-4297-aa11-93ee101a644e",
-    "username": "grit",
-    "password": "grit",
-    "userImage": "http://localhost:1234/userImgPizza.54bcfdca.png?1711997802392",
-    "created": "2024-04-01T18:56:56.756Z",
-    "posts": [],
-    "comments": []
-  },
-  {
-    "id": "8207746e-dfca-41f5-89de-5347d7de51fb",
-    "username": "lynx",
-    "password": "hej",
-    "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1712041976353",
-    "created": "2024-04-02T07:13:01.811Z",
-    "posts": [],
-    "comments": []
-  },
-  {
-    "id": "cc624e6c-369a-4851-9225-6af06dd9c640",
-    "username": "melchan",
-    "password": "pass",
-    "userImage": "http://localhost:1234/userImgDonut.d6d53db1.png?1712059039110",
-    "created": "2024-04-02T11:57:48.684Z",
-    "posts": [],
-    "comments": []
   }
 ]

@@ -26,7 +26,17 @@ async function getAllFilteredCategories(categoryName: string): Promise<Category[
 
   const res = await fetch(url);
   const filteredCategories = await res.json();
+
   return filteredCategories;
+}
+
+async function getFavoriteCategories(userId: string): Promise<Category[]> {
+  const url = `${baseUrl}categories/favorites/${userId}`;
+
+  const res = await fetch(url);
+  const categories = await res.json();
+
+  return categories;
 }
 
 async function getAllUsers():Promise<User[]>{
@@ -234,6 +244,20 @@ async function updateDownvotes(contentType: string, contentId: string, loggedInU
   return rating;
 }
 
+async function updateFavoriteCategory(categoryName: string, userId: string): Promise<User> {
+  const url = `${baseUrl}categories/${categoryName}/${userId}`;
+
+  const options = {
+    method: "PATCH",
+    headers: header
+  }
+
+  const res = await fetch(url, options);
+  const favoriteCategories = await res.json();
+  
+  return favoriteCategories;
+}
+
 export {
   sendDataToServer,
   getAllUsers,
@@ -253,5 +277,7 @@ export {
   getAllPosts,
   getAllFilteredCategories,
   updateUpvotes,
-  updateDownvotes
+  updateDownvotes,
+  updateFavoriteCategory,
+  getFavoriteCategories
 };

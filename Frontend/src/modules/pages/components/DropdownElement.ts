@@ -11,6 +11,7 @@ import {replace, stringToDOM} from "../../utilities/templateUtils.js";
 import { Category, NavMainCategory, CategoryItem, DropdownDOM } from "../../utilities/types.js";
 import * as api from "../../api.js"
 import CategoryProfile from "./CategoryProfile.js";
+import { filterCookieValue } from "../../utilities/cookieUtils.js";
 
 export default class Dropdown {
   static create(label: string, id: string, items: CategoryItem[]): HTMLElement {
@@ -29,10 +30,10 @@ export default class Dropdown {
       ul: dropdown.querySelector("ul") as HTMLElement,
       ulWrapper: dropdown.querySelector(".list-wrapper") as HTMLElement,
     };
+    
+    items.forEach((item) => DOM.ul.append(this.createLiEl(item)));
 
     DOM.label.addEventListener("click", () => this.handleLabelClick(DOM));
-
-    items.forEach((item) => DOM.ul.append(this.createLiEl(item)));
 
     return dropdown;
   }
@@ -64,8 +65,12 @@ export default class Dropdown {
 
   static async createCategoryObjectArray(categoryArray: string[]):Promise<NavMainCategory[]>{
     const dropdownArray: NavMainCategory[] = [];
+    const loggedInUserId = filterCookieValue('id', 'user');
 
     const categories = await api.getAllCategories();
+    const favoriteCategories = await api.getFavoriteCategories(loggedInUserId);
+
+    dropdownArray.push(this.createCategoryObject('Favorites', favoriteCategories))
 
     categoryArray.forEach(categoryName => {
       const categoryItems = categories.filter(c => c.category == categoryName);
@@ -89,4 +94,8 @@ export default class Dropdown {
       })
     }    
   }
+
+  // static async updateFavoriteCategories(category: Category[]): Promise<NavMainCategory> {
+  //   return 
+  // }
 }
