@@ -95,7 +95,4 @@ export default class Dropdown {
     }    
   }
 
-  // static async updateFavoriteCategories(category: Category[]): Promise<NavMainCategory> {
-  //   return 
-  // }
 }

@@ -31,7 +31,7 @@ async function readFromDB<T extends User | Post | Comment | Category>(
 
   const dbObj: DB<T> = db == "" ? [] : JSON.parse(db);
 
-  return dbObj;
+  return dbObj.reverse();
 }
 
 async function writeToDB(

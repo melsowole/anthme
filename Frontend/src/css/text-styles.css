@@ -4,6 +4,7 @@ p {
 
 .post .title {
   padding-top: 0.75rem;
+  padding-bottom: 0.5rem;
 }
 
 .post .body {
