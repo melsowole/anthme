@@ -10,6 +10,8 @@
   --color: rgb(255, 51, 0);
   --onColor: white;
 
+  --bgUnfocus: rgba(0, 0, 0, 0.3);
+
   --error: red;
 
   --upvote: var(--color);
@@ -31,7 +33,7 @@
   :root {
   --bg: #0b1416;
   --text: white;
-  --neutDark: #3d5a62;
+  --neutDark: #627e86;
   --neutLight: #223338;
   --neutLighter: #152124;
   --neutOpaque: rgba(255, 255, 255, 0.3);
@@ -51,13 +53,9 @@
 }
 
 * {
-  font-family: Arial, Helvetica, sans-serif;
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  box-sizing: border-box;
+box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: var(--text);
-  fill: var(--text);
 }
 
 body{
