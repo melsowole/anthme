@@ -69,3 +69,9 @@ button.del-account-btn:hover{
     text-decoration: underline;
     
 }
+
+.title-el::before{
+    content: "•";
+    margin-right: 0.5rem;
+   
+}

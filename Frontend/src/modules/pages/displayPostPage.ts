@@ -12,7 +12,6 @@ import * as template from "./components/templates/post-page.js";
 import { replace, stringToDOM } from "../utilities/templateUtils.js";
 import * as api from "../api.js";
 import dayjs from "dayjs";
-//import relativeTime from 'dayjs/plugin/relativeTime';
 import { filterCookieValue } from "../utilities/cookieUtils.js";
 import { Post, Comment } from "../utilities/types.js";
 import { htmlEntitiesToString } from "../utilities/convertToStringUtils.js";
@@ -75,6 +74,7 @@ async function displayViewPostPage(): Promise<void> {
             if(error.message == "204"){
               const noComments = document.createElement("p");
               noComments.textContent = "No Comments yet..."
+              noComments.classList.add("no-comments-message");
               const commentsContainer = getElement(".comment-info");
               commentsContainer.append(noComments);
 
@@ -89,13 +89,17 @@ async function displayViewPostPage(): Promise<void> {
           postFooter.addEventListener('click', rating.handleFooterContent);
           commentsContainer.addEventListener('click', rating.handleFooterContent);
 
-          // Add comment functionality
           const commentForm = getElement(".comment-form") as HTMLFormElement;
           
           commentForm.addEventListener("submit", async (event) => {
           event.preventDefault();
+          const noCommentsMessage = document.querySelector(".no-comments-message") as HTMLElement;
           const commentInput = getElement(".comment-input") as HTMLTextAreaElement;
           const commentValue = commentInput.value;
+          
+          if (noCommentsMessage) {
+            noCommentsMessage.remove();
+          }
 
           const newComment = {
             body: commentValue,

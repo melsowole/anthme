@@ -159,10 +159,17 @@
   font-weight: 600;
 }
 
-.img-div > h2::after {
+ .img-div > h2::after {
   content: "•";
   margin-left: 0.5rem;
+} 
+
+.title-el::before{
+  content: "•";
+  margin-right: 0.5rem;
+ 
 }
+
 .comment-body {
   position: relative;
   margin: 0 0 1rem 3rem;
