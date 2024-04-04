@@ -13,15 +13,16 @@ import { main } from "./components/templates/profile-page.js";
 import { stringToDOM } from "../utilities/templateUtils.js";
 import * as api from "../api.js"
 import { deleteCookie, filterCookieValue  } from "../utilities/cookieUtils.js";
-import { User } from "../utilities/types.js";
+import { Category, User } from "../utilities/types.js";
 import dayjs from "dayjs";
-import {Post, Comment} from "../utilities/types.js"
+import { Post, Comment} from "../utilities/types.js"
 import { htmlEntitiesToString } from "../utilities/convertToStringUtils.js";
 import {DeleteContentBtn} from"./components/DeleteContentBtn.js"
 import PageLayout from "./components/PageLayout.js";
 import PostPreview from "./components/PostPreview.js"
 import CommentFooter from "./components/CommentFooter.js";
 import * as rating from "../utilities/footerContentUtils.js"
+import CategoryProfile from "./components/CategoryProfile.js";
 import { applyUserFeedbackClassToContent } from "../utilities/loggedInUserUtils.js";
 
 async function displayProfile():Promise<void> {
@@ -94,10 +95,18 @@ async function displayProfile():Promise<void> {
                 async function handleCommentsLink():Promise<void>{
                     container.innerHTML = "";
                     const comments = await api.getAllCommentsByUser(user.id as string);
+                    
 
                     if(comments.length){
-                        displayContent(container, comments, 'comment')
-                        handleDeleteBtn(); 
+                        for(const comment of comments){
+                            const post = await api.getPost(comment.postId)
+                            if('category' in post ){
+                                const category = await api.getCategory(post.category)
+                                displayComments(container, comment, post, category)
+                            }
+                            
+                        }
+                        
                     } else {
                         container.innerHTML = `
                         <div>No comments...</div>
@@ -179,86 +188,43 @@ function displayUserProfile(user: User, container: HTMLDivElement): void {
 }
 
 
-function handleDeleteBtn():void {
-    const deleteBtns = document.querySelectorAll('.delete-btn') as NodeListOf<HTMLButtonElement>;
-    deleteBtns.forEach(deleteBtn => {
-        deleteBtn.addEventListener('click', async (event) => {
+function displayComments(container: HTMLElement, item: Comment, post: Post, category: Category) {
+   
+    const itemElement = document.createElement('div');
+    itemElement.classList.add('comment-item', 'profile-item', 'post-container');
+    itemElement.id = item.id;
+    const commentWrapper = document.createElement('div');
+    commentWrapper.classList.add('comment-wrapper')
 
-            event.stopPropagation();
-            const container = (event.target as HTMLElement).closest('.profile-item') as HTMLElement;
-            const containerId = container.id;
-            const loggedInUserId = filterCookieValue('id', 'user')
+    const imgDiv = document.createElement('div');
+    imgDiv.classList.add('img-div');
 
-            try{
-                if(deleteBtn.classList.contains('post')){
-                    const response = await api.deletePost(loggedInUserId, containerId);
+    const itemBody = document.createElement('div');
+    itemBody.classList.add('comment-body');
 
-                    if('statusCode' in response) throw new Error(response.message)
-        
-                } else{
-                    const commentObj = await api.getComment(containerId)
-                    const response = await api.deleteComment(commentObj.postId, loggedInUserId, commentObj.id)
+    const el = CategoryProfile.create(category, 'span')
+    
+    const postTitleEl = document.createElement('small');
+    postTitleEl.classList.add('title-el');
+    postTitleEl.innerText = post.title;
 
-                    if('statusCode' in response) throw new Error(response.message)
-                }
-                container.remove();
-            } catch(err){
-                alert(err);
-            }
-        });
-    });
-}
+    const contentEl = document.createElement('div');
+    contentEl.innerHTML = htmlEntitiesToString(item.body);
 
-function displayContent(container: HTMLElement, items: (Post | Comment)[], typeOfContent:string) {
-    container.innerHTML = "";
+    const loggedInUserId = filterCookieValue('id', 'user');
+    if (item.user.id === loggedInUserId) {
+        const deleteBtn = DeleteContentBtn.create('comment');
+        commentWrapper.append(imgDiv, deleteBtn);
+    } 
+     else commentWrapper.append(imgDiv);
+    
+    itemBody.append(contentEl, CommentFooter.create(item.rating));
+    imgDiv.append(postTitleEl, el);
+    itemElement.append(commentWrapper, itemBody);
+    
 
-    items.forEach(item => {
-        const itemElement = document.createElement('div');
-        itemElement.classList.add('comment-item', 'profile-item', 'content-container');
-        itemElement.id = item.id;
-        const commentWrapper = document.createElement('div');
-        commentWrapper.classList.add('comment-wrapper')
-
-        const timeStampEl = document.createElement('small');
-        timeStampEl.classList.add('timestamp-el');
-        timeStampEl.innerText = dayjs(item.created).fromNow()
-       
-        const imgDiv = document.createElement('div');
-        imgDiv.classList.add('img-div');
-
-        const itemBody = document.createElement('div');
-        itemBody.classList.add('comment-body');
-
-        const userImg = document.createElement('img')
-        userImg.src = item.user.userImage;
-
-        const usernameEl = document.createElement('h2');
-        usernameEl.innerText = item.user.username;
-
-        if ('title' in item) {
-            const titleEl = document.createElement('h2');
-            titleEl.classList.add('post-title');
-            titleEl.innerText =item.title;
-            itemBody.appendChild(titleEl);
-        }
-        
-        const contentEl = document.createElement('div');
-        contentEl.innerHTML = htmlEntitiesToString(item.body);
-
-         const loggedInUserId = filterCookieValue('id', 'user');
-         if (item.user.id === loggedInUserId) {
-            const deleteBtn = DeleteContentBtn.create(typeOfContent);
-            commentWrapper.append(imgDiv, deleteBtn);
-        } 
-         else commentWrapper.append(imgDiv, usernameEl);
-        
-        itemBody.append(contentEl, CommentFooter.create(item.rating));
-        imgDiv.append(timeStampEl, usernameEl, userImg);
-        itemElement.append(commentWrapper, itemBody);
-        
-
-        container.append(itemElement);
-    });
+    container.append(itemElement);
+   
 
 }
 

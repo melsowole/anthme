@@ -153,16 +153,23 @@
 }
 
 .img-div > h2,
-.timestamp-el {
+.title-el, .timestamp-el {
   color: #2a3c42;
   font-size: 0.75rem;
   font-weight: 600;
 }
 
-.img-div > h2::after {
+ .img-div > h2::after {
   content: "•";
   margin-left: 0.5rem;
+} 
+
+.title-el::before{
+  content: "•";
+  margin-right: 0.5rem;
+ 
 }
+
 .comment-body {
   position: relative;
   margin: 0 0 1rem 3rem;
