@@ -191,7 +191,7 @@ function displayUserProfile(user: User, container: HTMLDivElement): void {
 function displayComments(container: HTMLElement, item: Comment, post: Post, category: Category) {
    
     const itemElement = document.createElement('div');
-    itemElement.classList.add('comment-item', 'profile-item', 'post-container');
+    itemElement.classList.add('comment-item', 'profile-item', 'content-container');
     itemElement.id = item.id;
     const commentWrapper = document.createElement('div');
     commentWrapper.classList.add('comment-wrapper')

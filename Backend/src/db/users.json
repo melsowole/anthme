@@ -19,9 +19,7 @@
     "password": "egg",
     "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1712215362664",
     "created": "2024-04-04T07:22:47.594Z",
-    "posts": [
-      "46dd3e7c-e0f0-414c-8c61-7b56afdfc772"
-    ],
+    "posts": [],
     "comments": [],
     "favoriteCategories": [
       "mildlyinfuriating",
