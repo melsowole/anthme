@@ -49,6 +49,7 @@ apiRouter.route("/posts/:postId/update-downvotes/:userId").patch(posts.updateDow
 // Comments routes
 apiRouter.route("/comments").get(comments.getAllComments);
 apiRouter.route("/comments/:commentId").get(comments.getCommentById);
+apiRouter.route("/comments/post/:postId").get(comments.getAllCommentsInPost);
 
 apiRouter
   .route("/posts/:postId/users/:userId/comments")
