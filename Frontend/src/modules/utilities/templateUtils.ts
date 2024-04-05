@@ -1,7 +1,8 @@
-type ReplacePair = {
-  pattern: string;
-  replacement: string;
-};
+// Utilities for handling string templates
+//
+// 
+
+import {ReplacePair} from "./types";
 
 const replace = (input: string, replacePairs: ReplacePair[]): string => {
   let output = input;
@@ -20,4 +21,4 @@ const stringToDOM = (htmlString: string): any => {
   return document.body.firstChild;
 };
 
-export { replace, stringToDOM, ReplacePair };
+export { replace, stringToDOM };
