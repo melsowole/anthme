@@ -1,19 +1,14 @@
+import * as template from "./templates/main-aside";
+import { stringToDOM } from "../../utilities/templateUtils";
+
 export default class Sidebar{
     static create(content: HTMLElement[]): HTMLElement{
-    const aside = document.createElement("aside");
-    aside.classList.add("sidebar-aside");
+        const aside = stringToDOM(template.aside);
 
-    const sticky = document.createElement("div");
-    sticky.classList.add("sticky-wrapper");
+        const sidebar = aside.querySelector(".sidebar") as HTMLElement;
 
-    const sidebar = document.createElement("div");
-    sidebar.classList.add("sidebar");
+        content.forEach(el => sidebar.append(el))
 
-    aside.append(sticky);
-    sticky.append(sidebar);
-
-    content.forEach(el => sidebar.append(el))
-
-    return aside;
+        return aside;
     }
 }

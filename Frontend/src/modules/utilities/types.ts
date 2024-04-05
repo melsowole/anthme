@@ -8,18 +8,18 @@ type SuccessfulResponse = {
 }
 
 type User = {
-  id?: string;
+  id: string;
   username: string;
   password: string;
   userImage: string;
-  posts?: string[];
-  comments?: string[];
-  created?: number;
-  favoriteCategories?: string[];
+  posts: string[];
+  comments: string[];
+  created: number;
+  favoriteCategories: string[];
 };
 
 type Post = {
-  id?: string;
+  id: string;
   category: string;
   title: string;
   body: string;

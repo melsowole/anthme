@@ -7,11 +7,12 @@
 // - profile (category name + icon in category wrapper)
 
 // Patterns:
-// __category-bg-color__ : Backgound color for category icon
-// __category-text-color__ : Text color for category icon
-// __category-icon__ : Icon representing the category
-// __tag-name__ : HTML tag name for the category name
-// __category-name__ : Name of the category
+// __category-bg-color__ (icon, profile): Backgound color for category icon
+// __category-text-color__ (icon profile): Text color for category icon
+// __category-icon__ (icon, profile): Icon representing the category
+
+// __tag-name__ (name, profile): HTML tag name for the category name
+// __category-name__ (name, profile): Name of the category
 
 const icon = `
 <span class="img-icon" style="background-color:__category-bg-color__">

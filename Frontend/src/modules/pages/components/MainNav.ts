@@ -14,7 +14,6 @@ import Dropdown from "./DropdownElement.js";
 import {filterCookieValue} from "../../utilities/cookieUtils.js";
 import { LinkItem } from "../../utilities/types.js";
 import * as api from "../../api.js"
-import { dropdown } from "./templates/dropdown.js";
 
 const links = [
     {

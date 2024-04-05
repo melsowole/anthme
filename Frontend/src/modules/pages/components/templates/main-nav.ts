@@ -1,3 +1,16 @@
+// Templates for MainNav
+// This file contains templates for rendering the right-hand side navigation
+// which contains links and dropdowns
+
+// exports: 
+// - nav (main wrapping element)
+// - linkItem (used in the links section: Home, Profile etc )
+
+// Patterns:
+// __link__ (linkItem): Link href
+// __icon__ (linkItem): Icon name from google Icons
+// __name__ (linkItem): Link text
+
 const nav = `
 <aside class="main-nav">
     <header>

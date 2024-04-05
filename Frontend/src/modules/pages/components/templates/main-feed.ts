@@ -1,4 +1,13 @@
-import * as category from "./category-profile";
+// Templates for MainFeed
+// This file contains templates for rendering posts feeds
+
+// exports: 
+// - feed (main wrapping element)
+// - defaultTitle (default title displayed on homepage)
+// - noPosts (default text when no posts found)
+
+// Patterns:
+// __containerType__ (feed): Unique id for the feed
 
 const feed = `
   <main class="main-feed">

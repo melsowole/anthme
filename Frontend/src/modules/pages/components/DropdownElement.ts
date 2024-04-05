@@ -84,18 +84,6 @@ export default class Dropdown {
   }
 
  static createCategoryObject(categoryName: string, categoryItems: Category[]): NavMainCategory {
-    // WHAT IS THIS?
-    // let items: { url: string, content: HTMLElement }[] = [];
-    
-    // if (Array.isArray(categoryItems)) {
-    //     items = categoryItems.map(c => {
-    //         return {
-    //             url: "/" + c.name,
-    //             class: "sub-category",
-    //             content: CategoryProfile.create(c, "span")
-    //         }
-    //     });
-    // }
     
     return {
       label: categoryName,

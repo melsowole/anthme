@@ -6,10 +6,11 @@
 // - item (dropdown sub-category item with favorite button)
 
 // Patterns:
-// __id__ : Unique id for the dropdown
-// __heading__ : Dropdown label text
-// __url__: Item link
-// __class-name__ : Item class name
+// __id__ (dropdown): Unique id for the dropdown
+// __heading__ (dropdown): Dropdown label text
+
+// __url__ (item): Item link
+// __class-name__ (item): Item class name
 
 const dropdown = `
 <nav class="dropdown">
