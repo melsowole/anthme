@@ -22,10 +22,28 @@
 .post-title{
  margin-bottom: 0.5rem;   
 }
+
 .delete-btn{
-  padding-left: 0.2rem;
-  padding-right: 0.2rem;
+  height: 2rem;
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0.2rem;
   cursor: pointer;
+  background-color: transparent;
+  border: 1px solid var(--neut);
+  border: none;
+  border-radius: 1rem;
+}
+
+.delete-btn:hover{
+  background-color: var(--bg);
+}
+
+.delete-btn span{
+  color: var(--error) !important;
+
 }
 
 button.del-account-btn{
