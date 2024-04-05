@@ -76,3 +76,7 @@ button.del-account-btn:hover{
     content: "•";
     padding: 0 0.25rem;
 }
+
+.category-href.p-c-post-title::after {
+    content: none;
+}
