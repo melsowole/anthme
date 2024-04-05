@@ -1,4 +1,5 @@
 import * as template from "./templates/main-feed.js";
+import { sortDropdown } from "./templates/sort-dropdown.js";
 import {replace, stringToDOM} from "../../utilities/templateUtils.js";
 import PostPreview from "./PostPreview.js";
 import { Category, Post} from "../../utilities/types.js";
@@ -14,8 +15,7 @@ export default class MainFeed {
 
     const headerContent = category ? CategoryProfile.create(category, "h2") : stringToDOM(template.defaultTitle);
 
-    header.append(headerContent);
-    
+    header.append(headerContent, stringToDOM(sortDropdown));
 
     if(posts.length == 0){
       main.querySelector("#posts").append(stringToDOM(template.noPosts))
