@@ -1,15 +1,19 @@
+// This file contains HTML templates for rendering the landing page.
+// It includes forms for creating an account and logging in.
+
+
 const landingPageString = `
 <div class="landing-page-container">
     
     <div class="landing-page-title">
-            <h1>To view Anthme you must be signed in</h1>
+        <h1>To view Anthme you must be signed in</h1>
 
-            <div class="landing-page-content">
-                <h2>Join today.</h2>
-                <button id="createAccountBtn">Create account</button>
-                <h3>Already have an account?</h3>
-                <button id="signInBtn">Sign in</button>
-            </div>
+        <div class="landing-page-content">
+            <h2>Join today.</h2>
+            <button id="createAccountBtn">Create account</button>
+            <h3>Already have an account?</h3>
+            <button id="signInBtn">Sign in</button>
+        </div>
 
         
     </div>

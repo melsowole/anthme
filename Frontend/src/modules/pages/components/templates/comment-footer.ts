@@ -1,3 +1,9 @@
+//Template for footer component used in both posts and comments.
+// It renders HTML structure for rating element, sharing and copying links.
+
+//Exports:
+// -footer
+
 import * as template from "./rating-element.ts";
 
 const footer = 

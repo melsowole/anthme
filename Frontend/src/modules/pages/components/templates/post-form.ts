@@ -1,3 +1,6 @@
+// Templates for create post page. 
+// This file contains templates for rendering postForm 
+
 const mainContainer: string = 
 `
 <main id="mainContainer">

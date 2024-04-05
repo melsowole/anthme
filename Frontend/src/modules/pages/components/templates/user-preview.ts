@@ -1,3 +1,6 @@
+// Templates for user list.
+// This file contains the template userlist element.
+
 const userListContainer = `<ul class="users-wrapper"></ul>`
 
 const userPreview = 
