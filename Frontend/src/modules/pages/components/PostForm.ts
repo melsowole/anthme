@@ -1,11 +1,13 @@
-//PostForm.ts
+/**
+ * Creates a parsed post form to HTML with imported text editor and tooltips
+ * Text editor is imported from Quill library
+ * Tooltip is in hints.css
+ */
 import * as template from "./templates/post-form.js";
 import CreatePostFormDropdown from "./CreatePostFormDropdown.js";
 import { stringToDOM} from "../../utilities/templateUtils.js";
 import Quill from "quill";
 import * as api from "../../api.js";
-
-
 
 export default class PostForm {
     static async create(): Promise<HTMLDivElement> {
@@ -120,7 +122,7 @@ function getLabelForQuillButton(button: HTMLElement): string | null {
     };
 
     const btnClasses = button.classList;
-    let label = null;
+    let label: string = '';
 
     for (const btnClassName of Object.keys(btnClassNames)) {
         if (btnClasses.contains(btnClassName)) {

@@ -1,3 +1,7 @@
+/**
+ * types.ts contains all project types
+ */
+
 type CustomError = {
   statusCode: number;
   message: string;

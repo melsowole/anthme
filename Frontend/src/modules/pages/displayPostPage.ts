@@ -14,7 +14,7 @@ import * as api from "../api.js";
 import dayjs from "dayjs";
 import { filterCookieValue } from "../utilities/cookieUtils.js";
 import { Post, Comment } from "../utilities/types.js";
-import { htmlEntitiesToString } from "../utilities/convertToStringUtils.js";
+import { parseDBString } from "../utilities/stringUtils.js";
 import * as rating from "../utilities/footerContentUtils.js";
 import { applyUserFeedbackClassToContent } from "../utilities/loggedInUserUtils.js";
 import PageLayout from "./components/PageLayout.js";
@@ -198,9 +198,9 @@ function displayUserProfile(container: HTMLElement, item: (Post), userImg: strin
 
   const titleEl = document.createElement('h2');
   titleEl.classList.add("title");
-  titleEl.innerText = htmlEntitiesToString(item.title);
+  titleEl.innerText = parseDBString(item.title);
   const contentEl = document.createElement('div');
-  contentEl.innerHTML = htmlEntitiesToString(item.body);
+  contentEl.innerHTML = parseDBString(item.body);
 
   categoryEl.append(usernameEl, postCreatedEl)
   contentDiv.append(titleEl, contentEl)
@@ -233,7 +233,7 @@ function displayCommentOnPost(container: HTMLElement, item: Comment, postComment
   usernameEl.classList.add('category-href');
 
   const contentEl = document.createElement('div');
-  contentEl.innerHTML = htmlEntitiesToString(item.body);
+  contentEl.innerHTML = parseDBString(item.body);
 
   displayUserImage(imgDiv, item.user.userImage);
       

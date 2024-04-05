@@ -1,7 +1,12 @@
+/**
+ * Adds class to elements the logged in user has upvoting or downvoted on page reload
+ * Mostly for user experience to tell the user has upvoted or downvoted
+ */
+
 import { filterCookieValue } from "./cookieUtils.js";
 import { Post, Comment } from "./types.js";
 
-// Only takes one post as argument to reuse function
+// Only takes one post as argument for reuseing the function
 function applyUserFeedbackClassToContent(content: Post | Comment) {
     const loggedInUserId = filterCookieValue('id', 'user');
 

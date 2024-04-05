@@ -9,7 +9,7 @@ import { replace, stringToDOM } from "../../utilities/templateUtils.js";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Post } from "../../utilities/types.js";
-import { htmlEntitiesToString } from "../../utilities/convertToStringUtils.js";
+import { parseDBString } from "../../utilities/stringUtils.js";
 import * as api from "../../api.js";
 import CategoryProfile from "./CategoryProfile.js";
 import {DeleteContentBtn} from"./DeleteContentBtn.js";
@@ -26,7 +26,7 @@ export default class PostPreview {
       { pattern: "link", replacement: `/posts/${post.id}` },
       { pattern: "age", replacement: dayjs(post.created).fromNow() },
       { pattern: "title", replacement: post.title },
-      { pattern: "body", replacement: htmlEntitiesToString(post.body) },
+      { pattern: "body", replacement: parseDBString(post.body) },
       { pattern: "rating", replacement: (post.rating.upvotes.length - post.rating.downvotes.length).toString() },
       { pattern: "comments", replacement: post.comments.length.toString() },
     ]);
