@@ -3,7 +3,7 @@
 
 const userListContainer = `<ul class="users-wrapper"></ul>`
 
-const userList = 
+const userPreview = 
 `
 <li id="__userId__" class="user-list post preview boxed">
     <a class="unstyle" href="/profile/__href-username__">
@@ -36,9 +36,6 @@ const userList =
     </a>
 </li>
 <hr>
-`
+`;
 
-// lägg till senare
-// <img src="__userimage__"/>
-
-export {userListContainer, userList}
+export {userListContainer, userPreview}

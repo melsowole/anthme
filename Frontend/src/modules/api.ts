@@ -1,6 +1,7 @@
 /**
  * Our own REST API
  * Following CRUD model
+ * API handles all communication with database
  * API sends User, Post, Comment, Category, Cookie requests to our Backend
  */
 
