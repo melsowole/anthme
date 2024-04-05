@@ -1,3 +1,10 @@
+// The UserNoticeboard class fetches all users, and creates and returns
+// DOM for a noticeboard with a few users and "see all" link
+//
+// Amount of users displayed can be set using visibleUsersN variable
+//
+// -  create method: Returns the DOM for the user noticeboard
+
 import Noticeboard from "./Noticeboard";
 import * as api from "../../api.js";
 import UserProfile from "./UserProfile";

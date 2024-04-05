@@ -1,3 +1,13 @@
+// The Header class create the site header
+//
+// This class is promarily used by the PageLayout module
+//
+// - create method: Returns DOM for the header with logged in user info
+//
+// The class automatically adds logged in user info to the profile menu
+// and manages the log out and delete account functionalities 
+// 
+
 import * as template from "./templates/main-header.js";
 import { replace, stringToDOM } from "../../utilities/templateUtils.js";
 import {

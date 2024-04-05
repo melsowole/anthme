@@ -1,3 +1,10 @@
+// The UserProfile class provides methods for creating user profile components
+//
+// -  create method: Returns user profile component with name and icon
+// -  createPreview method: Returns user profile component with link to page
+// -  createProfileImage method: Returns user profile component with only icon
+// -  createCommentProfile method: Returns user profile component followed by timestamp
+
 import * as template from "./templates/user-profile.js";
 import { replace, stringToDOM } from "../../utilities/templateUtils.js";
 import dayjs from "dayjs";

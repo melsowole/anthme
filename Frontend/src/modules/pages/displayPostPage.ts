@@ -179,15 +179,13 @@ function displayUserProfile(container: HTMLElement, item: (Post), userImg: strin
 
   displayUserImage(userImgContainer, userImg);
 
-  console.log(item);
-  
   const categoryEl = document.createElement('span');
   categoryEl.id = 'categoryTitle';
 
   const redirectEl = document.createElement('a');
   redirectEl.innerText = `a/${item.category}`
   redirectEl.href = `/${item.category}`;
-  redirectEl.classList.add('category-href');
+  redirectEl.classList.add('href', "category");
 
   const postCreatedEl = document.createElement('time');
   postCreatedEl.innerText = dayjs(item.created).fromNow();
@@ -196,7 +194,7 @@ function displayUserProfile(container: HTMLElement, item: (Post), userImg: strin
   const usernameEl = document.createElement('a')
   usernameEl.innerText = `u/${item.user.username}`;
   usernameEl.href = `/profile/${item.user.username}`;
-  usernameEl.classList.add('username', 'username-margin', 'category-href')
+  usernameEl.classList.add('username', "href")
 
   const titleEl = document.createElement('h2');
   titleEl.classList.add("title");
@@ -204,9 +202,9 @@ function displayUserProfile(container: HTMLElement, item: (Post), userImg: strin
   const contentEl = document.createElement('div');
   contentEl.innerHTML = htmlEntitiesToString(item.body);
 
-  categoryEl.append(redirectEl, postCreatedEl)
+  categoryEl.append(usernameEl, postCreatedEl)
   contentDiv.append(titleEl, contentEl)
-  userInfoItem.append(categoryEl, usernameEl)
+  userInfoItem.append(categoryEl, redirectEl)
   userInfoContainer.append(userInfoItem)
 
   container.append(userInfoItem);

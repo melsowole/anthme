@@ -2,8 +2,6 @@
 // category components with icon and name.
 //
 // create method: Returns DOM for a category component
-// string method: Returns string with replaced templates for category profile
-
 
 import {getContrastColor} from "../../utilities/textColorUtils.js"
 import { Category } from "../../utilities/types.js";

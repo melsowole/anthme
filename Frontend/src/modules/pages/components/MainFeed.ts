@@ -1,3 +1,12 @@
+// The MainFeed class creates and returns a feed of posts
+//
+// using the posts passed as an argument.
+// If a category name is passed as a second argument, 
+// the method renders a category header
+//
+// - create method: Returns DOM for a post feed
+//
+
 import * as template from "./templates/main-feed.js";
 import { sortDropdown } from "./templates/sort-dropdown.js";
 import {replace, stringToDOM} from "../../utilities/templateUtils.js";

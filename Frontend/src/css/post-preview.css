@@ -7,12 +7,12 @@
   align-items: center;
 }
 
-.category-href {
+.category-href, .href {
   text-decoration: none;
 }
 
-.category-href:hover {
-  color: #90cce0;
+.category-href:hover, .category.href:hover {
+  color: var(--neutHue);
 }
 
 .post.preview .timestamp::before {
