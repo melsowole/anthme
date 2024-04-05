@@ -1,3 +1,8 @@
+// Templates for ProfilePage component 
+// This file contains the base HTML structure for redering user profile.  
+
+// Exports:
+// - main 
 const main = `
 <main class="main-feed">
     <div class="user-info"></div>    

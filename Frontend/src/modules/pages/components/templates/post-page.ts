@@ -1,3 +1,6 @@
+// Templates for post page.
+// This file contains templates for rendering postpage and comments in post. 
+
 import * as template from "./rating-element";
 
 const postPage = `

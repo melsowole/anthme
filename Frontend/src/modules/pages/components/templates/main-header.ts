@@ -6,7 +6,6 @@
 // - profileMenu (user dropdown displayed on profile icon click)
 //      - userPreview should be prepended in container (by comment)
 
-
 const header = `
 <header class="main-header">
     <a class="logo" href="/">

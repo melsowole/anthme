@@ -1,3 +1,14 @@
+// Templates for user profile.
+// This file contains the template for user profile element.
+
+// Exports: 
+// - userImgProfile (userImg + tool tip)
+// - userImg (userImg)
+// - userProfile (userImg + userName)
+// - username 
+// - timestamp 
+// - userProfilePreview (username, userImg, preview)
+
 const userImgProfile = ` <span class="hint--left hint--rounded user-img-wrapper" aria-label="View profile" > <img class="user-img"  src="__img__"> </span>`;
 const userImg = `  <img class="user-img"  src="__img__">`;
 

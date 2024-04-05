@@ -1,3 +1,5 @@
+// Templates for all posts on homepage(postPreview). 
+
 import * as template from "./rating-element.js";
 
 const postPreview = `

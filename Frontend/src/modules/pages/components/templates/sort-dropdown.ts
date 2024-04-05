@@ -1,3 +1,4 @@
+// Templates for dropdown that sorts all posts on homepage. 
 const sortDropdown = 
 `
 <select class="sort" name="sort">
