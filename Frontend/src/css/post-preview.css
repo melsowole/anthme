@@ -5,11 +5,19 @@
 .post.preview header {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+}
+
+.category-href {
+  text-decoration: none;
+}
+
+.category-href:hover {
+  color: #90cce0;
 }
 
 .post.preview .timestamp::before {
-  content: "• ";
+  content: "•";
+  padding: 0 0.3rem;
 }
 
 .post.preview:hover {

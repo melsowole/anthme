@@ -1,3 +1,9 @@
+/**
+ * Router handles all url path and displays corresponding page
+ * If cookie is set display home page for user, otherwise render landing page
+ * Router resolves in main.ts file
+ */
+
 import Navigo from "navigo";
 import displayCreatePostPage from "./modules/pages/displayCreatePostPage.js";
 import { displayLandingPage } from "./modules/pages/displayLandingPage.js";
@@ -9,9 +15,6 @@ import { displayViewPostPage } from "./modules/pages/displayPostPage.js";
 
 const router = new Navigo("/");
 
-//Tänk på att ta bort nedanstående kommentarer inför inlämning.
-// Funktionen returnerar ett promise för att vänta tills readCookie() är klar
-// innan router.resolve() körs från main.ts
 function setupRouter(): Promise<void> {
   return new Promise((resolve, reject) => {
     readCookie()

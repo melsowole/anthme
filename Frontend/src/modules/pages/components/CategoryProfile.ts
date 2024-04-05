@@ -20,6 +20,7 @@ export default class CategoryProfile{
     const headerTemplate = replace(template.profile, [
       {pattern: "tag-name", replacement: tagName},
       {pattern: "category-name", replacement: category.name},
+      {pattern: "category-href", replacement: `/${category.name}`},
       {pattern: "category-bg-color", replacement: category.color},
       {pattern: "category-text-color", replacement: getContrastColor(category.color)},
       {pattern: "category-icon", replacement: category.icon}, 
