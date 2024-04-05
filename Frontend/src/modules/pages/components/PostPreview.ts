@@ -11,7 +11,7 @@ import { filterCookieValue } from "../../utilities/cookieUtils.js";
 
 dayjs.extend(relativeTime);
 
-export default class postPreview {
+export default class PostPreview {
   static create(post: Post,): HTMLElement {
     let previewTemplate = template.postPreview;
 
