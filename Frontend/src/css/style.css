@@ -19,3 +19,4 @@
 @import "text-editor.css";
 @import "rating.css";
 @import "category-profile.css";
+@import "../../node_modules/quill/dist/quill.snow.css";

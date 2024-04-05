@@ -91,4 +91,9 @@ type CategoryItem = {
 };
 // For dropdown end
 
-export {CustomError, SuccessfulResponse, User, Post, Rating, Comment, Category, LinkItem, DropdownDOM, NavMainCategory, CategoryItem };
+type ReplacePair = {
+  pattern: string;
+  replacement: string;
+};
+
+export {CustomError, SuccessfulResponse, User, Post, Rating, Comment, Category, LinkItem, DropdownDOM, NavMainCategory, CategoryItem, ReplacePair };
