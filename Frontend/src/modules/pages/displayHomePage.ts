@@ -1,14 +1,23 @@
+/**
+ * Renders Home Page for User
+ * Also renders category posts on category click
+ * Home Page handles sort dropdown and all post events such as voting, copy link and delete users own posts.
+ * User can navigate to different categories, post, users profile page and see all users
+ * User can also log out, delete own account
+*/
+
 import MainFeed from "./components/MainFeed.js";
 import * as api from "../api.js";
-import { Category } from "../utilities/types.js";
+import { Category, Post } from "../utilities/types.js";
 import { applyUserFeedbackClassToContent } from "../utilities/loggedInUserUtils.js";
 import * as rating from "../utilities/footerContentUtils.js";
 import PageLayout from "./components/PageLayout.js";
+import PostPreview from "./components/PostPreview.js";
 
 export default async function displayHomePage() {
     let posts = await api.getAllPosts();
     
-    const category : false | Category = await getPageCategory()
+    const category : false | Category = await getPageCategory();
 
     if(category){
         posts = posts.filter(p=>p.category == category.name);
@@ -18,9 +27,12 @@ export default async function displayHomePage() {
     await pageLayout.create(MainFeed.create(posts, category))
 
     posts.forEach(applyUserFeedbackClassToContent)
-
+    
     const postsContainer = document.querySelector('#posts') as HTMLDivElement;
+    const sortDropdown = document.querySelector('.sort') as HTMLSelectElement;
+
     postsContainer.addEventListener('click', rating.handleFooterContent)
+    sortDropdown.addEventListener('change', handleSortDropdown)
 }
 
 async function getPageCategory():Promise<Category|false>{
@@ -35,4 +47,45 @@ function getPageURLParam() :string{
     const urlParts: string[] = window.location.pathname.split("/");
     const urlPathEndpoint: string = urlParts[urlParts.length - 1];
     return urlPathEndpoint;
+}
+
+async function handleSortDropdown(event: Event): Promise<void> {
+    const {target} = event;
+    if(!(target instanceof HTMLSelectElement)) return;
+
+    let updatedPosts = await api.getAllPosts();
+    const category : false | Category = await getPageCategory();
+    if(category){
+        updatedPosts = updatedPosts.filter(p=>p.category == category.name);
+    }
+    
+    const sortedPosts = sortPosts(target.value, updatedPosts);
+    console.log(sortedPosts);
+    
+    const postsContainer = target.closest('.main-feed')?.querySelector('#posts') as HTMLDivElement;
+    postsContainer.innerHTML = '';
+
+    sortedPosts.forEach(post => {
+        postsContainer.append(PostPreview.create(post))
+        applyUserFeedbackClassToContent(post);
+    })
+} 
+
+function sortPosts(type: string, posts: Post[]): Post[] {
+    if(type === 'rating') {
+        return posts.sort((a, b) => {
+            return (b.rating.upvotes.length - b.rating.downvotes.length) - (a.rating.upvotes.length - a.rating.downvotes.length);
+        });
+    }
+    else if(type === 'newest') {
+        return posts.sort((a, b) => {
+            return new Date(b.created).getTime() - new Date(a.created).getTime();
+        });
+    }
+    else if(type === 'oldest') {
+        return posts.sort((a, b) => {
+            return new Date(a.created).getTime() - new Date(b.created).getTime();
+        });
+    }
+    else return posts;
 }

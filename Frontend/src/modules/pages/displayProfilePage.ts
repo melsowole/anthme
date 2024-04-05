@@ -14,7 +14,6 @@ import { stringToDOM } from "../utilities/templateUtils.js";
 import * as api from "../api.js"
 import { deleteCookie, filterCookieValue  } from "../utilities/cookieUtils.js";
 import { Category, User } from "../utilities/types.js";
-import dayjs from "dayjs";
 import { Post, Comment} from "../utilities/types.js"
 import { htmlEntitiesToString } from "../utilities/convertToStringUtils.js";
 import {DeleteContentBtn} from"./components/DeleteContentBtn.js"
@@ -189,21 +188,26 @@ function displayUserProfile(user: User, container: HTMLDivElement): void {
 
 
 function displayComments(container: HTMLElement, item: Comment, post: Post, category: Category) {
+   console.log(item);
    
     const itemElement = document.createElement('div');
-    itemElement.classList.add('comment-item', 'profile-item', 'post-container');
+    itemElement.classList.add('comment-item', 'profile-item', 'content-container');
     itemElement.id = item.id;
     const commentWrapper = document.createElement('div');
     commentWrapper.classList.add('comment-wrapper')
 
     const imgDiv = document.createElement('div');
-    imgDiv.classList.add('img-div');
+    imgDiv.classList.add('img-div', 'p-c-img-div');
 
     const itemBody = document.createElement('div');
     itemBody.classList.add('comment-body');
 
     const el = CategoryProfile.create(category, 'span')
     
+    const redirectPostEl = document.createElement('a');
+    redirectPostEl.href = `/posts/${item.postId}`;
+    redirectPostEl.classList.add('category-href', 'p-c-post-title');
+
     const postTitleEl = document.createElement('small');
     postTitleEl.classList.add('title-el');
     postTitleEl.innerText = post.title;
@@ -219,13 +223,11 @@ function displayComments(container: HTMLElement, item: Comment, post: Post, cate
      else commentWrapper.append(imgDiv);
     
     itemBody.append(contentEl, CommentFooter.create(item.rating));
-    imgDiv.append(postTitleEl, el);
+    redirectPostEl.append(postTitleEl);
+    imgDiv.append(redirectPostEl, el);
     itemElement.append(commentWrapper, itemBody);
-    
 
     container.append(itemElement);
-   
-
 }
 
 

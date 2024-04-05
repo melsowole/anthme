@@ -84,7 +84,6 @@ export default class Dropdown {
   }
 
  static createCategoryObject(categoryName: string, categoryItems: Category[]): NavMainCategory {
-    
     return {
       label: categoryName,
       id: "dropdown-" + categoryName,
@@ -97,5 +96,6 @@ export default class Dropdown {
       })
     }    
   }
+
 }
 

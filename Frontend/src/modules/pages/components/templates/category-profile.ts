@@ -20,7 +20,7 @@ const icon = `
 </span>
 `;
 
-const name = `<__tag-name__ class="category-name">a/__category-name__</__tag-name__>`;
+const name = `<__tag-name__ class="category-name"><a href="__category-href__" class="category-href">a/__category-name__</a></__tag-name__>`;
 
 const profile = `
     <div class="category">

@@ -21,7 +21,7 @@
   background-color: vaR(--neutLight);
 }
 
-.user.preview .user-img-wrapper {
+.user.preview .user-img-wrapper, .user.preview .user-img {
   grid-area: icon;
 }
 
@@ -41,7 +41,6 @@
 
 .timestamp::before {
   content: "•";
-  margin: 0 0.5rem;
 }
 
 .user-profile .username {

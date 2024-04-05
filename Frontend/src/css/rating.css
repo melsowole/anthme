@@ -1,9 +1,12 @@
 .rating{
     cursor: default;
 }
-.upvote-active, .downvote-active{
-    color: var(--bg);
-    fill: var(--bg)
+.upvote-active .rating-count,
+.downvote-active .rating-count,
+.upvote-active svg,
+.downvote-active svg {
+    color: var(--onColor) !important;
+    fill: var(--onColor) !important;
 }
 
 .upvote-active {
@@ -25,7 +28,7 @@
 
 
 .rating svg{
-    height: 1.25rem;
+    height: 1rem;
 }
 
 .rating button{

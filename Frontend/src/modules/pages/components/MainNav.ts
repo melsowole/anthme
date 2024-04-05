@@ -87,7 +87,6 @@ export default class MainNav {
     event.stopPropagation();
     const {target} = event;
 
-    console.log(target);
     if(!(target instanceof HTMLElement || target instanceof SVGElement)) return;
     
     if(target.closest('.icon-container')) {
@@ -103,7 +102,6 @@ export default class MainNav {
         const favoritesDropdown = target.closest('.dropdowns')?.querySelector('#dropdown-Favorites')?.closest('nav') as HTMLElement;
         favoritesDropdown.innerHTML = '';
         favoritesDropdown.append(Dropdown.create(updatedFavoriteDropdown.label, updatedFavoriteDropdown.id, updatedFavoriteDropdown.items));
-        
       }
 
     }
