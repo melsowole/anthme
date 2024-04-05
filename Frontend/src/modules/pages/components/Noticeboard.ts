@@ -1,3 +1,7 @@
+/**
+ * Class Noticeboard create method returns DOM for Noticeboard component
+*/
+
 import * as template from "./templates/noticeboard.js";
 import {
   replace,

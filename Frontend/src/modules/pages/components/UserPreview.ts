@@ -1,15 +1,20 @@
-import * as template from "./templates/user-list.js";
+/**
+ * Class UserPreview create method replaces placeholder strings in string templates with user information
+ * returns the newly replaced string template parsed to HTML
+ */
+
+import * as template from "./templates/user-preview.js";
 import {replace, stringToDOM} from "../../utilities/templateUtils.js";
 import dayjs from "dayjs";
 import { User } from "../../utilities/types.js";
 
 
 
-export default class UserList {
+export default class UserPreview {
     static create(user: User): HTMLLIElement {
-        let userList = template.userList;
+        let userPreview = template.userPreview;
         
-        userList = replace(userList, [
+        userPreview = replace(userPreview, [
             {pattern: 'userimage', replacement: user.userImage},
             {pattern: 'userId', replacement: user.id},
             {pattern: 'username', replacement: user.username},
@@ -19,6 +24,6 @@ export default class UserList {
             {pattern: 'amountOfComments', replacement: user.comments.length.toString()}
         ])
 
-        return stringToDOM(userList)
+        return stringToDOM(userPreview)
     }
 }

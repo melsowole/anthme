@@ -1,4 +1,17 @@
-//DisplayCreatePostPage
+/**
+ * Renders page layout from class PageLayout with PostForm HTML container as main content
+ * Also renders a specific noticeboard for create post page
+ * Create post page also checks forms validity
+ * Post form is ready to be submitted only when all inputs contains text or content
+ * Submitted form sends a post to database and redirects to post page
+ * 
+ * Sidenote:
+ * Using Quill library changes textarea element to div which resulted in adding attribute contentEditable to make it act as a textarea
+ * Using Quill library also creates <p> element as parent to the text string
+ * In order to fix check form validity, an instance of MutationObserver is created in order to observe changes in the div
+ * Creating a config {childList: true} for observer made it observe changes in child element inside the contentEditable div
+ */
+
 import * as api from "../api.js";
 import { filterCookieValue } from "../utilities/cookieUtils.js";
 import { Post } from "../utilities/types.js";
@@ -29,7 +42,6 @@ export default async function displayCreatePostPage(): Promise<void> {
     const mainContainerEl = document.querySelector("#mainContainer") as HTMLElement;
     addToolTipsToQuillButtons(mainContainerEl);
 
-
     const postForm = document.querySelector("#postForm") as HTMLFormElement;
     postForm.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -50,7 +62,6 @@ export default async function displayCreatePostPage(): Promise<void> {
                 const response = await api.sendDataToServer(newPost, "post", filterCookieValue("id", "user"))
 
                 if('id' in response){
-                    // post submit success
                     window.location.assign(`/posts/${response.id}`);
                 }
                 else if('statusCode' in response){

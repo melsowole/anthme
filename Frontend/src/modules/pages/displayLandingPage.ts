@@ -9,12 +9,13 @@ DisplayLandingPage:
 
 */
 
-import {  User} from '../utilities/types.js'
 import {landingPageString} from "./components/templates/landing-page.js"
 import { replace, stringToDOM } from "../utilities/templateUtils.js";
 import * as api  from '../api.js';
-import * as userImg from "../utilities/userImgUtils.js"
 
+const bananaUrlObj = new URL("../../img/userImgBanana.png", import.meta.url);
+const pizzaUrlObj = new URL("../../img/userImgPizza.png", import.meta.url);
+const donutUrlObj = new URL("../../img/userImgDonut.png", import.meta.url);
 
 let createAccountForm: HTMLFormElement;
 let logInForm: HTMLFormElement;
@@ -24,9 +25,9 @@ let formContainer: HTMLElement;
 function displayLandingPage(): void {
     let landingpageTemplate = landingPageString;
     landingpageTemplate = replace(landingpageTemplate, [
-        {pattern: 'banana', replacement: userImg.banana},
-        {pattern: 'donut', replacement: userImg.donut},
-        {pattern: 'pizza', replacement: userImg.pizza}
+        {pattern: 'banana', replacement: bananaUrlObj.href},
+        {pattern: 'donut', replacement: donutUrlObj.href},
+        {pattern: 'pizza', replacement: pizzaUrlObj.href}
     ])
     
     const landingPage: HTMLElement = stringToDOM(landingpageTemplate);
@@ -59,7 +60,6 @@ function displayLandingPage(): void {
 function handleCreateAccountBtn(e): void {
     e.stopPropagation();
     formContainer.classList.remove("hide");
-    console.log(formContainer)
     createAccountForm.classList.remove('hide');
     logInForm.classList.add('hide');
 

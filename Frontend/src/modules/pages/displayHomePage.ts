@@ -1,9 +1,10 @@
 /**
- * Renders Home Page for User
- * Also renders category posts on category click
- * Home Page handles sort dropdown and all post events such as voting, copy link and delete users own posts.
- * User can navigate to different categories, post, users profile page and see all users
- * User can also log out, delete own account
+ * Renders layout from class PageLayout component
+ * Home page reads the url and displays posts corresponding to the endpoint:
+ * - Category name endpoints displays all posts for the corresponding category
+ * - No endpoint displays all existing posts
+ * Home page sorts posts in descending order by default
+ * User can choose to sort by rating, newest, and oldest
 */
 
 import MainFeed from "./components/MainFeed.js";
@@ -60,7 +61,6 @@ async function handleSortDropdown(event: Event): Promise<void> {
     }
     
     const sortedPosts = sortPosts(target.value, updatedPosts);
-    console.log(sortedPosts);
     
     const postsContainer = target.closest('.main-feed')?.querySelector('#posts') as HTMLDivElement;
     postsContainer.innerHTML = '';

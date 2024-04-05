@@ -20,7 +20,7 @@ export default class PageLayout{
   private sidebarContentContainer: HTMLElement;
   private userNoticeboard: HTMLElement;
 
-  constructor(){}   
+  constructor(){}
 
   public async create(main: HTMLElement):Promise<void>{
     this.userNoticeboard = await UserNoticeboard.create();

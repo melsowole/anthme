@@ -1,3 +1,6 @@
+/**
+ * Class CommentFooter create method returns DOM for other components
+*/
 import * as template from "./templates/comment-footer.ts"
 import { replace, stringToDOM } from "../../utilities/templateUtils.ts"
 import { Rating } from "../../utilities/types.ts";

@@ -15,7 +15,7 @@ import * as api from "../api.js"
 import { deleteCookie, filterCookieValue  } from "../utilities/cookieUtils.js";
 import { Category, User } from "../utilities/types.js";
 import { Post, Comment} from "../utilities/types.js"
-import { htmlEntitiesToString } from "../utilities/convertToStringUtils.js";
+import { parseDBString } from "../utilities/stringUtils.js";
 import {DeleteContentBtn} from"./components/DeleteContentBtn.js"
 import PageLayout from "./components/PageLayout.js";
 import PostPreview from "./components/PostPreview.js"
@@ -172,17 +172,16 @@ function displayDeleteAccountBtn():void{
     userInfoContainer.append(deleteAccountBtn)
 }
 
-function displayUserProfile(user: User, container: HTMLDivElement): void {
+function displayUserProfile(user: User, container: HTMLDivElement): void {   
     container.innerHTML = "";
     const userInfo = document.createElement('div');
     const userNameEl = document.createElement('h2');
     userNameEl.innerText = user.username;
 
-    const userImageUrl = user.userImage 
-    const userImage = new Image();
-    userImage.src = userImageUrl;
+    const userImageEl = document.createElement('img');
+    userImageEl.src = user.userImage;
 
-    userInfo.append(userImage, userNameEl)
+    userInfo.append(userImageEl, userNameEl)
     container.append(userInfo);
 }
 
@@ -213,7 +212,7 @@ function displayComments(container: HTMLElement, item: Comment, post: Post, cate
     postTitleEl.innerText = post.title;
 
     const contentEl = document.createElement('div');
-    contentEl.innerHTML = htmlEntitiesToString(item.body);
+    contentEl.innerHTML = parseDBString(item.body);
 
     const loggedInUserId = filterCookieValue('id', 'user');
     if (item.user.id === loggedInUserId) {
