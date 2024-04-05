@@ -1,3 +1,6 @@
+// Utility for getting the contrast white or black of a hex code color
+//
+
 function getContrastColor(hexColor: string): 'black' | 'white' {
   const r = parseInt(hexColor.substring(1, 2), 16);
   const g = parseInt(hexColor.substring(3, 2), 16);

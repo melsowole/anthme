@@ -1,6 +1,7 @@
 // Utilities for handling string templates
 //
-// 
+// replace function: Returns string where pattern in string is replaced by replacement
+// stringToDOM function: Returns DOM element from html string
 
 import {ReplacePair} from "./types";
 
