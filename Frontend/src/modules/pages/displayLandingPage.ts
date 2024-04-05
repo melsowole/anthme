@@ -111,7 +111,7 @@ async function handleCreateAccount(event: Event): Promise<void> {
 
     const selectedValue = selectElement.value;
 
-    const newUser: User = {
+    const newUser = {
         username: username,
         password: password,
         userImage: selectedValue

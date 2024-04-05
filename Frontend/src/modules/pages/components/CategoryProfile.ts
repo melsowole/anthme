@@ -1,3 +1,8 @@
+// The CategoryProfile class provides methods to create 
+// category components with icon and name.
+//
+// create method: Returns DOM for a category component
+
 import {getContrastColor} from "../../utilities/textColorUtils.js"
 import { Category } from "../../utilities/types.js";
 import {replace, stringToDOM} from "../../utilities/templateUtils.js";
@@ -10,10 +15,6 @@ export default class CategoryProfile{
     const headerTemplate = this.createProfileTemplate(category, tagName);
 
     return stringToDOM(headerTemplate);
-  }
-
-  static string(category: Category, tagName: string) {
-    return this.createProfileTemplate(category, tagName);
   }
 
   private static createProfileTemplate(category: Category, tagName: string){

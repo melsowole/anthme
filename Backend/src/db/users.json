@@ -1,5 +1,17 @@
 [
   {
+    "id": "c9d6e80e-4ae8-4c40-9381-421340164d8e",
+    "username": "melchan",
+    "password": "pas",
+    "userImage": "http://localhost:1234/userImgBanana.971fd618.png?1712316043685",
+    "created": "2024-04-05T11:20:49.571Z",
+    "posts": [
+      "920a4e1e-79e3-487b-9bb0-c6ab08829258"
+    ],
+    "comments": [],
+    "favoriteCategories": []
+  },
+  {
     "id": "e536b913-b7d5-4f0a-a269-24792597d638",
     "username": "Clara",
     "password": "123",

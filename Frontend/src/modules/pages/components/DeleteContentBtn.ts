@@ -1,3 +1,8 @@
+// The DeleteContentBtn class provides a method to create functional 
+// delete buttons for delete post/comment buttons with  
+//
+// create method: Returns DOM for a delete button
+
 import { deleteContentBtn } from "./templates/delete-content-btn.js";
 import { replace, stringToDOM } from "../../utilities/templateUtils.js";
 import { filterCookieValue } from "../../utilities/cookieUtils.js";

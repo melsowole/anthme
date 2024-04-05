@@ -1,3 +1,9 @@
+// The PostPreview class creates and returns post previews
+//
+// If it is a post of the logged in user, it adds a delete button 
+//
+// -  create method: Returns the DOM for the post preview.
+
 import * as template from "./templates/post-preview.js";
 import { replace, stringToDOM } from "../../utilities/templateUtils.js";
 import dayjs from "dayjs";

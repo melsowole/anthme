@@ -1,30 +1,16 @@
+// Template for Sidebar component
+// This file contains the base HTML structure for the right sidebar
+// Sidebar content goes inside .sidebar
+
+// exports: 
+// - aside 
+
 const aside = `
-     <aside class="main-aside">
-      <section class="boxed neut">
-        <h3 class="list-heading">Users</h3>
-        <ul>
-          <li>
-            <a class="user" href="#"
-              ><div class="img-icon"></div>
-              u/NotStupid</a
-            >
-          </li>
-          <li>
-            <a class="user" href="#"
-              ><div class="img-icon"></div>
-              u/DoNotDry</a
-            >
-          </li>
-          <li>
-            <a class="user" href="#"
-              ><div class="img-icon"></div>
-              u/Minddraft</a
-            >
-          </li>
-        </ul>
-        <small
-          ><b><a class="unstyle" href="#">See more</a></b></small
-        >
-      </section>
-    </aside>
+  <aside class="main-aside sidebar-aside">
+    <div class="sticky-wrapper">
+      <div class="sidebar"></div>
+    </div>
+  </aside>
 `;
+
+export {aside}

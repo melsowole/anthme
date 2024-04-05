@@ -1,3 +1,16 @@
+// Templates for rating element
+// This file contains the template for the upvote/downvote element.
+// and variables for the upvote/downvote icons
+
+// Update rating number by changing .rating-count text content
+
+// exports: 
+// - ratingElement
+
+// Patterns:
+// __rating__ : Rating count
+
+
 const upvote = `
   <?xml version="1.0" encoding="UTF-8"?>
   <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 13">
@@ -18,13 +31,13 @@ const downvote = `
 
 const ratingElement = `
   <button class="upvote"> 
-      ${upvote}
+    ${upvote}
   </button>
   <small>
-      <span class="rating-count">__rating__</span>
+    <span class="rating-count">__rating__</span>
   </small>
   <button class="downvote">
-      ${downvote}
+    ${downvote}
   </button>
 `
 

@@ -40,7 +40,8 @@ export default class Dropdown {
 
   private static createLiEl(item: CategoryItem) {
     const liTemplate = replace(template.item, [
-      {pattern: "url", replacement: item.url}
+      {pattern: "url", replacement: item.url},
+      {pattern: "class-name", replacement:item.class}
     ]);
 
     const liEl = stringToDOM(liTemplate)
@@ -89,9 +90,12 @@ export default class Dropdown {
       items: categoryItems.map(c=> {
         return {
           url: "/" + c.name,
+          class: "sub-category",
           content: CategoryProfile.create(c, "small")
         }
       })
     }    
   }
+
 }
+

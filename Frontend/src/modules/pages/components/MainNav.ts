@@ -1,4 +1,5 @@
-// The MainNav class creates the navigation with the page links and dropdown menus.
+// The MainNav class creates and returns the right-hand side navigation 
+// with the page links and dropdown menus.
 // 
 // This class is accessed in the PageLayout module, and wherever the navigation should be 
 // displayed beyond the general page layout.
@@ -14,7 +15,6 @@ import Dropdown from "./DropdownElement.js";
 import {filterCookieValue} from "../../utilities/cookieUtils.js";
 import { LinkItem } from "../../utilities/types.js";
 import * as api from "../../api.js"
-import { dropdown } from "./templates/dropdown.js";
 
 const links = [
     {

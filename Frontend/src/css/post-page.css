@@ -14,9 +14,23 @@
   flex-direction: column;
 }
 
+.user-info-item .href{
+  font-size: 0.8rem;
+  padding-left: 0.5rem;
+}
+
+.user-info-item .category.href{
+  color: var(--neutDark);
+}
+
+.user-info-item .href:hover{
+  color: var(--neutHue);
+}
+
+
 #categoryTitle {
   font-size: 0.75rem;
-  margin-left: 0.5rem;
+  /* margin-left: 0.5rem; */
   color: var(--text);
   font-weight: 400;
   line-height: 1.6;
