@@ -107,9 +107,19 @@ async function getAllCommentsByUser(userId:string): Promise<Comment[]>{
   const url = `${baseUrl}users/${userId}/comments`
 
   const res = await fetch(url);
-  const comment = await res.json();
+  const comments = await res.json();
 
-  return comment;
+  return comments;
+}
+
+async function getAllCommentsInPost(postId: string): Promise<Comment[]> {
+  const url = `${baseUrl}comments/post/${postId}`;
+  
+  const res = await fetch(url);
+  const comments = await res.json();
+  console.log(comments);
+
+  return comments;
 }
 
 async function sendDataToServer<T extends User | Post | Comment | CustomError>(
@@ -279,6 +289,7 @@ export {
   getUserByUsername,
   getAllPostsByUser,
   getAllCommentsByUser,
+  getAllCommentsInPost,
   getAllCategories,
   getCategory,
   getAllPosts,

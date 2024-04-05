@@ -57,7 +57,6 @@ export default async function displayCreatePostPage(): Promise<void> {
         }
 
         if(checkFormValidity()) {
-
             try {
                 const response = await api.sendDataToServer(newPost, "post", filterCookieValue("id", "user"))
 
@@ -74,6 +73,9 @@ export default async function displayCreatePostPage(): Promise<void> {
             } catch (error) {
                 alert(error);
             }
+        }
+        else {
+            alert('Failed form validity, please make sure to fill in all inputs before posting');
         }
 
         (postForm.querySelector(".ql-editor") as HTMLDivElement).innerHTML = "";

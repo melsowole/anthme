@@ -61,6 +61,27 @@ export async function getAllCommentsByUser(
   }
 }
 
+export async function getAllCommentsInPost(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  try {
+    const posts = await read.posts();
+    const comments = await read.comments();
+
+    const post = getItemById(posts, req.params.postId);
+    const commentsInPost = getItemsById(comments, post.comments);
+    
+    if(commentsInPost) res.json(commentsInPost);
+    else throw new CustomError(404, 'Comments in post not found');
+    
+  } catch (err) {
+    next(err);
+    return;
+  }
+}
+
 export async function addComment(
   req: Request,
   res: Response,

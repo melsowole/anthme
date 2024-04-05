@@ -113,14 +113,14 @@ async function displayViewPostPage(): Promise<void> {
 
               if('id' in response){
                 // comment submit success
-                const addedComment = response as Comment;
-                postComments.push(addedComment);
-                postComments.sort((a, b) => new Date(b.created).getTime() - new Date(a.created).getTime());
+                const updatedPostComments = await api.getAllCommentsInPost(post.id);
+                updatedPostComments.sort((a, b) => new Date(b.created).getTime() - new Date(a.created).getTime());
                 
                 const commentDiv = getElement(".comment-info");
                 commentDiv.innerHTML = '';
-                postComments.forEach(postComment => {
+                updatedPostComments.forEach(postComment => {
                   displayCommentOnPost(commentDiv, postComment, postComments);
+                  applyUserFeedbackClassToContent(postComment)
                 })
                 updateAmountOfComments();
 
